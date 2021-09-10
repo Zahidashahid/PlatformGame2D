@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(5, rb.velocity.y);
         }
-
-        if(Input.GetKey(KeyCode.W))
+        // Jump Player 
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(+5, 0);
+            rb.velocity = new Vector2(rb.velocity.x, 10f);
         }
         if(Input.GetKey(KeyCode.S))
         {
