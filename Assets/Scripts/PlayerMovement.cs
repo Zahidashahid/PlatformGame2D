@@ -32,10 +32,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-       
-            animator.SetBool("IsCrouching", true) || Input.GetKey(KeyCode.DownArrow);
+
+            animator.SetBool("IsCrouching", true);
         }
         /*if(Input.GetKey(KeyCode.S))
                 {
