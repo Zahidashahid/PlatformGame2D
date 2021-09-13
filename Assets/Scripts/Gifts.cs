@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Gifts : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public ScoreManager scoreManager = new ScoreManager();
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,10 +12,15 @@ public class Gifts : MonoBehaviour
         
         if ( collision.tag == "Cherry")
         {
+
+            //ScoreManager scriptToAccess = ScoreManager.GetComponent<ScoreManager>();
+
+            scoreManager.CherryCollect();
             Destroy(collision.gameObject);
         }
         if ( collision.tag == "Gem")
         {
+            scoreManager.GemCollect();
             Destroy(collision.gameObject);
         }
 

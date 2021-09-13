@@ -43,7 +43,13 @@ public class PlayerMovement : MonoBehaviour
         {
 
             animator.SetBool("IsCrouching", true);
+            if (Input.GetKeyUp(KeyCode.S))
+            {
+                //crouching = false;
+                animator.SetBool("IsCrouching", false);
+            }
         }
+
         /*if(Input.GetKey(KeyCode.S))
                 {
                     rb.velocity = new Vector2(+5, 0);
@@ -57,7 +63,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void IsCrouching()
     {
+        Debug.Log("In IsCrouching method");
         animator.SetBool("IsCrouching", false);
+
     }
     private bool IsGrounded()
     {
