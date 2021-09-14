@@ -27,11 +27,7 @@ public class LevelLoder : MonoBehaviour
         {
             LoadScene();
         } 
-        if (collisionGameObject.CompareTag("Cherry"))
-        {
-            Debug.Log("Cherry Eaten");
-            Destroy(collision.gameObject); 
-        }
+       
     }
     void LoadScene()
     {

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public CharacterController2D controller;
     [SerializeField] private LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
-    
+
+    bool jump = false;
+    bool crouch = false;
     public Animator animator;
     float horizontalMove = 0f;
     public float runSpeed = 40f;
@@ -37,23 +40,34 @@ public class PlayerMovement : MonoBehaviour
             IsGrounded();
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
+            jump = true;
             
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
 
             animator.SetBool("IsCrouching", true);
+            
+            crouch = true;
+        }
+        else
+        {
             if (Input.GetKeyUp(KeyCode.S))
             {
                 //crouching = false;
                 animator.SetBool("IsCrouching", false);
             }
+            crouch = false;
         }
-
         /*if(Input.GetKey(KeyCode.S))
                 {
                     rb.velocity = new Vector2(+5, 0);
                 }*/
+    }
+     void FixedUpdate()
+    {
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        jump = false;
     }
     public void IsJumping()
     {
@@ -61,10 +75,10 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
 
     }
-    public void IsCrouching()
+    public void OnCrouching(bool isCrouching)
     {
         Debug.Log("In IsCrouching method");
-        animator.SetBool("IsCrouching", false);
+        animator.SetBool("IsCrouching", isCrouching);
 
     }
     private bool IsGrounded()
