@@ -8,12 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
 
-    bool jump = false;
+    int jumpCount = 0;
+    bool jump ;
     bool crouch = false;
     public Animator animator;
     float horizontalMove = 0f;
     public float runSpeed = 40f;
     private BoxCollider2D boxCollider2d;
+    
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -35,28 +37,38 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector2(1, 1);
         }
         // Jump Player 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow))
+        if ((jumpCount < 2 ||  IsGrounded() == null) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)))
         {
-            IsGrounded();
-            rb.velocity = new Vector2(rb.velocity.x, 10f);
+            // IsGrounded();
+            jumpCount++;
+            rb.velocity = new Vector2(rb.velocity.x, 11f);
             animator.SetBool("IsJumping", true);
-            jump = true;
+            Debug.Log(" jump count is " + jumpCount);
             
+            if (jumpCount > 2)
+            {
+                jumpCount = 0;
+            }
+
+
+        }
+       else
+        {
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                animator.SetBool("IsJumping", true);
+                jump = true;
+                
+            }
         }
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-
             animator.SetBool("IsCrouching", true);
-            
             crouch = true;
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                //crouching = false;
-                animator.SetBool("IsCrouching", false);
-            }
             crouch = false;
         }
         /*if(Input.GetKey(KeyCode.S))
@@ -69,11 +81,12 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
     }
-    public void IsJumping()
+    public void OnLanding()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f);
+        Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
-
+        jumpCount = 0;
     }
     public void OnCrouching(bool isCrouching)
     {
@@ -84,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, m_WhatIsGround);
-        Debug.Log(raycastHit2d.collider);
+       // Debug.Log(raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
    

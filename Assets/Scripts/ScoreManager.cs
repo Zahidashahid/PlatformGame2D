@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,23 +7,23 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager obj;
-    public TextMeshPro textGem;
-    public TextMeshPro textCherry;
-  
+    public TMP_Text gemText;
+    public TMP_Text cherryText;
+   // public TextMeshPro cherryText;
     int gemCollected;
     int cherryCollected;
 
     public void GemCollect()
     {
         gemCollected += 1;
-       // textGem.text = "X" + gemCollected.ToString();
-        Debug.Log("Gem = "+ gemCollected);
+        gemText.text = "X" + gemCollected;
+        Debug.Log("Gem = " + gemCollected);
 
     }
-    public  void CherryCollect()
+    public void CherryCollect()
     {
         cherryCollected += 1;
-        //textCherry.text = "X" + cherryCollected.ToString();
-        Debug.Log("Cherry = " +cherryCollected);
+        cherryText.text = "X" + cherryCollected;
+        Debug.Log("Cherry = " + cherryCollected);
     }
 }
