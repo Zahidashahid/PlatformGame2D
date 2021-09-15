@@ -16,7 +16,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - GameOver
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 3191137133
+    locked: 0
+  - name: GameOver
+    uniqueID: 2846014419
     locked: 0
