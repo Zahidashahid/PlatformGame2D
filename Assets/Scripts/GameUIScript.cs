@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class GameUIScript : MonoBehaviour
 {
-    /*public GameObject gameOverPanel;
+    public GameObject gameOverPanel;
+    public GameObject gameOverCanvas;
     public TMP_Text gameOverText;
-    public GameObject restartButton;*/
+    public GameObject restartButton;
     
-
     void Awake()
     {
        /* gameOverPanel.SetActive(false);
@@ -29,11 +29,9 @@ public class GameUIScript : MonoBehaviour
 
     public void GameOver()
     {
-       /* Debug.Log("Game is Over.");
-        gameOverPanel.SetActive(true);
-        restartButton.SetActive(true);
-        gameOverText.enabled = true;*/
-        SceneManager.LoadScene("GameOver");
+        StartCoroutine(waiter());
+        //SceneManager.LoadScene("Level 1");
+        //SceneManager.LoadScene("GameOver");
     }
 
     public void RestartGame()
@@ -43,10 +41,19 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         Debug.Log("Restart btn clicked.");
-        SceneManager.LoadScene("New Scene");
+        SceneManager.LoadScene("Level 1");
     }
 
-   
+    IEnumerator waiter()
+    {
+        //Wait for 1 seconds
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("Game is Over.");
+        gameOverCanvas.SetActive(true);
+        gameOverPanel.SetActive(true);
+        restartButton.SetActive(true);
+        gameOverText.enabled = true;
+    }
 
 }
 

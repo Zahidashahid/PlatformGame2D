@@ -13,6 +13,10 @@ public class EnemyAI : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         enemies = GetComponentInChildren<Enemies>();
     }
+    void Start()
+    {
+        
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;
@@ -20,11 +24,13 @@ public class EnemyAI : MonoBehaviour
         if (collision.tag == "Player")
         {
             animator.SetBool("Ishurt", true);
-       /*     playerMovement.enabled = false;
-            enemies.enabled = false;*/
-            //Destroy(collision.gameObject);
+            /*     playerMovement.enabled = false;
+                 enemies.enabled = false;*/
+            
             FindObjectOfType<GameUIScript>().GameOver();
             gameUIScript.GameOver();
+          //  Destroy(collision.gameObject, 1f);
         }
     }
+   
 }

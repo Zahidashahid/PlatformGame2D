@@ -888,6 +888,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70407db13189c71478415bd89ac8803e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1038023684}
+  gameOverCanvas: {fileID: 1039997257}
+  gameOverText: {fileID: 830280635}
+  restartButton: {fileID: 1202859173}
 --- !u!4 &561927471
 Transform:
   m_ObjectHideFlags: 0
@@ -1192,12 +1196,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830280633}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1039997258}
-  m_RootOrder: 1
+  m_Father: {fileID: 1038023687}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1999,8 +2003,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b6dc8ab32ae6f2c4f849402eb362be5e, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2026,8 +2030,9 @@ RectTransform:
   m_GameObject: {fileID: 1038023684}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 1.4, y: 1.4, z: 0}
+  m_Children:
+  - {fileID: 830280634}
   m_Father: {fileID: 1039997258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2035,7 +2040,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1039997257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,6 +2053,7 @@ GameObject:
   - component: {fileID: 1039997261}
   - component: {fileID: 1039997260}
   - component: {fileID: 1039997259}
+  - component: {fileID: 1039997263}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -2067,7 +2073,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1038023687}
-  - {fileID: 830280634}
   - {fileID: 1202859174}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2138,6 +2143,14 @@ Canvas:
   m_SortingLayerID: -1448952877
   m_SortingOrder: 20
   m_TargetDisplay: 0
+--- !u!222 &1039997263
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039997257}
+  m_CullTransparentMesh: 1
 --- !u!1 &1132061373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,7 +2330,7 @@ RectTransform:
   m_Children:
   - {fileID: 1372298782}
   m_Father: {fileID: 1039997258}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11747,66 +11760,6 @@ CompositeCollider2D:
         Y: 23599902
       - X: 1187568169
         Y: 23599902
-    - - X: 767862244
-        Y: 11599960
-      - X: 767862244
-        Y: 24400041
-      - X: 767862185
-        Y: 24400100
-      - X: 731087895
-        Y: 24400100
-      - X: 731087836
-        Y: 24400041
-      - X: 731087836
-        Y: 11599960
-      - X: 731087895
-        Y: 11599901
-      - X: 767862185
-        Y: 11599901
-    - - X: 995702628
-        Y: 11599960
-      - X: 995702628
-        Y: 24400041
-      - X: 995702569
-        Y: 24400100
-      - X: 946936663
-        Y: 24400100
-      - X: 946936604
-        Y: 24400041
-      - X: 946936604
-        Y: 11599960
-      - X: 946936663
-        Y: 11599901
-      - X: 995702569
-        Y: 11599901
-    - - X: 1223543012
-        Y: -400041
-      - X: 1223543012
-        Y: 11599901
-      - X: 1259517737
-        Y: 11599901
-      - X: 1259517796
-        Y: 11599960
-      - X: 1259517796
-        Y: 24400041
-      - X: 1259517737
-        Y: 24400100
-      - X: 1222743383
-        Y: 24400100
-      - X: 1222743324
-        Y: 24400041
-      - X: 1222743324
-        Y: 12400100
-      - X: 1186768727
-        Y: 12400100
-      - X: 1186768668
-        Y: 12400041
-      - X: 1186768668
-        Y: -400041
-      - X: 1186768727
-        Y: -400100
-      - X: 1223542953
-        Y: -400100
     - - X: 1331467492
         Y: 11599960
       - X: 1331467492
@@ -11895,6 +11848,66 @@ CompositeCollider2D:
         Y: 11599901
       - X: 587988201
         Y: 11599901
+    - - X: 767862244
+        Y: 11599960
+      - X: 767862244
+        Y: 24400041
+      - X: 767862185
+        Y: 24400100
+      - X: 731087895
+        Y: 24400100
+      - X: 731087836
+        Y: 24400041
+      - X: 731087836
+        Y: 11599960
+      - X: 731087895
+        Y: 11599901
+      - X: 767862185
+        Y: 11599901
+    - - X: 995702628
+        Y: 11599960
+      - X: 995702628
+        Y: 24400041
+      - X: 995702569
+        Y: 24400100
+      - X: 946936663
+        Y: 24400100
+      - X: 946936604
+        Y: 24400041
+      - X: 946936604
+        Y: 11599960
+      - X: 946936663
+        Y: 11599901
+      - X: 995702569
+        Y: 11599901
+    - - X: 1223543012
+        Y: -400041
+      - X: 1223543012
+        Y: 11599901
+      - X: 1259517737
+        Y: 11599901
+      - X: 1259517796
+        Y: 11599960
+      - X: 1259517796
+        Y: 24400041
+      - X: 1259517737
+        Y: 24400100
+      - X: 1222743383
+        Y: 24400100
+      - X: 1222743324
+        Y: 24400041
+      - X: 1222743324
+        Y: 12400100
+      - X: 1186768727
+        Y: 12400100
+      - X: 1186768668
+        Y: 12400041
+      - X: 1186768668
+        Y: -400041
+      - X: 1186768727
+        Y: -400100
+      - X: 1223542953
+        Y: -400100
     - - X: 396122628
         Y: -72400041
       - X: 396122628
