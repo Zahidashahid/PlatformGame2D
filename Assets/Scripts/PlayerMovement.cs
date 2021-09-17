@@ -17,7 +17,11 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     public float runSpeed = 40f;
     private BoxCollider2D boxCollider2d;
-    
+
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask enemyLayers;
+
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -94,6 +98,13 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(40, rb.velocity.y);
             }
         }
+
+        if(Input.GetKey(KeyCode.K))
+        {
+            Debug.Log("attack Called" );
+            Attack();
+        }
+
     }
      void FixedUpdate()
     {
@@ -106,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
         jumpCount = 0;
+       
     }
     public void OnCrouching(bool isCrouching)
     {
@@ -119,5 +131,25 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log(raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
-   
+    public void Attack()
+    {
+        
+        //Deteck enemies in range
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+       // Debug.Log("We hit" + hitEnemies[0].name);
+        //Demage Them
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We hit " + enemy.name);
+            Destroy(enemy.gameObject);
+        }
+    }
+    void OnDrawGizmoSelected()
+    {
+        if(attackPoint == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 }

@@ -26,7 +26,7 @@ public class EnemyAI : MonoBehaviour
                  enemies.enabled = false;*/
             rigidbody2D.bodyType = RigidbodyType2D.Static;
             FindObjectOfType<GameUIScript>().GameOver();
-            gameUIScript.GameOver();
+            //gameUIScript.GameOver();
           //  Destroy(collision.gameObject, 1f);
         }
     }
