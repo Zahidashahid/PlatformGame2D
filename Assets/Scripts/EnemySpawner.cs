@@ -17,19 +17,41 @@ public class EnemySpawner : MonoBehaviour
     }
     public Wave[] waves;
     private int nextWave = 0;
-    public float timeBetweenWaves = 5f;
-    public float waveCountDown;
 
+    public Transform[] spwanPoints;
+
+    public float timeBetweenWaves = 5f;
+    private float waveCountDown;
+
+    private float searchCountDown = 1f;
     public SpwanState state = SpwanState.COUNTING;
          
     
     void Start()
     {
+        if (spwanPoints.Length == 0)
+        {
+            Debug.LogError("No Spwan points referenced");
+        }
         waveCountDown = timeBetweenWaves;
     }
     void Update()
     {
-        if(waveCountDown <= 0)
+        if (state == SpwanState.WAITING)
+        {
+            //check enemies still alive
+            if(!EnemyIsAlive())
+            {
+                // Spwan Enemies now
+                WaveCompleted();
+            }
+            else
+            {
+                return;
+            }
+
+        }
+        if (waveCountDown <= 0)
         {
             if (state != SpwanState.SPWANING)
             {
@@ -41,16 +63,45 @@ public class EnemySpawner : MonoBehaviour
         {
             waveCountDown -= Time.deltaTime;
         }
-    }
 
+    }
+    void WaveCompleted()
+    {
+
+        Debug.Log("Completed");
+        state = SpwanState.COUNTING;
+        waveCountDown = timeBetweenWaves;
+        if(nextWave + 1 > waves.Length - 1)
+        {
+            nextWave = 0;
+            Debug.Log("All waves completed");
+        }
+        else
+            nextWave++;
+    }
+    bool EnemyIsAlive()
+    {
+        searchCountDown -= Time.deltaTime;
+        if(searchCountDown <= 0f)
+        {
+            searchCountDown = 1f;
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return false;
+            }
+        }
+       
+        return true;
+    }
     IEnumerator SpwanWave(Wave _wave)
     {
+        Debug.Log("Spwaning Wave:" + _wave.name);
         state = SpwanState.SPWANING;
         //spawn
         for(int i = 0; i < _wave.count; i++)
         {
             SpawnEnemy(_wave.enemy);
-        //    yield retrun new WaitForSeconds(1f/_wave.rate);
+           // yield retrun new WaitForSeconds(1f/ _wave.rate);
         }
         state = SpwanState.WAITING;
         yield break;
@@ -58,5 +109,8 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy(Transform _enemy)
     {
         Debug.Log("Spwaning Enemy :" + _enemy.name);
+        
+        Transform _sp = spwanPoints[Random.Range(0, spwanPoints.Length)];
+        Instantiate(_enemy, transform.position, transform.rotation);
     }
 }

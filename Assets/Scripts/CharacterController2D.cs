@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
 	[SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
-	
+
 	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 	private bool m_Grounded;            // Whether or not the player is grounded.
 	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
@@ -33,7 +33,7 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		
+
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 
@@ -59,7 +59,8 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 	}
-	
+
+
 	public void Move(float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
@@ -83,7 +84,6 @@ public class CharacterController2D : MonoBehaviour
 				{
 					m_wasCrouching = true;
 					OnCrouchEvent.Invoke(true);
-					
 				}
 
 				// Reduce the speed by the crouchSpeed multiplier
@@ -98,13 +98,12 @@ public class CharacterController2D : MonoBehaviour
 				// Enable the collider when not crouching
 				if (m_CrouchDisableCollider != null)
 					m_CrouchDisableCollider.enabled = true;
-			
+
 				if (m_wasCrouching)
 				{
 					m_wasCrouching = false;
 					OnCrouchEvent.Invoke(false);
 				}
-				
 			}
 
 			// Move the character by finding the target velocity
@@ -133,6 +132,7 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
+
 
 	private void Flip()
 	{

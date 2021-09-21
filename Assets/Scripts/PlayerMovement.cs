@@ -35,8 +35,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
-            direction = 1;
-            
+            direction = 1; 
         }
         // Move Player Forward
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -62,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-       else
+        else
         {
             if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))   //when S or Space key are up. 
             {
@@ -81,10 +80,7 @@ public class PlayerMovement : MonoBehaviour
         {
             crouch = false;
         }
-        /*if(Input.GetKey(KeyCode.S))
-                {
-                    rb.velocity = new Vector2(+5, 0);
-                }*/
+        
         // Dash move 
         if (Input.GetKey(KeyCode.X))
         {
@@ -117,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
         jumpCount = 0;
-       
     }
     public void OnCrouching(bool isCrouching)
     {
@@ -133,10 +128,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Attack()
     {
-        
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-       // Debug.Log("We hit" + hitEnemies[0].name);
         //Demage Them
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -144,6 +137,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(enemy.gameObject);
         }
     }
+    //Show Attack point oject in scene for better Visibility
     void OnDrawGizmoSelected()
     {
         if(attackPoint == null)
