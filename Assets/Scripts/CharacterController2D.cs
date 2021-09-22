@@ -143,5 +143,8 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+
+		// player flip point of attck also flip is direction
+		//transform.Rotate(0f, 180f, 0f);
 	}
 }
