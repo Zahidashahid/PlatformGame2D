@@ -14,11 +14,14 @@ public class EnemyAI : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         enemies = GetComponentInChildren<Enemies>();
     }
-    
+    void Start()
+    {
+       // animator = GetComponent<Animator>();
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;
-        Debug.Log("Player hit " + collision.tag);
+        Debug.Log("Enemy hit " + collision.tag);
         if (collision.tag == "Player")
         {
             animator.SetBool("Ishurt", true);

@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         // Dash move 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.P))
         {
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
