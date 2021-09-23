@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump ;
     bool crouch = false;
     public Animator animator;
+    public Animator eagle_animator;
     float horizontalMove = 0f;
     public float runSpeed = 40f;
     private BoxCollider2D boxCollider2d;
@@ -25,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
+    }
+    private void Start()
+    {
+        //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
     }
     private void Update()
     {
@@ -98,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.K))
         {
             Debug.Log("attack Called" );
+            //eagle_animator.SetTrigger("Death");
             Attack();
         }
 
