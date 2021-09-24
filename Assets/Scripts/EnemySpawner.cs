@@ -95,20 +95,20 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator SpwanWave(Wave _wave)
     {
-        Debug.Log("Spwaning Wave:" + _wave.name);
+        //ssDebug.Log("Spwaning Wave:" + _wave.name);
         state = SpwanState.SPWANING;
         //spawn
         for(int i = 0; i < _wave.count; i++)
         {
             SpawnEnemy(_wave.enemy);
-           // yield retrun new WaitForSeconds(1f/ _wave.rate);
+            // yield return new WaitForSeconds(1f/ _wave.rate);
         }
         state = SpwanState.WAITING;
         yield break;
     }
     void SpawnEnemy(Transform _enemy)
     {
-        Debug.Log("Spwaning Enemy :" + _enemy.name);
+        //Debug.Log("Spwaning Enemy :" + _enemy.name);
         
         Transform _sp = spwanPoints[Random.Range(0, spwanPoints.Length)];
         Instantiate(_enemy, transform.position, transform.rotation);

@@ -8,6 +8,7 @@ TagManager:
   - Gem
   - Enemy
   - Water
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - GameOver
   - Water
   - Enemy
-  - 
+  - Obstacles
   - 
   - 
   - 
@@ -50,6 +51,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2462620257
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1928963555
     locked: 0
   - name: player
     uniqueID: 3191137133

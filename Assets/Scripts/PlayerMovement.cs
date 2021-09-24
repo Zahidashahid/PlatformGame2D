@@ -7,17 +7,22 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     [SerializeField] private LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
-    private int direction = 2;
-    private float dashTime = 40f;
-    
-    int jumpCount = 0;
-    bool jump ;
-    bool crouch = false;
+    private BoxCollider2D boxCollider2d;
+
     public Animator animator;
     public Animator eagle_animator;
-    float horizontalMove = 0f;
+    
+    bool jump ;
+    bool crouch = false;
+
+    int jumpCount = 0;
+    private int direction = 2;
+    public int currentHealth;
+    public int maxHealth = 100;
+
+    private float dashTime = 40f;
     public float runSpeed = 40f;
-    private BoxCollider2D boxCollider2d;
+    float horizontalMove = 0f;
 
     public Transform attackPoint;
     public float attackRange = 0.5f;
@@ -30,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
+        currentHealth = maxHealth;
+
     }
     private void Update()
     {
@@ -50,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             direction = 2;
         }
         // Jump Player if on ground ,  double jump
-        if ((jumpCount < 2 ||  IsGrounded() == null) && (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow)))
+        if ((jumpCount < 2 ||  IsGrounded() == null) && (Input.GetKeyDown(KeyCode.Space)))
         {
             jumpCount++;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
@@ -68,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow))   //when S or Space key are up. 
+            if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
                 animator.SetBool("IsJumping", false);
@@ -100,10 +107,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.K))
+        if(Input.GetKeyDown(KeyCode.K))
         {
             Debug.Log("attack Called" );
             //eagle_animator.SetTrigger("Death");
+           // StartCoroutine(Attack());
             Attack();
         }
 
@@ -132,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log(raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
-    public void Attack()
+    void Attack() //IEnumerator
     {
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -140,8 +148,16 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
-            Destroy(enemy.gameObject);
+            if (enemy.name == "Skeleton")
+            {
+                enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+            }
+            //eagle_animator.SetTrigger("Death");
+            // yield return new WaitForSeconds(1);
+            else
+                Destroy(enemy.gameObject);
         }
+        
     }
     //Show Attack point oject in scene for better Visibility
     void OnDrawGizmoSelected()
@@ -151,5 +167,32 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+    public void TakeDemage(int demage)
+    {
+        currentHealth -= demage;
+        // play hurt animation
+        StartCoroutine(HurtAnimation());
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+    IEnumerator HurtAnimation()
+    {
+        // play hurt animation
+        animator.SetBool("Ishurt", true);
+        yield return new WaitForSeconds(0.6f);
+        animator.SetBool("Ishurt", false);
+   
+    }
+    void Die()
+    {
+        // Die Animation
+        animator.SetBool("Ishurt", true);
+        Debug.Log("Player died!");
+
+        // Disable the player
+        FindObjectOfType<GameUIScript>().GameOver();
     }
 }

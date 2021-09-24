@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public Animator animator;
+    public Rigidbody2D rigidbody2D;
+
     public GameUIScript gameUIScript;
     PlayerMovement playerMovement;
     Enemies enemies;
-    public Rigidbody2D rigidbody2D;
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -24,11 +25,14 @@ public class EnemyAI : MonoBehaviour
         Debug.Log("Enemy hit " + collision.tag);
         if (collision.tag == "Player")
         {
+           // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             animator.SetBool("Ishurt", true);
             /*     playerMovement.enabled = false;
                  enemies.enabled = false;*/
             rigidbody2D.bodyType = RigidbodyType2D.Static;
             FindObjectOfType<GameUIScript>().GameOver();
+
+            
             //gameUIScript.GameOver();
           //  Destroy(collision.gameObject, 1f);
         }
