@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
 
     public Transform attackPoint;
+    public Transform weaponAttackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
@@ -143,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
     void Attack() //IEnumerator
     {
         //Deteck enemies in range
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
         //Demage Them
         foreach (Collider2D enemy in hitEnemies)
         {
