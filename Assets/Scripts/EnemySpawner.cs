@@ -68,13 +68,13 @@ public class EnemySpawner : MonoBehaviour
     void WaveCompleted()
     {
 
-        Debug.Log("Completed");
+        //Debug.Log("Completed");
         state = SpwanState.COUNTING;
         waveCountDown = timeBetweenWaves;
         if(nextWave + 1 > waves.Length - 1)
         {
             nextWave = 0;
-            Debug.Log("All waves completed");
+            //Debug.Log("All waves completed");
         }
         else
             nextWave++;

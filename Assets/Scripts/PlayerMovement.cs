@@ -21,12 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public int maxHealth = 100;
 
     private float dashTime = 40f;
+    public float attackRange = 0.5f;
+    public float attackRate = 1f; //one attack per second
+    public float nextAttackTime = 0f;
     public float runSpeed = 40f;
     float horizontalMove = 0f;
 
     public Transform attackPoint;
     public Transform weaponAttackPoint;
-    public float attackRange = 0.5f;
     public LayerMask enemyLayers;
 
     private void Awake()
@@ -108,13 +110,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.K))
+
+        if (Time.time >= nextAttackTime)
         {
-            Debug.Log("attack Called" );
-            //eagle_animator.SetTrigger("Death");
-           // StartCoroutine(Attack());
-            Attack();
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Debug.Log("attack Called");
+                //eagle_animator.SetTrigger("Death");
+                // StartCoroutine(Attack());
+                Attack();
+                nextAttackTime =  Time.time + 1f / attackRate;
+
+            }
         }
+       
 
     }
      void FixedUpdate()
@@ -131,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void OnCrouching(bool isCrouching)
     {
-        Debug.Log("In IsCrouching method");
+        //Debug.Log("In IsCrouching method");
         animator.SetBool("IsCrouching", isCrouching);
 
     }
@@ -148,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         //Demage Them
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+           // Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton")
             {
                 enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);

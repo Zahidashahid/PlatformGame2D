@@ -14,10 +14,32 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public int currentHealth;
     int direction = 1;
 
+    #region Public Variables;
+    public Transform rayCast;
+    public LayerMask rayCastMask;
+    public float rayCastLength;
+    public float attackDistance; // min distance for attack
+    public float moveSpeed;
+    public float timer; //time for cooldown btw attacks
+    #endregion
+
+    #region Private Variables
+    private RaycastHit2D hit;
+    private GameObject target;
+    private Animator anim;
+    private float distance; // stores distance btw player and enemy
+    private bool attackMode;
+    private bool inRange; // check player in range
+    private bool cooling;
+    private float intTimer;
+    #endregion
+
 
     private void Awake()
     {
-       // boxCollider2d = GetComponent<BoxCollider2D>();
+        // boxCollider2d = GetComponent<BoxCollider2D>();
+        intTimer = timer;
+        anim = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -25,7 +47,32 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     // Update is called once per frame
     void Update()
-    {   if(direction == 1)
+    {
+
+        if (inRange)
+        {
+            hit = Physics2D.Raycast(rayCast.position, Vector2.left, rayCastLength, rayCastMask);
+            RaycastDebugger();
+
+        }
+        //When Player is detected
+        if(hit.collider != null)
+        {
+            EnemyLogic();
+        }
+        else if (hit.collider == null)
+        {
+            
+            inRange = false; 
+        }
+        if (inRange == false)
+        {
+            //animation of ideal/ walk
+            anim.SetBool("CanWalk", false);
+            StopAttack();
+
+        }
+        if (direction == 1)
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(5, 5);
@@ -39,7 +86,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision with " + collision.tag);
+       // Debug.Log("Collision with " + collision.tag);
         if (collision.tag == "Obstacles")
         {
             if (direction == 1)
@@ -48,6 +95,11 @@ public class SkeletonEnemyMovement : MonoBehaviour
             }
             else
                 direction = 1;
+
+        }if (collision.tag == "Player")
+        {
+            target = collision.gameObject;
+            inRange = true;
 
         }
        
@@ -82,5 +134,81 @@ public class SkeletonEnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
         // Disable the player
          Destroy(gameObject);
+    }
+    
+    void RaycastDebugger()
+    {
+        if (distance > attackDistance)
+        {
+            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.red);
+        }
+
+        else if (distance > attackDistance)
+        {
+            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.green);
+        }
+    }
+
+    void EnemyLogic()
+    {
+        distance = Vector2.Distance(transform.position, target.transform.position);
+        if(distance > attackDistance)
+        {
+            Move();
+            StopAttack();
+
+        }
+        else if (attackDistance >= distance && cooling == false  )
+        {
+            anim.SetBool("Attack", false);
+            Attack();
+        }
+        if (cooling)
+        {
+            CoolDown();
+            anim.SetBool("Attack", false);
+            
+                
+        }
+    }
+    private void Move()
+    {
+        anim.SetBool("CanWalk", true);
+      /*  if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack1"))
+        {
+            Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        }*/
+    }
+    void Attack()
+    {
+        timer = intTimer;
+        attackMode = true;
+
+        anim.SetBool("CanWalk", false);
+        anim.SetBool("Attack", true);
+
+    }
+    private void StopAttack()
+    {
+        cooling = false;
+        attackMode = false;
+       // anim.SetBool("CanWalk", true);
+        anim.SetBool("Attack", false);
+    }
+    public void TriggerCooling()
+    {
+        cooling = true;
+
+    }
+    void CoolDown()
+    {
+        Debug.Log("In coolDown Function");
+        timer -= Time.deltaTime;
+        if(timer <= 0 && cooling && attackMode )
+        {
+            cooling = false;
+            timer = intTimer;
+        }
     }
 }
