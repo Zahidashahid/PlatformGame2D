@@ -150,6 +150,9 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log(raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
+    /// <summary>
+    /// Attack on skeleton enemy
+    /// </summary>
     void Attack() //IEnumerator
     {
         //Deteck enemies in range

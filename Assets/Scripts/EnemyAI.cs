@@ -38,12 +38,7 @@ public class EnemyAI : MonoBehaviour
           //  Destroy(collision.gameObject, 1f);
         }
 
-        if (collision.CompareTag("Arrow"))
-        {
-            Debug.Log("Arrow hit " + collision.tag);
-            collision.SendMessage("TakeDamage", 5f, SendMessageOptions.DontRequireReceiver);
-            Destroy(collision);
-        }
+       
     }
    
 }

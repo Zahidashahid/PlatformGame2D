@@ -103,7 +103,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             target = collision.gameObject;
             inRange = true;
-            Debug.Log("plyer collied with skelton");
+            Debug.Log("player collied with skelton");
 
         }
 

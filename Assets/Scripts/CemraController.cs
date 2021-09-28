@@ -5,7 +5,7 @@ using UnityEngine;
 public class CemraController : MonoBehaviour
 {
     public Transform player;
-    public GameObject camera;
+    //public GameObject camera;
    
     private void Update()
     {

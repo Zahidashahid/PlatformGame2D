@@ -25,7 +25,8 @@ public class MelleAttack : MonoBehaviour
     void Attack()
     {
         //play an attack animation
-        animator.SetTrigger("Attack");
+       // animator.SetTrigger("Attack");
+        animator.SetBool("Attack", true);
         //deteck enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
         // demage them
