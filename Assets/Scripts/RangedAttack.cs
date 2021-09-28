@@ -53,7 +53,7 @@ public class RangedAttack : MonoBehaviour
        
         
     }
-    private void OnTriggerEnter2D(Collider2D collision) // Start throwning arrow when player entered in arrown zone i.e trigger area
+    private void OnTriggerEnter2D(Collider2D collision) // Start throwning arrow when player entered in arrow zone i.e trigger area
     {
         if (collision.tag == "Player")
         {
