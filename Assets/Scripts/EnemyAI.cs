@@ -22,10 +22,11 @@ public class EnemyAI : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;
-        Debug.Log("Enemy hit " + collision.tag);
+       
         if (collision.tag == "Player")
         {
-           // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
+            Debug.Log("enemy hit " + collision.tag);
+            // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             animator.SetBool("Ishurt", true);
             /*     playerMovement.enabled = false;
                  enemies.enabled = false;*/
@@ -35,6 +36,13 @@ public class EnemyAI : MonoBehaviour
             
             //gameUIScript.GameOver();
           //  Destroy(collision.gameObject, 1f);
+        }
+
+        if (collision.CompareTag("Arrow"))
+        {
+            Debug.Log("Arrow hit " + collision.tag);
+            collision.SendMessage("TakeDamage", 5f, SendMessageOptions.DontRequireReceiver);
+            Destroy(collision);
         }
     }
    

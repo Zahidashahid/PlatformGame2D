@@ -5,10 +5,11 @@ using UnityEngine;
 public class SkeletonEnemyMovement : MonoBehaviour
 {
 
-   /* private BoxCollider2D boxCollider2d;*/
+    /* private BoxCollider2D boxCollider2d;*/
 
     public Rigidbody2D rb;
     public Animator animator;
+    public Animator playerAnimator;
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -56,14 +57,15 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
         }
         //When Player is detected
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
             EnemyLogic();
+            inRange = true;
         }
         else if (hit.collider == null)
         {
-            
-            inRange = false; 
+
+            inRange = false;
         }
         if (inRange == false)
         {
@@ -82,11 +84,11 @@ public class SkeletonEnemyMovement : MonoBehaviour
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-5, 5);
         }
-        
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-       // Debug.Log("Collision with " + collision.tag);
+        // Debug.Log("Collision with " + collision.tag);
         if (collision.tag == "Obstacles")
         {
             if (direction == 1)
@@ -96,35 +98,52 @@ public class SkeletonEnemyMovement : MonoBehaviour
             else
                 direction = 1;
 
-        }if (collision.tag == "Player")
+        }
+        if (collision.tag == "Player")
         {
             target = collision.gameObject;
             inRange = true;
+            Debug.Log("plyer collied with skelton");
 
         }
-       
+
 
     }
-   
+
     public void TakeDemage(int demage)
     {
         currentHealth -= demage;
-        
+
         // play hurt animation
-        StartCoroutine(HurtAnimation());
+        StartCoroutine(SkeletonHurtAnimation());
         if (currentHealth <= 0)
         {
-            StartCoroutine( Die());
+            StartCoroutine(Die());
         }
     }
-     IEnumerator HurtAnimation()
-     {
+    IEnumerator SkeletonHurtAnimation()
+    {
         // play hurt animation
         animator.SetBool("Sheild", true);
-        yield return new WaitForSeconds(0.6f);
-         animator.SetBool("Sheild", false);
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("Sheild", false);
 
-     }
+    }
+    IEnumerator PlayerHurtAnimation()
+    {
+        // play hurt animation
+        playerAnimator.SetBool("Ishurt", true);
+        yield return new WaitForSeconds(0.4f);
+        playerAnimator.SetBool("Ishurt", false);
+
+    }
+    IEnumerator SeletonAttackAnimation()
+    {
+        anim.SetBool("Attack", true);
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("Attack", false);
+
+    }
     IEnumerator Die()
     {
         // Die Animation
@@ -133,9 +152,9 @@ public class SkeletonEnemyMovement : MonoBehaviour
         Debug.Log("Skeleton died!");
         yield return new WaitForSeconds(2f);
         // Disable the player
-         Destroy(gameObject);
+        Destroy(gameObject);
     }
-    
+
     void RaycastDebugger()
     {
         if (distance > attackDistance)
@@ -143,7 +162,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.red);
         }
 
-        else if (distance > attackDistance)
+        else if (distance < attackDistance)
         {
             Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.green);
         }
@@ -152,48 +171,57 @@ public class SkeletonEnemyMovement : MonoBehaviour
     void EnemyLogic()
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
-        if(distance > attackDistance)
+        if (distance > attackDistance)
         {
             Move();
             StopAttack();
 
         }
-        else if (attackDistance >= distance && cooling == false  )
+        else if (attackDistance >= distance && cooling == false)
         {
             anim.SetBool("Attack", false);
+            // StartCoroutine(Attack());
             Attack();
+
         }
         if (cooling)
         {
             CoolDown();
             anim.SetBool("Attack", false);
-            
-                
+
+
         }
     }
     private void Move()
     {
         anim.SetBool("CanWalk", true);
-      /*  if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack1"))
-        {
-            Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        }*/
+        /*  if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack1"))
+          {
+              Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
+              transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+          }*/
     }
+    // IEnumerator Attack()
     void Attack()
     {
         timer = intTimer;
         attackMode = true;
-
         anim.SetBool("CanWalk", false);
-        anim.SetBool("Attack", true);
+        // anim.SetBool("Attack", true);
 
+        StartCoroutine(SeletonAttackAnimation());
+        StartCoroutine(PlayerHurtAnimation());
+        // yield return new WaitForSeconds(0.05f);
+        /*
+                playerAnimator.SetBool("Ishurt", false);
+                anim.SetBool("CanWalk", true);
+                anim.SetBool("Attack", false);*/
     }
     private void StopAttack()
     {
         cooling = false;
         attackMode = false;
-       // anim.SetBool("CanWalk", true);
+        // anim.SetBool("CanWalk", true);
         anim.SetBool("Attack", false);
     }
     public void TriggerCooling()
@@ -203,9 +231,9 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     void CoolDown()
     {
-        Debug.Log("In coolDown Function");
+        //Debug.Log("In coolDown Function");
         timer -= Time.deltaTime;
-        if(timer <= 0 && cooling && attackMode )
+        if (timer <= 0 && cooling && attackMode)
         {
             cooling = false;
             timer = intTimer;

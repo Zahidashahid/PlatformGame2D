@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Obstacles
   - Skeleton
+  - Arrow
   layers:
   - Default
   - TransparentFX

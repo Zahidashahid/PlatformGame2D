@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
     private BoxCollider2D boxCollider2d;
-
+   
     public Animator animator;
     public Animator eagle_animator;
     
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-       
+      
 
     }
      void FixedUpdate()
@@ -205,4 +205,6 @@ public class PlayerMovement : MonoBehaviour
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
     }
+
+    
 }
