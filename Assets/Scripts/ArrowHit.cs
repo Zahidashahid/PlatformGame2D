@@ -20,8 +20,6 @@ public class ArrowHit : MonoBehaviour
     void Attack()
     {
         //play an attack animation
-        // animator.SetTrigger("Attack");
-        playerAnimator.SetBool("Attack", true);
         //deteck enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
         // demage them
@@ -40,11 +38,14 @@ public class ArrowHit : MonoBehaviour
         {
             Debug.Log("enemy hit " + collision.tag);
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
-            playerAnimator.SetBool("Ishurt", true);
+            //playerAnimator.SetBool("Ishurt", true);
             /*     playerMovement.enabled = false;
                  enemies.enabled = false;*/
-            rigidbody2D.bodyType = RigidbodyType2D.Static;
-            FindObjectOfType<GameUIScript>().GameOver();
+           // rigidbody2D.bodyType = RigidbodyType2D.Static;
+            Attack();
+
+
+            ///FindObjectOfType<GameUIScript>().GameOver();
 
 
             //gameUIScript.GameOver();
