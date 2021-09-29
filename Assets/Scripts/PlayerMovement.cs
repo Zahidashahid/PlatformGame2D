@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange = 0.5f;
     public float attackRate = 1f; //one attack per second
     public float nextAttackTime = 0f;
-    public float runSpeed = 40f;
+    public float runSpeed = 60f;
     float horizontalMove = 0f;
 
     public Transform attackPoint;

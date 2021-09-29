@@ -26,7 +26,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
     #region Private Variables
     private RaycastHit2D hit;
-    private GameObject target;
+    private Transform target;
     private Animator anim;
     private float distance; // stores distance btw player and enemy
     private bool attackMode;
@@ -50,17 +50,18 @@ public class SkeletonEnemyMovement : MonoBehaviour
     void Update()
     {
 
+      /*  if (inRange)
+        {
+            hit = Physics2D.Raycast(rayCast.position, transform.right, rayCastLength, rayCastMask);
+            RaycastDebugger();
+            Debug.Log("Hit is " +  hit);
+            Debug.Log("inRange is " +  inRange);
+        }*/
+        //When Player is detected
         if (inRange)
         {
-            hit = Physics2D.Raycast(rayCast.position, Vector2.left, rayCastLength, rayCastMask);
-            RaycastDebugger();
-
-        }
-        //When Player is detected
-        if (hit.collider != null)
-        {
             EnemyLogic();
-            inRange = true;
+            //inRange = true;
         }
         else if (hit.collider == null)
         {
@@ -70,7 +71,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
         if (inRange == false)
         {
             //animation of ideal/ walk
-            anim.SetBool("CanWalk", false);
             StopAttack();
 
         }
@@ -101,10 +101,10 @@ public class SkeletonEnemyMovement : MonoBehaviour
         }
         if (collision.tag == "Player")
         {
-            target = collision.gameObject;
+            target = collision.transform;
             inRange = true;
-            Debug.Log("player collied with skelton");
-
+           // Debug.Log("player collied with skelton");
+            Flip();
         }
 
 
@@ -151,7 +151,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
         yield return new WaitForSeconds(2f);
-        // Disable the player
+        // Disable the player 
         Destroy(gameObject);
     }
 
@@ -159,18 +159,18 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         if (distance > attackDistance)
         {
-            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.red);
+            Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.red);
         }
 
         else if (distance < attackDistance)
         {
-            Debug.DrawRay(rayCast.position, Vector2.left * rayCastLength, Color.green);
+            Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.green);
         }
     }
 
     void EnemyLogic()
     {
-        distance = Vector2.Distance(transform.position, target.transform.position);
+        distance = Vector2.Distance(transform.position, target.position);
         if (distance > attackDistance)
         {
             Move();
@@ -179,7 +179,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         }
         else if (attackDistance >= distance && cooling == false)
         {
-            anim.SetBool("Attack", false);
+           // anim.SetBool("Attack", false);
             // StartCoroutine(Attack());
             Attack();
 
@@ -195,9 +195,10 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private void Move()
     {
         anim.SetBool("CanWalk", true);
+        
         /*  if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Enemy_Attack1"))
           {
-              Vector2 targetPosition = new Vector2(target.transform.position.x, transform.position.y);
+              Vector2 targetPosition = new Vector2(target.position.x, transform.position.y);
               transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
           }*/
     }
@@ -238,5 +239,36 @@ public class SkeletonEnemyMovement : MonoBehaviour
             cooling = false;
             timer = intTimer;
         }
+    }
+    void Flip()
+    {
+        distance = Vector2.Distance(transform.position, target.position);
+        Debug.Log("Flip called" + distance);
+         Vector3 rotation = transform.eulerAngles;
+         rotation.x *= -1;
+         Debug.Log("Flip called");
+         if(inRange && transform.position.x > target.position.x)
+         {
+             rotation.y = 180f;
+             Debug.Log("Flip skeleton");
+             if (direction == 1)
+                 direction = 2;
+             else
+                 direction = 1;
+         }
+        else if (inRange &&  transform.position.x < target.position.x)
+        {
+            rotation.y = 180f;
+            Debug.Log("Flip skeleton");
+            if (direction == 1)
+                direction = 2;
+            else
+                direction = 1;
+        }
+        else
+         {
+             rotation.y = 0f;
+         }
+         transform.eulerAngles = rotation;
     }
 }

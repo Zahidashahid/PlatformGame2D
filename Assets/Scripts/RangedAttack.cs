@@ -13,7 +13,6 @@ public class RangedAttack : MonoBehaviour
     public float rayCastLength;
     public float nextAttackTime; // after every 2 sec
 
-    private RaycastHit2D hit;
     private GameObject target;
     public Transform rayCast;
     public LayerMask rayCastMask;
@@ -26,13 +25,14 @@ public class RangedAttack : MonoBehaviour
         {
             nextAttackTime -= Time.deltaTime;
         }
+        else
+            nextAttackTime = 2f;
         if (inRange && nextAttackTime < 0) // if player is in arrow zone it will continue instantiating arrows after every 2 seconds.
         {
            
             ArrowLogic();
             inRange = true;
-            nextAttackTime = 2f ;
-            Debug.Log(" hit is " + hit.collider != null);
+            
         }
         
         /*if (Input.GetKeyDown(KeyCode.I)) 

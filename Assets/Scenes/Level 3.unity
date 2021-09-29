@@ -1810,7 +1810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 830805423}
   attackPoint: {fileID: 909216586}
-  attackRange: 1.5
+  attackRange: 2.2
   playerLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -3784,7 +3784,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 1, z: 0}
+  - first: {x: -4, y: 1, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3824,7 +3824,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 2, z: 0}
+  - first: {x: -4, y: 2, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 1
@@ -3844,7 +3844,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -1, y: 3, z: 0}
+  - first: {x: -4, y: 3, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 4
@@ -3912,8 +3912,8 @@ Tilemap:
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -1, y: -3, z: 0}
-  m_Size: {x: 46, y: 7, z: 1}
+  m_Origin: {x: -4, y: -3, z: 0}
+  m_Size: {x: 49, y: 7, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -4604,7 +4604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 1294756400}
   damage: 1
-  attackDistance: 7.5
+  attackDistance: 7.7
   rayCastLength: 3
   nextAttackTime: 2
   rayCast: {fileID: 1671748365}
@@ -4655,7 +4655,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.056357324, y: 0.015973069}
+  m_Offset: {x: -0.4010014, y: 0.013122767}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4666,7 +4666,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44, y: 0.51}
+  m_Size: {x: 1.7115303, y: 0.31807947}
   m_EdgeRadius: 0
 --- !u!1 &1587221112
 GameObject:
@@ -4775,7 +4775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597071509}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.51, y: 10.47, z: 0}
+  m_LocalPosition: {x: 19.84, y: 10.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1534849000}
