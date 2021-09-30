@@ -247,27 +247,22 @@ public class SkeletonEnemyMovement : MonoBehaviour
          Vector3 rotation = transform.eulerAngles;
          rotation.x *= -1;
          Debug.Log("Flip called");
-         if(inRange && transform.position.x > target.position.x)
+         if(inRange && transform.position.x > target.position.x && direction == 1)
          {
              rotation.y = 180f;
              Debug.Log("Flip skeleton");
-             if (direction == 1)
-                 direction = 2;
-             else
-                 direction = 1;
+             direction = 2;
+             
          }
-        else if (inRange &&  transform.position.x < target.position.x)
-        {
+         else if (inRange &&  transform.position.x < target.position.x && direction == 2)
+         {
             rotation.y = 180f;
             Debug.Log("Flip skeleton");
-            if (direction == 1)
-                direction = 2;
-            else
-                direction = 1;
-        }
-        else
+            direction = 1;
+         }
+         else
          {
-             rotation.y = 0f;
+            rotation.y = 0f;
          }
          transform.eulerAngles = rotation;
     }
