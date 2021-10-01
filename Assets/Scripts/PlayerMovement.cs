@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public Transform weaponAttackPoint;
     public LayerMask enemyLayers;
-
+    public Image healthBarImage;
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-      
+        UpdateHealthBar();
 
     }
      void FixedUpdate()
@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnLanding()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f);
-        Debug.Log("In OnLanding method");
+       // Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
         jumpCount = 0;
     }
@@ -209,5 +209,21 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameUIScript>().GameOver();
     }
 
-    
+    public void UpdateHealthBar()
+    {
+        healthBarImage.fillAmount = Mathf.Clamp(currentHealth / maxHealth , 0, 1f);
+        float duration = 0.75f * (currentHealth / maxHealth);
+        //healthBarImage.DOFillAmount(currentHealth / maxHealth, duration);
+        Color newColor = Color.green;
+        if (currentHealth < maxHealth * 0.25f)
+        {
+            newColor = Color.red;
+        }
+        else if (currentHealth < maxHealth * 0.66f)
+        {
+            newColor = new Color(1f, .64f, 0f, 1f);
+        }
+       // healthBarImage.DOColor(newColor, duration);
+    }
+
 }

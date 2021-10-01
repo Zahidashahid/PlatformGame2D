@@ -17,6 +17,15 @@ public class RangedAttack : MonoBehaviour
     public Transform rayCast;
     public LayerMask rayCastMask;
   
+
+    public Rigidbody2D rigidBody;
+    public bool hasHit;
+    /*public string enemyTag;
+    public float torque;*/
+
+    public float launchForce ;
+    public Transform shotPoint;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,12 +44,26 @@ public class RangedAttack : MonoBehaviour
             
         }
         
-        /*if (Input.GetKeyDown(KeyCode.I)) 
+        if (Input.GetKeyDown(KeyCode.I)) 
         {
-
             GameObject newArrow = Instantiate(arrow, transform.position, transform.rotation);
-            newArrow.GetComponent<Rigidbody2D>().AddRelativeForce( new Vector2(0f, -900f));
+            newArrow.GetComponent<Rigidbody2D>().AddRelativeForce( new Vector2(90f, -900f));
+        }
+
+        Vector2 bowPosition = transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) ;
+        Vector2 direction = mousePosition - bowPosition;
+        transform.right = direction;
+       /* if(Input.GetMouseButtonDown(0))
+        {
+            Shoot();
         }*/
+        if(hasHit == false)
+        {
+            float angle = Mathf.Atan2(rigidBody.velocity.y, rigidBody.velocity.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+       
     }
     void ArrowLogic() // Arrow attack and instantiate
     {
@@ -64,8 +87,25 @@ public class RangedAttack : MonoBehaviour
             Debug.Log("player entred in arrow danger zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             ArrowLogic();
-            
-
         }
+    }
+
+    void Fly()
+    {
+        rigidBody.isKinematic = false;  
+
+    } 
+    void Shoot()
+    {
+        GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
+        newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        hasHit = true;
+        rigidBody.velocity = Vector2.zero;  
+        rigidBody.isKinematic = true;
+            
     }
 }

@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class ArrowHit : MonoBehaviour
 {
-
+    #region public variables 
     public Animator playerAnimator;
-    public Transform attackPoint; 
+    public Transform attackPoint;
     public Rigidbody2D rigidbody2D;
-
     public LayerMask playerLayers;
-
     public float attackRange = 0.05f;
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    #endregion
+    #region private variables 
+    #endregion
+
     void Attack()
     {
         //play an attack animation

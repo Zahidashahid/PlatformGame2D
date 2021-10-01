@@ -10,6 +10,10 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public Animator playerAnimator;
+    public Transform attackPoint;
+    public float attackRange = 2f;
+    public LayerMask playerLayers;
+
 
     public int maxHealth = 100;
     public int currentHealth;
@@ -34,7 +38,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private bool cooling;
     private float intTimer;
     #endregion
-
+    public float nextAttackTime; // after every 2 sec
+    public float damage;
 
     private void Awake()
     {
@@ -61,6 +66,12 @@ public class SkeletonEnemyMovement : MonoBehaviour
         if (inRange)
         {
             EnemyLogic();
+            if ( timer > 0)
+            {
+                timer -= Time.deltaTime;
+            }
+            else
+                timer = 2f;
             //inRange = true;
         }
         else if (hit.collider == null)
@@ -84,7 +95,14 @@ public class SkeletonEnemyMovement : MonoBehaviour
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-5, 5);
         }
+        
+        if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
+        {
 
+            MelleAttackLogic();
+            inRange = true;
+
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -103,10 +121,13 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             target = collision.transform;
             inRange = true;
+            nextAttackTime = 3;
            // Debug.Log("player collied with skelton");
             Flip();
+            Debug.Log("player entred in Seleton zone");
+            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+            MelleAttackLogic();
         }
-
 
     }
 
@@ -139,6 +160,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     IEnumerator SeletonAttackAnimation()
     {
+        Debug.Log("In IEnumerator SeletonAttackAnimation()");
         anim.SetBool("Attack", true);
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("Attack", false);
@@ -181,7 +203,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
            // anim.SetBool("Attack", false);
             // StartCoroutine(Attack());
-            Attack();
+           // Attack();
 
         }
         if (cooling)
@@ -202,7 +224,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
               transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
           }*/
     }
-    // IEnumerator Attack()
     void Attack()
     {
         timer = intTimer;
@@ -212,11 +233,19 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
         StartCoroutine(SeletonAttackAnimation());
         StartCoroutine(PlayerHurtAnimation());
-        // yield return new WaitForSeconds(0.05f);
-        /*
-                playerAnimator.SetBool("Ishurt", false);
-                anim.SetBool("CanWalk", true);
-                anim.SetBool("Attack", false);*/
+
+        Debug.Log("In Attack function ");
+        //deteck enemies in range of attack
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
+        // demage them
+        foreach (Collider2D player in hitEnemies)
+        {
+            // Destroy();
+            Debug.Log("We hit player");
+
+            animator.SetBool("Attack", true);
+            player.GetComponent<PlayerMovement>().TakeDemage(40);
+        }
     }
     private void StopAttack()
     {
@@ -243,21 +272,18 @@ public class SkeletonEnemyMovement : MonoBehaviour
     void Flip()
     {
         distance = Vector2.Distance(transform.position, target.position);
-        Debug.Log("Flip called" + distance);
+        //Debug.Log("Flip called" + distance);
          Vector3 rotation = transform.eulerAngles;
          rotation.x *= -1;
-         Debug.Log("Flip called");
          if(inRange && transform.position.x > target.position.x && direction == 1)
          {
              rotation.y = 180f;
-             Debug.Log("Flip skeleton");
              direction = 2;
              
          }
          else if (inRange &&  transform.position.x < target.position.x && direction == 2)
          {
             rotation.y = 180f;
-            Debug.Log("Flip skeleton");
             direction = 1;
          }
          else
@@ -265,5 +291,20 @@ public class SkeletonEnemyMovement : MonoBehaviour
             rotation.y = 0f;
          }
          transform.eulerAngles = rotation;
+    }
+
+    void MelleAttackLogic() // melle attack 
+    {
+        distance = Vector2.Distance(transform.position, target.transform.position);
+        Debug.Log("Value of distance is " + distance);
+        Debug.Log("Value of attack distance is " + attackDistance);
+        if (attackDistance >= distance)
+        {
+
+            Attack();
+            inRange = true;
+        }
+        else
+            inRange = false;
     }
 }

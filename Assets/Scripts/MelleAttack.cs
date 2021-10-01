@@ -6,7 +6,7 @@ public class MelleAttack : MonoBehaviour
 {
     public Animator animator;
     public Transform attackPoint;
-    public float attackRange = 0.05f;
+    public float attackRange = 2f;
     public LayerMask playerLayers;
 
     private bool inRange; // check player in range
@@ -26,32 +26,33 @@ public class MelleAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   /* void Update()
     {
-      /*  if(Input.GetKeyDown(KeyCode.M))
-        {
-            Attack();
-        }
+        *//*  if(Input.GetKeyDown(KeyCode.M))
+          {
+              Attack();
+          }*//*
         if (nextAttackTime > 0)
-        {
-            nextAttackTime -= Time.deltaTime;
-        }
-        else
-            nextAttackTime = 2f;
-        if (inRange && nextAttackTime < 0) // if player is in arrow zone it will continue instantiating arrows after every 2 seconds.
+          {
+              nextAttackTime -= Time.deltaTime;
+          }
+          else
+              nextAttackTime = 2f;
+        if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
         {
 
             MelleAttackLogic();
             inRange = true;
-      S
+      
         }
-*/
+
         
     }
     void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
+        Debug.Log("Value of attack distance is " + attackDistance);
         if (attackDistance >= distance)
         {
 
@@ -65,16 +66,18 @@ public class MelleAttack : MonoBehaviour
     void Attack()
     {
         //play an attack animation
-       // animator.SetTrigger("Attack");
-        animator.SetBool("Attack", true);
+        // animator.SetTrigger("Attack");
+        Debug.Log("In Attack function ");
         //deteck enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
         // demage them
-        foreach(Collider2D enemy in hitEnemies)
+        foreach(Collider2D player in hitEnemies)
         {
            // Destroy();
             Debug.Log("We hit player");
-            enemy.GetComponent<PlayerMovement>().TakeDemage(40);
+
+            animator.SetBool("Attack", true);
+            player.GetComponent<PlayerMovement>().TakeDemage(40);
         }
     }
     void OnDrawGizmoSelected()
@@ -97,5 +100,5 @@ public class MelleAttack : MonoBehaviour
 
 
         }
-    }
+    }*/
 }
