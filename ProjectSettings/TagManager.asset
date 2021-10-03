@@ -12,6 +12,7 @@ TagManager:
   - Skeleton
   - Arrow
   - Collide
+  - HealthBar
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Enemy
   - Obstacles
   - Arrow
-  - 
+  - HealthBar
   - 
   - 
   - 

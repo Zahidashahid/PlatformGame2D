@@ -4,29 +4,28 @@ using UnityEngine;
 
 public class RangedAttack : MonoBehaviour
 {
+    #region Public variables;
     public GameObject arrow;
-
-    private bool inRange; // check player in range
+    public LayerMask rayCastMask;
+    public Rigidbody2D rigidBody;
+    public Transform shotPoint;
+    public Transform rayCast;
     public float damage;
-    public float attackDistance; // arrow will be possible when   distance is 7.5 b/w arrow and player
-    private float distance; // stores distance btw player and arrrow
     public float rayCastLength;
     public float nextAttackTime; // after every 2 sec
-
-    private GameObject target;
-    public Transform rayCast;
-    public LayerMask rayCastMask;
-  
-
-    public Rigidbody2D rigidBody;
+    public float attackDistance; // arrow will be possible when   distance is 7.5 b/w arrow and player
+    public float launchForce ;
     public bool hasHit;
+    #endregion
+ 
+    #region private variables;
+    private bool inRange; // check player in range
+    private GameObject target;
+    private float distance; // stores distance btw player and arrrow
+    #endregion
+
     /*public string enemyTag;
     public float torque;*/
-
-    public float launchForce ;
-    public Transform shotPoint;
-
-    // Update is called once per frame
     void Update()
     {
         //Check for the wait time that is 2 seconds 
@@ -38,10 +37,8 @@ public class RangedAttack : MonoBehaviour
             nextAttackTime = 2f;
         if (inRange && nextAttackTime < 0) // if player is in arrow zone it will continue instantiating arrows after every 2 seconds.
         {
-           
             ArrowLogic();
             inRange = true;
-            
         }
         
         if (Input.GetKeyDown(KeyCode.I)) 

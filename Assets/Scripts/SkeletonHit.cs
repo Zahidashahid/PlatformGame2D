@@ -44,7 +44,5 @@ public class SkeletonHit : MonoBehaviour
             //gameUIScript.GameOver();
             //  Destroy(collision.gameObject, 1f);
         }
-
-
     }
 }

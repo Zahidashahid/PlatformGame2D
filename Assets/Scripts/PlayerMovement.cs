@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
+
+    public HealthBar healthBar;
     public CharacterController2D controller;
     [SerializeField] private LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
@@ -30,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public Transform weaponAttackPoint;
     public LayerMask enemyLayers;
-    public Image healthBarImage;
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
         currentHealth = maxHealth;
-
+        healthBar.SetMaxHealth(maxHealth);
     }
     private void Update()
     {
@@ -123,7 +124,6 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
-        UpdateHealthBar();
 
     }
      void FixedUpdate()
@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDemage(int demage)
     {
         currentHealth -= demage;
+        healthBar.SetHealth(currentHealth);
         // play hurt animation
         StartCoroutine(HurtAnimation());
         if (currentHealth <= 0)
@@ -209,21 +210,6 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameUIScript>().GameOver();
     }
 
-    public void UpdateHealthBar()
-    {
-        healthBarImage.fillAmount = Mathf.Clamp(currentHealth / maxHealth , 0, 1f);
-        float duration = 0.75f * (currentHealth / maxHealth);
-        //healthBarImage.DOFillAmount(currentHealth / maxHealth, duration);
-        Color newColor = Color.green;
-        if (currentHealth < maxHealth * 0.25f)
-        {
-            newColor = Color.red;
-        }
-        else if (currentHealth < maxHealth * 0.66f)
-        {
-            newColor = new Color(1f, .64f, 0f, 1f);
-        }
-       // healthBarImage.DOColor(newColor, duration);
-    }
+  
 
 }

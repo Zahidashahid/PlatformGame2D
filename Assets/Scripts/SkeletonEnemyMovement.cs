@@ -244,7 +244,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             Debug.Log("We hit player");
 
             animator.SetBool("Attack", true);
-            player.GetComponent<PlayerMovement>().TakeDemage(40);
+            player.GetComponent<PlayerMovement>().TakeDemage(30);
         }
     }
     private void StopAttack()
