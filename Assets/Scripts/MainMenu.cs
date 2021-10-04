@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void Level1()
     {
         SceneManager.LoadScene("Level 1");
@@ -17,5 +20,10 @@ public class MainMenu : MonoBehaviour
     public void Level3()
     {
         SceneManager.LoadScene("Level 3");
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Application Quit");
+        Application.Quit();
     }
 }
