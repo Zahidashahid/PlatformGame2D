@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
         currentHealth = maxHealth;
+        Debug.Log("current health of player is " + currentHealth);
+        Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
     }
     private void Update()
@@ -118,8 +120,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("attack Called");
                 //eagle_animator.SetTrigger("Death");
-                // StartCoroutine(Attack());
-                Attack();
+                StartCoroutine(Attack());
+                //Attack();
                 nextAttackTime =  Time.time + 1f / attackRate;
 
             }
@@ -153,8 +155,12 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Attack on skeleton enemy
     /// </summary>
-    void Attack() //IEnumerator
+    IEnumerator Attack() //IEnumerator
     {
+        animator.SetBool("Attack1", true);
+        yield return new WaitForSeconds(0.5f);
+
+        animator.SetBool("Attack1", false);
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
         //Demage Them
@@ -186,10 +192,10 @@ public class PlayerMovement : MonoBehaviour
         currentHealth -= demage;
         healthBar.SetHealth(currentHealth);
         // play hurt animation
-        StartCoroutine(HurtAnimation());
+       // StartCoroutine(HurtAnimation());
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine( Die() );
         }
     }
     IEnumerator HurtAnimation()
@@ -200,12 +206,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Ishurt", false);
    
     }
-    void Die()
+    IEnumerator Die()
     {
         // Die Animation
-        animator.SetBool("Ishurt", true);
+        animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
-
+        yield return new WaitForSeconds(0.3f);
+       // animator.SetBool("IsDied", false);
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
     }
