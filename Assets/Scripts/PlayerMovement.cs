@@ -47,21 +47,28 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+       
         // Move Player back
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if ( Input.GetKey(KeyCode.LeftArrow))
         {
+           
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
+            animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 1; 
         }
         // Move Player Forward
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+       else if ( Input.GetKey(KeyCode.RightArrow))
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
+
+            animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 2;
+        }
+        else
+        {
+            animator.SetFloat("Speed", Mathf.Abs(0));
         }
         // Jump Player if on ground ,  double jump
         if ((jumpCount < 2 ||  IsGrounded() == null) && (Input.GetKeyDown(KeyCode.Space)))
@@ -72,7 +79,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 12f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
-            
+
+            animator.SetFloat("Speed", Mathf.Abs(40));
             if (jumpCount > 2)
             {
                 jumpCount = 0;
@@ -82,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+
+            
             if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
@@ -90,15 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 
             }
         }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            animator.SetBool("IsCrouching", true);
-            crouch = true;
-        }
-        else
-        {
-            crouch = false;
-        }
+        
         
         // Dash move 
         if (Input.GetKey(KeyCode.P))
@@ -129,11 +131,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-     void FixedUpdate()
+   /*  void FixedUpdate()
     {
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
-    }
+    }*/
     public void OnLanding()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f);
@@ -141,12 +143,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
         jumpCount = 0;
     }
-    public void OnCrouching(bool isCrouching)
-    {
-        //Debug.Log("In IsCrouching method");
-        animator.SetBool("IsCrouching", isCrouching);
-
-    }
+   
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, m_WhatIsGround);
