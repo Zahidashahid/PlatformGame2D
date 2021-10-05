@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
    
     public Animator animator;
     public Animator eagle_animator;
+    public Animator skeleton_animator;
     
     bool jump ;
     bool crouch = false;
@@ -166,15 +167,18 @@ public class PlayerMovement : MonoBehaviour
         //Demage Them
         foreach (Collider2D enemy in hitEnemies)
         {
-           // Debug.Log("We hit " + enemy.name);
+            Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton")
             {
                 enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                StartCoroutine(SkeletonSheildtAnimation());
             }
             //eagle_animator.SetTrigger("Death");
             // yield return new WaitForSeconds(1);
             else
                 Destroy(enemy.gameObject);
+
+            break;
         }
         
     }
@@ -204,6 +208,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Ishurt", true);
         yield return new WaitForSeconds(0.6f);
         animator.SetBool("Ishurt", false);
+
+    }
+    IEnumerator SkeletonSheildtAnimation()
+    {
+        // play hurt animation
+        skeleton_animator.SetBool("sheild", true);
+        yield return new WaitForSeconds(0.4f);
+        skeleton_animator.SetBool("sheild", false);
    
     }
     IEnumerator Die()

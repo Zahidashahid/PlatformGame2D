@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI; 
 public class HealthBar : MonoBehaviour
 {
-	// Start is called before the first frame update
+	// Player Healthbar Script
 	public Slider slider;
 	public Gradient gradient;
 	public Image fill;
@@ -15,6 +15,7 @@ public class HealthBar : MonoBehaviour
 		slider.value = health;
 
 		fill.color = gradient.Evaluate(1f);
+
 	}
 
 	public void SetHealth(int health)

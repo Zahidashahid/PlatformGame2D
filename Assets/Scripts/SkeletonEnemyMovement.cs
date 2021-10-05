@@ -7,25 +7,23 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
     /* private BoxCollider2D boxCollider2d;*/
 
+    #region Public Variables;
+    public LayerMask playerLayers;
+    public LayerMask rayCastMask;
     public Rigidbody2D rb;
     public Animator animator;
     public Animator playerAnimator;
     public Transform attackPoint;
-    public float attackRange = 2f;
-    public LayerMask playerLayers;
-
-
-    public int maxHealth = 100;
-    public int currentHealth;
-    int direction = 1;
-
-    #region Public Variables;
     public Transform rayCast;
-    public LayerMask rayCastMask;
+    public HealthBar healthBar; 
+    public float attackRange = 2f;
     public float rayCastLength;
     public float attackDistance; // min distance for attack
     public float moveSpeed;
     public float timer; //time for cooldown btw attacks
+    public int maxHealth = 100;
+    public int currentHealth;
+    int direction = 1;
     #endregion
 
     #region Private Variables
@@ -50,6 +48,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     // Update is called once per frame
     void Update()
@@ -134,7 +133,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public void TakeDemage(int demage)
     {
         currentHealth -= demage;
-
+        healthBar.SetHealth(currentHealth);
         // play hurt animation
         StartCoroutine(SkeletonHurtAnimation());
         if (currentHealth <= 0)
@@ -245,6 +244,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
             animator.SetBool("Attack", true);
             player.GetComponent<PlayerMovement>().TakeDemage(30);
+            break;
         }
     }
     private void StopAttack()
