@@ -24,7 +24,7 @@ public class ArrowHit : MonoBehaviour
         {
             // Destroy();
             Debug.Log("We hit player");
-            enemy.GetComponent<PlayerMovement>().TakeDemage(40);
+            enemy.GetComponent<PlayerMovement>().TakeDemage(50);
         }
     }
     void OnTriggerEnter2D(Collider2D collision)

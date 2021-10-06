@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     bool crouch = false;
 
     int jumpCount = 0;
-    private int direction = 2;
+    public int direction = 2;
     public int currentHealth;
     public int maxHealth = 100;
 
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             jumpCount++;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
 
-            rb.velocity = new Vector2(rb.velocity.x, 12f);
+            rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
 

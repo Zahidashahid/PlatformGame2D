@@ -152,9 +152,9 @@ public class SkeletonEnemyMovement : MonoBehaviour
     IEnumerator PlayerHurtAnimation()
     {
         // play hurt animation
-        playerAnimator.SetBool("Ishurt", true);
+       // playerAnimator.SetBool("Ishurt", true);
         yield return new WaitForSeconds(0.4f);
-        playerAnimator.SetBool("Ishurt", false);
+        //playerAnimator.SetBool("Ishurt", false);
 
     }
     IEnumerator SeletonAttackAnimation()
