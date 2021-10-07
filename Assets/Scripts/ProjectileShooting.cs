@@ -9,15 +9,31 @@ public class ProjectileShooting : MonoBehaviour
     public float distance;
     public LayerMask enemy;
     public Transform arrowTransform;
-    // Start is called before the first frame update
+    PlayerMovement playerMovement; // Refer to script
+    public GameObject player;
+    public SpriteRenderer spriteRenderer;
     void Start()
     {
-        Invoke("DestroyProjectile", lifeTime); 
+        Invoke("DestroyProjectile", lifeTime);
+        playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(playerMovement.PlayerMovingDirection() == 1)
+        {
+            spriteRenderer.flipX = true;
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
+        }
+           
+        else
+        {
+            spriteRenderer.flipX = false;
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
+        }
+          
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
         if(hitInfo.collider != null)
         {
@@ -36,7 +52,7 @@ public class ProjectileShooting : MonoBehaviour
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
         else*/
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            
     }
     void DestroyProjectile()
     {

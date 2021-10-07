@@ -376,7 +376,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1789824870}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139188861
 GameObject:
@@ -2425,6 +2425,7 @@ MonoBehaviour:
   animator: {fileID: 750146750}
   eagle_animator: {fileID: 8800491960796457658, guid: abae5d102621ce04fbd0f76cf8378f8f, type: 3}
   skeleton_animator: {fileID: 830805423}
+  direction: 2
   currentHealth: 100
   maxHealth: 100
   attackRange: 3
@@ -3728,11 +3729,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135528, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_LocalScale.x
@@ -3764,15 +3765,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3822,6 +3823,10 @@ PrefabInstance:
       propertyPath: lifeTime
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4153295934946884387, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
+      propertyPath: arrowTransform
+      value: 
+      objectReference: {fileID: 3834169631787135529, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
     - target: {fileID: 4773388054652318500, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
       propertyPath: m_Constraints
       value: 0
@@ -5507,6 +5512,7 @@ MonoBehaviour:
   animator: {fileID: 1434199721}
   eagle_animator: {fileID: 8800491960796457658, guid: abae5d102621ce04fbd0f76cf8378f8f, type: 3}
   skeleton_animator: {fileID: 0}
+  direction: 2
   currentHealth: 0
   maxHealth: 100
   attackRange: 1
@@ -6849,8 +6855,8 @@ Transform:
   - {fileID: 76480198}
   - {fileID: 518045503}
   - {fileID: 2116651194}
-  - {fileID: 662611309}
   - {fileID: 131234007}
+  - {fileID: 662611309}
   m_Father: {fileID: 750146749}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6892,7 +6898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddcd3b18dc864141b71d191d8aa0b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: 0
+  offset: 3
   shotPoint: {fileID: 131234007}
   projectile: {fileID: 3834169631787135528, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
   timeBtwShots: 0
@@ -18679,9 +18685,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1103830163
+  m_SortingLayer: 3
+  m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: daaaed4875ce2224ca90d255a23fb995, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

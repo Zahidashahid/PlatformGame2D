@@ -130,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        Debug.Log("player i moving in direction " + direction);
     }
    /*  void FixedUpdate()
     {
@@ -226,6 +227,12 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameUIScript>().GameOver();
     }
 
-  
+    public int PlayerMovingDirection()
+    {
+        if (direction == 1)
+            return 1;
+        else
+            return 2;
+    }
 
 }

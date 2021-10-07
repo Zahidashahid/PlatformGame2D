@@ -54,7 +54,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2425217220442325107
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -100,6 +100,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   arrowTransform: {fileID: 3834169631787135529}
+  player: {fileID: 4187175644673745629, guid: 3a416be9949a1ff48b42ff6ac43ac9f7, type: 3}
+  spriteRenderer: {fileID: 3834169632332301750}
 --- !u!1 &3834169632332301748
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +113,7 @@ GameObject:
   - component: {fileID: 3834169632332301749}
   - component: {fileID: 3834169632332301750}
   m_Layer: 12
-  m_Name: IS - Arrow 1136
+  m_Name: Prefab - Arrow 1136
   m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,9 +170,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1103830163
+  m_SortingLayer: 3
+  m_SortingOrder: 13
   m_Sprite: {fileID: 21300000, guid: c60dbeab76af7e145b4fd25c64657c5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
