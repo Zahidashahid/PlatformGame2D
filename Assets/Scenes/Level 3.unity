@@ -6170,7 +6170,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.4010014, y: 0.013122767}
+  m_Offset: {x: -0.4, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6181,7 +6181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7115303, y: 0.31807947}
+  m_Size: {x: 1.7, y: 0.1}
   m_EdgeRadius: 0
 --- !u!1 &1546005851
 GameObject:
@@ -6898,11 +6898,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cddcd3b18dc864141b71d191d8aa0b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: -90
+  offset: 0
   shotPoint: {fileID: 131234007}
   projectile: {fileID: 3834169631787135528, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
-  timeBtwShots: 0
-  startTimeBtwShots: 5
+  timeBtwShots: 3
+  startTimeBtwShots: 0
 --- !u!1 &1806290798
 GameObject:
   m_ObjectHideFlags: 0

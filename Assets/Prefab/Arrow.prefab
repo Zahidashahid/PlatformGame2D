@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3834169631787135528}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 80, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -94,13 +94,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  lifeTime: 10
+  lifeTime: 5
   distance: 0.5
   enemy:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 3184
   arrowTransform: {fileID: 3834169631787135529}
-  player: {fileID: 4187175644673745629, guid: 3a416be9949a1ff48b42ff6ac43ac9f7, type: 3}
   spriteRenderer: {fileID: 3834169632332301750}
 --- !u!1 &3834169632332301748
 GameObject:
