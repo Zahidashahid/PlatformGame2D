@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        Debug.Log("player i moving in direction " + direction);
+        //Debug.Log("player i moving in direction " + direction);
     }
    /*  void FixedUpdate()
     {
@@ -154,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
     /// <summary>
     /// Attack on skeleton enemy
     /// </summary>
-    IEnumerator Attack() //IEnumerator
+    IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
         yield return new WaitForSeconds(0.5f);

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ArrowHit : MonoBehaviour
 {
+/*
+ *  Player Arrow hit script
+ *  Range attack 
+ */
     #region public variables 
     public Animator playerAnimator;
     public Transform attackPoint;

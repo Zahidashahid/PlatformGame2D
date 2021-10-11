@@ -16,19 +16,17 @@ public class ProjectileShooting : MonoBehaviour
     void Awake()
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
-        velocity = new Vector3(speed * Time.deltaTime, 0, 0);
+       // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
         pos = transform.position;
     }
     void Start()
     {
         Invoke("DestroyProjectile", lifeTime);
-
         if (playerMovement.PlayerMovingDirection() == 1)
         {
             spriteRenderer.flipX = true;
             velocity = (Vector3.left * speed * Time.deltaTime);
         }
-
         else
         {
             spriteRenderer.flipX = false;

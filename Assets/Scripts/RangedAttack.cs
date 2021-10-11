@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedAttack : MonoBehaviour
-{
+{/*
     #region Public variables;
     public GameObject arrow;
     public LayerMask rayCastMask;
@@ -24,9 +24,9 @@ public class RangedAttack : MonoBehaviour
     private float distance; // stores distance btw player and arrrow
     #endregion
 
-    /*public string enemyTag;
-    public float torque;*/
-/*    void Update()
+    *//*public string enemyTag;
+    public float torque;*//*
+    void Update()
     {
         //Check for the wait time that is 2 seconds 
         if(nextAttackTime > 0)
@@ -46,18 +46,18 @@ public class RangedAttack : MonoBehaviour
             GameObject newArrow = Instantiate(arrow, transform.position, transform.rotation);
             newArrow.GetComponent<Rigidbody2D>().AddRelativeForce( new Vector2(0f, -900f)); // -900f is  speed of arrow 
 
-            *//*GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
-            newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;*//*
+           // GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
+            newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
         }
-        *//*
+       
                 Vector2 bowPosition = transform.position;
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) ;
                 Vector2 direction = mousePosition - bowPosition;
-                transform.right = direction;*/
-        /* if(Input.GetMouseButtonDown(0))
+                transform.right = direction;
+         if(Input.GetMouseButtonDown(0))
          {
              Shoot();
-         }*//*
+         }
         if (hasHit == false)
         {
             float angle = Mathf.Atan2(rigidBody.velocity.y, rigidBody.velocity.x) * Mathf.Rad2Deg;
