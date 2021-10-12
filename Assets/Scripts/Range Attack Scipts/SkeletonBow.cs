@@ -14,6 +14,7 @@ public class SkeletonBow : MonoBehaviour
     public Transform shotPoint;
     Vector3 playerPosition;
     Vector3 BowPosition;
+    Vector3 targetDirection;
     GameObject playerObject;
     public GameObject projectile;
     public GameObject bowObj;
@@ -46,7 +47,9 @@ public class SkeletonBow : MonoBehaviour
 
             }
         }
-
+        targetDirection = playerObject.transform.position - transform.position;
+        float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
     }
     private void OnTriggerEnter2D(Collider2D collision)
      {

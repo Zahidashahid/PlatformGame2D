@@ -18,6 +18,7 @@ public class SkeletonProjectile : MonoBehaviour
     Vector2 velocity;
     Vector3 newDirection;
     Vector3 targetDirection;
+    public float offset;
     void Awake()
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
@@ -32,8 +33,9 @@ public class SkeletonProjectile : MonoBehaviour
         Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
 
          targetDirection = playerObject.transform.position - transform.position;
-         newDirection = Vector3.RotateTowards(transform.forward, targetDirection, speed * Time.deltaTime, 0.01f);
-        if (playerObject.transform.position.x < skeletonObject.transform.position.x )
+        
+        newDirection = Vector3.RotateTowards(transform.forward, targetDirection, speed * Time.deltaTime, 0.01f);
+        /*if (playerObject.transform.position.x < skeletonObject.transform.position.x )
         {
             spriteRenderer.flipX = true;
            //velocity = (Vector3.left * speed * Time.deltaTime );
@@ -42,7 +44,7 @@ public class SkeletonProjectile : MonoBehaviour
         {
             spriteRenderer.flipX = false;
            // velocity = (Vector3.right * speed * Time.deltaTime);
-        }
+        }*/
     }
     void Update()
     {
