@@ -149,6 +149,7 @@ MonoBehaviour:
   distance: 7
   enemy:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 2288
   arrowTransform: {fileID: 5905011712116011312}
   spriteRenderer: {fileID: 5905011712116011309}
+  offset: 0

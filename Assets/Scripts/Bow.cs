@@ -22,7 +22,5 @@ public class Bow : MonoBehaviour
             Instantiate(projectile, shotPoint.position, transform.rotation);
 
         }
-
     }
-    
 }

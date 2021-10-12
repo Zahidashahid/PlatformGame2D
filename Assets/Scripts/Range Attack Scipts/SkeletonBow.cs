@@ -89,9 +89,6 @@ public class SkeletonBow : MonoBehaviour
     {
         Debug.Log("In shoot function");
         Instantiate(projectile, shotPoint.position, playerObject.transform.rotation);
-
-        // GameObject newArrow = Instantiate(projectile, transform.position, playerObject.transform.rotation); // Instantiate arrow 
-       //newArrow.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0f, 500f));
     }
 
 }

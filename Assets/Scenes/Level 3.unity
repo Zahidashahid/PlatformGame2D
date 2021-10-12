@@ -4280,11 +4280,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073138845}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41299856, y: -0.14, z: 0}
+  m_LocalPosition: {x: 1.3170015, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
-  m_Father: {fileID: 1131746823}
-  m_RootOrder: 1
+  m_Father: {fileID: 2070577092}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1083430979 stripped
 GameObject:
@@ -4379,9 +4379,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 803812826}
-  - {fileID: 1073138846}
   m_Father: {fileID: 2070577092}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1131746824
 SpriteRenderer:
@@ -8012,8 +8011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09b74306c8749ff47a64e5a5d170c1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 750146748}
-  nextAttackTime: 3
+  playerObject: {fileID: 0}
+  nextAttackTime: -1
   damage: 10
 --- !u!1 &1852921824
 GameObject:
@@ -9147,6 +9146,7 @@ Transform:
   m_Children:
   - {fileID: 730775777}
   - {fileID: 1893730259}
+  - {fileID: 1073138846}
   - {fileID: 1131746823}
   m_Father: {fileID: 1825558565}
   m_RootOrder: 3
