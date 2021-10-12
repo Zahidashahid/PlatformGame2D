@@ -42,7 +42,7 @@ public class SkeletonProjectile : MonoBehaviour
     void Update()
     {
         transform.Translate(velocity);
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
+        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.forward, distance, enemy);
 
         if (hitInfo.collider != null)
         {
