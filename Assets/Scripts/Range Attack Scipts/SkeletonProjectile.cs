@@ -12,24 +12,27 @@ public class SkeletonProjectile : MonoBehaviour
     public Transform arrowTransform;
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
+     GameObject playerObject;
+     GameObject skeletonObject;
     Vector2 pos;
     Vector2 velocity;
     void Awake()
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
-        velocity = new Vector3(speed * Time.deltaTime, 0, 0);
+        playerObject = GameObject.Find("Player_Goblin");
+        skeletonObject = GameObject.Find("Range Attack Skeleton");
+       // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
         pos = transform.position;
     }
     void Start()
     {
         Invoke("DestroyProjectile", lifeTime);
-
-        if (playerMovement.PlayerMovingDirection() == 1)
+        Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
+        if (playerObject.transform.position.x < skeletonObject.transform.position.x )
         {
             spriteRenderer.flipX = true;
-            velocity = (Vector3.left * speed * Time.deltaTime);
+            velocity = (Vector3.left * speed * Time.deltaTime );
         }
-
         else
         {
             spriteRenderer.flipX = false;
@@ -43,10 +46,11 @@ public class SkeletonProjectile : MonoBehaviour
 
         if (hitInfo.collider != null)
         {
-            if (hitInfo.collider.CompareTag("Skeleton"))
+            if (hitInfo.collider.CompareTag("Player"))
             {
-                Debug.Log("Arrow hit Skeleton");
-                hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                Debug.Log("Arrow hit Player");
+                hitInfo.collider.GetComponent<PlayerMovement>().TakeDemage(10);
+
             }
             DestroyProjectile();
         }

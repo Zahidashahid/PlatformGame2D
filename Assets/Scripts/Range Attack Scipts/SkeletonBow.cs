@@ -25,15 +25,17 @@ public class SkeletonBow : MonoBehaviour
     #endregion
     private void Start()
     {
+        nextAttackTime = -1; 
         playerObject = GameObject.Find("Player_Goblin");
         playerPosition = playerObject.transform.position;
         BowPosition = bowObj.transform.position;
+       
     }
     void Update()
-     {
-        if(inRange)
+    {
+        if (inRange)
         {
-            if(nextAttackTime < 0)
+            if (nextAttackTime < 0)
             {
                 nextAttackTime = 2;
                 ArrowLogic();
@@ -41,28 +43,22 @@ public class SkeletonBow : MonoBehaviour
             else
             {
                 nextAttackTime -= Time.deltaTime;
-                       
+
             }
         }
-        // Debug.Log("" + rotZ + offset);
-      /*  if (Input.GetMouseButtonDown(0))
-        {
-            
 
-        }
-*/
     }
     private void OnTriggerEnter2D(Collider2D collision)
      {
        //  StartCoroutine(Attack());
         if (collision.tag == "Player")
         {
-            Debug.Log("Enter in Range attack zone");
             target = collision.gameObject;
             Debug.Log("player entred in arrow danger zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
-            ArrowLogic();
+            //ArrowLogic();
+            
         }
     }
      private void OnTriggerExit2D(Collider2D collision)
@@ -71,6 +67,7 @@ public class SkeletonBow : MonoBehaviour
         {
             Debug.Log("player exiting in arrow danger zone");
             inRange = false;
+            nextAttackTime = -1;
         }
     }
     void ArrowLogic() // Arrow attack and instantiate
@@ -90,8 +87,8 @@ public class SkeletonBow : MonoBehaviour
         Debug.Log("In shoot function");
         Instantiate(projectile, shotPoint.position, playerObject.transform.rotation);
 
-       // GameObject newArrow = Instantiate(arrow, transform.position, transform.rotation); // Instantiate arrow 
-        //newArrow.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0f, -900f));
+        // GameObject newArrow = Instantiate(projectile, transform.position, playerObject.transform.rotation); // Instantiate arrow 
+       //newArrow.GetComponent<Rigidbody2D>().AddRelativeForce(new Vector2(0f, 500f));
     }
 
 }

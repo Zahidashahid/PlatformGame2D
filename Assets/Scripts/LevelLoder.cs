@@ -11,7 +11,7 @@ public class LevelLoder : MonoBehaviour
    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision " , collision);
+       // Debug.Log("collision " , collision);
         GameObject collisionGameObject = collision.gameObject;
         if (collisionGameObject.name == "Player")
         {
