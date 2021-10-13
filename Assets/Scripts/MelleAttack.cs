@@ -51,12 +51,17 @@ public class MelleAttack : MonoBehaviour
                 nextAttackTime -= Time.deltaTime;
             }
         }
+        else
+        {
+            nextAttackTime = -1;
+        }
     }
     void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
+        attackDistance = 6;
         if (attackDistance >= distance)
         {
             inRange = true;
@@ -68,11 +73,11 @@ public class MelleAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        animator.SetBool("Attack", true);
+        animator.SetBool("Attack2", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
         meleeAttackSound.Play();
-        animator.SetBool("Attack", false);
+        animator.SetBool("Attack2", false);
        // animator.SetBool("CanWalk", true);
         Debug.Log("In Attack function ");
         //deteck enemies in range of attack
@@ -86,8 +91,9 @@ public class MelleAttack : MonoBehaviour
             {
                 Debug.Log("We hit player");
                 player.GetComponent<PlayerMovement>().TakeDemage(40);
+                break;
             }
-            break;
+           
            
         }
     }
@@ -100,21 +106,28 @@ public class MelleAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) // Start throwning arrow when player entered in arrow zone i.e trigger area
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.tag == "Player")
         {
             target = collision.gameObject;
-            Debug.Log("player entred in Seleton zone");
+            Debug.Log("player entred in Skeleton zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
-            MelleAttackLogic();
-
-
+           // MelleAttackLogic();
+            inRange = true;
         }
     }
- /*   public void TriggerCooling()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        cooling = true;
+        if (collision.tag == "Player")
+        {
+            inRange = false;
+            nextAttackTime = -1;
+        }
+    }
+    /*   public void TriggerCooling()
+       {
+           cooling = true;
 
-    }*/
+       }*/
 }

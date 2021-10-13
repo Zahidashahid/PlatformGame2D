@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
-
+            jumpSound.Play();
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (jumpCount > 2)
             {
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
-                jumpSound.Play();
+                
                 animator.SetBool("IsJumping", false);
                 jump = true;
                 
