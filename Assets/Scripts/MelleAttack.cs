@@ -93,8 +93,6 @@ public class MelleAttack : MonoBehaviour
                 player.GetComponent<PlayerMovement>().TakeDemage(40);
                 break;
             }
-           
-           
         }
     }
     void OnDrawGizmoSelected()

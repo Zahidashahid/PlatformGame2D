@@ -47,7 +47,6 @@ public class SkeletonProjectile : MonoBehaviour
     }
     void Update()
     {
-        
        // transform.rotation = Quaternion.LookRotation(newDirection);
         transform.Translate(velocity);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
@@ -59,7 +58,6 @@ public class SkeletonProjectile : MonoBehaviour
                 arrowHitSound.Play();
                 Debug.Log("Arrow hit Player");
                 hitInfo.collider.GetComponent<PlayerMovement>().TakeDemage(30);
-
             }
             DestroyProjectile();
         }

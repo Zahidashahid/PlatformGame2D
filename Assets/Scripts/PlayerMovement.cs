@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator skeleton_animator;
     public AudioSource jumpSound;
     public AudioSource DeathSound;
-    public AudioSource bGSound;
     public AudioSource meleeAttackSound;
     bool jump ;
     bool crouch = false;
@@ -43,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
-        bGSound.Play();
         currentHealth = maxHealth;
         Debug.Log("current health of player is " + currentHealth);
         Debug.Log("Max health of player is " + maxHealth);
@@ -51,11 +49,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       
         // Move Player back
         if ( Input.GetKey(KeyCode.LeftArrow))
         {
-           
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
             animator.SetFloat("Speed", Mathf.Abs(40));
@@ -63,13 +59,12 @@ public class PlayerMovement : MonoBehaviour
         }
         // Move Player Forward
        else if ( Input.GetKey(KeyCode.RightArrow))
-        {
+       {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
-
             animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 2;
-        }
+       }
         else
         {
             animator.SetFloat("Speed", Mathf.Abs(0));
@@ -79,7 +74,6 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpCount++;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
-
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
@@ -89,24 +83,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 jumpCount = 0;
             }
-
-
         }
         else
         {
-
-            
             if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
-                
                 animator.SetBool("IsJumping", false);
                 jump = true;
-                
             }
         }
-        
-        
         // Dash move 
         if (Input.GetKey(KeyCode.P))
         {
@@ -120,8 +106,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(40, rb.velocity.y);
             }
         }
-
-
         if (Time.time >= nextAttackTime)
         {
             if (Input.GetKeyDown(KeyCode.K))
@@ -150,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("IsJumping", false);
         jumpCount = 0;
     }
-   
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, m_WhatIsGround);
@@ -178,7 +161,6 @@ public class PlayerMovement : MonoBehaviour
                 enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
                 StartCoroutine(SkeletonSheildtAnimation());
             }
-            
             //eagle_animator.SetTrigger("Death");
             // yield return new WaitForSeconds(1);
             else
@@ -207,6 +189,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine( Die() );
             DeathSound.Play();
+            this.enabled = false;
         }
     }
     IEnumerator HurtAnimation()
@@ -215,7 +198,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Ishurt", true);
         yield return new WaitForSeconds(0.6f);
         animator.SetBool("Ishurt", false);
-
     }
     IEnumerator SkeletonSheildtAnimation()
     {
@@ -223,7 +205,6 @@ public class PlayerMovement : MonoBehaviour
         skeleton_animator.SetBool("sheild", true);
         yield return new WaitForSeconds(0.4f);
         skeleton_animator.SetBool("sheild", false);
-   
     }
     IEnumerator Die()
     {
@@ -235,9 +216,7 @@ public class PlayerMovement : MonoBehaviour
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
         //Destroy(gameObject);
-       
     }
-
     public int PlayerMovingDirection()
     {
         if (direction == 1)
@@ -245,5 +224,4 @@ public class PlayerMovement : MonoBehaviour
         else
             return 2;
     }
-
 }

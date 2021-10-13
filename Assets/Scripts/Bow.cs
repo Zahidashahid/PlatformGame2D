@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
-    public float offset;
     public Transform shotPoint;
     public GameObject projectile;
 
+    public float offset;
     public float timeBtwShots;
     public float startTimeBtwShots;
 

@@ -9,12 +9,9 @@ public class Gifts : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;
-        
         if ( collision.tag == "Cherry")
         {
-
             //ScoreManager scriptToAccess = ScoreManager.GetComponent<ScoreManager>();
-
             scoreManager.CherryCollect();
             giftSound.Play();
             Destroy(collision.gameObject);
@@ -25,7 +22,5 @@ public class Gifts : MonoBehaviour
             giftSound.Play();
             Destroy(collision.gameObject);
         }
-
     }
-     
 }

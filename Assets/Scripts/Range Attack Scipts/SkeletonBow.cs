@@ -30,7 +30,6 @@ public class SkeletonBow : MonoBehaviour
         playerObject = GameObject.Find("Player_Goblin");
         playerPosition = playerObject.transform.position;
         BowPosition = bowObj.transform.position;
-       
     }
     void Update()
     {
