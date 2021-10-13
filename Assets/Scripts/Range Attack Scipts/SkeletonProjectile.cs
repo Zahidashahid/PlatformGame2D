@@ -14,7 +14,7 @@ public class SkeletonProjectile : MonoBehaviour
     public SpriteRenderer spriteRenderer;
      GameObject playerObject;
      GameObject skeletonObject;
-
+    public AudioSource arrowHitSound;
     Vector2 velocity;
     Vector3 newDirection;
     Vector3 targetDirection;
@@ -56,8 +56,9 @@ public class SkeletonProjectile : MonoBehaviour
         {
             if (hitInfo.collider.CompareTag("Player"))
             {
+                arrowHitSound.Play();
                 Debug.Log("Arrow hit Player");
-                hitInfo.collider.GetComponent<PlayerMovement>().TakeDemage(10);
+                hitInfo.collider.GetComponent<PlayerMovement>().TakeDemage(30);
 
             }
             DestroyProjectile();

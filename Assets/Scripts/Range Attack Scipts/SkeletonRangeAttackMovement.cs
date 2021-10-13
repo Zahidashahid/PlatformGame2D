@@ -10,8 +10,13 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
 
     #region Public Variables;
     public GameObject playerObject;
-   
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
+    public Animator animator;
     int direction = 1;
+    public AudioSource arrowHitSound;
+    public AudioSource DeathSound;
     #endregion
 
     #region Private Variables
@@ -27,10 +32,11 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     }*/
     private void Start()
     {
-        /* currentHealth = maxHealth;
-         healthBar.SetMaxHealth(maxHealth);*/
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         playerObject = GameObject.Find("Player_Goblin");
         target = playerObject.transform;
+        animator = GetComponent<Animator>();
 
     }
     // Update is called once per frame
@@ -74,5 +80,35 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         }
         transform.eulerAngles = rotation;
     }
+    public void TakeDemage(int demage)
+    {
+        currentHealth -= demage;
+        healthBar.SetHealth(currentHealth);
+        // play hurt animation
+        StartCoroutine(SkeletonHurtAnimation());
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(Die());
+        }
+    }
+    IEnumerator Die()
+    {
+        // Die Animation
 
+        animator.SetBool("Death", true);
+        Debug.Log("Skeleton died!");
+        DeathSound.Play();
+        yield return new WaitForSeconds(1f);
+        // Disable the player 
+        Destroy(gameObject);
+    }
+    IEnumerator SkeletonHurtAnimation()
+    {
+        // play hurt animation
+        animator.SetBool("Sheild", true);
+        arrowHitSound.Play();
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("Sheild", false);
+
+    }
 }

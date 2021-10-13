@@ -10,6 +10,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
     #region Public Variables;
     public LayerMask playerLayers;
     public LayerMask rayCastMask;
+    public AudioSource arrowHitSound;
+    public AudioSource DeathSound;
     public Rigidbody2D rb;
     public Animator animator;
     public Animator playerAnimator;
@@ -145,6 +147,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         // play hurt animation
         animator.SetBool("Sheild", true);
+        arrowHitSound.Play();
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("Sheild", false);
 
@@ -171,7 +174,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
-        yield return new WaitForSeconds(2f);
+        DeathSound.Play();
+        yield return new WaitForSeconds(1f);
         // Disable the player 
         Destroy(gameObject);
     }

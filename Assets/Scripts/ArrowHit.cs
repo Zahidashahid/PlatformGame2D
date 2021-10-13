@@ -14,6 +14,7 @@ public class ArrowHit : MonoBehaviour
     public Rigidbody2D rigidbody2D;
     public LayerMask playerLayers;
     public float attackRange = 0.05f;
+   
     #endregion
     #region private variables 
     #endregion
@@ -38,6 +39,7 @@ public class ArrowHit : MonoBehaviour
         if (collision.tag == "Player")
         {
             Debug.Log("enemy hit " + collision.tag);
+          
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             //playerAnimator.SetBool("Ishurt", true);
             /*     playerMovement.enabled = false;

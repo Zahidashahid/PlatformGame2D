@@ -11,7 +11,7 @@ public class ProjectileShooting : MonoBehaviour
     public Transform arrowTransform;
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
-   
+    public AudioSource arrowHitSound;
     Vector2 velocity;
     void Awake()
     {
@@ -40,10 +40,16 @@ public class ProjectileShooting : MonoBehaviour
          
         if (hitInfo.collider != null)
         {
-            if (hitInfo.collider.CompareTag("Skeleton"))
+            if (hitInfo.collider.name == "Skeleton")
             {
                 Debug.Log("Arrow hit Skeleton");
+                arrowHitSound.Play();
                 hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+            }
+            if (hitInfo.collider.name == "Range Attack Skeleton")
+            {
+                arrowHitSound.Play();
+                hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
             }
             DestroyProjectile();
         }

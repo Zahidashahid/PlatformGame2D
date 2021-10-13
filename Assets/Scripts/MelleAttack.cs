@@ -8,7 +8,7 @@ public class MelleAttack : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 2f;
     public LayerMask playerLayers;
-
+    public AudioSource meleeAttackSound;
     private bool inRange; // check player in range
     public float damage;
     public float attackDistance; // arrow will be possible when   distance is 7.5 b/w arrow and player
@@ -19,35 +19,51 @@ public class MelleAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (nextAttackTime > 0)
-        {
-            nextAttackTime -= Time.deltaTime;
-        }
-        else
-            nextAttackTime = 2f;
-        if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
-        {
+        nextAttackTime = -1;
+        /* if (nextAttackTime > 0)
+         {
+             nextAttackTime -= Time.deltaTime;
+         }
+         else
+             nextAttackTime = 2f;
+         if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
+         {
 
-            MelleAttackLogic();
-            inRange = true;
+             MelleAttackLogic();
+             inRange = true;
 
-        }
+         }*/
     }
 
     // Update is called once per frame
     void Update()
     {
-         
-        
-
-        
+        if(inRange)
+        {
+            if (nextAttackTime <= -1)
+            {
+                MelleAttackLogic();
+                nextAttackTime = 2;
+                // Debug.Log("nextAttackTime" + nextAttackTime);
+            }
+            else
+            {
+                nextAttackTime -= Time.deltaTime;
+            }
+        }
     }
     void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
-      
+        if (attackDistance >= distance)
+        {
+            inRange = true;
+            StartCoroutine(Attack());
+        }
+        else
+            inRange = false;
     }
 
     IEnumerator Attack()
@@ -55,6 +71,7 @@ public class MelleAttack : MonoBehaviour
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
+        meleeAttackSound.Play();
         animator.SetBool("Attack", false);
        // animator.SetBool("CanWalk", true);
         Debug.Log("In Attack function ");
@@ -95,9 +112,9 @@ public class MelleAttack : MonoBehaviour
 
         }
     }
-    public void TriggerCooling()
+ /*   public void TriggerCooling()
     {
         cooling = true;
 
-    }
+    }*/
 }

@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator eagle_animator;
     public Animator skeleton_animator;
-    
+    public AudioSource jumpSound;
+    public AudioSource DeathSound;
+    public AudioSource bGSound;
+    public AudioSource meleeAttackSound;
     bool jump ;
     bool crouch = false;
 
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
+        bGSound.Play();
         currentHealth = maxHealth;
         Debug.Log("current health of player is " + currentHealth);
         Debug.Log("Max health of player is " + maxHealth);
@@ -95,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
+                jumpSound.Play();
                 animator.SetBool("IsJumping", false);
                 jump = true;
                 
@@ -122,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.K))
             {
                 Debug.Log("attack Called");
+                
                 //eagle_animator.SetTrigger("Death");
                 StartCoroutine(Attack());
                 //Attack();
@@ -157,8 +163,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
+        
         yield return new WaitForSeconds(0.5f);
-
+        meleeAttackSound.Play();
         animator.SetBool("Attack1", false);
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
@@ -171,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
                 enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
                 StartCoroutine(SkeletonSheildtAnimation());
             }
+            
             //eagle_animator.SetTrigger("Death");
             // yield return new WaitForSeconds(1);
             else
@@ -198,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             StartCoroutine( Die() );
+            DeathSound.Play();
         }
     }
     IEnumerator HurtAnimation()
@@ -225,6 +234,8 @@ public class PlayerMovement : MonoBehaviour
        // animator.SetBool("IsDied", false);
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
+        //Destroy(gameObject);
+       
     }
 
     public int PlayerMovingDirection()
