@@ -36,15 +36,16 @@ public class SkeletonBow : MonoBehaviour
     {
         if (inRange)
         {
-            if (nextAttackTime < 0)
+            //Debug.Log("inRange" + inRange);
+            if (nextAttackTime <= -1)
             {
-                nextAttackTime = 2;
                 ArrowLogic();
+                nextAttackTime = 2;
+               // Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
             {
                 nextAttackTime -= Time.deltaTime;
-
             }
         }
         targetDirection = playerObject.transform.position - transform.position;
@@ -60,8 +61,8 @@ public class SkeletonBow : MonoBehaviour
             Debug.Log("player entred in arrow danger zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
+            nextAttackTime = -1;
             //ArrowLogic();
-            
         }
     }
      private void OnTriggerExit2D(Collider2D collision)
@@ -72,11 +73,12 @@ public class SkeletonBow : MonoBehaviour
             inRange = false;
             nextAttackTime = -1;
         }
-    }
+     }
     void ArrowLogic() // Arrow attack and instantiate
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
+        attackDistance = 13;
         if (attackDistance >= distance)
         {
             inRange = true;
@@ -88,7 +90,6 @@ public class SkeletonBow : MonoBehaviour
     void ShootArrow()
     {
         Debug.Log("In shoot function");
-        Instantiate(projectile, shotPoint.position, playerObject.transform.rotation);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
     }
-
 }

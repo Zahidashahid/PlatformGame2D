@@ -11,13 +11,13 @@ public class ProjectileShooting : MonoBehaviour
     public Transform arrowTransform;
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
-    Vector2 pos;
+   
     Vector2 velocity;
     void Awake()
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
        // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
-        pos = transform.position;
+       
     }
     void Start()
     {

@@ -32,9 +32,9 @@ public class SkeletonProjectile : MonoBehaviour
         Invoke("DestroyProjectile", lifeTime);
         Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
 
-        targetDirection = playerObject.transform.position - transform.position;
+       /* targetDirection = playerObject.transform.position - transform.position;
         newDirection = Vector3.RotateTowards(transform.forward, targetDirection, speed * Time.deltaTime, 0.0f);
-        if (playerObject.transform.position.x < skeletonObject.transform.position.x )
+       */ if (playerObject.transform.position.x < skeletonObject.transform.position.x )
         {
             spriteRenderer.flipX = true;
            velocity = (Vector3.left * speed * Time.deltaTime );
@@ -49,7 +49,7 @@ public class SkeletonProjectile : MonoBehaviour
     {
         
        // transform.rotation = Quaternion.LookRotation(newDirection);
-        transform.Translate(newDirection);
+        transform.Translate(velocity);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
 
         if (hitInfo.collider != null)
