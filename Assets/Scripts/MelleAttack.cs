@@ -73,11 +73,11 @@ public class MelleAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        animator.SetBool("Attack2", true);
+        animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
         meleeAttackSound.Play();
-        animator.SetBool("Attack2", false);
+        animator.SetBool("Attack", false);
        // animator.SetBool("CanWalk", true);
         Debug.Log("In Attack function ");
         //deteck enemies in range of attack

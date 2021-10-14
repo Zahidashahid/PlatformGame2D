@@ -51,41 +51,43 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        target = GameObject.Find("Player_Goblin").transform;
     }
     // Update is called once per frame
     void Update()
     {
 
-      /*  if (inRange)
-        {
-            hit = Physics2D.Raycast(rayCast.position, transform.right, rayCastLength, rayCastMask);
-            RaycastDebugger();
-            Debug.Log("Hit is " +  hit);
-            Debug.Log("inRange is " +  inRange);
-        }*/
+        /*  if (inRange)
+          {
+              hit = Physics2D.Raycast(rayCast.position, transform.right, rayCastLength, rayCastMask);
+              RaycastDebugger();
+              Debug.Log("Hit is " +  hit);
+              Debug.Log("inRange is " +  inRange);
+          }*/
         //When Player is detected
-      /*  if (inRange)
-        {
-            MelleAttackLogic();
-            if ( timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-                timer = 2f;
-            //inRange = true;
-        }
-        else if (hit.collider == null)
-        {
+        /*  if (inRange)
+          {
+              MelleAttackLogic();
+              if ( timer > 0)
+              {
+                  timer -= Time.deltaTime;
+              }
+              else
+                  timer = 2f;
+              //inRange = true;
+          }
+          else if (hit.collider == null)
+          {
 
-            inRange = false;
-        }
-        if (inRange == false)
-        {
-            //animation of ideal/ walk
-            StopAttack();
+              inRange = false;
+          }
+          if (inRange == false)
+          {
+              //animation of ideal/ walk
+              StopAttack();
 
-        }*/
+          }*/
+        
         if (direction == 1)
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
@@ -96,14 +98,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-5, 5);
         }
-        
-     /*   if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
-        {
-
-            MelleAttackLogic();
-            inRange = true;
-
-        }*/
+        Flip();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -124,14 +119,19 @@ public class SkeletonEnemyMovement : MonoBehaviour
             inRange = true;
             nextAttackTime = 3;
            // Debug.Log("player collied with skelton");
-            Flip();
             Debug.Log("player entred in Seleton zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
           //  MelleAttackLogic();
         }
 
     }
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            inRange = false;
+        }
+    }
     public void TakeDemage(int demage)
     {
         currentHealth -= demage;
@@ -254,6 +254,10 @@ public class SkeletonEnemyMovement : MonoBehaviour
         //Debug.Log("Flip called" + distance);
          Vector3 rotation = transform.eulerAngles;
          rotation.x *= -1;
+        if (distance >= 3)
+        {
+            inRange = false;
+        }
          if(inRange && transform.position.x > target.position.x && direction == 1)
          {
              rotation.y = 180f;
@@ -272,15 +276,13 @@ public class SkeletonEnemyMovement : MonoBehaviour
          transform.eulerAngles = rotation;
     }
 
-  /*  void MelleAttackLogic() // melle attack 
+ /*   void CheckDistance() // 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
         if (attackDistance >= distance)
         {
-
-            Attack();
             inRange = true;
         }
         else
