@@ -61,7 +61,7 @@ public class MelleAttack : MonoBehaviour
         distance = Vector2.Distance(transform.position, target.transform.position);
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
-        attackDistance = 6;
+        attackDistance = 5;
         if (attackDistance >= distance)
         {
             inRange = true;

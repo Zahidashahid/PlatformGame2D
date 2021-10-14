@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
        // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
-        if ( Input.GetKey(KeyCode.LeftArrow) )//&& grounded
+        if ( Input.GetKey(KeyCode.LeftArrow) && grounded)//&& grounded
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             direction = 1; 
         }
         // Move Player Forward
-        else if ( Input.GetKey(KeyCode.RightArrow))//&& grounded
+        else if ( Input.GetKey(KeyCode.RightArrow) && grounded)//
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
@@ -87,11 +87,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
             {
-                rb.velocity = new Vector2(-3, rb.velocity.y);
+                rb.velocity = new Vector2(-5, rb.velocity.y);
             }
             else if (direction == 2)
             {
-                rb.velocity = new Vector2(3, rb.velocity.y);
+                rb.velocity = new Vector2(5, rb.velocity.y);
             }
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (jumpCount > 2)
@@ -115,11 +115,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
             {
-                rb.velocity = new Vector2(-15, rb.velocity.y);
+                rb.velocity = new Vector2(-10, rb.velocity.y);
             }
             else if (direction == 2)
             {
-                rb.velocity = new Vector2(15, rb.velocity.y);
+                rb.velocity = new Vector2(10, rb.velocity.y);
             }
         }
         if (Time.time >= nextAttackTime)
@@ -203,8 +203,10 @@ public class PlayerMovement : MonoBehaviour
        // StartCoroutine(HurtAnimation());
         if (currentHealth <= 0)
         {
-            StartCoroutine( Die() );
+            bgSound.Stop();
             DeathSound.Play();
+            StartCoroutine( Die() );
+            
             this.enabled = false;
         }
     }
@@ -227,7 +229,7 @@ public class PlayerMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
-        bgSound.Stop();
+       // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
        // animator.SetBool("IsDied", false);
         // Disable the player
