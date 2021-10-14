@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource meleeAttackSound;
     bool jump ;
     bool crouch = false;
-
+    bool grounded;
     int jumpCount = 0;
     public int direction = 2;
     public int currentHealth;
@@ -46,11 +46,13 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("current health of player is " + currentHealth);
         Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
+        grounded = true;
     }
     private void Update()
     {
+        Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
-        if ( Input.GetKey(KeyCode.LeftArrow))
+        if ( Input.GetKey(KeyCode.LeftArrow) && grounded)
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
@@ -58,26 +60,36 @@ public class PlayerMovement : MonoBehaviour
             direction = 1; 
         }
         // Move Player Forward
-       else if ( Input.GetKey(KeyCode.RightArrow))
-       {
+        else if ( Input.GetKey(KeyCode.RightArrow) && grounded)
+        {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
             animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 2;
-       }
+        }
         else
         {
             animator.SetFloat("Speed", Mathf.Abs(0));
         }
         // Jump Player if on ground ,  double jump
-        if ((jumpCount < 2 ||  IsGrounded() == null) && (Input.GetKeyDown(KeyCode.Space)))
+        if ((jumpCount < 2 ||  IsGrounded()) && (Input.GetKeyDown(KeyCode.Space)))
         {
             jumpCount++;
+            grounded = false;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
             jumpSound.Play();
+            animator.SetFloat("Speed", Mathf.Abs(40));
+            if (direction == 1)
+            {
+                rb.velocity = new Vector2(-3, rb.velocity.y);
+            }
+            else if (direction == 2)
+            {
+                rb.velocity = new Vector2(3, rb.velocity.y);
+            }
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (jumpCount > 2)
             {
@@ -91,19 +103,20 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
                 animator.SetBool("IsJumping", false);
                 jump = true;
+                
             }
         }
         // Dash move 
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.P) && grounded)
         {
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
             {
-                rb.velocity = new Vector2(-40, rb.velocity.y);
+                rb.velocity = new Vector2(-15, rb.velocity.y);
             }
             else if (direction == 2)
             {
-                rb.velocity = new Vector2(40, rb.velocity.y);
+                rb.velocity = new Vector2(15, rb.velocity.y);
             }
         }
         if (Time.time >= nextAttackTime)
@@ -132,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
        // Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
+        grounded = true;
         jumpCount = 0;
     }
     private bool IsGrounded()
@@ -165,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
             // yield return new WaitForSeconds(1);
             else
                 Destroy(enemy.gameObject);
-
             break;
         }
         
