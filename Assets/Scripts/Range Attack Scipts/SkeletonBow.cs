@@ -47,9 +47,11 @@ public class SkeletonBow : MonoBehaviour
                 nextAttackTime -= Time.deltaTime;
             }
         }
-        targetDirection = playerObject.transform.position - transform.position;
-        float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+         targetDirection = playerObject.transform.position - transform.position;
+         float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        /*Debug.Log("Direction" + targetDirection);
+        Debug.Log("rot" + rotZ);*/
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
     }
     private void OnTriggerEnter2D(Collider2D collision)
      {
@@ -88,7 +90,21 @@ public class SkeletonBow : MonoBehaviour
     }
     void ShootArrow()
     {
-        Debug.Log("In shoot function");
-        Instantiate(projectile, shotPoint.position, transform.rotation);
+        Debug.Log("In shoot function" + transform.rotation);
+        if(transform.position.x >= target.transform.position.x)
+        {
+            /*
+             *  when player is at left side of ranged attack emeny;
+             *  taeget direction will be change to enemy(self/skeleton) subtract target(Player) if player is at right side of enemy vise versa.
+             */
+            targetDirection =   transform.position - playerObject.transform.position;
+            float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+            Debug.Log(rotZ + "Rotation");
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+            Debug.Log(transform.rotation + " new");
+            Instantiate(projectile, shotPoint.position,  transform.rotation);
+        }
+        else
+            Instantiate(projectile, shotPoint.position, transform.rotation);
     }
 }

@@ -38,7 +38,7 @@ public class ArrowHit : MonoBehaviour
 
         if (collision.tag == "Player")
         {
-            Debug.Log("enemy hit " + collision.tag);
+            Debug.Log("In ArrowHit Script enemy hit " + collision.tag);
           
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             //playerAnimator.SetBool("Ishurt", true);

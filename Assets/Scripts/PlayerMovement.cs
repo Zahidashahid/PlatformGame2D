@@ -53,9 +53,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Is Grounded! "+ grounded);
+       // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
-        if ( Input.GetKey(KeyCode.LeftArrow) && grounded)
+        if ( Input.GetKey(KeyCode.LeftArrow) )//&& grounded
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             direction = 1; 
         }
         // Move Player Forward
-        else if ( Input.GetKey(KeyCode.RightArrow) && grounded)
+        else if ( Input.GetKey(KeyCode.RightArrow))//&& grounded
         {
             rb.velocity = new Vector2(3, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
