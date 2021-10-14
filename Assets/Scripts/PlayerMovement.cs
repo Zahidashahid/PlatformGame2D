@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource jumpSound;
     public AudioSource DeathSound;
     public AudioSource meleeAttackSound;
+    public AudioSource bgSound;
     bool jump ;
     bool crouch = false;
     bool grounded;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
+        bgSound.Play();
     }
     private void Start()
     {
@@ -47,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
         grounded = true;
+        bgSound.Play();
     }
     private void Update()
     {
@@ -224,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
+        bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
        // animator.SetBool("IsDied", false);
         // Disable the player

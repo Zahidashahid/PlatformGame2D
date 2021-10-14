@@ -10,7 +10,7 @@ public class GameUIScript : MonoBehaviour
     public GameObject gameOverCanvas;
     public TMP_Text gameOverText;
     public GameObject restartButton;
-    
+    public AudioSource restartBtnSound;
     void Awake()
     {
        /* gameOverPanel.SetActive(false);
@@ -40,7 +40,7 @@ public class GameUIScript : MonoBehaviour
                 restartButton.SetActive(false);
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
-        Debug.Log("Restart btn clicked.");
+        restartBtnSound.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
