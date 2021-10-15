@@ -207,7 +207,6 @@ public class PlayerMovement : MonoBehaviour
             bgSound.Stop();
             DeathSound.Play();
             StartCoroutine( Die() );
-            
             this.enabled = false;
         }
     }
@@ -235,6 +234,8 @@ public class PlayerMovement : MonoBehaviour
        // animator.SetBool("IsDied", false);
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
+
+        
         //Destroy(gameObject);
     }
     public int PlayerMovingDirection()

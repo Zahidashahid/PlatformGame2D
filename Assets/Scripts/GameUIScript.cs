@@ -41,6 +41,7 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         restartBtnSound.Play();
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -53,6 +54,7 @@ public class GameUIScript : MonoBehaviour
         gameOverPanel.SetActive(true);
         restartButton.SetActive(true);
         gameOverText.enabled = true;
+        Time.timeScale = 0f;
     }
 
 }
