@@ -140,7 +140,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.red);
         }
-
         else if (distance < attackDistance)
         {
             Debug.DrawRay(rayCast.position, transform.right * rayCastLength, Color.green);
@@ -177,5 +176,4 @@ public class SkeletonEnemyMovement : MonoBehaviour
          }
          transform.eulerAngles = rotation;
     }
-   
 }

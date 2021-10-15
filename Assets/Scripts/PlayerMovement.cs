@@ -53,8 +53,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       // Debug.Log("Is Grounded! "+ grounded);
+        // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
+        CheckGamePaused();
         if ( Input.GetKey(KeyCode.LeftArrow) && grounded)//&& grounded
         {
             rb.velocity = new Vector2(-3, rb.velocity.y);
@@ -242,5 +243,15 @@ public class PlayerMovement : MonoBehaviour
             return 1;
         else
             return 2;
+    }
+
+    void CheckGamePaused()
+    {
+        if (PauseGame.isGamePaused)
+        {
+            bgSound.pitch *= .5f;
+        }
+        else
+            bgSound.pitch = 1f;
     }
 }
