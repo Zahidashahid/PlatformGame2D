@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Gifts : MonoBehaviour
 {
-    public ScoreManager scoreManager = new ScoreManager();
+    public ScoreManager scoreManager;
     public AudioSource giftSound;
+    private void Start()
+    {
+        //scoreManager = new ScoreManager();
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;

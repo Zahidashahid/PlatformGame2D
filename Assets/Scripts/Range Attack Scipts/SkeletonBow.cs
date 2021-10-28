@@ -30,6 +30,7 @@ public class SkeletonBow : MonoBehaviour
         playerObject = GameObject.Find("Player_Goblin");
         playerPosition = playerObject.transform.position;
         BowPosition = bowObj.transform.position;
+       
     }
     void Update()
     {
@@ -39,15 +40,15 @@ public class SkeletonBow : MonoBehaviour
             if (nextAttackTime <= -1)
             {
                 ArrowLogic();
-                nextAttackTime = 2;
-               // Debug.Log("nextAttackTime" + nextAttackTime);
+                
+                // Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
             {
                 nextAttackTime -= Time.deltaTime;
             }
         }
-         targetDirection = playerObject.transform.position - transform.position;
+        targetDirection = playerObject.transform.position - transform.position;
          float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
         /*Debug.Log("Direction" + targetDirection);
         Debug.Log("rot" + rotZ);*/
@@ -102,9 +103,9 @@ public class SkeletonBow : MonoBehaviour
             Debug.Log(rotZ + "Rotation");
             transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
             Debug.Log(transform.rotation + " new");
-            Instantiate(projectile, shotPoint.position,  transform.rotation);
+           // Instantiate(projectile, shotPoint.position,  transform.rotation);
         }
-        else
-            Instantiate(projectile, shotPoint.position, transform.rotation);
+        Instantiate(projectile, shotPoint.position, transform.rotation);
+        nextAttackTime = 2;
     }
 }

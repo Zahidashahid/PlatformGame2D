@@ -24,16 +24,12 @@ public class GameUIScript : MonoBehaviour
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
     }
-
-
-
     public void GameOver()
     {
         StartCoroutine(waiter());
         //SceneManager.LoadScene("Level 1");
         //SceneManager.LoadScene("GameOver");
     }
-
     public void RestartGame()
     {
         /*        gameOverPanel.SetActive(false);
