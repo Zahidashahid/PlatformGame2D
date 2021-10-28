@@ -25,9 +25,9 @@ public class EnemyAI : MonoBehaviour
        
         if (collision.tag == "Player")
         {
-            Debug.Log("enemy hit " + collision.tag);
+            Debug.Log(this.tag + " hit " + collision.tag);
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
-            animator.SetBool("Ishurt", true);
+            //animator.SetBool("Ishurt", true);
             /*     playerMovement.enabled = false;
                  enemies.enabled = false;*/
             rigidbody2D.bodyType = RigidbodyType2D.Static;

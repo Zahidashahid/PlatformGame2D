@@ -53,7 +53,6 @@ public class SkeletonProjectile : MonoBehaviour
        // transform.rotation = Quaternion.LookRotation(newDirection);
         transform.Translate(velocity);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
-
         if (hitInfo.collider != null)
         {
             if (hitInfo.collider.CompareTag("Player"))

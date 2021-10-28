@@ -40,7 +40,6 @@ public class SkeletonBow : MonoBehaviour
             if (nextAttackTime <= -1)
             {
                 ArrowLogic();
-                
                 // Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
@@ -92,7 +91,11 @@ public class SkeletonBow : MonoBehaviour
     void ShootArrow()
     {
         Debug.Log("In shoot function" + transform.rotation);
-        if(transform.position.x >= target.transform.position.x)
+        Debug.Log("nextAttackTime :-" +  nextAttackTime);
+   
+        nextAttackTime = 2;
+        Debug.Log("nextAttackTime :-" + nextAttackTime);
+        if (transform.position.x >= target.transform.position.x)
         {
             /*
              *  when player is at left side of ranged attack emeny;
@@ -106,6 +109,6 @@ public class SkeletonBow : MonoBehaviour
            // Instantiate(projectile, shotPoint.position,  transform.rotation);
         }
         Instantiate(projectile, shotPoint.position, transform.rotation);
-        nextAttackTime = 2;
+        Debug.Log("Arrow instantiated");
     }
 }

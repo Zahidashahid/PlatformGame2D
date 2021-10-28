@@ -25,6 +25,7 @@ public class SkeletonArrowHit : MonoBehaviour
             // Destroy();
             Debug.Log("We hit player");
             enemy.GetComponent<PlayerMovement>().TakeDemage(50);
+           
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -40,11 +41,7 @@ public class SkeletonArrowHit : MonoBehaviour
                  enemies.enabled = false;*/
             // rigidbody2D.bodyType = RigidbodyType2D.Static;
             Attack();
-
-
             ///FindObjectOfType<GameUIScript>().GameOver();
-
-
             //gameUIScript.GameOver();
             //  Destroy(collision.gameObject, 1f);
         }
