@@ -21,7 +21,7 @@ public class SkeletonBow : MonoBehaviour
     private GameObject target;
     public GameObject arrow;
     #region private variables;
-    private bool inRange; // check player in range
+    public bool inRange; // check player in range
     private float distance; // stores distance btw player and arrrow
     #endregion
     private void Start()
@@ -62,19 +62,21 @@ public class SkeletonBow : MonoBehaviour
             Debug.Log("player entred in arrow danger zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
-            nextAttackTime = -1;
+            Debug.Log("Inrage =" + inRange);
+            //nextAttackTime = -1;
             //ArrowLogic();
         }
     }
-     private void OnTriggerExit2D(Collider2D collision)
+    /* private void OnTriggerExit2D(Collider2D collision)
      {
         if (collision.tag == "Player")
         {
             Debug.Log("player exiting in arrow danger zone");
             inRange = false;
+            Debug.Log("Inrage =" + inRange);
             nextAttackTime = -1;
         }
-     }
+     }*/
     void ArrowLogic() // Arrow attack and instantiate
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
@@ -83,10 +85,14 @@ public class SkeletonBow : MonoBehaviour
         if (attackDistance >= distance)
         {
             inRange = true;
+            Debug.Log("Inrage =" + inRange);
             ShootArrow();
         }
         else
+        {
             inRange = false;
+            Debug.Log("Inrage =" + inRange);
+        }
     }
     void ShootArrow()
     {

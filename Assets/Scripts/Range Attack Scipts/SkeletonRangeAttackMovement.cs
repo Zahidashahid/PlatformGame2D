@@ -23,8 +23,8 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     private Transform target;
     private float distance;
     #endregion
-    public float nextAttackTime; // after every 2 sec
-    public float damage;
+   // public float nextAttackTime; // after every 2 sec
+   // public float damage;
 
     /*private void Awake()
     {
