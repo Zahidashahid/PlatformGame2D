@@ -35,34 +35,40 @@ public class SkeletonProjectile : MonoBehaviour
         /* targetDirection = playerObject.transform.position - transform.position;
          newDirection = Vector3.RotateTowards(transform.forward, targetDirection, speed * Time.deltaTime, 0.0f);
         */
-        if (playerObject.transform.position.x < skeletonObject.transform.position.x )
+       /* if (playerObject.transform.position.x < skeletonObject.transform.position.x )
         {
             Debug.Log("Inflip left");
-           spriteRenderer.flipX = true;
-           velocity = (Vector3.left * speed * Time.deltaTime );
+*//*
+             transform.rotation = Quaternion.Euler(0f,180f,0f);
+            transform.position = new Vector3(playerObject.transform.position.x, playerObject.transform.position.y, playerObject.transform.position.z);*//*
+            //spriteRenderer.flipX = true;
+            velocity = (Vector3.right * speed * Time.deltaTime );
         }
         else
         {
             Debug.Log("Inflip right");
             spriteRenderer.flipX = false;
             velocity = (Vector3.right * speed * Time.deltaTime);
-        }
+        }*/
+        velocity = (Vector3.right * speed * Time.deltaTime);
     }
     void Update()
     {
        // transform.rotation = Quaternion.LookRotation(newDirection);
         transform.Translate(velocity);
-        RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
-        if (hitInfo.collider != null)
+       // RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
+       
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
         {
-            if (hitInfo.collider.CompareTag("Player"))
-            {
-                arrowHitSound.Play();
-                Debug.Log("Arrow hit Player");
-                hitInfo.collider.GetComponent<PlayerMovement>().TakeDemage(30);
-            }
+            arrowHitSound.Play();
+            Debug.Log("Arrow hit Player");
+            collision.GetComponent<PlayerMovement>().TakeDemage(30);
             DestroyProjectile();
         }
+        
     }
     void DestroyProjectile()
     {

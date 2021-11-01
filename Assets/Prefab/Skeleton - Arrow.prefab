@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5905011712116011311}
   - component: {fileID: 6406121584178246419}
   - component: {fileID: 1375588968495565106}
+  - component: {fileID: 4276839673576565022}
   m_Layer: 0
   m_Name: Skeleton - Arrow
   m_TagString: Untagged
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905011712116011313}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -150,7 +151,7 @@ MonoBehaviour:
   distance: 7
   enemy:
     serializedVersion: 2
-    m_Bits: 2288
+    m_Bits: 128
   arrowTransform: {fileID: 5905011712116011312}
   spriteRenderer: {fileID: 5905011712116011309}
   arrowHitSound: {fileID: 1375588968495565106}
@@ -251,3 +252,78 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &4276839673576565022
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905011712116011313}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.272, y: 0.144}
+    newSize: {x: 5.68, y: 0.36}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.82350355, y: 0.011028746}
+      - {x: 0.8130839, y: 0.00799768}
+      - {x: 0.9301504, y: -0.0017623901}
+      - {x: 0.93478626, y: -0.016365174}
+      - {x: 0.94000006, y: -0.060000002}
+      - {x: 0.9760001, y: -0.056}
+      - {x: 1.1240001, y: -0.012}
+      - {x: 1.1320001, y: -0.008}
+      - {x: 1.1320001, y: 0}
+      - {x: 1.12, y: 0.020000001}
+      - {x: 0.93200004, y: 0.060000002}
+      - {x: 0.9254995, y: -0.0046691895}
+      - {x: 0.80775565, y: 0.0044894423}
+      - {x: 0.82422876, y: 0.009458374}
+      - {x: 0.9224923, y: 0.016240906}
+      - {x: 0.92515093, y: 0.0059814453}
+      - {x: 0.92346174, y: 0.013093201}
+      - {x: 0.92666477, y: -0.0030407682}
+      - {x: 0.9445346, y: 0.05393555}
+      - {x: 0.92197204, y: 0.007095337}
+      - {x: 0.937427, y: -0.02306366}
+      - {x: 0.8482727, y: 0.0046539307}
+      - {x: 0.8432642, y: 0.0067826547}
+      - {x: 0.9276668, y: 0.008629091}
+      - {x: 0.9243682, y: 0.00983429}
+      - {x: 0.92479247, y: -0.0005569458}
+      - {x: 0.9382078, y: -0.039889462}
+      - {x: 0.92540675, y: 0.010986328}
+      - {x: 0.8163186, y: 0.0031814575}
+      - {x: 0.79662156, y: 0.0042923614}
+      - {x: 0.8191092, y: 0.007695984}
+      - {x: 0.84331065, y: 0.008888245}
+      - {x: 0.9336719, y: -0.006824948}
+      - {x: 0.92313224, y: -0.0027498156}
+      - {x: 0.92332494, y: 0.0084991455}
+      - {x: 0.9370136, y: 0.057357788}
+      - {x: 0.92324036, y: 0.0004348755}
+      - {x: 0.91702193, y: 0.0016969601}
+      - {x: 0.8191976, y: 0.0052151475}
+      - {x: 0.85026133, y: 0.0071487427}
+      - {x: 0.9209907, y: 0.014694214}
+      - {x: 0.9185834, y: 0.012105405}
+      - {x: 0.91931784, y: 0.008766964}
+      - {x: 0.8059211, y: -0.0036994666}
+      - {x: 0.8612862, y: 0.0005187988}
+      - {x: 0.93258584, y: -0.013832092}
+      - {x: 0.92834467, y: -0.007459596}
+      - {x: 0.9368229, y: -0.014351014}
+      - {x: 0.8999046, y: -0.0015640259}
+      - {x: 0.9339312, y: 0.007564999}

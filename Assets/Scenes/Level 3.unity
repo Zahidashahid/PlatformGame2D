@@ -2959,9 +2959,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17202449, y: -1.1065295}
+  m_Offset: {x: 0.39999998, y: -1.1708922}
   serializedVersion: 2
-  m_Radius: 0.48507953
+  m_Radius: 0.4793985
 --- !u!114 &750146753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3092,7 +3092,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.076604605, y: -0.12799239}
+  m_Offset: {x: 0.076604605, y: -0.17098475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3103,7 +3103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85183764, y: 0.9164667}
+  m_Size: {x: 0.85183764, y: 1.0024514}
   m_EdgeRadius: 0
 --- !u!50 &750146759
 Rigidbody2D:
@@ -3235,9 +3235,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.64, y: -1.39}
+  m_Offset: {x: -0.74, y: -1.3497195}
   serializedVersion: 2
-  m_Radius: 0.25392145
+  m_Radius: 0.29084516
 --- !u!82 &750146762
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5916,7 +5916,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 8.5
+  m_Radius: 12
 --- !u!1 &1132061373
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,10 +6073,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1186336564}
-  m_Layer: 12
+  m_Layer: 7
   m_Name: Raycast
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

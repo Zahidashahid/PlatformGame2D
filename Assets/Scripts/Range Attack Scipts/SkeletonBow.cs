@@ -110,7 +110,12 @@ public class SkeletonBow : MonoBehaviour
             targetDirection =   transform.position - playerObject.transform.position;
             float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
             Debug.Log(rotZ + "Rotation");
-            transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+            transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
+             /*
+              * "-" is used to rotation towards player so that collider also change with arrow left moving
+              * 180f to change arrow towards left 
+              */
+/**/
             Debug.Log(transform.rotation + " new");
            // Instantiate(projectile, shotPoint.position,  transform.rotation);
         }
