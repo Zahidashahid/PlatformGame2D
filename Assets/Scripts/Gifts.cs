@@ -17,13 +17,15 @@ public class Gifts : MonoBehaviour
         {
             //ScoreManager scriptToAccess = ScoreManager.GetComponent<ScoreManager>();
             scoreManager.CherryCollect();
-            giftSound.Play();
+            //giftSound.Play();
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
         if ( collision.tag == "Gem")
         {
             scoreManager.GemCollect();
-            giftSound.Play();
+           // giftSound.Play();
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
     }

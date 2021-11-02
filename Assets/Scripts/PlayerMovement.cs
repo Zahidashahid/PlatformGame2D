@@ -252,7 +252,7 @@ public class PlayerMovement : MonoBehaviour
         {
             bgSound.pitch *= .5f;
         }
-        else
-            bgSound.pitch = 1f;
+       /* else
+            bgSound.pitch = 1f;*/
     }
 }

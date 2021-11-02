@@ -29,6 +29,7 @@ public class SkeletonProjectile : MonoBehaviour
     }
     void Start()
     {
+        speed = 0.1f;
         Invoke("DestroyProjectile", lifeTime);
         Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
         distance = Vector2.Distance(transform.position, playerObject.transform.position);
@@ -50,7 +51,7 @@ public class SkeletonProjectile : MonoBehaviour
             spriteRenderer.flipX = false;
             velocity = (Vector3.right * speed * Time.deltaTime);
         }*/
-        velocity = (Vector3.right * speed * Time.deltaTime);
+        velocity = (Vector3.right * speed );
     }
     void Update()
     {

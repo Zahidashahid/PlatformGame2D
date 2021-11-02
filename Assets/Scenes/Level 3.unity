@@ -2959,9 +2959,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.39999998, y: -1.1708922}
+  m_Offset: {x: 0.59, y: -1.3752404}
   serializedVersion: 2
-  m_Radius: 0.4793985
+  m_Radius: 0.23565781
 --- !u!114 &750146753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3092,7 +3092,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.076604605, y: -0.17098475}
+  m_Offset: {x: 0.076604605, y: -0.4048773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -3103,7 +3103,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85183764, y: 1.0024514}
+  m_Size: {x: 0.85183764, y: 1.4702365}
   m_EdgeRadius: 0
 --- !u!50 &750146759
 Rigidbody2D:
@@ -3135,7 +3135,7 @@ AudioSource:
   m_GameObject: {fileID: 750146748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1691085397357501334, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3235,9 +3235,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.74, y: -1.3497195}
+  m_Offset: {x: -0.6, y: -1.3737088}
   serializedVersion: 2
-  m_Radius: 0.29084516
+  m_Radius: 0.25637662
 --- !u!82 &750146762
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3247,7 +3247,7 @@ AudioSource:
   m_GameObject: {fileID: 750146748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1691085397357501334, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4b4dd7245f6104c8c8eb07ccf6b386ed, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3343,7 +3343,7 @@ AudioSource:
   m_GameObject: {fileID: 750146748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1691085397357501334, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: 80e397195ea2940b69ee7bdbded856a5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3439,7 +3439,7 @@ AudioSource:
   m_GameObject: {fileID: 750146748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1691085397357501334, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3535,7 +3535,7 @@ AudioSource:
   m_GameObject: {fileID: 750146748}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1691085397357501334, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4800,13 +4800,14 @@ GameObject:
   m_Component:
   - component: {fileID: 937873941}
   - component: {fileID: 937873940}
+  - component: {fileID: 937873942}
   m_Layer: 0
   m_Name: BG Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &937873940
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4816,7 +4817,7 @@ AudioSource:
   m_GameObject: {fileID: 937873939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
   m_audioClip: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.487
@@ -4917,6 +4918,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &937873942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937873939}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2899b8ea45657bd41a2f9a67c847050a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 0}
+  musicToggleBtn: {fileID: 0}
+  soundToggleBtn: {fileID: 0}
 --- !u!1 &941641808
 GameObject:
   m_ObjectHideFlags: 0
@@ -9644,7 +9660,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07355884, y: 0.037946895}
+  m_Offset: {x: 0.06394866, y: 0.040082514}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9655,7 +9671,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1137743, y: 0.2476953}
+  m_Size: {x: 0.13299465, y: 0.41000086}
   m_EdgeRadius: 0
 --- !u!95 &1825558563
 Animator:

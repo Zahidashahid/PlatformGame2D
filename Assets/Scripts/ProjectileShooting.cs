@@ -21,23 +21,24 @@ public class ProjectileShooting : MonoBehaviour
     }
     void Start()
     {
+        speed = 0.1f;
         Invoke("DestroyProjectile", lifeTime);
         if (playerMovement.PlayerMovingDirection() == 1)
         {
             spriteRenderer.flipX = true;
-            velocity = (Vector3.left * speed * Time.deltaTime);
+            velocity = (Vector3.left * speed );
         }
         else
         {
             spriteRenderer.flipX = false;
-            velocity = (Vector3.right * speed * Time.deltaTime);
+            velocity = (Vector3.right * speed );
         }
     }
     void Update()
     {
         transform.Translate(velocity);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);
-         
+          
         if (hitInfo.collider != null)
         {
             if (hitInfo.collider.name == "Skeleton")
