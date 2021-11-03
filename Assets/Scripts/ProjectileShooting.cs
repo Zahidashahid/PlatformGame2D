@@ -14,7 +14,7 @@ public class ProjectileShooting : MonoBehaviour
     public Transform arrowTransform;
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
-    public AudioSource arrowHitSound;
+    /*public AudioSource arrowHitSound;*/
     Vector2 velocity;
     void Awake()
     {

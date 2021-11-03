@@ -15,8 +15,8 @@ public class SkeletonProjectile : MonoBehaviour
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
      GameObject playerObject;
-     GameObject skeletonObject;
-    public AudioSource arrowHitSound;
+     GameObject skeletonObject;/*
+    public AudioSource arrowHitSound;*/
     Vector2 velocity;
     Vector3 newDirection;
     Vector3 targetDirection;

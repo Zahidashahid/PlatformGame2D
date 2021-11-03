@@ -15,8 +15,9 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
     int direction = 1;
+    /*
     public AudioSource arrowHitSound;
-    public AudioSource DeathSound;
+    public AudioSource DeathSound;*/
     #endregion
 
     #region Private Variables

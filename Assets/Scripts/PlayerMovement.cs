@@ -14,10 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator eagle_animator;
     public Animator skeleton_animator;
-    public AudioSource jumpSound;
+    /*public AudioSource jumpSound;
     public AudioSource DeathSound;
     public AudioSource meleeAttackSound;
-    public AudioSource bgSound;
+    public AudioSource bgSound;*/
     bool jump ;
     bool crouch = false;
     bool grounded;
