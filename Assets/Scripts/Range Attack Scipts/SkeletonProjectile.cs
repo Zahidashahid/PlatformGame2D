@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SkeletonProjectile : MonoBehaviour
 {
-
+    /*
+     * Range Attack by skeleton
+     */
     public float speed;
     public float lifeTime;
     public float distance;
@@ -64,7 +66,7 @@ public class SkeletonProjectile : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            arrowHitSound.Play();
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
             Debug.Log("Arrow hit Player");
             collision.GetComponent<PlayerMovement>().TakeDemage(30);
             DestroyProjectile();

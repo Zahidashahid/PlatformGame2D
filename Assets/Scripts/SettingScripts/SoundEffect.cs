@@ -5,7 +5,12 @@ using UnityEngine;
 public class SoundEffect : MonoBehaviour
 {
     public AudioSource audioS;
+    public AudioClip arrowHitSound;
     public AudioClip giftSound;
+    public AudioClip jumpSound;
+    public AudioClip deathSound;
+    public AudioClip meleeAttackSound;
+   //public AudioClip giftSound;
     public static SoundEffect sfInstance;
     private void Awake()
     {

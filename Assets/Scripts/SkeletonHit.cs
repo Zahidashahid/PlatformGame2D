@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkeletonHit : MonoBehaviour
-{
+{/*
     #region public variables 
     public Animator playerAnimator;
     public Transform attackPoint;
@@ -36,13 +36,13 @@ public class SkeletonHit : MonoBehaviour
             Debug.Log("enemy hit " + collision.tag);
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             //playerAnimator.SetBool("Ishurt", true);
-            /*     playerMovement.enabled = false;
-                 enemies.enabled = false;*/
+            *//*     playerMovement.enabled = false;
+                 enemies.enabled = false;*//*
            // rigidbody2D.bodyType = RigidbodyType2D.Static;
             Attack();
             ///FindObjectOfType<GameUIScript>().GameOver();
             //gameUIScript.GameOver();
             //  Destroy(collision.gameObject, 1f);
         }
-    }
+    }*/
 }

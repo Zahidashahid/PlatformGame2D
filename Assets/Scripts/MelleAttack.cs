@@ -6,16 +6,16 @@ public class MelleAttack : MonoBehaviour
 {
     public Animator animator;
     public Transform attackPoint;
-    public float attackRange = 2f;
     public LayerMask playerLayers;
-    public AudioSource meleeAttackSound;
-    private bool inRange; // check player in range
+    public float attackRange = 2f;
     public float damage;
     public float attackDistance; // arrow will be possible when   distance is 7.5 b/w arrow and player
-    private float distance; // stores distance btw player and arrrow
     public float nextAttackTime; // after every 2 sec
+    private float distance; // stores distance btw player and arrrow
+    private bool inRange; // check player in range
     private bool cooling;
     private GameObject target;
+    //public AudioSource meleeAttackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +76,7 @@ public class MelleAttack : MonoBehaviour
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
-        meleeAttackSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack", false);
        // animator.SetBool("CanWalk", true);
         Debug.Log("In Attack function ");

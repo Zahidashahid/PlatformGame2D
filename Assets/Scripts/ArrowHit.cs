@@ -8,7 +8,7 @@ public class ArrowHit : MonoBehaviour
  *  Player Arrow hit script
  *  Range attack 
  */
-    #region public variables 
+  /*  #region public variables 
     public Animator playerAnimator;
     public Transform attackPoint;
     public Rigidbody2D rigidbody2D;
@@ -42,8 +42,8 @@ public class ArrowHit : MonoBehaviour
           
             // collisionGameObject.GetComponent<PlayerMovement>().TakeDemage(30);
             //playerAnimator.SetBool("Ishurt", true);
-            /*     playerMovement.enabled = false;
-                 enemies.enabled = false;*/
+            *//*     playerMovement.enabled = false;
+                 enemies.enabled = false;*//*
            // rigidbody2D.bodyType = RigidbodyType2D.Static;
             Attack();
 
@@ -56,5 +56,5 @@ public class ArrowHit : MonoBehaviour
         }
 
 
-    }
+    }*/
 }

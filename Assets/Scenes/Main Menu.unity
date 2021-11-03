@@ -2759,6 +2759,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioS: {fileID: 1014650879}
   giftSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  arrowHitSound: {fileID: 8300000, guid: 80e397195ea2940b69ee7bdbded856a5, type: 3}
+  jumpSound: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  deathSound: {fileID: 8300000, guid: 4b4dd7245f6104c8c8eb07ccf6b386ed, type: 3}
+  meleeAttackSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
 --- !u!4 &1014650881
 Transform:
   m_ObjectHideFlags: 0

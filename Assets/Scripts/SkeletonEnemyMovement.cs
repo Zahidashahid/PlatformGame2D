@@ -8,8 +8,9 @@ public class SkeletonEnemyMovement : MonoBehaviour
     /* private BoxCollider2D boxCollider2d;*/
 
     #region Public Variables;
+    /*
     public AudioSource arrowHitSound;
-    public AudioSource DeathSound;
+    public AudioSource DeathSound;*/
     public Rigidbody2D rb;
     public Animator animator;
     public Animator playerAnimator;
@@ -102,7 +103,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         // play hurt animation
         animator.SetBool("Sheild", true);
-        arrowHitSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("Sheild", false);
 
@@ -128,7 +129,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
-        DeathSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         yield return new WaitForSeconds(1f);
         // Disable the player 
         Destroy(gameObject);

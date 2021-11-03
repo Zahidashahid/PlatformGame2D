@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gifts : MonoBehaviour
 {
     public ScoreManager scoreManager;
-    public AudioSource giftSound;
+    //public AudioSource giftSound;
     private void Start()
     {
         //scoreManager = new ScoreManager();
@@ -17,14 +17,12 @@ public class Gifts : MonoBehaviour
         {
             //ScoreManager scriptToAccess = ScoreManager.GetComponent<ScoreManager>();
             scoreManager.CherryCollect();
-            //giftSound.Play();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
         if ( collision.tag == "Gem")
         {
             scoreManager.GemCollect();
-           // giftSound.Play();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }

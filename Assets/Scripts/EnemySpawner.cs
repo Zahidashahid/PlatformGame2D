@@ -12,23 +12,23 @@ public class EnemySpawner : MonoBehaviour
         public Transform enemy;
         public int count;
         public float rate;
-
-
     }
     public Wave[] waves;
     private int nextWave = 0;
-
     public Transform[] spwanPoints;
 
     public float timeBetweenWaves = 5f;
     private float waveCountDown;
 
+    public float lifeTime;
     private float searchCountDown = 1f;
     public SpwanState state = SpwanState.COUNTING;
          
-    
     void Start()
     {
+        lifeTime = 15f;
+
+        Invoke("DestroyProjectile", lifeTime); 
         if (spwanPoints.Length == 0)
         {
             Debug.LogError("No Spwan points referenced");
@@ -63,11 +63,9 @@ public class EnemySpawner : MonoBehaviour
         {
             waveCountDown -= Time.deltaTime;
         }
-
     }
     void WaveCompleted()
     {
-
         //Debug.Log("Completed");
         state = SpwanState.COUNTING;
         waveCountDown = timeBetweenWaves;
@@ -112,5 +110,9 @@ public class EnemySpawner : MonoBehaviour
         
         Transform _sp = spwanPoints[Random.Range(0, spwanPoints.Length)];
         Instantiate(_enemy, transform.position, transform.rotation);
+    }
+    void DestroySpawnEnemy()
+    {
+        Destroy(gameObject);
     }
 }

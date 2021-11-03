@@ -97,7 +97,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
 
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
-        DeathSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         yield return new WaitForSeconds(1f);
         // Disable the player 
         Destroy(gameObject);
@@ -106,7 +106,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     {
         // play hurt animation
         animator.SetBool("Sheild", true);
-        arrowHitSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("Sheild", false);
 

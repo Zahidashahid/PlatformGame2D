@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour
 {
+    //Bow of the Player
     public Transform shotPoint;
     public GameObject projectile;
 

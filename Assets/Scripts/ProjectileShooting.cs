@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ProjectileShooting : MonoBehaviour
 {
+    /*
+     * Projectile of arrow shoot by player 
+     */
     public float speed;
     public float lifeTime;
     public float distance;
@@ -17,7 +20,6 @@ public class ProjectileShooting : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
        // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
-       
     }
     void Start()
     {
@@ -41,15 +43,13 @@ public class ProjectileShooting : MonoBehaviour
           
         if (hitInfo.collider != null)
         {
+            Debug.Log("Arrow hit Skeleton in scriptprojectile");
             if (hitInfo.collider.name == "Skeleton")
             {
-                Debug.Log("Arrow hit Skeleton");
-                arrowHitSound.Play();
                 hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
             }
             if (hitInfo.collider.name == "Range Attack Skeleton")
             {
-                arrowHitSound.Play();
                 hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
             }
             DestroyProjectile();

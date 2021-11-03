@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SkeletonBow : MonoBehaviour
 {
+    /*
+     * The bow contoller of range attack by skeleton
+     */
     public float offset;
     public float timeBtwShots;
     public float startTimeBtwShots;

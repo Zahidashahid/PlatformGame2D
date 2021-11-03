@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
-        bgSound.Play();
+        //bgSound.Play();
     }
     private void Start()
     {
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
         grounded = true;
-        bgSound.Play();
+       // bgSound.Play();
     }
     private void Update()
     {
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
-            jumpSound.Play();
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
             {
@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Attack1", true);
         
         yield return new WaitForSeconds(0.5f);
-        meleeAttackSound.Play();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
@@ -204,8 +204,8 @@ public class PlayerMovement : MonoBehaviour
        // StartCoroutine(HurtAnimation());
         if (currentHealth <= 0)
         {
-            bgSound.Stop();
-            DeathSound.Play();
+           // bgSound.Stop();
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
             StartCoroutine( Die() );
             this.enabled = false;
         }
@@ -250,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PauseGame.isGamePaused)
         {
-            bgSound.pitch *= .5f;
+            //bgSound.pitch *= .5f;
         }
        /* else
             bgSound.pitch = 1f;*/
