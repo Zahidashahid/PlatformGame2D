@@ -40,7 +40,10 @@ public class GameUIScript : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
+    public void  Back()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     IEnumerator waiter()
     {
         //Wait for 1 seconds

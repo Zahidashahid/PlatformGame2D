@@ -54,6 +54,12 @@ public class SoundEffect : MonoBehaviour
              audioSrc.Play();
          }*/
     }
+    
+    public void VolumeofSound(float volume)
+    {
+        audioS.volume = volume;
+        Debug.Log("audioS.volume " + audioS.volume);
+    }
     void UpdateIcon()
     {
         if (PlayerPrefs.GetInt("Muted", 0) == 0)

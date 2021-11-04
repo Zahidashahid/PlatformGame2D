@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class MusicSetting : MonoBehaviour
 {
     // Reference to Audio Source component
-    private AudioSource audioSrc;
+    public AudioSource audioSrc;
     public AudioMixer audioMixer;
+    //public AudioClip bgMusic;
     public Toggle musicToggleBtn;
     public Toggle soundToggleBtn;
     /*public AudioMixer soundMute;
@@ -21,6 +22,7 @@ public class MusicSetting : MonoBehaviour
 
     private void Awake()
     {
+        
         if (instance != null)
         {
             Destroy(gameObject);
@@ -36,7 +38,12 @@ public class MusicSetting : MonoBehaviour
     {
         // Assign Audio Source component to control it
         audioSrc = GetComponent<AudioSource>();
-        UpdateIcon();
+         //audioSrc.PlayOneShot(bgMusic);
+      
+        
+        
+
+     /*   UpdateIcon();
         if(AudioListener.volume == 0)
         {
             musicToggleBtn.isOn = false;
@@ -44,7 +51,7 @@ public class MusicSetting : MonoBehaviour
         else
         {
             musicToggleBtn.isOn = true;
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -52,7 +59,7 @@ public class MusicSetting : MonoBehaviour
     {
 
         // Setting volume option of Audio Source to be equal to musicVolume
-        audioSrc.volume = musicVolume;
+       // audioSrc.volume = musicVolume;
     }
 
     // Method that is called by slider game object
@@ -62,9 +69,10 @@ public class MusicSetting : MonoBehaviour
     {
         audioMixer.SetFloat("volume", volume);
     }
-    public void MuteMusic()// Update player prefrences
+    public void MuteMusic(bool muteMusic)// Update player prefrences
     {
-        if(PlayerPrefs.GetInt("Mute",0 )==0)
+        audioSrc.mute = muteMusic;
+        if (PlayerPrefs.GetInt("Mute",0 )==0)
         {
             PlayerPrefs.SetInt("Mute", 1);
             //AudioListener.volume = 1;
@@ -77,7 +85,13 @@ public class MusicSetting : MonoBehaviour
         }
         UpdateIcon();
     }
-   
+    public void VolumeofMusic(float volume)
+    {
+        audioSrc.volume = volume;
+        Debug.Log("audioS.name " + audioSrc.name);
+        Debug.Log("audioS.volume " + audioSrc.volume);
+        Debug.Log("volume " + volume);
+    }
     void UpdateIcon()
     {
         if(PlayerPrefs.GetInt("Muted", 0) == 0)

@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     {
         lifeTime = 15f;
 
-        Invoke("DestroyProjectile", lifeTime); 
+        Invoke("DestroySpawnEnemy", lifeTime); 
         if (spwanPoints.Length == 0)
         {
             Debug.LogError("No Spwan points referenced");
