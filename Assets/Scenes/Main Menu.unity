@@ -2909,7 +2909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1046706148
 GameObject:
@@ -3836,6 +3836,51 @@ RectTransform:
   m_AnchoredPosition: {x: 70, y: 0}
   m_SizeDelta: {x: 960, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1544018540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544018543}
+  - component: {fileID: 1544018541}
+  m_Layer: 0
+  m_Name: MasterMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1544018541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544018540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4af5d813adf62b47882e28bb73df058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSrcMusic: {fileID: 1571734820}
+  audioSrcSound: {fileID: 1014650879}
+--- !u!4 &1544018543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544018540}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544035413
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,7 +3977,7 @@ GameObject:
   - component: {fileID: 1571734818}
   - component: {fileID: 1571734820}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: GameMusicManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3963,7 +4008,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1571734820
 AudioSource:
@@ -3976,10 +4021,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4075,7 +4120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSrc: {fileID: 1571734820}
   audioMixer: {fileID: 24100000, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
-  bgMusic: {fileID: 8300000, guid: 90eae78e8ce85a849b5b0ca11b2de641, type: 3}
   musicToggleBtn: {fileID: 665143530}
   soundToggleBtn: {fileID: 934236550}
 --- !u!1 &1590401501
@@ -5002,10 +5046,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571734821}
-        m_TargetAssemblyTypeName: MusicSetting, Assembly-CSharp
-        m_MethodName: MuteMusic
-        m_Mode: 1
+      - m_Target: {fileID: 1544018541}
+        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+        m_MethodName: MuteMaster
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5542,16 +5586,16 @@ MonoBehaviour:
   m_FillRect: {fileID: 1514246901}
   m_HandleRect: {fileID: 1872980944}
   m_Direction: 0
-  m_MinValue: -70
-  m_MaxValue: 15
-  m_WholeNumbers: 1
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571734821}
-        m_TargetAssemblyTypeName: MusicSetting, Assembly-CSharp
-        m_MethodName: SetMasterVolume
+      - m_Target: {fileID: 1544018541}
+        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+        m_MethodName: VolumeofMaster
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
