@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundEffect : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class SoundEffect : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip deathSound;
     public AudioClip meleeAttackSound;
-   //public AudioClip giftSound;
+    //public AudioClip giftSound;
     public static SoundEffect sfInstance;
+    public Toggle soundEffectToggle;
     private void Awake()
     {
+        // CheckMuteOrUnMute();
         if (sfInstance != null)
         {
             Destroy(gameObject);
@@ -27,32 +30,47 @@ public class SoundEffect : MonoBehaviour
     private void Start()
     {
         audioS = GetComponent<AudioSource>();
+        CheckMuteOrUnMute();
     }
-    public void MuteSound(bool muteSound)
+    void CheckMuteOrUnMute()
     {
-        audioS.mute = muteSound;
-        if (PlayerPrefs.GetInt("Mute", 0) == 0)
+        if (PlayerPrefs.GetInt("SoundMute", 1) == 1 && PlayerPrefs.GetInt("MasterMute", 1) == 1)
         {
-            PlayerPrefs.SetInt("Mute", 1);
-            //AudioListener.volume = 1;
+            Debug.Log("Sound Mute");
+            audioS.mute = true;
+            soundEffectToggle.isOn = true;
         }
         else
         {
-            PlayerPrefs.SetInt("Mute", 0);
-            //AudioListener.volume = 0;
-
+            Debug.Log("Sound Un Mute");
+            audioS.mute = false;
+            soundEffectToggle.isOn = false;
         }
-        UpdateIcon();
-        /* if (audioSrc.isPlaying)
-         {
-             //audioSrc.Pause();
-             Debug.Log(audioSrc);
-             audioSrc.mute = true;
-         }
-         else
-         {
-             audioSrc.Play();
-         }*/
+    }
+    public void MuteSound(bool muteSound)
+    {
+        if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
+        {
+            Debug.Log("Master music is unmute So can sound");
+            audioS.mute = muteSound;
+            if (muteSound)
+            {
+                PlayerPrefs.SetInt("SoundMute", 1); //sound effect  is mute
+                //AudioListener.volume = 1;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("SoundMute", 0); // sound effect  is unmute
+            }
+        }
+
+        else
+        {
+            Debug.Log("Master music is mute");
+            Debug.Log("so sound is mute");
+            PlayerPrefs.SetInt("SoundMute", 1); // sound effect  is mute
+            //AudioListener.volume = 0;
+        }
     }
     
     public void VolumeofSound(float volume)
@@ -60,17 +78,5 @@ public class SoundEffect : MonoBehaviour
         audioS.volume = volume;
         Debug.Log("audioS.volume " + audioS.volume);
     }
-    void UpdateIcon()
-    {
-        if (PlayerPrefs.GetInt("Muted", 0) == 0)
-        {
-            AudioListener.volume = 1;
-            //change the Toggle
-        }
-        else
-        {
-            AudioListener.volume = 0;
-            //change the Toggle
-        }
-    }
+   
 }

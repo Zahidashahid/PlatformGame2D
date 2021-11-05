@@ -2897,6 +2897,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   deathSound: {fileID: 8300000, guid: 4b4dd7245f6104c8c8eb07ccf6b386ed, type: 3}
   meleeAttackSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+  soundEffectToggle: {fileID: 934236550}
 --- !u!4 &1014650881
 Transform:
   m_ObjectHideFlags: 0
@@ -3867,6 +3868,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSrcMusic: {fileID: 1571734820}
   audioSrcSound: {fileID: 1014650879}
+  masterToggle: {fileID: 1686161410}
+  musicToggle: {fileID: 665143530}
+  soundToggle: {fileID: 934236550}
 --- !u!4 &1544018543
 Transform:
   m_ObjectHideFlags: 0
@@ -4120,8 +4124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSrc: {fileID: 1571734820}
   audioMixer: {fileID: 24100000, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
-  musicToggleBtn: {fileID: 665143530}
-  soundToggleBtn: {fileID: 934236550}
+  MusicToggle: {fileID: 665143530}
 --- !u!1 &1590401501
 GameObject:
   m_ObjectHideFlags: 0

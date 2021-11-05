@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MasterMusic : MonoBehaviour
 {
     public AudioSource audioSrcMusic;
     public AudioSource audioSrcSound;
+    public Toggle masterToggle;
+    public Toggle musicToggle;
+    public Toggle soundToggle;
+
     //public AudioClip giftSound;
     public static MasterMusic mmInstance;
     private void Awake()
@@ -22,6 +27,37 @@ public class MasterMusic : MonoBehaviour
     }
     private void Start()
     {
+        CheckMuteOrUnMute();
+    }
+    void CheckMuteOrUnMute()
+    {
+        if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
+        {
+            Debug.Log("Master Un Mute");
+            masterToggle.isOn = false;
+            audioSrcMusic.mute = false;
+            musicToggle.isOn = false;
+            audioSrcSound.mute = false;
+            soundToggle.isOn = false;
+        }
+/*        if (PlayerPrefs.GetInt("MasterMute", 0) == 0 || PlayerPrefs.GetInt("MusicMute", 0) == 0)
+        {
+            Debug.Log("Master Un Mute");
+            masterToggle.isOn = false;
+            *//*audioSrcMusic.mute = false;
+            musicToggle.isOn = false;
+            audioSrcSound.mute = false;
+            soundToggle.isOn = false;*//*
+        }*/
+        else
+        {
+            Debug.Log("Master Mute");
+            masterToggle.isOn = true;
+           audioSrcMusic.mute = true;
+            musicToggle.isOn = true;
+            audioSrcSound.mute = true;
+            soundToggle.isOn = true;
+        }
     }
     public void VolumeofMaster(float volume)
     {
@@ -33,17 +69,21 @@ public class MasterMusic : MonoBehaviour
     {
         audioSrcMusic.mute = muteMusic;
         audioSrcSound.mute = muteMusic;
-        if (PlayerPrefs.GetInt("Mute", 0) == 0)
+        if (muteMusic)
         {
-            PlayerPrefs.SetInt("Mute", 1);
+            PlayerPrefs.SetInt("MasterMute", 1);
+            PlayerPrefs.SetInt("SoundMute", 1);
+            PlayerPrefs.SetInt("MusicMute", 1);
             //AudioListener.volume = 1;
         }
         else
         {
-            PlayerPrefs.SetInt("Mute", 0);
+            PlayerPrefs.SetInt("MasterMute", 0);
+            PlayerPrefs.SetInt("SoundMute", 0);
+            PlayerPrefs.SetInt("MusicMute", 0);
             //AudioListener.volume = 0;
 
         }
-        //UpdateIcon();
+        CheckMuteOrUnMute();
     }
 }

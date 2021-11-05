@@ -10,8 +10,10 @@ public class MusicSetting : MonoBehaviour
     public AudioSource audioSrc;
     public AudioMixer audioMixer;
     //public AudioClip bgMusic;
+    /*
     public Toggle musicToggleBtn;
-    public Toggle soundToggleBtn;
+    public Toggle soundToggleBtn;*/
+    public Toggle MusicToggle;
     /*public AudioMixer soundMute;
     public AudioMixer musicMute;*/
 
@@ -38,10 +40,10 @@ public class MusicSetting : MonoBehaviour
     {
         // Assign Audio Source component to control it
         audioSrc = GetComponent<AudioSource>();
-         //audioSrc.PlayOneShot(bgMusic);
-      
-        
-        
+        //audioSrc.PlayOneShot(bgMusic);
+        CheckMuteOrUnMute();
+
+
 
      /*   UpdateIcon();
         if(AudioListener.volume == 0)
@@ -65,25 +67,49 @@ public class MusicSetting : MonoBehaviour
     // Method that is called by slider game object
     // This method takes vol value passed by slider
     // and sets it as musicValue
-    public void SetMasterVolume(float volume)
+   /* public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
-    }
-    public void MuteMusic(bool muteMusic)// Update player prefrences
+    }*/
+    void CheckMuteOrUnMute()
     {
-        audioSrc.mute = muteMusic;
-        if (PlayerPrefs.GetInt("Mute",0 )==0)
+        if (PlayerPrefs.GetInt("MusicMute", 0) == 0)
         {
-            PlayerPrefs.SetInt("Mute", 1);
-            //AudioListener.volume = 1;
+            Debug.Log("Music Un Mute");
+            audioSrc.mute = false;
+            MusicToggle.isOn = false;
         }
         else
         {
-            PlayerPrefs.SetInt("Mute", 0);
-            //AudioListener.volume = 0;
-
+            Debug.Log("Music Mute");
+            audioSrc.mute = true;
+            MusicToggle.isOn = true;
         }
-        UpdateIcon();
+    }
+    public void MuteMusic(bool muteMusic)// Update player prefrences
+    {
+        if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
+        {
+            Debug.Log("Master music is unmute");
+            audioSrc.mute = muteMusic;
+            if (muteMusic)
+            {
+                PlayerPrefs.SetInt("MusicMute", 1); //music is mute
+                //AudioListener.volume = 1;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("MusicMute", 0); // Music is unmute
+            }
+        }
+       
+        else
+        {
+            Debug.Log("Master music is mute");
+            Debug.Log("so music is mute");
+            PlayerPrefs.SetInt("MusicMute", 1); // Music is mute
+            //AudioListener.volume = 0;
+        }
     }
     public void VolumeofMusic(float volume)
     {
@@ -92,17 +118,5 @@ public class MusicSetting : MonoBehaviour
         Debug.Log("audioS.volume " + audioSrc.volume);
         Debug.Log("volume " + volume);
     }
-    void UpdateIcon()
-    {
-        if(PlayerPrefs.GetInt("Muted", 0) == 0)
-        {
-            AudioListener.volume = 1;
-            //change the Toggle
-        }
-        else
-        {
-            AudioListener.volume = 0;
-            //change the Toggle
-        }
-    }
+ 
 }
