@@ -6,10 +6,18 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public AudioSource onClickBtnSound;
+    public static string currentLevel;
+    private void Start()
+    {
+        currentLevel = PlayerPrefs.GetString("CurrentLevel");
+    }
     public void PlayGame()
     {
         OnBtnClickSound();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(currentLevel == null)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            SceneManager.LoadScene(currentLevel);
     }
     public void Level1()
     {
@@ -24,6 +32,7 @@ public class MainMenu : MonoBehaviour
     public void Level3()
     {
         OnBtnClickSound();
+        PlayerPrefs.SetString("CurrentLevel", "Level 3");
         SceneManager.LoadScene("Level 3");
     }
     public void QuitGame()

@@ -18,16 +18,24 @@ public class MasterMusic : MonoBehaviour
         if (mmInstance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
             mmInstance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
+           // GameObject.DontDestroyOnLoad(gameObject);
+           
         }
+        DontDestroyOnLoad(gameObject);
+        //masterToggle.onValueChanged.AddListener(MuteMaster(masterToggle.isOn));
+
     }
     private void Start()
     {
-        CheckMuteOrUnMute();
+        CheckMuteOrUnMute();/*
+        masterToggle =  GameObject.Find("MasterToggle").GetComponent<Toggle>();
+        musicToggle =  GameObject.Find("MusicToggle ").GetComponent<Toggle>();
+        soundToggle =  GameObject.Find("SoundToggle").GetComponent<Toggle>();*/
     }
     void CheckMuteOrUnMute()
     {
@@ -40,15 +48,7 @@ public class MasterMusic : MonoBehaviour
             audioSrcSound.mute = false;
             soundToggle.isOn = false;
         }
-/*        if (PlayerPrefs.GetInt("MasterMute", 0) == 0 || PlayerPrefs.GetInt("MusicMute", 0) == 0)
-        {
-            Debug.Log("Master Un Mute");
-            masterToggle.isOn = false;
-            *//*audioSrcMusic.mute = false;
-            musicToggle.isOn = false;
-            audioSrcSound.mute = false;
-            soundToggle.isOn = false;*//*
-        }*/
+
         else
         {
             Debug.Log("Master Mute");
@@ -85,5 +85,13 @@ public class MasterMusic : MonoBehaviour
 
         }
         CheckMuteOrUnMute();
+    }
+
+    public void ChangeBGMusic(AudioClip music)
+    {
+        audioSrcMusic.Stop();
+        audioSrcMusic.clip = music;
+        audioSrcMusic.Play();
+
     }
 }

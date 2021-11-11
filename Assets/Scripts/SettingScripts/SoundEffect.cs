@@ -20,12 +20,13 @@ public class SoundEffect : MonoBehaviour
         if (sfInstance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
             sfInstance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
@@ -36,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint;
     public Transform weaponAttackPoint;
     public LayerMask enemyLayers;
+
+    private GameMaster gm;
+   
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -49,12 +53,18 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
         grounded = true;
-       // bgSound.Play();
+        // bgSound.Play();
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        transform.position = gm.lastCheckPointPos;
     }
     private void Update()
     {
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         CheckGamePaused();
         if ( Input.GetKey(KeyCode.LeftArrow))// && grounded
         {

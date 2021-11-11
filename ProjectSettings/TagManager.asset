@@ -13,6 +13,7 @@ TagManager:
   - Arrow
   - Collide
   - HealthBar
+  - GM
   layers:
   - Default
   - TransparentFX

@@ -28,12 +28,14 @@ public class MusicSetting : MonoBehaviour
         if (instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
             instance = this;
-            GameObject.DontDestroyOnLoad(gameObject);
+           
         }
+        DontDestroyOnLoad(gameObject);
     }
     // Use this for initialization
     void Start()
@@ -43,17 +45,6 @@ public class MusicSetting : MonoBehaviour
         //audioSrc.PlayOneShot(bgMusic);
         CheckMuteOrUnMute();
 
-
-
-     /*   UpdateIcon();
-        if(AudioListener.volume == 0)
-        {
-            musicToggleBtn.isOn = false;
-        }
-        else
-        {
-            musicToggleBtn.isOn = true;
-        }*/
     }
 
     // Update is called once per frame
@@ -64,9 +55,9 @@ public class MusicSetting : MonoBehaviour
        // audioSrc.volume = musicVolume;
     }
 
-    // Method that is called by slider game object
-    // This method takes vol value passed by slider
-    // and sets it as musicValue
+    /* Method that is called by slider game object
+     This method takes vol value passed by slider
+     and sets it as musicValue*/
    /* public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
