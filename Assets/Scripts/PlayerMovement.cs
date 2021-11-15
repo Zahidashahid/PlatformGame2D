@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
 
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public int direction = 2;
     public int currentHealth;
     public int maxHealth = 100;
+    public int lifes ;
 
     private float dashTime = 40f;
     public float attackRange = 0.5f;
@@ -39,32 +41,37 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
 
     private GameMaster gm;
-   
+    public TMP_Text lifesText;
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
+        lifes = 3;
         //bgSound.Play();
     }
     private void Start()
     {
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
         currentHealth = maxHealth;
+        lifes = PlayerPrefs.GetInt("Lifes");
+        currentHealth = PlayerPrefs.GetInt("CurrentHealth");
+        lifesText.text = "X " + lifes;
         Debug.Log("current health of player is " + currentHealth);
         Debug.Log("Max health of player is " + maxHealth);
         healthBar.SetMaxHealth(maxHealth);
         grounded = true;
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckPointPos;
+        if(lifes == 3 && currentHealth == 100)
+        {
+            return;
+        }
+        else
+            transform.position = gm.lastCheckPointPos;
     }
     private void Update()
     {
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
         CheckGamePaused();
         if ( Input.GetKey(KeyCode.LeftArrow))// && grounded
         {
@@ -112,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key are up. 
+            if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key is up. 
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0f);
                 animator.SetBool("IsJumping", false);
@@ -209,24 +216,38 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDemage(int demage)
     {
         currentHealth -= demage;
+        PlayerPrefs.SetInt("CurrentHealth" , currentHealth);
         healthBar.SetHealth(currentHealth);
         // play hurt animation
-       // StartCoroutine(HurtAnimation());
+        // StartCoroutine(HurtAnimation());
         if (currentHealth <= 0)
         {
-           // bgSound.Stop();
+            PlayerPrefs.SetInt("CurrentHealth", 100);
+            lifes -= 1;
+            lifesText.text = "X " + lifes;
+            PlayerPrefs.SetInt("Lifes", lifes);
+        }
+         if (currentHealth <= 0 && lifes <= 0)
+        {
+            // bgSound.Stop();
+            PlayerPrefs.SetInt("CurrentHealth", 100);
+            PlayerPrefs.SetInt("Lifes", 3);
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
             StartCoroutine( Die() );
             this.enabled = false;
         }
+        else if (currentHealth <= 0)
+        {
+            StartCoroutine(OnOneDeath());
+        }
     }
-    IEnumerator HurtAnimation()
+   /* IEnumerator HurtAnimation()
     {
         // play hurt animation
         animator.SetBool("Ishurt", true);
         yield return new WaitForSeconds(0.6f);
         animator.SetBool("Ishurt", false);
-    }
+    }*/
     IEnumerator SkeletonSheildtAnimation()
     {
         // play hurt animation
@@ -234,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         skeleton_animator.SetBool("sheild", false);
     }
-    IEnumerator Die()
+    public IEnumerator Die()
     {
         // Die Animation
         animator.SetBool("IsDied", true);
@@ -245,8 +266,21 @@ public class PlayerMovement : MonoBehaviour
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
 
-        
-        //Destroy(gameObject);
+    }
+    
+    public IEnumerator OnOneDeath()
+    {
+        currentHealth = 100;
+        healthBar.SetHealth(currentHealth);
+        // Die Animation
+        animator.SetBool("IsDied", true);
+        Debug.Log("Player died!");
+       // bgSound.Stop();
+        yield return new WaitForSeconds(0.3f);
+        // Set the player on check point position
+        animator.SetBool("IsDied", false);
+        animator.SetBool("IsIdeal", true);
+        transform.position = gm.lastCheckPointPos;
     }
     public int PlayerMovingDirection()
     {
