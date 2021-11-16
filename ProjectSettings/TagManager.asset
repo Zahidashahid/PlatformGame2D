@@ -15,6 +15,7 @@ TagManager:
   - HealthBar
   - GM
   - BGmusicGameObject
+  - SoundEffectGameObject
   layers:
   - Default
   - TransparentFX

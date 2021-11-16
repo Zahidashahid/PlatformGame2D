@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public AudioSource onClickBtnSound;
+    public GameObject QuitGameMenuUI;
     public static string currentLevel;
     private void Start()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel");
+        onClickBtnSound = GameObject.FindGameObjectWithTag("SoundEffectGameObject").GetComponent<AudioSource>();
     }
     public void PlayGame()
     {
@@ -35,11 +37,22 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetString("CurrentLevel", "Level 3");
         SceneManager.LoadScene("Level 3");
     }
+    
+    public void QuitGameMenu()
+    {
+        QuitGameMenuUI.SetActive(true);
+    }
     public void QuitGame()
     {
         OnBtnClickSound();
-        Debug.Log("Application Quit");
         Application.Quit();
+        QuitGameMenuUI.SetActive(false);
+        Debug.Log("Game Quiting");
+    }
+    public void NotQuitGame()
+    {
+        QuitGameMenuUI.SetActive(false);
+        Debug.Log("Game Not  Quiting");
     }
     public void OnBtnClickSound()
     {
