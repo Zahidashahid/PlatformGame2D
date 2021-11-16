@@ -16,10 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator eagle_animator;
     public Animator skeleton_animator;
+    public AudioSource audioSrc; //bg Muisic
     /*public AudioSource jumpSound;
     public AudioSource DeathSound;
-    public AudioSource meleeAttackSound;
-    public AudioSource bgSound;*/
+    public AudioSource meleeAttackSound;*/
+    public AudioSource bgSound;
     bool jump ;
     bool crouch = false;
     bool grounded;
@@ -50,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+
+        bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
         currentHealth = maxHealth;
         lifes = PlayerPrefs.GetInt("Lifes");
@@ -260,11 +263,13 @@ public class PlayerMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
-       // bgSound.Stop();
+        bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
        // animator.SetBool("IsDied", false);
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
+      
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
 
     }
     
@@ -275,7 +280,8 @@ public class PlayerMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
-       // bgSound.Stop();
+        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
+        // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
         // Set the player on check point position
         animator.SetBool("IsDied", false);

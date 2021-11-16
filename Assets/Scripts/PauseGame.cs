@@ -7,6 +7,7 @@ public class PauseGame : MonoBehaviour
 {
     public static bool isGamePaused = false;
     public GameObject pauseMenuUI;
+    public GameObject QuitGameMenuUI;
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -38,10 +39,20 @@ public class PauseGame : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
-    public void QuitGame()
+    public void QuitGameMenu()
     {
+        QuitGameMenuUI.SetActive(true);
+    }
+     public void QuitGame()
+     {
         Application.Quit();
+        QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Quiting");
+     }
+    public void NotQuitGame()
+    {
+        QuitGameMenuUI.SetActive(false);
+        Debug.Log("Game Not  Quiting");
     }
 
 }

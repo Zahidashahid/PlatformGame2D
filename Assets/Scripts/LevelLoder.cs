@@ -8,12 +8,16 @@ public class LevelLoder : MonoBehaviour
     public int iLevelToLoad;
     public string sLevelToLoad;
     public bool useIntegerToLoadLevel = false ;
-   
+    public AudioSource audioSrc; //bg Muisic
+    private void Start()
+    {
+        audioSrc = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
        // Debug.Log("collision " , collision);
         GameObject collisionGameObject = collision.gameObject;
-        if (collisionGameObject.name == "Player")
+        if (collisionGameObject.tag == "Player")
         {
             LoadLevel();
         } 
@@ -29,6 +33,9 @@ public class LevelLoder : MonoBehaviour
         else
         {
             SceneManager.LoadScene(sLevelToLoad);
+            audioSrc.mute = true;
+            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.missionCompletetSound);
+          
         }
     }
 }

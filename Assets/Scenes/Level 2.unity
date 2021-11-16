@@ -601,6 +601,7 @@ MonoBehaviour:
   - {fileID: 1675362976}
   - {fileID: 1693063179}
   timeBetweenWaves: 5
+  lifeTime: 0
   state: 2
 --- !u!224 &482447346 stripped
 RectTransform:
@@ -1482,8 +1483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1434199721}
-  gameUIScript: {fileID: 1387107014}
   rigidbody2D: {fileID: 1434199720}
+  gameUIScript: {fileID: 1387107014}
 --- !u!1 &840763521
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,6 +2299,7 @@ MonoBehaviour:
   - {fileID: 1675362976}
   - {fileID: 482447346}
   timeBetweenWaves: 5
+  lifeTime: 0
   state: 2
 --- !u!1 &1084455155
 GameObject:
@@ -3106,6 +3108,7 @@ MonoBehaviour:
   gameOverCanvas: {fileID: 1039997257}
   gameOverText: {fileID: 968749819}
   restartButton: {fileID: 1202859173}
+  restartBtnSound: {fileID: 0}
 --- !u!4 &1387107015
 Transform:
   m_ObjectHideFlags: 0
@@ -3172,6 +3175,7 @@ MonoBehaviour:
   - {fileID: 1675362976}
   - {fileID: 482447346}
   timeBetweenWaves: 5
+  lifeTime: 0
   state: 1
 --- !u!114 &1434199714
 MonoBehaviour:
@@ -3212,19 +3216,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b260cec009a43f438e3dc4ad7f4bab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   controller: {fileID: 1434199717}
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 102
   rb: {fileID: 1434199720}
   animator: {fileID: 1434199721}
-  Eagle_animator: {fileID: 1084455158}
+  eagle_animator: {fileID: 0}
+  skeleton_animator: {fileID: 0}
+  direction: 2
+  currentHealth: 0
+  maxHealth: 100
+  lifes: 0
+  attackRange: 1
+  attackRate: 1
+  nextAttackTime: 0
   runSpeed: 40
   attackPoint: {fileID: 976977300}
-  attackRange: 1
+  weaponAttackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
+  lifesText: {fileID: 0}
 --- !u!114 &1434199717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3397,7 +3411,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1103830163
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3418,7 +3432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434199712}
   m_LocalRotation: {x: -0, y: -0, z: 0.0015848762, w: 0.99999875}
-  m_LocalPosition: {x: -4.88, y: 3.59, z: 0}
+  m_LocalPosition: {x: 132.26, y: 4.02, z: 0}
   m_LocalScale: {x: 0.9862, y: 1.0329, z: 1}
   m_Children:
   - {fileID: 840763522}
@@ -3677,8 +3691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1434199721}
-  gameUIScript: {fileID: 1387107014}
   rigidbody2D: {fileID: 1434199720}
+  gameUIScript: {fileID: 1387107014}
 --- !u!114 &1600284431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3814,6 +3828,7 @@ MonoBehaviour:
   - {fileID: 1675362976}
   - {fileID: 482447346}
   timeBetweenWaves: 5
+  lifeTime: 0
   state: 2
 --- !u!224 &1675362976 stripped
 RectTransform:
@@ -3881,10 +3896,10 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 900
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3927,7 +3942,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1434199723}
-  camera: {fileID: 1776537040}
 --- !u!1 &1786121665
 GameObject:
   m_ObjectHideFlags: 0
@@ -19725,26 +19739,6 @@ CompositeCollider2D:
         Y: -16501071
       - X: 1371255979
         Y: -16766315
-    - - X: 1371489508
-        Y: -18199982
-      - X: 1371489493
-        Y: -18199945
-      - X: 1371389537
-        Y: -18099957
-      - X: 1371297923
-        Y: -16908596
-      - X: 1371389344
-        Y: -17000048
-      - X: 1371489310
-        Y: -18000029
-      - X: 1371489325
-        Y: -18000060
-      - X: 1371589148
-        Y: -18100044
-      - X: 1371589148
-        Y: -18599985
-      - X: 1371489508
-        Y: -18899384
     - - X: 1359497956
         Y: -18199982
       - X: 1359497941
@@ -19765,6 +19759,26 @@ CompositeCollider2D:
         Y: -18599985
       - X: 1359497956
         Y: -18899383
+    - - X: 1371489508
+        Y: -18199982
+      - X: 1371489493
+        Y: -18199945
+      - X: 1371389537
+        Y: -18099957
+      - X: 1371297923
+        Y: -16908596
+      - X: 1371389344
+        Y: -17000048
+      - X: 1371489310
+        Y: -18000029
+      - X: 1371489325
+        Y: -18000060
+      - X: 1371589148
+        Y: -18100044
+      - X: 1371589148
+        Y: -18599985
+      - X: 1371489508
+        Y: -18899384
     - - X: 1383481060
         Y: -18199982
       - X: 1383481045

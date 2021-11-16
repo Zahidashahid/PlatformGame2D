@@ -14,6 +14,7 @@ TagManager:
   - Collide
   - HealthBar
   - GM
+  - BGmusicGameObject
   layers:
   - Default
   - TransparentFX

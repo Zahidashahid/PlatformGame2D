@@ -11,6 +11,7 @@ public class SoundEffect : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip deathSound;
     public AudioClip meleeAttackSound;
+    public AudioClip missionCompletetSound;
     //public AudioClip giftSound;
     public static SoundEffect sfInstance;
     public Toggle soundEffectToggle;

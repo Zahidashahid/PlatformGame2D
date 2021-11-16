@@ -11,6 +11,7 @@ public class GameUIScript : MonoBehaviour
     public TMP_Text gameOverText;
     public GameObject restartButton;
     public AudioSource restartBtnSound;
+    public AudioSource bgSound;
     void Awake()
     {
        /* gameOverPanel.SetActive(false);
@@ -18,11 +19,13 @@ public class GameUIScript : MonoBehaviour
        gameOverText.enabled = false;*/
     }
 
-    public void StartGame()
+    public void Start()
     {
         /*gameOverPanel.SetActive(false);
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+
+        bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
     }
     public void GameOver()
     {
@@ -37,6 +40,7 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         restartBtnSound.Play();
+        bgSound.Play();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
