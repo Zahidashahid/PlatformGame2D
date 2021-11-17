@@ -12,6 +12,8 @@ public class GameUIScript : MonoBehaviour
     public GameObject restartButton;
     public AudioSource restartBtnSound;
     public AudioSource bgSound;
+    MainMenu mainMenu;
+    PlayerMovement playerMovement;
     void Awake()
     {
        /* gameOverPanel.SetActive(false);
@@ -26,6 +28,8 @@ public class GameUIScript : MonoBehaviour
         gameOverText.enabled = false;*/
 
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
     }
     public void GameOver()
     {
@@ -43,6 +47,13 @@ public class GameUIScript : MonoBehaviour
         bgSound.Play();
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void RestartLevel()
+    {
+        playerMovement.Reset();
+        string currentLevel = PlayerPrefs.GetString("CurrentLevel");
+        SceneManager.LoadScene(currentLevel);
+        Debug.Log("Called");
     }
     public void  Back()
     {

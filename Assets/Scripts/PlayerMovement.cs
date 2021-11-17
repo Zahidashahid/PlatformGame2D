@@ -285,7 +285,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         // Set the player on check point position
         animator.SetBool("IsDied", false);
-        animator.SetBool("IsIdeal", true);
         transform.position = gm.lastCheckPointPos;
     }
     public int PlayerMovingDirection()
@@ -304,5 +303,15 @@ public class PlayerMovement : MonoBehaviour
         }
        /* else
             bgSound.pitch = 1f;*/
+    }
+
+    public void Reset()
+    {
+        
+            
+        lifes = 0;
+        currentHealth = 100;
+        PlayerPrefs.SetInt("CurrentHealth", 100);
+        PlayerPrefs.SetInt("Lifes", 3);
     }
 }

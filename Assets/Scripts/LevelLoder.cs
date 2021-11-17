@@ -9,9 +9,11 @@ public class LevelLoder : MonoBehaviour
     public string sLevelToLoad;
     public bool useIntegerToLoadLevel = false ;
     public AudioSource audioSrc; //bg Muisic
+  
     private void Start()
     {
         audioSrc = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
+      
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,7 +25,7 @@ public class LevelLoder : MonoBehaviour
         } 
        
     }
-    void LoadLevel()
+    public void LoadLevel()
     {
        
         if(useIntegerToLoadLevel)
@@ -35,7 +37,8 @@ public class LevelLoder : MonoBehaviour
             SceneManager.LoadScene(sLevelToLoad);
             audioSrc.mute = true;
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.missionCompletetSound);
-          
+            PlayerPrefs.SetString("LevelReached", sLevelToLoad);
+
         }
     }
 }
