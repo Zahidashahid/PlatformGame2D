@@ -1546,8 +1546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1434199721}
-  gameUIScript: {fileID: 1387107014}
   rigidbody2D: {fileID: 1434199720}
+  gameUIScript: {fileID: 1387107014}
 --- !u!1 &840763521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3041,8 @@ MonoBehaviour:
   gameOverCanvas: {fileID: 1039997257}
   gameOverText: {fileID: 968749819}
   restartButton: {fileID: 1202859173}
+  restartBtnSound: {fileID: 0}
+  bgSound: {fileID: 0}
 --- !u!4 &1387107015
 Transform:
   m_ObjectHideFlags: 0
@@ -3100,7 +3102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - name: Oppossum
-    enemy: {fileID: 580658547217772339, guid: d23d64a5be6759e4296c0af7dc4d06cb, type: 3}
+    enemy: {fileID: 1084455156}
     count: 2
     rate: 1
   - name: Eagle
@@ -3112,6 +3114,7 @@ MonoBehaviour:
   - {fileID: 1418768686}
   - {fileID: 165539678}
   timeBetweenWaves: 5
+  lifeTime: 0
   state: 1
 --- !u!114 &1434199714
 MonoBehaviour:
@@ -3152,18 +3155,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b260cec009a43f438e3dc4ad7f4bab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   controller: {fileID: 1434199717}
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 102
   rb: {fileID: 1434199720}
   animator: {fileID: 1434199721}
+  eagle_animator: {fileID: 0}
+  skeleton_animator: {fileID: 0}
+  audioSrc: {fileID: 0}
+  bgSound: {fileID: 0}
+  direction: 2
+  currentHealth: 0
+  maxHealth: 100
+  lifes: 0
+  attackRange: 1
+  attackRate: 1
+  nextAttackTime: 0
   runSpeed: 40
   attackPoint: {fileID: 976977300}
-  attackRange: 1
+  weaponAttackPoint: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
+  lifesText: {fileID: 0}
 --- !u!114 &1434199717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3336,7 +3352,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1103830163
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3616,8 +3632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1434199721}
-  gameUIScript: {fileID: 1387107014}
   rigidbody2D: {fileID: 1434199720}
+  gameUIScript: {fileID: 1387107014}
 --- !u!114 &1600284431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3897,7 +3913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1434199723}
-  camera: {fileID: 1776537040}
 --- !u!114 &1776537045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4203,6 +4218,7 @@ MonoBehaviour:
   iLevelToLoad: 0
   sLevelToLoad: Level 2
   useIntegerToLoadLevel: 0
+  audioSrc: {fileID: 0}
 --- !u!1 &1891276288
 GameObject:
   m_ObjectHideFlags: 0

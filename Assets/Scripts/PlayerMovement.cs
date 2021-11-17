@@ -311,6 +311,7 @@ public class PlayerMovement : MonoBehaviour
             
         lifes = 0;
         currentHealth = 100;
+        Time.timeScale = 1f;
         PlayerPrefs.SetInt("CurrentHealth", 100);
         PlayerPrefs.SetInt("Lifes", 3);
     }
