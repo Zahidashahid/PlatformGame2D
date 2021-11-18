@@ -17,6 +17,9 @@ TagManager:
   - BGmusicGameObject
   - SoundEffectGameObject
   - Door
+  - SoundToggle
+  - MusicToggle
+  - MasterMusicToggle
   layers:
   - Default
   - TransparentFX

@@ -800,12 +800,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1544018541}
-        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+      - m_Target: {fileID: 767617063}
+        m_TargetAssemblyTypeName: MasterMusicSetting, Assembly-CSharp
         m_MethodName: ChangeBGMusic
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 475f4837af487ce4a9e68bb227455e4c, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 1532c7e67c2d60c4c8780da14b7e8fcf, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2277,7 +2277,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1571734818}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OnBtnClickSound
         m_Mode: 1
@@ -3334,7 +3334,7 @@ GameObject:
   - component: {fileID: 665143530}
   m_Layer: 5
   m_Name: 'MusicToggle '
-  m_TagString: Untagged
+  m_TagString: MusicToggle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3407,7 +3407,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571734821}
+      - m_Target: {fileID: 767617064}
         m_TargetAssemblyTypeName: MusicSetting, Assembly-CSharp
         m_MethodName: MuteMusic
         m_Mode: 0
@@ -3527,7 +3527,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1571734818}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OnBtnClickSound
         m_Mode: 1
@@ -3703,6 +3703,9 @@ GameObject:
   - component: {fileID: 767617060}
   - component: {fileID: 767617059}
   - component: {fileID: 767617061}
+  - component: {fileID: 767617062}
+  - component: {fileID: 767617063}
+  - component: {fileID: 767617064}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GM
@@ -3756,6 +3759,52 @@ MonoBehaviour:
   - {fileID: 256622067}
   - {fileID: 396456503}
   - {fileID: 472464779}
+--- !u!114 &767617062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767617058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0143de32baeaeb646ab575bfbd540e51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioS: {fileID: 0}
+  soundEffectToggle: {fileID: 934236550}
+--- !u!114 &767617063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767617058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38e436be9cd85441bf2cc19611ca436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSrcMusic: {fileID: 0}
+  audioSrcSound: {fileID: 0}
+  masterToggle: {fileID: 0}
+  musicToggle: {fileID: 0}
+  soundToggle: {fileID: 0}
+--- !u!114 &767617064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767617058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2899b8ea45657bd41a2f9a67c847050a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSrc: {fileID: 0}
+  audioMixer: {fileID: 0}
+  MusicToggle: {fileID: 0}
 --- !u!1 &772295599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3863,7 +3912,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1571734818}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: OnBtnClickSound
         m_Mode: 1
@@ -4003,8 +4052,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1014650880}
-        m_TargetAssemblyTypeName: SoundEffect, Assembly-CSharp
+      - m_Target: {fileID: 767617062}
+        m_TargetAssemblyTypeName: SoundEffectSetting, Assembly-CSharp
         m_MethodName: VolumeofSound
         m_Mode: 0
         m_Arguments:
@@ -4361,7 +4410,7 @@ GameObject:
   - component: {fileID: 934236550}
   m_Layer: 5
   m_Name: SoundToggle
-  m_TagString: Untagged
+  m_TagString: SoundToggle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4434,8 +4483,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1014650880}
-        m_TargetAssemblyTypeName: SoundEffect, Assembly-CSharp
+      - m_Target: {fileID: 767617062}
+        m_TargetAssemblyTypeName: SoundEffectSetting, Assembly-CSharp
         m_MethodName: MuteSound
         m_Mode: 0
         m_Arguments:
@@ -4716,7 +4765,6 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 4b4dd7245f6104c8c8eb07ccf6b386ed, type: 3}
   meleeAttackSound: {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
   missionCompletetSound: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
-  soundEffectToggle: {fileID: 934236550}
 --- !u!4 &1014650881
 Transform:
   m_ObjectHideFlags: 0
@@ -4955,7 +5003,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1571734821}
+      - m_Target: {fileID: 767617064}
         m_TargetAssemblyTypeName: MusicSetting, Assembly-CSharp
         m_MethodName: VolumeofMusic
         m_Mode: 0
@@ -5093,7 +5141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1132598019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6549,11 +6597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4af5d813adf62b47882e28bb73df058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSrcMusic: {fileID: 1571734820}
-  audioSrcSound: {fileID: 1014650879}
-  masterToggle: {fileID: 1686161410}
-  musicToggle: {fileID: 665143530}
-  soundToggle: {fileID: 934236550}
 --- !u!4 &1544018543
 Transform:
   m_ObjectHideFlags: 0
@@ -6817,8 +6860,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1571734819}
-  - component: {fileID: 1571734821}
-  - component: {fileID: 1571734818}
+  - component: {fileID: 1571734822}
   - component: {fileID: 1571734820}
   m_Layer: 0
   m_Name: GameMusicManager
@@ -6827,21 +6869,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1571734818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571734817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 687e1baffccfe2c4992a1af5ef2285ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onClickBtnSound: {fileID: 1014650879}
-  QuitGameMenuUI: {fileID: 513626566}
-  levelBtns: []
 --- !u!4 &1571734819
 Transform:
   m_ObjectHideFlags: 0
@@ -6952,7 +6979,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1571734821
+--- !u!114 &1571734822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6961,12 +6988,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1571734817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2899b8ea45657bd41a2f9a67c847050a, type: 3}
+  m_Script: {fileID: 11500000, guid: 57c6886efc43857439d14c1e1a8655c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSrc: {fileID: 1571734820}
-  audioMixer: {fileID: 24100000, guid: a6177db8a77f71d48aac3142e3e8ec98, type: 2}
-  MusicToggle: {fileID: 665143530}
 --- !u!1 &1573314695
 GameObject:
   m_ObjectHideFlags: 0
@@ -7955,7 +7979,7 @@ GameObject:
   - component: {fileID: 1686161410}
   m_Layer: 5
   m_Name: MasterToggle
-  m_TagString: Untagged
+  m_TagString: MasterMusicToggle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8028,8 +8052,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1544018541}
-        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+      - m_Target: {fileID: 767617063}
+        m_TargetAssemblyTypeName: MasterMusicSetting, Assembly-CSharp
         m_MethodName: MuteMaster
         m_Mode: 0
         m_Arguments:
@@ -8688,8 +8712,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1544018541}
-        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+      - m_Target: {fileID: 767617063}
+        m_TargetAssemblyTypeName: MasterMusicSetting, Assembly-CSharp
         m_MethodName: VolumeofMaster
         m_Mode: 0
         m_Arguments:
@@ -9417,8 +9441,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1544018541}
-        m_TargetAssemblyTypeName: MasterMusic, Assembly-CSharp
+      - m_Target: {fileID: 767617063}
+        m_TargetAssemblyTypeName: MasterMusicSetting, Assembly-CSharp
         m_MethodName: ChangeBGMusic
         m_Mode: 2
         m_Arguments:

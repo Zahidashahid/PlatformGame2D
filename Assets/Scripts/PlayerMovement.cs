@@ -307,8 +307,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Reset()
     {
-        
-            
         lifes = 0;
         currentHealth = 100;
         Time.timeScale = 1f;

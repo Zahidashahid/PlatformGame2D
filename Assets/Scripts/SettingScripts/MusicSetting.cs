@@ -8,12 +8,12 @@ public class MusicSetting : MonoBehaviour
 {
     // Reference to Audio Source component
     public AudioSource audioSrc;
-    public AudioMixer audioMixer;
+   // public AudioMixer audioMixer;
     //public AudioClip bgMusic;
     /*
     public Toggle musicToggleBtn;
     public Toggle soundToggleBtn;*/
-    public Toggle MusicToggle;
+    public Toggle musicToggle;
     /*public AudioMixer soundMute;
     public AudioMixer musicMute;*/
 
@@ -22,26 +22,13 @@ public class MusicSetting : MonoBehaviour
     // by dragging slider knob
     private float musicVolume = 1f;
 
-    private void Awake()
-    {
-        
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            instance = this;
-           
-        }
-        DontDestroyOnLoad(gameObject);
-    }
+  
     // Use this for initialization
     void Start()
     {
         // Assign Audio Source component to control it
-        audioSrc = GetComponent<AudioSource>();
+        audioSrc =  GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>(); 
+        //musicToggle = GameObject.FindGameObjectWithTag("MusicToggle").GetComponent<Toggle>();
         //audioSrc.PlayOneShot(bgMusic);
         CheckMuteOrUnMute();
 
@@ -68,13 +55,13 @@ public class MusicSetting : MonoBehaviour
         {
             Debug.Log("Music Un Mute");
             audioSrc.mute = false;
-            MusicToggle.isOn = false;
+            musicToggle.isOn = false;
         }
         else
         {
             Debug.Log("Music Mute");
             audioSrc.mute = true;
-            MusicToggle.isOn = true;
+            musicToggle.isOn = true;
         }
     }
     public void MuteMusic(bool muteMusic)// Update player prefrences

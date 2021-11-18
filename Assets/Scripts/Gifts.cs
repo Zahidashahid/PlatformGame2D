@@ -26,7 +26,7 @@ public class Gifts : MonoBehaviour
             gemCount += 1;
             PlayerPrefs.SetInt("CherryCollected", gemCount);
             scoreManager.CherryCollect();
-            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
+            SoundEffectSetting.sfSettingInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
         if ( collision.tag == "Gem")
@@ -36,7 +36,7 @@ public class Gifts : MonoBehaviour
             cherryCount += 1;
             PlayerPrefs.SetInt("GemCollected", cherryCount);
             scoreManager.GemCollect();
-            SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
+            SoundEffectSetting.sfSettingInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
     }
