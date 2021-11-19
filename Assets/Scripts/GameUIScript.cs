@@ -10,15 +10,19 @@ public class GameUIScript : MonoBehaviour
     public GameObject gameOverCanvas;
     public TMP_Text gameOverText;
     public GameObject restartButton;
+    public GameObject SkeletonSpwan;
+    public GameObject EnemyEagleSpwan;
+    public GameObject RangeAttackSpwan;
+    public GameObject RangeAttackPointSpwan;
     public AudioSource restartBtnSound;
     public AudioSource bgSound;
     MainMenu mainMenu;
     PlayerMovement playerMovement;
     void Awake()
     {
-       /* gameOverPanel.SetActive(false);
-        restartButton.SetActive(false);
-       gameOverText.enabled = false;*/
+        /* gameOverPanel.SetActive(false);
+         restartButton.SetActive(false);
+        gameOverText.enabled = false;*/
     }
 
     public void Start()
@@ -30,6 +34,19 @@ public class GameUIScript : MonoBehaviour
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
+        Debug.Log("Difficulity" + MainMenu.difficultyLevel);
+        if (MainMenu.difficultyLevel == "medium")
+        {
+            SkeletonSpwan.SetActive(true);
+           // EnemyEagleSpwan.SetActive(true);
+        }
+        if(MainMenu.difficultyLevel == "hard")
+        {
+            SkeletonSpwan.SetActive(true);
+            //EnemyEagleSpwan.SetActive(true);
+            RangeAttackPointSpwan.SetActive(true);
+            RangeAttackSpwan.SetActive(true);
+        }
     }
     public void GameOver()
     {

@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour
     void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        rigidbody2D = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
+        gameUIScript = GameObject.Find("GameManager").GetComponent<GameUIScript>();
         enemies = GetComponentInChildren<Enemies>();
     }
     void Start()

@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator eagle_animator;
     public Animator skeleton_animator;
-    public AudioSource audioSrc; //bg Muisic
     /*public AudioSource jumpSound;
     public AudioSource DeathSound;
     public AudioSource meleeAttackSound;*/
@@ -149,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("attack Called");
                 
-                eagle_animator.SetTrigger("Death");
+                //eagle_animator.SetTrigger("Death");
                 StartCoroutine(Attack());
                 //Attack();
                 nextAttackTime =  Time.time + 1f / attackRate;
@@ -194,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
-            if (enemy.name == "Skeleton")
+            if (enemy.name == "Skeleton" || enemy.tag == "Skeleton" )
             {
                 enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
                 StartCoroutine(SkeletonSheildtAnimation());

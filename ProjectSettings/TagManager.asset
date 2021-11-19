@@ -20,6 +20,7 @@ TagManager:
   - SoundToggle
   - MusicToggle
   - MasterMusicToggle
+  - RangedAttackSkeleton
   layers:
   - Default
   - TransparentFX

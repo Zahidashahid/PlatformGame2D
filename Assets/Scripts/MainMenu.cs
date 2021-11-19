@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public static string currentLevel;
     public static string levelReachedName;
     public Button[] levelBtns;
+    public static string difficultyLevel;
     private void Start()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
@@ -121,14 +122,17 @@ public class MainMenu : MonoBehaviour
     }
     public void Easy()
     {
+        difficultyLevel = "easy";
         CheckLevel();
     }
     public void Medium()
     {
+        difficultyLevel = "medium";
         CheckLevel();
     }
     public void Hard()
     {
+        difficultyLevel = "hard";
         CheckLevel();
     }
     

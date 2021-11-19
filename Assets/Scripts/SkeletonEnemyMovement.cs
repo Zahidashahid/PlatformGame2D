@@ -61,7 +61,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Debug.Log("Collision with " + collision.tag);
-        if (collision.tag == "Obstacles")
+        if (collision.tag == "Obstacles" || collision.tag == "Skeleton")
         {
             if (direction == 1)
             {

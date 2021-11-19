@@ -15,7 +15,8 @@ public class SkeletonProjectile : MonoBehaviour
     PlayerMovement playerMovement; // Refer to script
     public SpriteRenderer spriteRenderer;
      GameObject playerObject;
-     GameObject skeletonObject;/*
+     //GameObject skeletonObject;
+     /*
     public AudioSource arrowHitSound;*/
     Vector2 velocity;
     Vector3 newDirection;
@@ -25,7 +26,7 @@ public class SkeletonProjectile : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
         playerObject = GameObject.Find("Player_Goblin");
-        skeletonObject = GameObject.Find("Range Attack Skeleton");
+        //skeletonObject = GameObject.FindGameObjectWithTag("RangedAttackSkeleton");
        // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
 
     }
@@ -33,7 +34,7 @@ public class SkeletonProjectile : MonoBehaviour
     {
         speed = 0.1f;
         Invoke("DestroyProjectile", lifeTime);
-        Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
+        //Debug.Log(""+playerObject.transform.position.x +"< "+skeletonObject.transform.position.x);
         distance = Vector2.Distance(transform.position, playerObject.transform.position);
         /* targetDirection = playerObject.transform.position - transform.position;
          newDirection = Vector3.RotateTowards(transform.forward, targetDirection, speed * Time.deltaTime, 0.0f);
@@ -68,7 +69,19 @@ public class SkeletonProjectile : MonoBehaviour
         {
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
             Debug.Log("Arrow hit Player");
-            collision.GetComponent<PlayerMovement>().TakeDemage(30);
+            
+            if (MainMenu.difficultyLevel == "easy")
+            {
+                collision.GetComponent<PlayerMovement>().TakeDemage(30);
+            }
+            else if (MainMenu.difficultyLevel == "medium")
+            {
+                collision.GetComponent<PlayerMovement>().TakeDemage(40);
+            }
+            else if (MainMenu.difficultyLevel == "hard")
+            {
+                collision.GetComponent<PlayerMovement>().TakeDemage(60);
+            }
             DestroyProjectile();
         }
         

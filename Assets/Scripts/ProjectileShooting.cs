@@ -44,13 +44,37 @@ public class ProjectileShooting : MonoBehaviour
         if (hitInfo.collider != null)
         {
             Debug.Log("Arrow hit Skeleton in scriptprojectile");
-            if (hitInfo.collider.name == "Skeleton")
+            if (hitInfo.collider.name == "Skeleton" || hitInfo.collider.tag == "Skeleton")
             {
-                hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                if (MainMenu.difficultyLevel == "easy")
+                {
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                }
+                else if (MainMenu.difficultyLevel == "medium")
+                {
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(30);
+                }
+                else if (MainMenu.difficultyLevel == "hard")
+                {
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
+                }
+
             }
-            if (hitInfo.collider.name == "Range Attack Skeleton")
+            if (hitInfo.collider.name == "Range Attack Skeleton" || hitInfo.collider.tag == "RangedAttackSkeleton")
             {
-                hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
+                
+                if (MainMenu.difficultyLevel == "easy")
+                {
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
+                }
+                else if (MainMenu.difficultyLevel == "medium")
+                {
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(30);
+                }
+                else if (MainMenu.difficultyLevel == "hard")
+                {
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(10);
+                }
             }
             DestroyProjectile();
         }
