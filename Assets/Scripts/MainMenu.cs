@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
 
         levelReachedName = PlayerPrefs.GetString("LevelReached", "Level 1");
         
-        //PlayerPrefs.SetString("LevelReached", "Level 3"); // to unlock all level , last level must be reached
+        PlayerPrefs.SetString("LevelReached", "Level 3"); // to unlock all level , last level must be reached
         int levelReached = 0;
        
         switch (levelReachedName)
@@ -64,19 +64,19 @@ public class MainMenu : MonoBehaviour
     {
         OnBtnClickSound();
         PlayerPrefs.SetString("CurrentLevel", "Level 1");
-        SceneManager.LoadScene("Level 1");
+       // SceneManager.LoadScene("Level 1");
     }
     public void Level2()
     {
         OnBtnClickSound(); 
         PlayerPrefs.SetString("CurrentLevel", "Level 2");
-        SceneManager.LoadScene("Level 2");
+       // SceneManager.LoadScene("Level 2");
     }
     public void Level3()
     {
         OnBtnClickSound();
         PlayerPrefs.SetString("CurrentLevel", "Level 3");
-        SceneManager.LoadScene("Level 3");
+       // SceneManager.LoadScene("Level 3");
     }
     
     public void QuitGameMenu()
@@ -99,4 +99,37 @@ public class MainMenu : MonoBehaviour
     {
         onClickBtnSound.Play();
     }
+    public void CheckLevel()
+    {
+        currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
+        switch(currentLevel)
+        {
+            case "Level 1":
+                SceneManager.LoadScene("Level 1");
+                break;
+            case "Level 2":
+                SceneManager.LoadScene("Level 2");
+                break;
+            case "Level 3":
+                SceneManager.LoadScene("Level 3");
+                break;
+
+            default:
+
+                break;
+            }
+    }
+    public void Easy()
+    {
+        CheckLevel();
+    }
+    public void Medium()
+    {
+        CheckLevel();
+    }
+    public void Hard()
+    {
+        CheckLevel();
+    }
+    
 }

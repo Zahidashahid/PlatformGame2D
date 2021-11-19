@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("attack Called");
                 
-                //eagle_animator.SetTrigger("Death");
+                eagle_animator.SetTrigger("Death");
                 StartCoroutine(Attack());
                 //Attack();
                 nextAttackTime =  Time.time + 1f / attackRate;
