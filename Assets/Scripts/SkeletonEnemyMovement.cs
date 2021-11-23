@@ -41,6 +41,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
         target = GameObject.Find("Player_Goblin").transform;
     }
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             target = collision.transform;
             inRange = true;
            // Debug.Log("player collied with skelton");
-            Debug.Log("player entred in Seleton zone");
+           // Debug.Log("player entred in Seleton zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 

@@ -68,17 +68,17 @@ public class SkeletonProjectile : MonoBehaviour
         if (collision.tag == "Player")
         {
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
-            Debug.Log("Arrow hit Player");
-            
-            if (MainMenu.difficultyLevel == "easy")
+            //Debug.Log("Arrow hit Player");
+            string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+            if (difficultyLevel == "Easy")
             {
                 collision.GetComponent<PlayerMovement>().TakeDemage(30);
             }
-            else if (MainMenu.difficultyLevel == "medium")
+            else if (difficultyLevel == "Medium")
             {
                 collision.GetComponent<PlayerMovement>().TakeDemage(40);
             }
-            else if (MainMenu.difficultyLevel == "hard")
+            else if (difficultyLevel == "Hard")
             {
                 collision.GetComponent<PlayerMovement>().TakeDemage(60);
             }

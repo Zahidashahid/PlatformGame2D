@@ -7,15 +7,21 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public AudioSource onClickBtnSound;
+    public AudioSource bgSound;
+    public AudioSource level1Music;
+    public AudioSource level2Music;
     public GameObject QuitGameMenuUI;
     public static string currentLevel;
     public static string levelReachedName;
     public Button[] levelBtns;
     public static string difficultyLevel;
+  
     private void Start()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
+        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         onClickBtnSound = GameObject.FindGameObjectWithTag("SoundEffectGameObject").GetComponent<AudioSource>();
+        bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         /*
          -----------------Level Lock Logic Start here -----------------------------------
          */
@@ -41,7 +47,7 @@ public class MainMenu : MonoBehaviour
 
                 break;
         }
-        Debug.Log("Level reached" + levelReachedName);
+        //Debug.Log("Level reached" + levelReachedName);
         for (int i = 0; i < levelBtns.Length; i++)
         {
             if (i + 1 > levelReached)
@@ -56,7 +62,10 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         OnBtnClickSound();
-        if(currentLevel == null)
+
+        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+
+        if (currentLevel == null)
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene(currentLevel);
@@ -103,15 +112,22 @@ public class MainMenu : MonoBehaviour
     public void CheckLevel()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
-        switch(currentLevel)
+        switch (currentLevel)
         {
             case "Level 1":
+                bgSound.clip = level1Music.clip;
+                bgSound.Play();
                 SceneManager.LoadScene("Level 1");
                 break;
             case "Level 2":
+
+                bgSound.clip = level2Music.clip;
+                bgSound.Play();
                 SceneManager.LoadScene("Level 2");
                 break;
             case "Level 3":
+                bgSound.clip = level2Music.clip;
+                bgSound.Play();
                 SceneManager.LoadScene("Level 3");
                 break;
 
@@ -123,17 +139,30 @@ public class MainMenu : MonoBehaviour
     public void Easy()
     {
         difficultyLevel = "easy";
+        PlayerPrefs.SetString("DifficultyLevel", "Easy");
+        NewGameStrat();
         CheckLevel();
     }
     public void Medium()
     {
         difficultyLevel = "medium";
+        NewGameStrat();
+        PlayerPrefs.SetString("DifficultyLevel", "Medium");
         CheckLevel();
     }
     public void Hard()
     {
         difficultyLevel = "hard";
+        NewGameStrat();
+        PlayerPrefs.SetString("DifficultyLevel", "Hard");
         CheckLevel();
     }
-    
+     void NewGameStrat()
+    {
+        PlayerPrefs.SetInt("CurrentHealth", 100);
+        PlayerPrefs.SetInt("Lifes", 3);
+        PlayerPrefs.SetInt("ArrowPlayerHas", 10);
+        PlayerPrefs.SetInt("RecentGemCollected", 0);
+        PlayerPrefs.SetInt("RecentCherryCollected", 0);
+    }
 }

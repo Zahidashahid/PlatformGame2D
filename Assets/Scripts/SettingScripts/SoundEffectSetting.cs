@@ -21,13 +21,13 @@ public class SoundEffectSetting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("SoundMute", 1) == 1 && PlayerPrefs.GetInt("MasterMute", 1) == 1)
         {
-            Debug.Log("Sound Mute");
+            //Debug.Log("Sound Mute");
             audioS.mute = true;
             soundEffectToggle.isOn = true;
         }
         else
         {
-            Debug.Log("Sound Un Mute");
+           // Debug.Log("Sound Un Mute");
             audioS.mute = false;
             soundEffectToggle.isOn = false;
         }
@@ -36,7 +36,7 @@ public class SoundEffectSetting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
         {
-            Debug.Log("Master music is unmute So can sound");
+            //Debug.Log("Master music is unmute So can sound");
             audioS.mute = muteSound;
             if (muteSound)
             {
@@ -51,8 +51,8 @@ public class SoundEffectSetting : MonoBehaviour
 
         else
         {
-            Debug.Log("Master music is mute");
-            Debug.Log("so sound is mute");
+            /*Debug.Log("Master music is mute");
+            Debug.Log("so sound is mute")*/;
             PlayerPrefs.SetInt("SoundMute", 1); // sound effect  is mute
             //AudioListener.volume = 0;
         }
@@ -61,6 +61,6 @@ public class SoundEffectSetting : MonoBehaviour
     public void VolumeofSound(float volume)
     {
         audioS.volume = volume;
-        Debug.Log("audioS.volume " + audioS.volume);
+       // Debug.Log("audioS.volume " + audioS.volume);
     }
 }

@@ -13,7 +13,15 @@ public class CheckPoint : MonoBehaviour
     {
         if(collision.CompareTag("Player") )
         {
-            gm.lastCheckPointPos = transform.position; 
+            gm.lastCheckPointPos = transform.position;
+            Debug.Log("Last Check point changed" + gm.lastCheckPointPos);
+            PlayerPrefs.SetFloat("LastcheckPointX", gm.lastCheckPointPos.x);
+            PlayerPrefs.SetFloat("LastcheckPointy", gm.lastCheckPointPos.y);
+            PlayerPrefs.SetInt("GemCollectedTillLastCheckPoint", PlayerPrefs.GetInt("RecentGemCollected"));
+            PlayerPrefs.SetInt("CherryCollectedTillLastCheckPoint", PlayerPrefs.GetInt("RecentCherryCollected"));
+            
+            
+
         }
     }
 }

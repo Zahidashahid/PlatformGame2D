@@ -12,7 +12,14 @@ public class ScoreManager : MonoBehaviour
    // public TextMeshPro cherryText;
     int gemCollected;
     int cherryCollected;
+    private void Start()
+    {
 
+        gemCollected =  PlayerPrefs.GetInt("RecentGemCollected");
+        cherryCollected =  PlayerPrefs.GetInt("RecentCherryCollected");
+        gemText.text = "X" + gemCollected;
+        cherryText.text = "X" + cherryCollected;
+    }
     public void GemCollect()
     {
         gemCollected += 1;

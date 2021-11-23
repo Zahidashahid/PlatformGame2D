@@ -9,13 +9,7 @@ public class SkeletonSpwaner : MonoBehaviour
     Vector2 whereToSpwan;
     public float spwanRate = 30f;
     float nextSpwan = 0.0f;
-   
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
+  
     void Update()
     {
         if(Time.time > nextSpwan)

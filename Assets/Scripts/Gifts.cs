@@ -14,30 +14,41 @@ public class Gifts : MonoBehaviour
     {
         gemCount = PlayerPrefs.GetInt("CherryCollected");
         cherryCount = PlayerPrefs.GetInt("GemCollected");
+        PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
+        PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
+        cherryAmount =  PlayerPrefs.GetInt("RecentCherryCollected");
+        gemAmount = PlayerPrefs.GetInt("RecentGemCollected");
+        Debug.Log("gemAmount =" + PlayerPrefs.GetInt("RecentGemCollected"));
+        Debug.Log("cherryAmount =" + PlayerPrefs.GetInt("RecentCherryCollected"));
+        Debug.Log("gift data fatched");
+
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject collisionGameObject = collision.gameObject;
         if ( collision.tag == "Cherry")
         {
-            //ScoreManager scriptToAccess = ScoreManager.GetComponent<ScoreManager>();
-            /*gemAmount = gemAmount + 1;
-            gemCount += gemAmount;*/
-            gemCount += 1;
-            PlayerPrefs.SetInt("CherryCollected", gemCount);
+            
+            cherryCount += 1;
+            cherryAmount += 1;
+            Debug.Log("Amount Cherry " + cherryAmount);
+            PlayerPrefs.SetInt("CherryCollected", cherryCount);
+            PlayerPrefs.SetInt("RecentCherryCollected", cherryAmount);
             scoreManager.CherryCollect();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
         if ( collision.tag == "Gem")
         {
-            /*cherryAmount = cherryAmount + 1;
-            cherryCount += cherryAmount;*/
-            cherryCount += 1;
-            PlayerPrefs.SetInt("GemCollected", cherryCount);
+            gemAmount += 1;
+            gemCount += 1;
+            Debug.Log("gem Amount " + gemAmount);
+            PlayerPrefs.SetInt("GemCollected", gemCount);
+            PlayerPrefs.SetInt("RecentGemCollected", gemAmount);
             scoreManager.GemCollect();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
             Destroy(collision.gameObject);
         }
     }
+    
 }

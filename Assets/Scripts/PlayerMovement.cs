@@ -57,18 +57,31 @@ public class PlayerMovement : MonoBehaviour
         lifes = PlayerPrefs.GetInt("Lifes");
         currentHealth = PlayerPrefs.GetInt("CurrentHealth");
         lifesText.text = "X " + lifes;
-        Debug.Log("current health of player is " + currentHealth);
-        Debug.Log("Max health of player is " + maxHealth);
+        /*Debug.Log("current health of player is " + currentHealth);
+        Debug.Log("Max health of player is " + maxHealth);*/
         healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
         grounded = true;
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos);
         if(lifes == 3 && currentHealth == 100)
         {
-            return;
+            Debug.Log("New Game Started");
+            gm.lastCheckPointPos = transform.position; // Set last check point zero when game restarted
+            PlayerPrefs.SetFloat("LastcheckPointX", transform.position.x);
+            PlayerPrefs.SetFloat("LastcheckPointy", transform.position.y);
+
         }
         else
+        {
+            Debug.Log(" Game Continue");
+            float x = PlayerPrefs.GetFloat("LastcheckPointX");
+            float y = PlayerPrefs.GetFloat("LastcheckPointy");
+            gm.lastCheckPointPos = new Vector2( x, y);
             transform.position = gm.lastCheckPointPos;
+        }
+            
     }
     private void Update()
     {
@@ -102,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
-            Debug.Log(" jump count is " + jumpCount);
+            //Debug.Log(" jump count is " + jumpCount);
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
@@ -146,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                Debug.Log("attack Called");
+                //Debug.Log("attack Called");
                 
                 //eagle_animator.SetTrigger("Death");
                 StartCoroutine(Attack());
@@ -195,7 +208,20 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton" )
             {
-                enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+               string difficultyLevel =  PlayerPrefs.GetString("DifficultyLevel");
+                if (difficultyLevel == "Easy")
+                {
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                }
+                else if (difficultyLevel == "Medium")
+                {
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(30);
+                }
+                else if (difficultyLevel == "Hard")
+                {
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
+                }
+                
                 StartCoroutine(SkeletonSheildtAnimation());
             }
             //eagle_animator.SetTrigger("Death");
@@ -279,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
+       // PlayerPrefs.SetInt("ArrowPlayerHas", 10);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
@@ -311,5 +338,7 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f;
         PlayerPrefs.SetInt("CurrentHealth", 100);
         PlayerPrefs.SetInt("Lifes", 3);
+        PlayerPrefs.SetInt("ArrowPlayerHas", 10);
     }
+    
 }

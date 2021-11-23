@@ -53,13 +53,13 @@ public class MusicSetting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("MusicMute", 0) == 0)
         {
-            Debug.Log("Music Un Mute");
+           //Debug.Log("Music Un Mute");
             audioSrc.mute = false;
             musicToggle.isOn = false;
         }
         else
         {
-            Debug.Log("Music Mute");
+            //Debug.Log("Music Mute");
             audioSrc.mute = true;
             musicToggle.isOn = true;
         }
@@ -68,7 +68,7 @@ public class MusicSetting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
         {
-            Debug.Log("Master music is unmute");
+            //Debug.Log("Master music is unmute");
             audioSrc.mute = muteMusic;
             if (muteMusic)
             {
@@ -83,8 +83,8 @@ public class MusicSetting : MonoBehaviour
        
         else
         {
-            Debug.Log("Master music is mute");
-            Debug.Log("so music is mute");
+           /* Debug.Log("Master music is mute");
+            Debug.Log("so music is mute");*/
             PlayerPrefs.SetInt("MusicMute", 1); // Music is mute
             //AudioListener.volume = 0;
         }
@@ -92,9 +92,9 @@ public class MusicSetting : MonoBehaviour
     public void VolumeofMusic(float volume)
     {
         audioSrc.volume = volume;
-        Debug.Log("audioS.name " + audioSrc.name);
+    /*    Debug.Log("audioS.name " + audioSrc.name);
         Debug.Log("audioS.volume " + audioSrc.volume);
-        Debug.Log("volume " + volume);
+        Debug.Log("volume " + volume);*/
     }
  
 }

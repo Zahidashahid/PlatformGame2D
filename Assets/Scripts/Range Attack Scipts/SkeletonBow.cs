@@ -62,7 +62,7 @@ public class SkeletonBow : MonoBehaviour
         if (collision.tag == "Player")
         {
             target = collision.gameObject;
-            Debug.Log("player entred in arrow danger zone");
+           // Debug.Log("player entred in arrow danger zone");
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
             Debug.Log("Inrage =" + inRange);
@@ -83,27 +83,27 @@ public class SkeletonBow : MonoBehaviour
     void ArrowLogic() // Arrow attack and instantiate
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
-        Debug.Log("Value of distance is " + distance);
+        //Debug.Log("Value of distance is " + distance);
         attackDistance = 13;
         if (attackDistance >= distance)
         {
             inRange = true;
-            Debug.Log("Inrage =" + inRange);
+           // Debug.Log("Inrage =" + inRange);
             ShootArrow();
         }
         else
         {
             inRange = false;
-            Debug.Log("Inrage =" + inRange);
+            //Debug.Log("Inrage =" + inRange);
         }
     }
     void ShootArrow()
     {
-        Debug.Log("In shoot function" + transform.rotation);
-        Debug.Log("nextAttackTime :-" +  nextAttackTime);
+        /*Debug.Log("In shoot function" + transform.rotation);
+        Debug.Log("nextAttackTime :-" +  nextAttackTime);*/
    
         nextAttackTime = 2;
-        Debug.Log("nextAttackTime :-" + nextAttackTime);
+        //Debug.Log("nextAttackTime :-" + nextAttackTime);
         if (transform.position.x >= target.transform.position.x)
         {
             /*
@@ -112,17 +112,17 @@ public class SkeletonBow : MonoBehaviour
              */
             targetDirection =   transform.position - playerObject.transform.position;
             float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-            Debug.Log(rotZ + "Rotation");
+            //Debug.Log(rotZ + "Rotation");
             transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
              /*
               * "-" is used to rotation towards player so that collider also change with arrow left moving
               * 180f to change arrow towards left 
               */
 /**/
-            Debug.Log(transform.rotation + " new");
+            //Debug.Log(transform.rotation + " new");
            // Instantiate(projectile, shotPoint.position,  transform.rotation);
         }
         Instantiate(projectile, shotPoint.position, transform.rotation);
-        Debug.Log("Arrow instantiated");
+        //Debug.Log("Arrow instantiated");
     }
 }

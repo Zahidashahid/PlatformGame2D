@@ -23,7 +23,7 @@ public class MasterMusicSetting : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("MasterMute", 0) == 0)
         {
-            Debug.Log("Master Un Mute");
+            //Debug.Log("Master Un Mute");
             masterToggle.isOn = false;
             /*audioSrcMusic.mute = false;
             musicToggle.isOn = false;
@@ -54,7 +54,7 @@ public class MasterMusicSetting : MonoBehaviour
 
         else
         {
-            Debug.Log("Master Mute");
+            //Debug.Log("Master Mute");
 
             masterToggle.isOn = true;
             audioSrcMusic.mute = true;
@@ -68,7 +68,7 @@ public class MasterMusicSetting : MonoBehaviour
     {
         audioSrcMusic.volume = volume;
         audioSrcSound.volume = volume;
-        Debug.Log("audioSrcSound.volume " + audioSrcSound.volume);
+        //Debug.Log("audioSrcSound.volume " + audioSrcSound.volume);
     }
     public void MuteMaster(bool muteMusic)// Update player prefrences
     {
@@ -99,4 +99,5 @@ public class MasterMusicSetting : MonoBehaviour
         audioSrcMusic.Play();
 
     }
+
 }

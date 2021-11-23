@@ -23,7 +23,7 @@ public class HealthBar : MonoBehaviour
 		slider.value = health;
 
 		fill.color = gradient.Evaluate(slider.normalizedValue);
-		Debug.Log("health of player is " + health);
+		//Debug.Log("health  is " + health);
 	}
 
 }

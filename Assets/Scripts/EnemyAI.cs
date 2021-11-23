@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         // animator = GetComponent<Animator>();
-        Debug.Log(playerMovement.lifes + "lifes left");
+        //Debug.Log(playerMovement.lifes + "lifes left");
         hitByEnemy = false;
     }
     private void FixedUpdate()

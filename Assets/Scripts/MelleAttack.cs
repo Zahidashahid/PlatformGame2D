@@ -89,16 +89,17 @@ public class MelleAttack : MonoBehaviour
             Debug.Log("Skelton hit " + player.name);
             if (player.tag == "Player")
             {
+                string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
                 Debug.Log("We hit player");
-                if (MainMenu.difficultyLevel == "easy")
+                if (difficultyLevel == "Easy")
                 {
                     player.GetComponent<PlayerMovement>().TakeDemage(30);
                 }
-                else if (MainMenu.difficultyLevel == "medium")
+                else if (difficultyLevel == "Medium")
                 {
                     player.GetComponent<PlayerMovement>().TakeDemage(40);
                 }
-                else if (MainMenu.difficultyLevel == "hard")
+                else if (difficultyLevel == "Hard")
                 {
                     player.GetComponent<PlayerMovement>().TakeDemage(60);
                 }

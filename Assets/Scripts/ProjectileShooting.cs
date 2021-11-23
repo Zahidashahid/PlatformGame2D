@@ -43,18 +43,22 @@ public class ProjectileShooting : MonoBehaviour
           
         if (hitInfo.collider != null)
         {
-            Debug.Log("Arrow hit Skeleton in scriptprojectile");
+           // Debug.Log("Arrow hit Skeleton in scriptprojectile");
+           // Debug.Log(hitInfo.collider.name);
+           
+            string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+            Debug.Log(difficultyLevel);
             if (hitInfo.collider.name == "Skeleton" || hitInfo.collider.tag == "Skeleton")
             {
-                if (MainMenu.difficultyLevel == "easy")
+                if (difficultyLevel == "Easy")
                 {
                     hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
                 }
-                else if (MainMenu.difficultyLevel == "medium")
+                else if (difficultyLevel == "Medium")
                 {
                     hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(30);
                 }
-                else if (MainMenu.difficultyLevel == "hard")
+                else if (difficultyLevel == "Hard")
                 {
                     hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
                 }
@@ -63,15 +67,15 @@ public class ProjectileShooting : MonoBehaviour
             if (hitInfo.collider.name == "Range Attack Skeleton" || hitInfo.collider.tag == "RangedAttackSkeleton")
             {
                 
-                if (MainMenu.difficultyLevel == "easy")
+                if (difficultyLevel == "Easy")
                 {
                     hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
                 }
-                else if (MainMenu.difficultyLevel == "medium")
+                else if (difficultyLevel == "Medium")
                 {
                     hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(30);
                 }
-                else if (MainMenu.difficultyLevel == "hard")
+                else if (difficultyLevel == "Hard")
                 {
                     hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(10);
                 }
