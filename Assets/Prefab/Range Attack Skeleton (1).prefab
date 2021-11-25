@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 7538763695170340473}
   - component: {fileID: 5662627587825175718}
   - component: {fileID: -4019969951063530962}
+  - component: {fileID: 1244184385013790097}
   m_Layer: 10
   m_Name: Range Attack Skeleton (1)
   m_TagString: RangedAttackSkeleton
@@ -687,6 +688,7 @@ MonoBehaviour:
   currentHealth: 0
   healthBar: {fileID: 8758366977011349132}
   animator: {fileID: 1394343666177398813}
+  lootSystem: {fileID: 0}
 --- !u!82 &7538763695170340473
 AudioSource:
   m_ObjectHideFlags: 0
@@ -905,6 +907,19 @@ MonoBehaviour:
     minSpawnProb: 0
     maxSpawnProb: 0
   index: 0
+--- !u!114 &1244184385013790097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5384522161630245490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1369cf58dabc06043a2636e5602a0b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 40
 --- !u!1 &5472865687897797311
 GameObject:
   m_ObjectHideFlags: 0
