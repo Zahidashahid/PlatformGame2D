@@ -84,17 +84,21 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         }
         transform.eulerAngles = rotation;
     }
-    public void TakeDemage(int demage)
+    public void TakeDamage(int damage)
     {
-        currentHealth -= demage;
-        healthBar.SetHealth(currentHealth);
-        // play hurt animation
-        StartCoroutine(SkeletonHurtAnimation());
-        if (currentHealth <= 0)
+        if (currentHealth > 0) // Player can only damage enemy if health is greater than zero. if not on need to damage it
         {
-            StartCoroutine(Die());
-            lootSystem.Spawnner(transform);
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+            // play hurt animation
+            StartCoroutine(SkeletonHurtAnimation());
+            if (currentHealth <= 0)
+            {
+                StartCoroutine(Die());
+                lootSystem.Spawnner(transform);
+            }
         }
+            
     }
     IEnumerator Die()
     {

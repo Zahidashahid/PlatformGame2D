@@ -203,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
-        //Demage Them
+        //damage Them
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
@@ -212,15 +212,15 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (difficultyLevel == "Easy")
                 {
-                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDamage(40);
                 }
                 else if (difficultyLevel == "Medium")
                 {
-                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(30);
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDamage(30);
                 }
                 else if (difficultyLevel == "Hard")
                 {
-                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
+                    enemy.GetComponent<SkeletonEnemyMovement>().TakeDamage(10);
                 }
 
                 StartCoroutine(SkeletonSheildtAnimation());
@@ -232,15 +232,15 @@ public class PlayerMovement : MonoBehaviour
 
                 if (difficultyLevel == "Easy")
                 {
-                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(40);
                 }
                 else if (difficultyLevel == "Medium")
                 {
-                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(30);
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
                 }
                 else if (difficultyLevel == "Hard")
                 {
-                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(10);
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(10);
                 }
             }
             else   
@@ -257,9 +257,9 @@ public class PlayerMovement : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-    public void TakeDemage(int demage)
+    public void Takedamage(int damage)
     {
-        currentHealth -= demage;
+        currentHealth -= damage;
         PlayerPrefs.SetInt("CurrentHealth" , currentHealth);
         healthBar.SetHealth(currentHealth);
         // play hurt animation

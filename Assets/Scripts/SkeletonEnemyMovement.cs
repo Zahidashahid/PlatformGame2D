@@ -94,11 +94,11 @@ public class SkeletonEnemyMovement : MonoBehaviour
             inRange = false;
         }
     }
-    public void TakeDemage(int demage)
+    public void TakeDamage(int damage)
     {
         if (currentHealth > 0)
         {
-            currentHealth -= demage;
+            currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
             // play hurt animation
             StartCoroutine(SkeletonHurtAnimation());
