@@ -7,7 +7,7 @@ public class SkeletonSpwaner : MonoBehaviour
     public GameObject skeletonSpwan;
     float randX;
     Vector2 whereToSpwan;
-    public float spwanRate = 30f;
+    public float spwanRate = 50f;
     float nextSpwan = 0.0f;
   
     void Update()

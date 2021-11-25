@@ -14,7 +14,8 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     public int currentHealth;
     public HealthBar healthBar;
     public Animator animator;
-    int direction = 1;
+    public LootSystem lootSystem;
+    
     /*
     public AudioSource arrowHitSound;
     public AudioSource DeathSound;*/
@@ -23,9 +24,10 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     #region Private Variables
     private Transform target;
     private float distance;
+    int direction = 1;
     #endregion
-   // public float nextAttackTime; // after every 2 sec
-   // public float damage;
+    // public float nextAttackTime; // after every 2 sec
+    // public float damage;
 
     /*private void Awake()
     {
@@ -38,6 +40,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         playerObject = GameObject.Find("Player_Goblin");
         target = playerObject.transform;
         animator = GetComponent<Animator>();
+        lootSystem = GetComponent<LootSystem>();
 
     }
     // Update is called once per frame
@@ -90,6 +93,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         if (currentHealth <= 0)
         {
             StartCoroutine(Die());
+            lootSystem.Spawnner(transform);
         }
     }
     IEnumerator Die()

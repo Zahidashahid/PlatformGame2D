@@ -11,7 +11,7 @@ public class GameUIScript : MonoBehaviour
     public TMP_Text gameOverText;
     public GameObject restartButton;
     public GameObject SkeletonSpwan;
-    public GameObject EnemyEagleSpwan;
+   // public GameObject EnemyEagleSpwan;
     public GameObject RangeAttackSpwan;
     public GameObject RangeAttackPointSpwan;
     public AudioSource restartBtnSound;
@@ -81,9 +81,12 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         restartBtnSound.Play();
+        PlayerPrefs.SetInt("ArrowPlayerHas", 10);
+
         PlayerPrefs.SetInt("RecentGemCollected", 0);
         PlayerPrefs.SetInt("RecentCherryCollected", 0);
-        PlayerPrefs.SetInt("ArrowPlayerHas", 10);
+        PlayerPrefs.SetInt("GemCollectedTillLastCheckPoint", 0);
+        PlayerPrefs.SetInt("CherryCollectedTillLastCheckPoint", 0);
         //Reset the last check point
         bgSound.Play();
         Time.timeScale = 1f;

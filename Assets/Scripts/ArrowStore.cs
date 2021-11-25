@@ -9,11 +9,11 @@ public class ArrowStore : MonoBehaviour
     public TMP_Text arrowStoreText;
     private void Awake()
     {
-        
+        arrowPlayerHas = 10;
     }
     void Start()
     {
-        arrowPlayerHas = 10;
+        
         arrowPlayerHas = PlayerPrefs.GetInt("ArrowPlayerHas");
         /*PlayerPrefs.SetInt("ArrowPlayerHas", 10);
         arrowPlayerHas = PlayerPrefs.GetInt("ArrowPlayerHas");*/

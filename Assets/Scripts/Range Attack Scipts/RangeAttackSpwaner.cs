@@ -7,7 +7,7 @@ public class RangeAttackSpwaner : MonoBehaviour
     public GameObject skeletonRangeAttackSpwan;
     float randX;
     Vector2 whereToSpwan;
-    public float spwanRate = 30f;
+    public float spwanRate = 50f;
     float nextSpwan = 0.0f;
 
     // Update is called once per frame

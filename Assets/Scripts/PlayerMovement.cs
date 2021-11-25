@@ -200,15 +200,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
+        string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         //Deteck enemies in range
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
         //Demage Them
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("We hit " + enemy.name);
-            if (enemy.name == "Skeleton" || enemy.tag == "Skeleton" )
+            if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
-               string difficultyLevel =  PlayerPrefs.GetString("DifficultyLevel");
+                
                 if (difficultyLevel == "Easy")
                 {
                     enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
@@ -221,14 +222,29 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
                 }
-                
+
                 StartCoroutine(SkeletonSheildtAnimation());
             }
             //eagle_animator.SetTrigger("Death");
             // yield return new WaitForSeconds(1);
-            else
-                Destroy(enemy.gameObject);
-            break;
+            else if (enemy.name == "Range Attack Skeleton" || enemy.tag == "RangedAttackSkeleton")
+            {
+
+                if (difficultyLevel == "Easy")
+                {
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
+                }
+                else if (difficultyLevel == "Medium")
+                {
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(30);
+                }
+                else if (difficultyLevel == "Hard")
+                {
+                    enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(10);
+                }
+            }
+            else   
+                break;
         }
         
     }
@@ -279,9 +295,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator SkeletonSheildtAnimation()
     {
         // play hurt animation
-        skeleton_animator.SetBool("sheild", true);
+        skeleton_animator.SetBool("Sheild", true);
         yield return new WaitForSeconds(0.4f);
-        skeleton_animator.SetBool("sheild", false);
+        skeleton_animator.SetBool("Sheild", false);
     }
     public IEnumerator Die()
     {

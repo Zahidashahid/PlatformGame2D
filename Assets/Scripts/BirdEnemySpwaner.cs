@@ -7,7 +7,7 @@ public class BirdEnemySpwaner : MonoBehaviour
     public GameObject birdSpwan;
     float randX;
     Vector2 whereToSpwan;
-    public float spwanRate = 3f;
+    public float spwanRate = 50f;
     float nextSpwan = 0.0f;
 
     void Start()
