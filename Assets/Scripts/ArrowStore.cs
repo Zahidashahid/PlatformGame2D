@@ -24,8 +24,13 @@ public class ArrowStore : MonoBehaviour
     public void ArrowUsed()
     {
         arrowPlayerHas -= 1;
-        PlayerPrefs.SetInt("ArrowPlayerHas" , arrowPlayerHas);
+        PlayerPrefs.SetInt("ArrowPlayerHas", arrowPlayerHas);
+        UpdateArrowText();
+
+
+    }
+    public void UpdateArrowText()
+    {
         arrowStoreText.text = "X " + arrowPlayerHas;
-        
     }
 }

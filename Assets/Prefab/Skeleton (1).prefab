@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 1832316126879599124}
   - component: {fileID: 1832316126879599125}
   - component: {fileID: -8893341000802168237}
+  - component: {fileID: 9007219691977901216}
   m_Layer: 10
   m_Name: Skeleton (1)
   m_TagString: Skeleton
@@ -602,6 +603,7 @@ MonoBehaviour:
   attackDistance: 5
   damage: 40
   currentHealth: 0
+  lootSystem: {fileID: 0}
 --- !u!114 &1832316126879599122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -924,6 +926,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 40
+--- !u!114 &9007219691977901216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832316126879599126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0d92635c9fe4dc43bf9919dba9f48b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemToSpawn:
+  - item: {fileID: 5346380286257680390, guid: eb89148af5d8a9248916df79211ae0e6, type: 3}
+    spawnRate: 30
+    minSpawnProb: 0
+    maxSpawnProb: 0
+  - item: {fileID: 9106531254665307047, guid: 7809fd109dc20974898822754ebd694c, type: 3}
+    spawnRate: 30
+    minSpawnProb: 0
+    maxSpawnProb: 0
+  - item: {fileID: 0}
+    spawnRate: 40
+    minSpawnProb: 0
+    maxSpawnProb: 0
+  index: 0
 --- !u!1 &1832316127082317221
 GameObject:
   m_ObjectHideFlags: 0

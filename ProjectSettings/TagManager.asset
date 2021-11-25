@@ -21,6 +21,10 @@ TagManager:
   - MusicToggle
   - MasterMusicToggle
   - RangedAttackSkeleton
+  - ArrowLoot
+  - HealthLoot
+  - PlayerHealthBar
+  - ArrowStore
   layers:
   - Default
   - TransparentFX

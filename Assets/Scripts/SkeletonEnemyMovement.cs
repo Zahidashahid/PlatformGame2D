@@ -21,6 +21,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public float attackDistance; // min distance for attack
     public float damage;
     public int currentHealth;
+    public LootSystem lootSystem;
     #endregion
 
     #region Private Variables
@@ -29,6 +30,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private RaycastHit2D hit;
     private Transform target;
     private Animator anim;
+    
     private float distance; // stores distance btw player and enemy
     private bool inRange; // check player in range
     #endregion
@@ -36,9 +38,11 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        
     }
     private void Start()
     {
+        lootSystem = GetComponent<LootSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
@@ -57,6 +61,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             rb.velocity = new Vector2(-3, rb.velocity.y);
             transform.localScale = new Vector2(-5, 5);
         }
+        //Debug.Log("transform pos" + transform.position);
         Flip();
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -91,14 +96,24 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     public void TakeDemage(int demage)
     {
-        currentHealth -= demage;
-        healthBar.SetHealth(currentHealth);
-        // play hurt animation
-        StartCoroutine(SkeletonHurtAnimation());
-        if (currentHealth <= 0)
+        if (currentHealth > 0)
         {
-            StartCoroutine(Die());
+            currentHealth -= demage;
+            healthBar.SetHealth(currentHealth);
+            // play hurt animation
+            StartCoroutine(SkeletonHurtAnimation());
+            if (currentHealth <= 0)
+            {
+                transform.localScale = new Vector2(0, 0);
+                Debug.Log("transform " + this.name);
+                Debug.Log("position " + this.transform.position);
+
+                lootSystem.Spawnner(transform);
+                StartCoroutine(Die());
+
+            }
         }
+           
     }
     IEnumerator SkeletonHurtAnimation()
     {
