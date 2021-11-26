@@ -25,6 +25,7 @@ TagManager:
   - HealthLoot
   - PlayerHealthBar
   - ArrowStore
+  - Ground
   layers:
   - Default
   - TransparentFX

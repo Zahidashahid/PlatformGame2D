@@ -9,30 +9,19 @@ public class MelleAttack : MonoBehaviour
     public LayerMask playerLayers;
     public float attackRange = 2f;
     public float damage;
-    public float attackDistance; // arrow will be possible when   distance is 7.5 b/w arrow and player
+    public float attackDistance; 
     public float nextAttackTime; // after every 2 sec
-    private float distance; // stores distance btw player and arrrow
+    private float distance; // stores distance btw player and skeleton
     private bool inRange; // check player in range
     private bool cooling;
     private GameObject target;
+    SkeletonEnemyMovement skeletonEnemyMovement;
     //public AudioSource meleeAttackSound;
     // Start is called before the first frame update
     void Start()
     {
         nextAttackTime = -1;
-        /* if (nextAttackTime > 0)
-         {
-             nextAttackTime -= Time.deltaTime;
-         }
-         else
-             nextAttackTime = 2f;
-         if (inRange && nextAttackTime < 0) // if player is in range of skeleton it will atack
-         {
-
-             MelleAttackLogic();
-             inRange = true;
-
-         }*/
+        skeletonEnemyMovement = GameObject.FindGameObjectWithTag("Skeleton").GetComponent<SkeletonEnemyMovement>();
     }
 
     // Update is called once per frame
@@ -44,7 +33,7 @@ public class MelleAttack : MonoBehaviour
             {
                 MelleAttackLogic();
                 nextAttackTime = 2;
-                // Debug.Log("nextAttackTime" + nextAttackTime);
+                 Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
             {
@@ -59,20 +48,26 @@ public class MelleAttack : MonoBehaviour
     void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
+        attackDistance = 6;/*
         Debug.Log("Value of distance is " + distance);
-        Debug.Log("Value of attack distance is " + attackDistance);
-        attackDistance = 5;
+        Debug.Log("Value of attack distance is " + attackDistance);*/
+        
         if (attackDistance >= distance)
         {
+            Debug.Log("If called ");
             inRange = true;
+            nextAttackTime = -1;
+            //skeletonEnemyMovement.Flip();
             StartCoroutine(Attack());
         }
         else
             inRange = false;
+        Debug.Log("Value inRange " + inRange);
     }
 
     IEnumerator Attack()
     {
+        Debug.Log("Attack called ");
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
@@ -86,22 +81,22 @@ public class MelleAttack : MonoBehaviour
         foreach(Collider2D player in hitEnemies)
         {
             // Destroy();
-            Debug.Log("Skelton hit " + player.name);
+            Debug.Log("InAttack Skelton hit " + player.name);
             if (player.tag == "Player")
             {
                 string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
                 Debug.Log("We hit player");
                 if (difficultyLevel == "Easy")
                 {
-                    player.GetComponent<PlayerMovement>().TakeDemage(30);
+                    player.GetComponent<PlayerMovement>().TakeDamage(30);
                 }
                 else if (difficultyLevel == "Medium")
                 {
-                    player.GetComponent<PlayerMovement>().TakeDemage(40);
+                    player.GetComponent<PlayerMovement>().TakeDamage(40);
                 }
                 else if (difficultyLevel == "Hard")
                 {
-                    player.GetComponent<PlayerMovement>().TakeDemage(60);
+                    player.GetComponent<PlayerMovement>().TakeDamage(60);
                 }
                 break;
             }
@@ -122,8 +117,8 @@ public class MelleAttack : MonoBehaviour
         {
             target = collision.gameObject;
             Debug.Log("player entred in Skeleton zone");
-            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
-           // MelleAttackLogic();
+            //collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+           
             inRange = true;
         }
     }

@@ -72,15 +72,15 @@ public class SkeletonProjectile : MonoBehaviour
             string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
             if (difficultyLevel == "Easy")
             {
-                collision.GetComponent<PlayerMovement>().TakeDemage(30);
+                collision.GetComponent<PlayerMovement>().TakeDamage(30);
             }
             else if (difficultyLevel == "Medium")
             {
-                collision.GetComponent<PlayerMovement>().TakeDemage(40);
+                collision.GetComponent<PlayerMovement>().TakeDamage(40);
             }
             else if (difficultyLevel == "Hard")
             {
-                collision.GetComponent<PlayerMovement>().TakeDemage(60);
+                collision.GetComponent<PlayerMovement>().TakeDamage(60);
             }
             DestroyProjectile();
         }

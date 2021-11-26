@@ -52,15 +52,15 @@ public class ProjectileShooting : MonoBehaviour
             {
                 if (difficultyLevel == "Easy")
                 {
-                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(40);
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDamage(40);
                 }
                 else if (difficultyLevel == "Medium")
                 {
-                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(30);
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDamage(30);
                 }
                 else if (difficultyLevel == "Hard")
                 {
-                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDemage(10);
+                    hitInfo.collider.GetComponent<SkeletonEnemyMovement>().TakeDamage(10);
                 }
 
             }
@@ -69,15 +69,15 @@ public class ProjectileShooting : MonoBehaviour
                 
                 if (difficultyLevel == "Easy")
                 {
-                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(40);
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(40);
                 }
                 else if (difficultyLevel == "Medium")
                 {
-                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(30);
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
                 }
                 else if (difficultyLevel == "Hard")
                 {
-                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDemage(10);
+                    hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(10);
                 }
             }
             DestroyProjectile();

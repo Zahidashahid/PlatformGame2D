@@ -21,11 +21,12 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public float attackDistance; // min distance for attack
     public float damage;
     public int currentHealth;
+    public int direction = 1;
     public LootSystem lootSystem;
     #endregion
 
     #region Private Variables
-    int direction = 1;
+    
     int maxHealth = 100;
     private RaycastHit2D hit;
     private Transform target;
@@ -65,15 +66,17 @@ public class SkeletonEnemyMovement : MonoBehaviour
         Flip();
     }
     void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Debug.Log("Collision with " + collision.tag);
+    {/*
+         Debug.Log("Collision with " + collision.tag);
+         Debug.Log("Collision name " + collision.name);*/
         if (collision.tag == "Obstacles" || collision.tag == "Skeleton")
         {
+
             if (direction == 1)
             {
                 direction = 2;
             }
-            else
+            else if(direction == 2)
                 direction = 1;
 
         }
@@ -83,7 +86,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             inRange = true;
            // Debug.Log("player collied with skelton");
            // Debug.Log("player entred in Seleton zone");
-            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+           // collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 
     }
@@ -167,30 +170,45 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         anim.SetBool("CanWalk", true);
     }
-    void Flip()
+    public void Flip()
     {
-        distance = Vector2.Distance(transform.position, target.position); // Checking distance btw player and enemy
+        
+        distance = Vector2.Distance(transform.position, target.transform.position); // Checking distance btw player and enemy
+        
         Vector3 rotation = transform.eulerAngles;
          rotation.x *= -1;
-        if (distance >= 3)
+        if (distance >= 5)
         {
             inRange = false;
         }
-         if(inRange && transform.position.x > target.position.x && direction == 1)
-         {
-             rotation.y = 180f;
-             direction = 2;
-             
-         }
-         else if (inRange &&  transform.position.x < target.position.x && direction == 2)
-         {
+        /*
+            direction 2 means skeleton moving towards left vise versa
+            transform.position.x i.e skeleton position > target.position.x  i.e player position means player is on right side of enemy
+        */
+        /*Debug.Log("distance " + distance);
+        Debug.Log("inRange for Flip " + inRange);
+        Debug.Log("direction " + direction);
+        Debug.Log("transform.position.x " + transform.position.x);
+        Debug.Log("target.position.x " + target.position.x);*/
+        if (inRange && transform.position.x > target.position.x && direction == 1) 
+        {
+            rotation.y = 180f;
+            direction = 2;
+            Debug.Log("Skeleton Flip " );
+
+        }
+        else if (inRange &&  transform.position.x < target.position.x && direction == 2)
+        {
             rotation.y = 180f;
             direction = 1;
-         }
-         else
-         {
-            rotation.y = 0f;
-         }
-         transform.eulerAngles = rotation;
+            Debug.Log("Skeleton Flip ");
+        }
+        else
+        {
+        rotation.y = 0f;
+        }
+        transform.eulerAngles = rotation;
+        //Debug.Log("transform.eulerAngles " + transform.eulerAngles);
+
     }
 }

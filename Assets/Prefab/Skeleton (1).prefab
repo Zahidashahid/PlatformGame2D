@@ -947,7 +947,7 @@ MonoBehaviour:
     spawnRate: 30
     minSpawnProb: 0
     maxSpawnProb: 0
-  - item: {fileID: 0}
+  - item: {fileID: 2068422208203902635, guid: 3b8fe69ed1a528b4c94629078b37c3e7, type: 3}
     spawnRate: 40
     minSpawnProb: 0
     maxSpawnProb: 0
