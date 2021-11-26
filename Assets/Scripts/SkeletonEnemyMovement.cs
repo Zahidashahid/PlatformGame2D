@@ -118,7 +118,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         }
            
     }
-    IEnumerator SkeletonHurtAnimation()
+    public IEnumerator SkeletonHurtAnimation()
     {
         // play hurt animation
         animator.SetBool("Sheild", true);
@@ -194,14 +194,14 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             rotation.y = 180f;
             direction = 2;
-            Debug.Log("Skeleton Flip " );
+            //Debug.Log("Skeleton Flip " );
 
         }
         else if (inRange &&  transform.position.x < target.position.x && direction == 2)
         {
             rotation.y = 180f;
             direction = 1;
-            Debug.Log("Skeleton Flip ");
+            //Debug.Log("Skeleton Flip ");
         }
         else
         {

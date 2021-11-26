@@ -33,7 +33,7 @@ public class MelleAttack : MonoBehaviour
             {
                 MelleAttackLogic();
                 nextAttackTime = 2;
-                 Debug.Log("nextAttackTime" + nextAttackTime);
+                 //Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
             {
@@ -54,38 +54,38 @@ public class MelleAttack : MonoBehaviour
         
         if (attackDistance >= distance)
         {
-            Debug.Log("If called ");
+            //Debug.Log("If called ");
             inRange = true;
-            nextAttackTime = -1;
+            //nextAttackTime = -1;
             //skeletonEnemyMovement.Flip();
             StartCoroutine(Attack());
         }
         else
             inRange = false;
-        Debug.Log("Value inRange " + inRange);
+        ///Debug.Log("Value inRange " + inRange);
     }
 
     IEnumerator Attack()
     {
-        Debug.Log("Attack called ");
+        //Debug.Log("Attack called ");
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack", false);
        // animator.SetBool("CanWalk", true);
-        Debug.Log("In Attack function ");
+        //Debug.Log("In Attack function ");
         //deteck enemies in range of attack
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, playerLayers);
         // demage them
         foreach(Collider2D player in hitEnemies)
         {
             // Destroy();
-            Debug.Log("InAttack Skelton hit " + player.name);
+            //Debug.Log("InAttack Skelton hit " + player.name);
             if (player.tag == "Player")
             {
                 string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
-                Debug.Log("We hit player");
+                //Debug.Log("We hit player");
                 if (difficultyLevel == "Easy")
                 {
                     player.GetComponent<PlayerMovement>().TakeDamage(30);
@@ -116,7 +116,7 @@ public class MelleAttack : MonoBehaviour
         if (collision.tag == "Player")
         {
             target = collision.gameObject;
-            Debug.Log("player entred in Skeleton zone");
+           /// Debug.Log("player entred in Skeleton zone");
             //collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
            
             inRange = true;

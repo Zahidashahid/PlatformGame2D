@@ -91,7 +91,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
             // play hurt animation
-            StartCoroutine(SkeletonHurtAnimation());
+            StartCoroutine(RangeAttackSkeletonHurtAnimation());
             if (currentHealth <= 0)
             {
                 StartCoroutine(Die());
@@ -100,7 +100,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         }
             
     }
-    IEnumerator Die()
+     IEnumerator Die()
     {
         // Die Animation
 
@@ -111,7 +111,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         // Disable the player 
         Destroy(gameObject);
     }
-    IEnumerator SkeletonHurtAnimation()
+    public IEnumerator RangeAttackSkeletonHurtAnimation()
     {
         // play hurt animation
         animator.SetBool("Sheild", true);

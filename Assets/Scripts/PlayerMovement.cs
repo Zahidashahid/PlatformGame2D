@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider2d;
    
     public Animator animator;
-    public Animator eagle_animator;
-    public Animator skeleton_animator;
+    //public Animator eagle_animator;
+    //public Animator skeleton_animator;
     /*public AudioSource jumpSound;
     public AudioSource DeathSound;
     public AudioSource meleeAttackSound;*/
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
         //damage Them
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("We hit " + enemy.name);
+           // Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
                 
@@ -222,8 +222,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonEnemyMovement>().TakeDamage(10);
                 }
+              /*  enemy.GetComponent<SkeletonEnemyMovement>().StartCoroutine(SkeletonHurtAnimation());*/
 
-                StartCoroutine(SkeletonSheildtAnimation());
             }
             //eagle_animator.SetTrigger("Death");
             // yield return new WaitForSeconds(1);
@@ -242,6 +242,8 @@ public class PlayerMovement : MonoBehaviour
                 {
                     enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(10);
                 }
+               /* enemy.GetComponent<SkeletonRangeAttackMovement>().StartCoroutine(SkeletonSheildtAnimation());
+                enemy.GetComponent<SkeletonRangeAttackMovement>().StartCoroutine(RangeAttackSkeletonHurtAnimation());*/
             }
             else   
                 break;
@@ -296,13 +298,13 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         animator.SetBool("Ishurt", false);
     }*/
-    IEnumerator SkeletonSheildtAnimation()
+    /*IEnumerator SkeletonSheildtAnimation()
     {
         // play hurt animation
         skeleton_animator.SetBool("Sheild", true);
         yield return new WaitForSeconds(0.4f);
         skeleton_animator.SetBool("Sheild", false);
-    }
+    }*/
     public IEnumerator Die()
     {
         // Die Animation
