@@ -20,6 +20,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public float rayCastLength;
     public float attackDistance; // min distance for attack
     public float damage;
+    public float minimumDistance;
     public int currentHealth;
     public int direction = 1;
     public LootSystem lootSystem;
@@ -48,22 +49,27 @@ public class SkeletonEnemyMovement : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
         target = GameObject.Find("Player_Goblin").transform;
+        minimumDistance = 2;
     }
     // Update is called once per frame
     void Update()
     {
-        if (direction == 1)
+        if(Vector2.Distance(transform.position , target.position) > minimumDistance)
         {
-            rb.velocity = new Vector2(3, rb.velocity.y);
-            transform.localScale = new Vector2(5, 5);
+            if (direction == 1)
+            {
+                rb.velocity = new Vector2(3, rb.velocity.y);
+                transform.localScale = new Vector2(5, 5);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-3, rb.velocity.y);
+                transform.localScale = new Vector2(-5, 5);
+            }
+            //Debug.Log("transform pos" + transform.position);
+            Flip();
         }
-        else
-        {
-            rb.velocity = new Vector2(-3, rb.velocity.y);
-            transform.localScale = new Vector2(-5, 5);
-        }
-        //Debug.Log("transform pos" + transform.position);
-        Flip();
+        
     }
     void OnTriggerEnter2D(Collider2D collision)
     {/*

@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public float attackRange = 0.5f;
     public float attackRate = 1f; //one attack per second
     public float nextAttackTime = 0f;
-    public float runSpeed = 60f;
+     float runSpeed = 5f;
     float horizontalMove = 0f;
 
     public Transform attackPoint;
@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
         CheckGamePaused();
         if ( Input.GetKey(KeyCode.LeftArrow))// && grounded
         {
-            rb.velocity = new Vector2(-3, rb.velocity.y);
+            rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
             transform.localScale = new Vector2(-1, 1);
             animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 1; 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         // Move Player Forward
         else if ( Input.GetKey(KeyCode.RightArrow))//&& grounded
         {
-            rb.velocity = new Vector2(3, rb.velocity.y);
+            rb.velocity = new Vector2(runSpeed, rb.velocity.y);
             transform.localScale = new Vector2(1, 1);
             animator.SetFloat("Speed", Mathf.Abs(40));
             direction = 2;

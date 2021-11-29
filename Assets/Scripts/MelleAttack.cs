@@ -124,11 +124,12 @@ public class MelleAttack : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        //Debug.Log("Player Exit triger");
+      /*  if (collision.tag == "Player")
         {
             inRange = false;
             nextAttackTime = -1;
-        }
+        }*/
     }
     /*   public void TriggerCooling()
        {
