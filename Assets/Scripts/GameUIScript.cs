@@ -12,7 +12,7 @@ public class GameUIScript : MonoBehaviour
     public GameObject restartButton;
     public GameObject SkeletonSpwan;
     public GameObject pauseMenuPanel;
-   // public GameObject EnemyEagleSpwan;
+    public GameObject EnemyEagleSpwan;
     public GameObject RangeAttackSpwan;
     public GameObject RangeAttackPointSpwan;
     public AudioSource restartBtnSound;

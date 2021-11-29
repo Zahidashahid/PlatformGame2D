@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 1832316126879599125}
   - component: {fileID: -8893341000802168237}
   - component: {fileID: 9007219691977901216}
+  - component: {fileID: -4453244556993159092}
   m_Layer: 10
   m_Name: Skeleton (1)
   m_TagString: Skeleton
@@ -525,7 +526,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832316126879599126}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -551,7 +552,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832316126879599126}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -597,12 +598,16 @@ MonoBehaviour:
   animator: {fileID: 1832316126879599133}
   playerAnimator: {fileID: 0}
   rayCast: {fileID: 1832316126257695578}
+  leftLimit: {fileID: 446932206136427334, guid: f220cb6a4fb9ec84dbc5eb5cfc049e33, type: 3}
+  rightLimit: {fileID: 4745877288039712153, guid: 1f3c45ab2eb6c38429928ca6bb7d2905, type: 3}
   healthBar: {fileID: 1832316127920599272}
   attackRange: 2.5
   rayCastLength: 6
   attackDistance: 5
   damage: 40
+  minimumDistance: 0
   currentHealth: 0
+  direction: 1
   lootSystem: {fileID: 0}
 --- !u!114 &1832316126879599122
 MonoBehaviour:
@@ -952,6 +957,58 @@ MonoBehaviour:
     minSpawnProb: 0
     maxSpawnProb: 0
   index: 0
+--- !u!60 &-4453244556993159092
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832316126879599126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.15849136, y: -0.26156405}
+      - {x: 0.13161941, y: -0.23466434}
+      - {x: 0.15388235, y: -0.07}
+      - {x: 0.1706422, y: 0.021481924}
+      - {x: 0.32, y: 0.14}
+      - {x: 0.32, y: 0.17}
+      - {x: 0.29999998, y: 0.19}
+      - {x: 0.26999998, y: 0.17999999}
+      - {x: 0.25913492, y: 0.13301724}
+      - {x: 0.17463666, y: 0.054664362}
+      - {x: 0.12698272, y: 0.24692726}
+      - {x: 0.115418695, y: 0.24388237}
+      - {x: 0.07872315, y: 0.23831737}
+      - {x: 0.059134893, y: 0.1639932}
+      - {x: 0.009806126, y: 0.15701039}
+      - {x: -0.05016616, y: 0.1192457}
+      - {x: -0.024048552, y: -0.061508644}
+      - {x: -0.040110745, y: -0.16296189}
+      - {x: -0.073100366, y: -0.18304497}
+      - {x: -0.094664365, y: -0.25924563}
+      - {x: -0.07620073, y: -0.26002768}
+      - {x: -0.0291903, y: -0.2600277}
+      - {x: 0.0054463856, y: -0.102373734}
+      - {x: 0.026791118, y: -0.021745507}
+      - {x: 0.110975124, y: -0.108719066}
+      - {x: 0.09301728, y: -0.22544634}
+      - {x: 0.08307266, y: -0.25234604}
 --- !u!1 &1832316127082317221
 GameObject:
   m_ObjectHideFlags: 0

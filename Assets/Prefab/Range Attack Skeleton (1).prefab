@@ -512,6 +512,7 @@ GameObject:
   - component: {fileID: 5662627587825175718}
   - component: {fileID: -4019969951063530962}
   - component: {fileID: 1244184385013790097}
+  - component: {fileID: 2404086138975318353}
   m_Layer: 10
   m_Name: Range Attack Skeleton (1)
   m_TagString: RangedAttackSkeleton
@@ -615,7 +616,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5384522161630245490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -920,6 +921,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 40
+--- !u!60 &2404086138975318353
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5384522161630245490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.17999999, y: -0.28}
+      - {x: 0.15297303, y: -0.25148642}
+      - {x: 0.09154633, y: 0.0143396035}
+      - {x: 0.32, y: 0.14}
+      - {x: 0.32, y: 0.17}
+      - {x: 0.29999998, y: 0.19}
+      - {x: 0.26999998, y: 0.17999999}
+      - {x: 0.19, y: 0.089999996}
+      - {x: 0.17, y: 0.25}
+      - {x: 0.115315095, y: 0.23708694}
+      - {x: 0.004398955, y: 0.1568615}
+      - {x: -0.03537491, y: 0.12537509}
+      - {x: -0.05069001, y: 0.10120112}
+      - {x: -0.019834593, y: 0.022865806}
+      - {x: -0.01572068, y: -0.0626277}
+      - {x: -0.06240265, y: -0.16228254}
+      - {x: -0.089999996, y: -0.16}
+      - {x: -0.13, y: -0.26999998}
+      - {x: -0.11, y: -0.28}
+      - {x: 0, y: -0.28}
+      - {x: -0.032175887, y: -0.19972923}
+      - {x: 0.06439972, y: -0.040975623}
+      - {x: 0.1031955, y: -0.19268456}
+      - {x: 0.049999997, y: -0.26999998}
+      - {x: 0.08, y: -0.28}
 --- !u!1 &5472865687897797311
 GameObject:
   m_ObjectHideFlags: 0

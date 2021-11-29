@@ -15,6 +15,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public Animator animator;
     public Animator playerAnimator;
     public Transform rayCast;
+    public Transform leftLimit;
+    public Transform rightLimit;
     public HealthBar healthBar; 
     public float attackRange = 2f;
     public float rayCastLength;
@@ -40,7 +42,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        
+        SelectTarget();
     }
     private void Start()
     {
@@ -51,9 +53,13 @@ public class SkeletonEnemyMovement : MonoBehaviour
         target = GameObject.Find("Player_Goblin").transform;
         minimumDistance = 2;
     }
-    // Update is called once per frame
+    
     void Update()
     {
+        if(!InsideOfLimit())
+        {
+            SelectTarget();
+        }
         if(Vector2.Distance(transform.position , target.position) > minimumDistance)
         {
             if (direction == 1)
@@ -216,5 +222,29 @@ public class SkeletonEnemyMovement : MonoBehaviour
         transform.eulerAngles = rotation;
         //Debug.Log("transform.eulerAngles " + transform.eulerAngles);
 
+    }
+
+    void SelectTarget()
+    {
+        float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
+        float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
+        Vector3 rotation = transform.eulerAngles;
+        Debug.Log(distanceToLeft + " " + distanceToRight);
+        if(distanceToLeft > distanceToRight)
+        {
+            rotation.y = 180f;
+            direction = 2;
+        }
+        else
+        {
+            rotation.y = 180f;
+            direction = 1;
+        }
+
+    }
+    bool InsideOfLimit()
+    {
+        Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);
+        return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
     }
 }
