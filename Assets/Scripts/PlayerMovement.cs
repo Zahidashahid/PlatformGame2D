@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         grounded = true;
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos);
+        Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
         if(lifes == 3 && currentHealth == 100)
         {
             Debug.Log("New Game Started");

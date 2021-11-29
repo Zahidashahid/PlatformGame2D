@@ -1955,7 +1955,7 @@ GameObject:
   - component: {fileID: 490124930}
   m_Layer: 5
   m_Name: PauseMenuPanel
-  m_TagString: Untagged
+  m_TagString: PauseMenuPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,6 +2208,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameUIScript, Assembly-CSharp
         m_MethodName: RestartGameFromLastCheckPoint
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 490124926}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3846,8 +3858,6 @@ MonoBehaviour:
     m_Bits: 2150
   rb: {fileID: 750146759}
   animator: {fileID: 750146750}
-  eagle_animator: {fileID: 8800491960796457658, guid: abae5d102621ce04fbd0f76cf8378f8f, type: 3}
-  skeleton_animator: {fileID: 830805423}
   bgSound: {fileID: 0}
   direction: 2
   currentHealth: 100
@@ -8137,6 +8147,7 @@ MonoBehaviour:
   gameOverText: {fileID: 968749819}
   restartButton: {fileID: 1202859173}
   SkeletonSpwan: {fileID: 1825343655}
+  pauseMenuPanel: {fileID: 490124926}
   RangeAttackSpwan: {fileID: 1468862929}
   RangeAttackPointSpwan: {fileID: 1468862929}
   restartBtnSound: {fileID: 1387107016}
@@ -11192,8 +11203,6 @@ MonoBehaviour:
     m_Bits: 102
   rb: {fileID: 1434199720}
   animator: {fileID: 1434199721}
-  eagle_animator: {fileID: 8800491960796457658, guid: abae5d102621ce04fbd0f76cf8378f8f, type: 3}
-  skeleton_animator: {fileID: 0}
   bgSound: {fileID: 0}
   direction: 2
   currentHealth: 0

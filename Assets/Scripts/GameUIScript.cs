@@ -11,13 +11,16 @@ public class GameUIScript : MonoBehaviour
     public TMP_Text gameOverText;
     public GameObject restartButton;
     public GameObject SkeletonSpwan;
+    public GameObject pauseMenuPanel;
    // public GameObject EnemyEagleSpwan;
     public GameObject RangeAttackSpwan;
     public GameObject RangeAttackPointSpwan;
     public AudioSource restartBtnSound;
     public AudioSource bgSound;
     MainMenu mainMenu;
+    GameMaster gm;
     PlayerMovement playerMovement;
+    string difficultyLevel;
     void Awake()
     {
         /* gameOverPanel.SetActive(false);
@@ -35,8 +38,9 @@ public class GameUIScript : MonoBehaviour
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
         
-        
-        string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+
+        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         //Debug.Log("Difficulity" + MainMenu.difficultyLevel);
         if (difficultyLevel == "Medium")
         {
@@ -63,18 +67,40 @@ public class GameUIScript : MonoBehaviour
                 restartButton.SetActive(false);
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
-        restartBtnSound.Play();/*
+        restartBtnSound.Play();
+        PauseGame.isGamePaused = false;
+        /*
         PlayerPrefs.SetInt("RecentGemCollected", 0);
         PlayerPrefs.SetInt("RecentCherryCollected", 0);
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);*/
         //Reset the last check point
         bgSound.Play();
         Time.timeScale = 1f;
-
-        PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
-        PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }public void RestartGame() //When Game is over after complete death i.e zero lifes left
+        float x = PlayerPrefs.GetFloat("LastcheckPointX");
+        float y = PlayerPrefs.GetFloat("LastcheckPointy");
+        gm.lastCheckPointPos = new Vector2(x, y);
+        playerMovement.transform.position = gm.lastCheckPointPos;
+        if (difficultyLevel == "Easy")
+        {
+            return;
+            /*PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("RecentGemCollected"));
+            PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("RecentCherryCollected"));*/
+        }
+        else if (difficultyLevel == "Medium")
+        {
+            PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
+            PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
+        }
+        else if (difficultyLevel == "Hard")
+        {
+            PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
+            PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
+        }
+        playerMovement.transform.position = gm.lastCheckPointPos;
+        pauseMenuPanel.SetActive(false);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void RestartGame() //When Game is over after complete death i.e zero lifes left
     {
         /*        gameOverPanel.SetActive(false);
                 restartButton.SetActive(false);

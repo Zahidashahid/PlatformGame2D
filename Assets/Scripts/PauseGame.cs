@@ -13,15 +13,16 @@ public class PauseGame : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isGamePaused)
+            if(!isGamePaused)
+            {
+
+                Pause();
+                Debug.Log("Pause called"); 
+            }
+            else if(isGamePaused)
             {
                 Resume();
                 Debug.Log("Resume called");
-            }
-            else
-            {
-                Pause();
-                Debug.Log("Pause called");
             }
         }
     }

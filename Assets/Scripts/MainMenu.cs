@@ -15,13 +15,14 @@ public class MainMenu : MonoBehaviour
     public static string levelReachedName;
     public Button[] levelBtns;
     public static string difficultyLevel;
-  
+    GameMaster gm;
     private void Start()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
         difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         onClickBtnSound = GameObject.FindGameObjectWithTag("SoundEffectGameObject").GetComponent<AudioSource>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         /*
          -----------------Level Lock Logic Start here -----------------------------------
          */
@@ -155,6 +156,7 @@ public class MainMenu : MonoBehaviour
         difficultyLevel = "hard";
         NewGameStrat();
         PlayerPrefs.SetString("DifficultyLevel", "Hard");
+        //gm.lastCheckPointPos = null;
         CheckLevel();
     }
      void NewGameStrat()
