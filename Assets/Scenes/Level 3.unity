@@ -4658,6 +4658,7 @@ GameObject:
   - component: {fileID: 830805432}
   - component: {fileID: 830805434}
   - component: {fileID: 830805435}
+  - component: {fileID: 830805436}
   m_Layer: 10
   m_Name: Skeleton
   m_TagString: Skeleton
@@ -4824,7 +4825,8 @@ MonoBehaviour:
   rayCastLength: 6
   attackDistance: 5
   damage: 40
-  minimumDistance: 0
+  stopDistance: 0
+  retreatDistance: 0
   currentHealth: 0
   direction: 1
   lootSystem: {fileID: 0}
@@ -5226,6 +5228,19 @@ PolygonCollider2D:
       - {x: 0.049999997, y: -0.14999999}
       - {x: 0.049999997, y: -0.26999998}
       - {x: 0.08, y: -0.28}
+--- !u!114 &830805436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830805422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcc4b445778056499aa589fb8aa1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &840763521
 GameObject:
   m_ObjectHideFlags: 0
@@ -14091,6 +14106,7 @@ GameObject:
   - component: {fileID: 1825558568}
   - component: {fileID: 1825558567}
   - component: {fileID: 1825558569}
+  - component: {fileID: 1825558570}
   m_Layer: 10
   m_Name: Range Attack Skeleton
   m_TagString: RangedAttackSkeleton
@@ -14486,6 +14502,19 @@ MonoBehaviour:
     minSpawnProb: 0
     maxSpawnProb: 0
   index: 0
+--- !u!114 &1825558570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825558559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcc4b445778056499aa589fb8aa1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1848091906
 GameObject:
   m_ObjectHideFlags: 0

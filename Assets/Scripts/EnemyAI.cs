@@ -47,6 +47,7 @@ public class EnemyAI : MonoBehaviour
                 playerMovement.lifesText.text = "X " + playerMovement.lifes;
                 PlayerPrefs.SetInt("Lifes", playerMovement.lifes);
 
+
                 if (playerMovement.lifes <= 0)
                 {
                     // bgSound.Stop();
@@ -61,6 +62,7 @@ public class EnemyAI : MonoBehaviour
                     StartCoroutine(playerMovement.OnOneDeath());
                 }
                 StartCoroutine(Reset());
+                Destroy(gameObject);
             }
         }
     }

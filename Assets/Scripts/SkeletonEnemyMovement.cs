@@ -22,15 +22,16 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public float rayCastLength;
     public float attackDistance; // min distance for attack
     public float damage;
-    public float minimumDistance;
+    public float stopDistance; //Enemy stop moving when distance < stop distance
+    public float retreatDistance; //Enemy start moving back from player
     public int currentHealth;
     public int direction = 1;
     public LootSystem lootSystem;
     #endregion
 
     #region Private Variables
-    
-    int maxHealth = 100;
+    private EnemyShield shield;
+    private int maxHealth = 100;
     private RaycastHit2D hit;
     private Transform target;
     private Animator anim;
@@ -46,22 +47,29 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     private void Start()
     {
+        shield = GetComponent<EnemyShield>();
         lootSystem = GetComponent<LootSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
         target = GameObject.Find("Player_Goblin").transform;
-        minimumDistance = 2;
+        stopDistance = 5;
+        retreatDistance = 3;
     }
-    
+
     void Update()
     {
-        if(!InsideOfLimit())
+        
+        if (!InsideOfLimit())
         {
             SelectTarget();
         }
-        if(Vector2.Distance(transform.position , target.position) > minimumDistance)
+        /*
+           ----------- enemy moving towards player----------
+        */
+        if (Vector2.Distance(transform.position, target.position) > stopDistance)
         {
+            Debug.Log(Vector2.Distance(transform.position, target.position));
             if (direction == 1)
             {
                 rb.velocity = new Vector2(3, rb.velocity.y);
@@ -75,7 +83,33 @@ public class SkeletonEnemyMovement : MonoBehaviour
             //Debug.Log("transform pos" + transform.position);
             Flip();
         }
-        
+        /*
+            -----------if enemy near enough but not much near stop  moving----------
+         */
+        else if (Vector2.Distance(transform.position, target.position) < stopDistance && Vector2.Distance(transform.position, target.position) > retreatDistance) 
+        {
+            Debug.Log(Vector2.Distance(transform.position, target.position));
+            rb.velocity = new Vector2(0, 0);
+            transform.position = this.transform.position;
+            Flip();
+        }
+        /*
+           -----------enemy moving away from player if it is very near to player----------
+        */
+        else if (Vector2.Distance(transform.position, target.position) <  retreatDistance)
+        {
+            Debug.Log(Vector2.Distance(transform.position, target.position));
+            if(direction == 1)
+            {
+                rb.velocity = new Vector2(-3, rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(3, rb.velocity.y);
+            }
+            Flip();
+            //transform.localScale = new Vector2(5, 5);
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {/*
@@ -113,20 +147,25 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         if (currentHealth > 0)
         {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-            // play hurt animation
-            StartCoroutine(SkeletonHurtAnimation());
-            if (currentHealth <= 0)
+            if (!shield.ActiveShield)
             {
-                transform.localScale = new Vector2(0, 0);
-                Debug.Log("transform " + this.name);
-                Debug.Log("position " + this.transform.position);
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+                // play hurt animation
+                //StartCoroutine(SkeletonHurtAnimation());
+                if (currentHealth <= 0)
+                {
+                    transform.localScale = new Vector2(0, 0);
+                    Debug.Log("transform " + this.name);
+                    Debug.Log("position " + this.transform.position);
 
-                lootSystem.Spawnner(transform);
-                StartCoroutine(Die());
+                    lootSystem.Spawnner(transform);
+                    StartCoroutine(Die());
 
+                }
             }
+
+                
         }
            
     }
@@ -229,7 +268,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
         float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
         Vector3 rotation = transform.eulerAngles;
-        Debug.Log(distanceToLeft + " " + distanceToRight);
+        //Debug.Log(distanceToLeft + " " + distanceToRight);
         if(distanceToLeft > distanceToRight)
         {
             rotation.y = 180f;
@@ -244,7 +283,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     bool InsideOfLimit()
     {
-        Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);
+        /*
+        Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);*/
         return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
     }
 }

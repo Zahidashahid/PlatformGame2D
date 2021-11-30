@@ -423,6 +423,7 @@ GameObject:
   - component: {fileID: -8893341000802168237}
   - component: {fileID: 9007219691977901216}
   - component: {fileID: -4453244556993159092}
+  - component: {fileID: 4362479774097147814}
   m_Layer: 10
   m_Name: Skeleton (1)
   m_TagString: Skeleton
@@ -605,7 +606,8 @@ MonoBehaviour:
   rayCastLength: 6
   attackDistance: 5
   damage: 40
-  minimumDistance: 0
+  stopDistance: 0
+  retreatDistance: 0
   currentHealth: 0
   direction: 1
   lootSystem: {fileID: 0}
@@ -1009,6 +1011,19 @@ PolygonCollider2D:
       - {x: 0.110975124, y: -0.108719066}
       - {x: 0.09301728, y: -0.22544634}
       - {x: 0.08307266, y: -0.25234604}
+--- !u!114 &4362479774097147814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832316126879599126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffcc4b445778056499aa589fb8aa1276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1 &1832316127082317221
 GameObject:
   m_ObjectHideFlags: 0
