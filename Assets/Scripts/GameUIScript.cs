@@ -39,21 +39,24 @@ public class GameUIScript : MonoBehaviour
         mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
         
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-
-        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
-        //Debug.Log("Difficulity" + MainMenu.difficultyLevel);
-        if (difficultyLevel == "Medium")
+        if(PlayerPrefs.GetString("CurrentLevel") == "Level 3")
         {
-            SkeletonSpwan.SetActive(true);
-           // EnemyEagleSpwan.SetActive(true);
+            difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+            //Debug.Log("Difficulity" + MainMenu.difficultyLevel);
+            if (difficultyLevel == "Medium")
+            {
+                SkeletonSpwan.SetActive(true);
+                // EnemyEagleSpwan.SetActive(true);
+            }
+            if (difficultyLevel == "Hard")
+            {
+                SkeletonSpwan.SetActive(true);
+                //EnemyEagleSpwan.SetActive(true);
+                RangeAttackPointSpwan.SetActive(true);
+                RangeAttackSpwan.SetActive(true);
+            }
         }
-        if(difficultyLevel == "Hard")
-        {
-            SkeletonSpwan.SetActive(true);
-            //EnemyEagleSpwan.SetActive(true);
-            RangeAttackPointSpwan.SetActive(true);
-            RangeAttackSpwan.SetActive(true);
-        }
+        
     }
     public void GameOver()
     {
