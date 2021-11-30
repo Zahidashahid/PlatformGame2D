@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform weaponAttackPoint;
     public LayerMask enemyLayers;
 
+    private Shield shield;
     private GameMaster gm;
     public TMP_Text lifesText;
     private void Awake()
@@ -50,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-
+        shield = GetComponent<Shield>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
         currentHealth = maxHealth;
@@ -263,31 +264,37 @@ public class PlayerMovement : MonoBehaviour
     {
         if(currentHealth > 0 && lifes > 0)
         {
-            currentHealth -= damage;
-            PlayerPrefs.SetInt("CurrentHealth", currentHealth);
-            healthBar.SetHealth(currentHealth);
-            // play hurt animation
-            // StartCoroutine(HurtAnimation());
-            if (currentHealth <= 0)
+
+            if(!shield.ActiveShield)
             {
-                PlayerPrefs.SetInt("CurrentHealth", 100);
-                lifes -= 1;
-                lifesText.text = "X " + lifes;
-                PlayerPrefs.SetInt("Lifes", lifes);
+                currentHealth -= damage;
+                PlayerPrefs.SetInt("CurrentHealth", currentHealth);
+                healthBar.SetHealth(currentHealth);
+                // play hurt animation
+                // StartCoroutine(HurtAnimation());
+                if (currentHealth <= 0)
+                {
+                    PlayerPrefs.SetInt("CurrentHealth", 100);
+                    lifes -= 1;
+                    lifesText.text = "X " + lifes;
+                    PlayerPrefs.SetInt("Lifes", lifes);
+                }
+                if (currentHealth <= 0 && lifes <= 0)
+                {
+                    // bgSound.Stop();
+                    PlayerPrefs.SetInt("CurrentHealth", 100);
+                    PlayerPrefs.SetInt("Lifes", 3);
+                    SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
+                    StartCoroutine(Die());
+                    this.enabled = false;
+                }
+                else if (currentHealth <= 0)
+                {
+                    StartCoroutine(OnOneDeath());
+                }
             }
-            if (currentHealth <= 0 && lifes <= 0)
-            {
-                // bgSound.Stop();
-                PlayerPrefs.SetInt("CurrentHealth", 100);
-                PlayerPrefs.SetInt("Lifes", 3);
-                SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
-                StartCoroutine(Die());
-                this.enabled = false;
-            }
-            else if (currentHealth <= 0)
-            {
-                StartCoroutine(OnOneDeath());
-            }
+
+            
         }
         
     }

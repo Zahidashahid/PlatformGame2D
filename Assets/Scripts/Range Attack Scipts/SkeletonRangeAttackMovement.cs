@@ -106,6 +106,8 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
 
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         yield return new WaitForSeconds(1f);
         // Disable the player 
