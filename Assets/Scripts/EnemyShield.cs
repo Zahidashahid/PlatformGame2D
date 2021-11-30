@@ -7,7 +7,7 @@ public class EnemyShield : MonoBehaviour
     public Animator animator;
     private Transform player;
     private float distance;
-    private bool activeShield;
+    public static bool activeShield;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,7 +20,7 @@ public class EnemyShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < distance)
+        if (Vector2.Distance(transform.position, player.position) < distance && animator.GetBool("Attack") == false)
         {
             animator.SetBool("Sheild", true);
             activeShield = true;

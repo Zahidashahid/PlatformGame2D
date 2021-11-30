@@ -73,3 +73,6 @@ Library/SourceAssetDB
 Library/SceneVisibilityState.asset
 Library/ArtifactDB
 Library/SourceAssetDB
+*.asset
+*.json
+Library/ArtifactDB

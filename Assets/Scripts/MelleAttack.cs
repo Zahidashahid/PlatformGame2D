@@ -67,7 +67,9 @@ public class MelleAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
-        //Debug.Log("Attack called ");
+        animator.SetBool("Sheild", false);
+        EnemyShield.activeShield = false;
+        Debug.Log("Attack called ");
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);

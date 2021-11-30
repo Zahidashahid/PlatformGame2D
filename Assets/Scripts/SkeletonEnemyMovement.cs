@@ -69,7 +69,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
         */
         if (Vector2.Distance(transform.position, target.position) > stopDistance)
         {
-            Debug.Log(Vector2.Distance(transform.position, target.position));
             if (direction == 1)
             {
                 rb.velocity = new Vector2(3, rb.velocity.y);
@@ -88,7 +87,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
          */
         else if (Vector2.Distance(transform.position, target.position) < stopDistance && Vector2.Distance(transform.position, target.position) > retreatDistance) 
         {
-            Debug.Log(Vector2.Distance(transform.position, target.position));
             rb.velocity = new Vector2(0, 0);
             transform.position = this.transform.position;
             Flip();
@@ -98,7 +96,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
         */
         else if (Vector2.Distance(transform.position, target.position) <  retreatDistance)
         {
-            Debug.Log(Vector2.Distance(transform.position, target.position));
             if(direction == 1)
             {
                 rb.velocity = new Vector2(-3, rb.velocity.y);
@@ -232,6 +229,8 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             inRange = false;
         }
+        else
+            inRange = true;
         /*
             direction 2 means skeleton moving towards left vise versa
             transform.position.x i.e skeleton position > target.position.x  i.e player position means player is on right side of enemy
