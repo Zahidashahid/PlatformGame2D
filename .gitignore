@@ -76,3 +76,4 @@ Library/SourceAssetDB
 *.asset
 *.json
 Library/ArtifactDB
+*.asset

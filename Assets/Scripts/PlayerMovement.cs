@@ -322,9 +322,7 @@ public class PlayerMovement : MonoBehaviour
        // animator.SetBool("IsDied", false);
         // Disable the player
         FindObjectOfType<GameUIScript>().GameOver();
-      
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
-
     }
     
     public IEnumerator OnOneDeath()

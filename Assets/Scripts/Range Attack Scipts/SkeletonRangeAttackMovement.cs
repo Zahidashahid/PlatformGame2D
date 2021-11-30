@@ -15,6 +15,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     public HealthBar healthBar;
     public Animator animator;
     public LootSystem lootSystem;
+    EnemyShield shield;
     
     /*
     public AudioSource arrowHitSound;
@@ -41,6 +42,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         target = playerObject.transform;
         animator = GetComponent<Animator>();
         lootSystem = GetComponent<LootSystem>();
+        shield = GetComponent<EnemyShield>();
 
     }
     // Update is called once per frame
@@ -88,15 +90,20 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     {
         if (currentHealth > 0) // Player can only damage enemy if health is greater than zero. if not on need to damage it
         {
-            currentHealth -= damage;
-            healthBar.SetHealth(currentHealth);
-            // play hurt animation
-            StartCoroutine(RangeAttackSkeletonHurtAnimation());
-            if (currentHealth <= 0)
+            if (!shield.ActiveShield)
             {
-                StartCoroutine(Die());
-                lootSystem.Spawnner(transform);
+                currentHealth -= damage;
+                healthBar.SetHealth(currentHealth);
+                // play hurt animation
+                StartCoroutine(RangeAttackSkeletonHurtAnimation());
+                if (currentHealth <= 0)
+                {
+                    StartCoroutine(Die());
+                    lootSystem.Spawnner(transform);
+                }
             }
+
+                
         }
             
     }
