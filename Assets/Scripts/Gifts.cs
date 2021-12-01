@@ -9,7 +9,7 @@ public class Gifts : MonoBehaviour
     public static int cherryAmount;//Total amount of cherry collected after end of level 
     public static int cherryCount;//Amount of cherry in prefrences
     public ScoreManager scoreManager;
-    CircleCollider2D collider;
+    Collider collider;
     //public AudioSource giftSound;
     private void Start()
     {
@@ -17,7 +17,7 @@ public class Gifts : MonoBehaviour
         cherryCount = PlayerPrefs.GetInt("GemCollected");
         PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
         PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
-        collider = GetComponent<CircleCollider2D>();
+        //collider = GetComponent<Collider>();
         cherryAmount =  PlayerPrefs.GetInt("RecentCherryCollected");
         gemAmount = PlayerPrefs.GetInt("RecentGemCollected");
         Debug.Log("gemAmount =" + PlayerPrefs.GetInt("RecentGemCollected"));
@@ -27,10 +27,12 @@ public class Gifts : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject collisionGameObject = collision.gameObject;
-        if ( collision.tag == "Cherry")
+        string tag = collision.tag;
+        
+        if ( tag == "Cherry")
         {
-            
+            collision.enabled = false;
+            Destroy(collision.gameObject);
             cherryCount += 1;
             cherryAmount += 1;
             Debug.Log("Amount Cherry " + cherryAmount);
@@ -38,10 +40,12 @@ public class Gifts : MonoBehaviour
             PlayerPrefs.SetInt("RecentCherryCollected", cherryAmount);
             scoreManager.CherryCollect();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
-            Destroy(collision.gameObject);
+            
         }
-        if ( collision.tag == "Gem")
+        if ( tag == "Gem")
         {
+            collision.enabled = false;
+            Destroy(collision.gameObject);
             gemAmount += 1;
             gemCount += 1;
             Debug.Log("gem Amount " + gemAmount);
@@ -49,9 +53,9 @@ public class Gifts : MonoBehaviour
             PlayerPrefs.SetInt("RecentGemCollected", gemAmount);
             scoreManager.GemCollect();
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.giftSound);
-            Destroy(collision.gameObject);
+            
         }
-        collider.enabled= false;
+        
     }
    
 }

@@ -138,6 +138,7 @@ public class GameUIScript : MonoBehaviour
     public void RestartLevel()
     {
         playerMovement.Reset();
+        MainMenu.isNewGamae = true;
         //Reset Gift collected
         PlayerPrefs.SetInt("RecentGemCollected", 0);
         PlayerPrefs.SetInt("RecentCherryCollected", 0);
