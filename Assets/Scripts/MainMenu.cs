@@ -13,9 +13,14 @@ public class MainMenu : MonoBehaviour
     public GameObject QuitGameMenuUI;
     public static string currentLevel;
     public static string levelReachedName;
-    public Button[] levelBtns;
     public static string difficultyLevel;
+    public static bool isNewGamae;
+    public Button[] levelBtns;
     GameMaster gm;
+    private void Awake()
+    {
+        isNewGamae = true;
+    }
     private void Start()
     {
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
@@ -70,7 +75,19 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene(currentLevel);
+    } 
+    public void ContinueGame()
+    {
+        OnBtnClickSound();
+        isNewGamae = false;
+        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+        
+        if (currentLevel == null)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+            SceneManager.LoadScene(currentLevel);
     }
+
     public void Level1()
     {
         OnBtnClickSound();
@@ -112,6 +129,7 @@ public class MainMenu : MonoBehaviour
     }
     public void CheckLevel()
     {
+        isNewGamae = true;
         currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
         switch (currentLevel)
         {

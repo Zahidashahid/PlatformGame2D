@@ -23,14 +23,21 @@ public class ScoreManager : MonoBehaviour
     public void GemCollect()
     {
         gemCollected += 1;
-        gemText.text = "X" + gemCollected;
-        Debug.Log("Gem = " + gemCollected);
-
+        UpdateGemText(gemCollected);
     }
     public void CherryCollect()
     {
         cherryCollected += 1;
-        cherryText.text = "X" + cherryCollected;
-        Debug.Log("Cherry = " + cherryCollected);
+        UpdateCherryText(cherryCollected);
+    }
+    public void UpdateGemText(int count)
+    {
+        gemText.text = "X" + count;
+        Debug.Log("Gem = " + count);
+    }
+    public void UpdateCherryText(int count)
+    {
+        cherryText.text = "X" + count;
+        Debug.Log("Cherry = " + count);
     }
 }

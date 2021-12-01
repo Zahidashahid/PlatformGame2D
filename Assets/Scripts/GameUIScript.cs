@@ -20,12 +20,15 @@ public class GameUIScript : MonoBehaviour
     MainMenu mainMenu;
     GameMaster gm;
     PlayerMovement playerMovement;
+    public ScoreManager scoreManager;
     string difficultyLevel;
+    
     void Awake()
     {
         /* gameOverPanel.SetActive(false);
          restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+        
     }
 
     public void Start()
@@ -36,6 +39,7 @@ public class GameUIScript : MonoBehaviour
 
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
         
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
@@ -83,6 +87,7 @@ public class GameUIScript : MonoBehaviour
         float y = PlayerPrefs.GetFloat("LastcheckPointy");
         gm.lastCheckPointPos = new Vector2(x, y);
         playerMovement.transform.position = gm.lastCheckPointPos;
+        Debug.Log(difficultyLevel);
         if (difficultyLevel == "Easy")
         {
             return;
@@ -99,7 +104,15 @@ public class GameUIScript : MonoBehaviour
             PlayerPrefs.SetInt("RecentGemCollected", PlayerPrefs.GetInt("GemCollectedTillLastCheckPoint"));
             PlayerPrefs.SetInt("RecentCherryCollected", PlayerPrefs.GetInt("CherryCollectedTillLastCheckPoint"));
         }
-        playerMovement.transform.position = gm.lastCheckPointPos;
+        // playerMovement.transform.position = gm.lastCheckPointPos;
+
+
+        scoreManager.UpdateCherryText(PlayerPrefs.GetInt("RecentCherryCollected"));
+        scoreManager.UpdateGemText(PlayerPrefs.GetInt("RecentGemCollected"));
+
+
+
+        playerMovement.transform.position = new Vector2(x, y);
         pauseMenuPanel.SetActive(false);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

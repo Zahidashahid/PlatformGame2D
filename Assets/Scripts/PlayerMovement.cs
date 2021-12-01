@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
-        if(lifes == 3 && currentHealth == 100)
+        if(MainMenu.isNewGamae)
         {
             Debug.Log("New Game Started");
             gm.lastCheckPointPos = transform.position; // Set last check point zero when game restarted
