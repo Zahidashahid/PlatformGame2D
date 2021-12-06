@@ -5,7 +5,7 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     public GameObject shieldGO;
-    private bool activeShield;
+    private  bool activeShield;
     void Start()
     {
         activeShield = false;
@@ -15,18 +15,23 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKey(KeyCode.S))
         {
-            if(!activeShield)
+            shieldGO.SetActive(true);
+            activeShield = true; 
+            /*if (!activeShield)
             {
-                shieldGO.SetActive(true);
-                activeShield = true;
+                
             }
             else
             {
-                shieldGO.SetActive(false);
-                activeShield = false;
-            }
+                
+            }*/
+        }
+        else
+        {
+            shieldGO.SetActive(false);
+            activeShield = false;
         }
     }
     public bool ActiveShield

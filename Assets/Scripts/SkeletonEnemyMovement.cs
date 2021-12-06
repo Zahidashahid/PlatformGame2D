@@ -69,7 +69,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         /*
            ----------- enemy moving towards player----------
         */
-        if (Vector2.Distance(transform.position, target.position) > stopDistance)
+        if (Vector2.Distance(transform.position, target.position) > stopDistance && currentHealth > 0)
         {
             if (direction == 1)
             {
@@ -157,11 +157,14 @@ public class SkeletonEnemyMovement : MonoBehaviour
                 StartCoroutine(SkeletonHurtAnimation());
                 if (currentHealth <= 0)
                 {
-                    transform.localScale = new Vector2(0, 0);
-                   /* Debug.Log("transform " + this.name);
-                    Debug.Log("position " + this.transform.position);*/
+                    rb.velocity = new Vector2(0, 0);
+                    transform.position = this.transform.position;
+                    // transform.localScale = new Vector2(0, 0);
+                    /* Debug.Log("transform " + this.name);
+                     Debug.Log("position " + this.transform.position);*/
 
                     lootSystem.Spawnner(transform);
+                    
                     StartCoroutine(Die());
 
                 }
