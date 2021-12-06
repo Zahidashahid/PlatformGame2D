@@ -68,7 +68,7 @@ public class MelleAttack : MonoBehaviour
     IEnumerator Attack()
     {
         animator.SetBool("Sheild", false);
-        EnemyShield.activeShield = false;
+       // EnemyShield.activeShield = false;
         Debug.Log("Attack called ");
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);

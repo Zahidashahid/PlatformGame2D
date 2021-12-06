@@ -26,6 +26,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     public float retreatDistance; //Enemy start moving back from player
     public int currentHealth;
     public int direction = 1;
+    public int numberOfDamgeTake;
     public LootSystem lootSystem;
     #endregion
 
@@ -47,6 +48,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     private void Start()
     {
+        numberOfDamgeTake = 0;
         shield = GetComponent<EnemyShield>();
         lootSystem = GetComponent<LootSystem>();
         currentHealth = maxHealth;
@@ -144,35 +146,39 @@ public class SkeletonEnemyMovement : MonoBehaviour
     {
         if (currentHealth > 0)
         {
+            Debug.Log("Damaging the enemy :- shield.ActiveShield " + shield.ActiveShield);
+            if (numberOfDamgeTake > 3)
+                StartCoroutine(SheildTimer());
             if (!shield.ActiveShield)
             {
                 currentHealth -= damage;
-                healthBar.SetHealth(currentHealth);
-                // play hurt animation
-                //StartCoroutine(SkeletonHurtAnimation());
+                healthBar.SetHealth(currentHealth); 
+               
+                StartCoroutine(SkeletonHurtAnimation());
                 if (currentHealth <= 0)
                 {
                     transform.localScale = new Vector2(0, 0);
-                    Debug.Log("transform " + this.name);
-                    Debug.Log("position " + this.transform.position);
+                   /* Debug.Log("transform " + this.name);
+                    Debug.Log("position " + this.transform.position);*/
 
                     lootSystem.Spawnner(transform);
                     StartCoroutine(Die());
 
                 }
             }
-
-                
+            else
+                numberOfDamgeTake += 1;
         }
-           
+ 
     }
     public IEnumerator SkeletonHurtAnimation()
     {
-        // play hurt animation
-        animator.SetBool("Sheild", true);
+        /*---------play hurt animation--------------*/
+        
+        animator.SetBool("Hurt", true);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
         yield return new WaitForSeconds(0.3f);
-        animator.SetBool("Sheild", false);
+        animator.SetBool("Hurt", false);
 
     }
     IEnumerator PlayerHurtAnimation()
@@ -193,6 +199,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
     }
     IEnumerator Die()
     {
+        animator.SetBool("Hurt", false);
         // Die Animation
         animator.SetBool("Death", true);
         Debug.Log("Skeleton died!");
@@ -201,7 +208,15 @@ public class SkeletonEnemyMovement : MonoBehaviour
         // Disable the player 
         Destroy(gameObject);
     }
-
+    IEnumerator SheildTimer()
+    {
+        shield.ActiveShield = false;
+        animator.SetBool("Sheild", false);
+        yield return new WaitForSeconds(5f);
+        shield.ActiveShield = true;
+        animator.SetBool("Sheild", true);
+        numberOfDamgeTake = 0;
+    }
     void RaycastDebugger()
     {
         if (distance > attackDistance)

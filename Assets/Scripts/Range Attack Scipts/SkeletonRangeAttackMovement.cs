@@ -12,6 +12,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     public GameObject playerObject;
     public int maxHealth = 100;
     public int currentHealth;
+    public int numberOfDamgeTake;
     public HealthBar healthBar;
     public Animator animator;
     public LootSystem lootSystem;
@@ -36,6 +37,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     }*/
     private void Start()
     {
+        numberOfDamgeTake = 0;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         playerObject = GameObject.Find("Player_Goblin");
@@ -90,6 +92,8 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     {
         if (currentHealth > 0) // Player can only damage enemy if health is greater than zero. if not on need to damage it
         {
+            if (numberOfDamgeTake > 3)
+                StartCoroutine(SheildTimer());
             if (!shield.ActiveShield)
             {
                 currentHealth -= damage;
@@ -102,13 +106,24 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
                     lootSystem.Spawnner(transform);
                 }
             }
+            else
+                numberOfDamgeTake += 1;
 
-                
         }
             
     }
-     IEnumerator Die()
+    IEnumerator SheildTimer()
     {
+        shield.ActiveShield = false;
+        animator.SetBool("Sheild", false);
+        yield return new WaitForSeconds(5f);
+        shield.ActiveShield = true;
+        animator.SetBool("Sheild", true);
+        numberOfDamgeTake = 0;
+    }
+    IEnumerator Die()
+     {
+        animator.SetBool("Hurt", false);
         // Die Animation
 
         animator.SetBool("Death", true);
@@ -119,14 +134,14 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         // Disable the player 
         Destroy(gameObject);
-    }
+     }
     public IEnumerator RangeAttackSkeletonHurtAnimation()
     {
         // play hurt animation
-        animator.SetBool("Sheild", true);
+        animator.SetBool("Hurt", true);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.arrowHitSound);
         yield return new WaitForSeconds(0.3f);
-        animator.SetBool("Sheild", false);
+        animator.SetBool("Hurt", false);
 
     }
 }

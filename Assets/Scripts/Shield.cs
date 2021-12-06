@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public GameObject shield;
+    public GameObject shieldGO;
     private bool activeShield;
     void Start()
     {
         activeShield = false;
-        shield.SetActive(false);
+        shieldGO.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,12 +19,12 @@ public class Shield : MonoBehaviour
         {
             if(!activeShield)
             {
-                shield.SetActive(true);
+                shieldGO.SetActive(true);
                 activeShield = true;
             }
             else
             {
-                shield.SetActive(false);
+                shieldGO.SetActive(false);
                 activeShield = false;
             }
         }

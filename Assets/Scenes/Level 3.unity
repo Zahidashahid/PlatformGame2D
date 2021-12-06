@@ -3956,6 +3956,7 @@ MonoBehaviour:
   currentHealth: 100
   maxHealth: 100
   lifes: 3
+  numberOfDamgeTake: 0
   attackRange: 3
   attackRate: 3
   nextAttackTime: 2
@@ -4636,7 +4637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b1dc1e713a38f4980b3145fe737e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shield: {fileID: 533335223}
+  shieldGO: {fileID: 533335223}
 --- !u!1 &830805422
 GameObject:
   m_ObjectHideFlags: 0
@@ -8410,6 +8411,7 @@ MonoBehaviour:
   RangeAttackPointSpwan: {fileID: 1468862929}
   restartBtnSound: {fileID: 1387107016}
   bgSound: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!4 &1387107015
 Transform:
   m_ObjectHideFlags: 0
@@ -11466,6 +11468,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 100
   lifes: 0
+  numberOfDamgeTake: 0
   attackRange: 1
   attackRate: 1
   nextAttackTime: 0

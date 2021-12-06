@@ -34,19 +34,13 @@ public class  LootSystem: MonoBehaviour
     }
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //Spawnner();
-        }
-    }
+ 
 
     public void Spawnner(Transform t)
     {
         float randomNum = Random.Range(0, 100);
-        Debug.Log("Here transform " + t);
-        Debug.Log("position " + t.position);
+       /* Debug.Log("Here transform " + t);
+        Debug.Log("position " + t.position);*/
         for (int index = 0; index < itemToSpawn.Length; index++)
         {
             if (randomNum >= itemToSpawn[index].minSpawnProb && randomNum <= itemToSpawn[index].maxSpawnProb)

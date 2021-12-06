@@ -7,7 +7,7 @@ public class EnemyShield : MonoBehaviour
     public Animator animator;
     private Transform player;
     private float distance;
-    public static bool activeShield;
+    public  bool activeShield;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,7 +24,7 @@ public class EnemyShield : MonoBehaviour
         {
             animator.SetBool("Sheild", true);
             activeShield = true;
-            
+         
         }
         else
         {
@@ -36,16 +36,13 @@ public class EnemyShield : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            Debug.Log("Collision "+collision);
             if (!activeShield)
             {
                 animator.SetBool("Sheild", true);
                 activeShield = true;
             }
-            else
-            {
-                animator.SetBool("Sheild", false);
-                activeShield = false;
-            }
+           
         }
     }
    

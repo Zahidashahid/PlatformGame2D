@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
     public int maxHealth = 100;
     public int lifes ;
+    public int numberOfDamgeTake ;
 
     private float dashTime = 40f;
     public float attackRange = 0.5f;
@@ -40,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform weaponAttackPoint;
     public LayerMask enemyLayers;
 
-    private Shield shield;
+    private Shield shield; //Player Shield
     private GameMaster gm;
     public TMP_Text lifesText;
     private void Awake()
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        numberOfDamgeTake = 0;
         shield = GetComponent<Shield>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
@@ -191,9 +193,9 @@ public class PlayerMovement : MonoBehaviour
        // Debug.Log(raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
-    /// <summary>
-    /// Attack on skeleton enemy
-    /// </summary>
+    /* <summary>
+       Attack on skeleton enemy
+    </summary> */
     IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
@@ -264,8 +266,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(currentHealth > 0 && lifes > 0)
         {
-
-            if(!shield.ActiveShield)
+            
+            if (numberOfDamgeTake > 3)
+                StartCoroutine(SheildTimer());
+            if (!shield.ActiveShield)
             {
                 currentHealth -= damage;
                 PlayerPrefs.SetInt("CurrentHealth", currentHealth);
@@ -293,18 +297,21 @@ public class PlayerMovement : MonoBehaviour
                     StartCoroutine(OnOneDeath());
                 }
             }
+            else
+                numberOfDamgeTake += 1;
 
-            
         }
         
     }
-   /* IEnumerator HurtAnimation()
+    IEnumerator SheildTimer()
     {
-        // play hurt animation
-        animator.SetBool("Ishurt", true);
-        yield return new WaitForSeconds(0.6f);
-        animator.SetBool("Ishurt", false);
-    }*/
+        shield.ActiveShield = false;
+        shield.shieldGO.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        shield.ActiveShield = true;
+        shield.shieldGO.SetActive(true);
+        numberOfDamgeTake = 0;
+    }
     /*IEnumerator SkeletonSheildtAnimation()
     {
         // play hurt animation
