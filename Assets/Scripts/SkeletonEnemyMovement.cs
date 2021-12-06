@@ -61,7 +61,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
     void Update()
     {
-        
         if (!InsideOfLimit())
         {
             SelectTarget();
@@ -100,6 +99,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         {
             if(direction == 1)
             {
+              
                 rb.velocity = new Vector2(-3, rb.velocity.y);
             }
             else
@@ -149,7 +149,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
             Debug.Log("Damaging the enemy :- shield.ActiveShield " + shield.ActiveShield);
             if (numberOfDamgeTake > 3)
                 StartCoroutine(SheildTimer());
-            if (!shield.ActiveShield)
+            if (!shield.ActiveShield || (transform.position.x > target.position.x && direction == 1) && (transform.position.x < target.position.x && direction == 2))
             {
                 currentHealth -= damage;
                 healthBar.SetHealth(currentHealth); 
