@@ -80,3 +80,4 @@ Library/ArtifactDB
 *.json
 Library/SourceAssetDB
 Library/ArtifactDB
+*.asset
