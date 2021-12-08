@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "2266e04c-2f3c-42ae-a4be-956ff407942a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -95,6 +103,17 @@
                 },
                 {
                     "name": "",
+                    "id": "da2ce488-8446-43c3-8739-a2e18bb26827",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "56858809-943e-4709-aa63-3f29da25bd72",
                     "path": "<Gamepad>/dpad/left",
                     "interactions": "",
@@ -108,6 +127,17 @@
                     "name": "",
                     "id": "4cbbd603-3ee2-4f8f-87eb-1429ef70da89",
                     "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7255c37-8bf5-4957-9ab1-a95f9ccf0644",
+                    "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -162,7 +192,7 @@
                 {
                     "name": "",
                     "id": "a9fda6ec-50f4-44ab-8c64-35605874c633",
-                    "path": "<Keyboard>/w",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -222,6 +252,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ArowHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0220a277-343e-4093-94c7-e5bd5ca94165",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

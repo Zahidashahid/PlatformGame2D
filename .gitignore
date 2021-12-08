@@ -94,3 +94,5 @@ Library/ArtifactDB
 Library/ArtifactDB
 Library/ArtifactDB
 Library/ArtifactDB
+*.asset
+Library/SourceAssetDB

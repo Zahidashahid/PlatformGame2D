@@ -9,6 +9,12 @@ public class PauseGame : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameModeUI;
     public GameObject QuitGameMenuUI;
+    PlayerController controls;
+    private void Awake()
+    {
+        controls = new PlayerController();
+        controls.Gameplay.PauseGame.performed += ctx => PauseGamePress();
+    }
     void Update()
     {
       /*  if(Input.GetKeyDown(KeyCode.Escape))
@@ -25,6 +31,20 @@ public class PauseGame : MonoBehaviour
                 Debug.Log("Resume called");
             }
         }*/
+    }
+    void PauseGamePress()
+    {
+        if (!isGamePaused)
+        {
+
+            Pause();
+            Debug.Log("Pause called");
+        }
+        else if (isGamePaused)
+        {
+            Resume();
+            Debug.Log("Resume called");
+        }
     }
     public void Resume()
     {
@@ -59,6 +79,14 @@ public class PauseGame : MonoBehaviour
     {
         QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Not  Quiting");
+    }
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
     }
 
 }

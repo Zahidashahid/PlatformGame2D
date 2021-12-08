@@ -7,7 +7,7 @@ public class Bow : MonoBehaviour
 {
     //Bow of the Player
     PlayerController controls;
-    Vector3 move;
+    Vector2 rotateBow;
     public Transform shotPoint;
     public GameObject projectile;
 
@@ -21,18 +21,19 @@ public class Bow : MonoBehaviour
     {
         controls = new PlayerController();
         controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
-        controls.Gameplay.RangeAttackGP.performed += ctx => move = ctx.ReadValue<Vector2>();
-        controls.Gameplay.RangeAttackGP.canceled += ctx => move = Vector2.zero;
+        controls.Gameplay.RangeAttackGP.performed += ctx => rotateBow = ctx.ReadValue<Vector2>();
+        controls.Gameplay.RangeAttackGP.canceled += ctx => rotateBow = Vector2.zero;
   
     }
     void Update()
     {
-        Vector3 m = new Vector3(move.x, move.y) * Time.deltaTime;
-        Vector3 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
+        Vector2 r = new Vector3(-rotateBow.x, -rotateBow.y) * 100f * Time.deltaTime;
+         transform.Rotate(r, Space.World);
+        /*Vector2 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
         float rotZ = Mathf.Atan2(m.y, m.x) * Mathf.Rad2Deg;
-        // transform.Rotate(m, Space.World);
+        *//*
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
-        Debug.Log("" + rotZ + offset);
+        Debug.Log("" + rotZ + offset);*/
         /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
          float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
          transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
@@ -50,7 +51,7 @@ public class Bow : MonoBehaviour
          }*/
 
     }
-    void BowMovement()
+    void BowRotate()
     {
         /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;

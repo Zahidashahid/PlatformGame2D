@@ -17,10 +17,10 @@ public class MusicSetting : MonoBehaviour
     /*public AudioMixer soundMute;
     public AudioMixer musicMute;*/
 
-    static MusicSetting instance = null;
+    //static MusicSetting instance = null;
     // Music volume variable that will be modified
     // by dragging slider knob
-    private float musicVolume = 1f;
+    //private float musicVolume = 1f;
 
   
     // Use this for initialization

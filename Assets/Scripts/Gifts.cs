@@ -9,7 +9,7 @@ public class Gifts : MonoBehaviour
     public static int cherryAmount;//Total amount of cherry collected after end of level 
     public static int cherryCount;//Amount of cherry in prefrences
     public ScoreManager scoreManager;
-    Collider collider;
+   // Collider collider;
     //public AudioSource giftSound;
     private void Start()
     {

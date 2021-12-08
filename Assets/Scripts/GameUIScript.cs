@@ -132,7 +132,10 @@ public class GameUIScript : MonoBehaviour
         //Reset the last check point
         bgSound.Play();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        string currentLevel = PlayerPrefs.GetString("CurrentLevel");
+        SceneManager.LoadScene(currentLevel);
     }
 
     public void RestartLevel()

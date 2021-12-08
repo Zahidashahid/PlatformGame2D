@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource DeathSound;
     public AudioSource meleeAttackSound;*/
     public AudioSource bgSound;
-    bool jump ;
-    bool crouch = false;
+   // bool jump ;
+    //bool crouch = false;
     bool grounded;
     int jumpCount = 0;
     public int direction = 2;
@@ -31,12 +31,12 @@ public class PlayerMovement : MonoBehaviour
     public int lifes ;
     public int numberOfDamgeTake ;
 
-    private float dashTime = 40f;
+    //private float dashTime = 40f;
     public float attackRange = 0.5f;
     public float attackRate = 1f; //one attack per second
     public float nextAttackTime = 0f;
      float runSpeed = 5f;
-    float horizontalMove = 0f;
+    //float horizontalMove = 0f;
 
     public Transform attackPoint;
     public Transform weaponAttackPoint;
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
-            //Debug.Log(" jump count is " + jumpCount);
+            Debug.Log(" jump count is " + jumpCount);
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
-            jump = true;
+           // jump = true;
 
         }
     }

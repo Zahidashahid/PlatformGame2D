@@ -81,6 +81,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PauseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""2266e04c-2f3c-42ae-a4be-956ff407942a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -108,6 +116,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""da2ce488-8446-43c3-8739-a2e18bb26827"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""56858809-943e-4709-aa63-3f29da25bd72"",
                     ""path"": ""<Gamepad>/dpad/left"",
                     ""interactions"": """",
@@ -121,6 +140,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""4cbbd603-3ee2-4f8f-87eb-1429ef70da89"",
                     ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7255c37-8bf5-4957-9ab1-a95f9ccf0644"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -175,7 +205,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a9fda6ec-50f4-44ab-8c64-35605874c633"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -237,6 +267,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""ArowHit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0220a277-343e-4093-94c7-e5bd5ca94165"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -253,6 +294,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_DashMove = m_Gameplay.FindAction("DashMove", throwIfNotFound: true);
         m_Gameplay_ArowHit = m_Gameplay.FindAction("ArowHit", throwIfNotFound: true);
+        m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +352,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_DashMove;
     private readonly InputAction m_Gameplay_ArowHit;
+    private readonly InputAction m_Gameplay_PauseGame;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -322,6 +365,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @DashMove => m_Wrapper.m_Gameplay_DashMove;
         public InputAction @ArowHit => m_Wrapper.m_Gameplay_ArowHit;
+        public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -355,6 +399,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArowHit.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
                 @ArowHit.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
                 @ArowHit.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
+                @PauseGame.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -383,6 +430,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArowHit.started += instance.OnArowHit;
                 @ArowHit.performed += instance.OnArowHit;
                 @ArowHit.canceled += instance.OnArowHit;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -397,5 +447,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnDashMove(InputAction.CallbackContext context);
         void OnArowHit(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }

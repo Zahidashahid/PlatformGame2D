@@ -47,7 +47,7 @@ public class ProjectileShooting : MonoBehaviour
            // Debug.Log(hitInfo.collider.name);
            
             string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
-            Debug.Log(difficultyLevel);
+            //Debug.Log(difficultyLevel);
             if (hitInfo.collider.name == "Skeleton" || hitInfo.collider.tag == "Skeleton")
             {
                 if (difficultyLevel == "Easy")
