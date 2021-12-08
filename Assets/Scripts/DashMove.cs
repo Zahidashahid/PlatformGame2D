@@ -19,7 +19,7 @@ public class DashMove : MonoBehaviour
     void Update()
     {
         if (direction == 0)
-        {
+        {/*
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 direction = 1;
@@ -35,7 +35,7 @@ public class DashMove : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 direction = 4;
-            }
+            }*/
         }
         else
         {

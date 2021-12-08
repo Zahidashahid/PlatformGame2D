@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Bow : MonoBehaviour
 {
     //Bow of the Player
+    PlayerController controls;
+    Vector3 move;
     public Transform shotPoint;
     public GameObject projectile;
 
@@ -14,23 +17,63 @@ public class Bow : MonoBehaviour
     int arrowLeft;
     public ArrowStore arrowStore;
 
+    private void Awake()
+    {
+        controls = new PlayerController();
+        controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
+        controls.Gameplay.RangeAttackGP.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Gameplay.RangeAttackGP.canceled += ctx => move = Vector2.zero;
+  
+    }
     void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 m = new Vector3(move.x, move.y) * Time.deltaTime;
+        Vector3 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
+        float rotZ = Mathf.Atan2(m.y, m.x) * Mathf.Rad2Deg;
+        // transform.Rotate(m, Space.World);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+        Debug.Log("" + rotZ + offset);
+        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+         
+         arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
+
+         if (arrowLeft > 0)
+         {
+             if (Input.GetMouseButtonDown(0))
+             {
+                 arrowStore.ArrowUsed();
+                 Instantiate(projectile, shotPoint.position, transform.rotation);
+
+             }
+         }*/
+
+    }
+    void BowMovement()
+    {
+        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
         // Debug.Log("" + rotZ + offset);
+        arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");*/
+    }
+    void ArrowShoot()
+    {
         arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
 
         if (arrowLeft > 0)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                arrowStore.ArrowUsed();
-                Instantiate(projectile, shotPoint.position, transform.rotation);
-
-            }
+            arrowStore.ArrowUsed();
+            Instantiate(projectile, shotPoint.position, transform.rotation);
         }
-       
+    }
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
     }
 }

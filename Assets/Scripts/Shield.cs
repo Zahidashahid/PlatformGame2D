@@ -15,24 +15,24 @@ public class Shield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.S))
+        /*if(Input.GetKey(KeyCode.S))
         {
             shieldGO.SetActive(true);
             activeShield = true; 
-            /*if (!activeShield)
+            *//*if (!activeShield)
             {
                 
             }
             else
             {
                 
-            }*/
+            }*//*
         }
         else
         {
             shieldGO.SetActive(false);
             activeShield = false;
-        }
+        }*/
     }
     public bool ActiveShield
     {

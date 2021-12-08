@@ -11,7 +11,7 @@ public class PauseGame : MonoBehaviour
     public GameObject QuitGameMenuUI;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+      /*  if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(!isGamePaused)
             {
@@ -24,7 +24,7 @@ public class PauseGame : MonoBehaviour
                 Resume();
                 Debug.Log("Resume called");
             }
-        }
+        }*/
     }
     public void Resume()
     {

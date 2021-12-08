@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
-
+    PlayerController controls;
     public HealthBar healthBar;
     public CharacterController2D controller;
     [SerializeField] private LayerMask m_WhatIsGround;
@@ -48,6 +49,13 @@ public class PlayerMovement : MonoBehaviour
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
         lifes = 3;
+        controls = new PlayerController();
+        controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
+        controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
+        controls.Gameplay.Jump.performed +=ctx   => JumpPlayer();
+        controls.Gameplay.MelleAttackGP.performed +=ctx   => MelleAttack();
+        
+        controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
         //bgSound.Play();
     }
     private void Start()
@@ -91,27 +99,33 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
         CheckGamePaused();
-        if ( Input.GetKey(KeyCode.LeftArrow))// && grounded
-        {
-            rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1);
-            animator.SetFloat("Speed", Mathf.Abs(40));
-            direction = 1; 
-        }
-        // Move Player Forward
-        else if ( Input.GetKey(KeyCode.RightArrow))//&& grounded
-        {
-            rb.velocity = new Vector2(runSpeed, rb.velocity.y);
-            transform.localScale = new Vector2(1, 1);
-            animator.SetFloat("Speed", Mathf.Abs(40));
-            direction = 2;
-        }
-        else
-        {
-            animator.SetFloat("Speed", Mathf.Abs(0));
-        }
-        // Jump Player if on ground ,  double jump
-        if ((jumpCount < 2 ||  IsGrounded()) && (Input.GetKeyDown(KeyCode.Space)))
+        // MovePlayer();
+        // MelleAttack();
+
+        //Debug.Log("player i moving in direction " + direction);
+    }
+    void FixedUpdate()
+    {
+        /* controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+         jump = false;*/
+    }
+   void MovePlayerRight()
+    {
+        rb.velocity = new Vector2(runSpeed, rb.velocity.y);
+        transform.localScale = new Vector2(1, 1);
+        animator.SetFloat("Speed", Mathf.Abs(40));
+        direction = 2;
+    }
+    void MoveplayerLeft()
+    {
+        rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
+        transform.localScale = new Vector2(-1, 1);
+        animator.SetFloat("Speed", Mathf.Abs(40));
+        direction = 1;
+    }
+    void JumpPlayer()
+    {
+        if (jumpCount < 2 || IsGrounded())
         {
             jumpCount++;
             grounded = false;
@@ -137,16 +151,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Space) )   //when  Space key is up. 
-            {
-                rb.velocity = new Vector2(rb.velocity.x, 0f);
-                animator.SetBool("IsJumping", false);
-                jump = true;
-                
-            }
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            animator.SetBool("IsJumping", false);
+            jump = true;
+
         }
-        // Dash move 
-        if (Input.GetKey(KeyCode.P) && grounded)
+    }
+    void DashMovePlayer()
+    {
+        if (grounded)
         {
             animator.SetFloat("Speed", Mathf.Abs(40));
             if (direction == 1)
@@ -158,27 +171,102 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(10, rb.velocity.y);
             }
         }
+    }
+    void MovePlayer()
+    {
+        
+        /*  if (Input.GetKey(KeyCode.LeftArrow))// && grounded
+          {
+              rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
+              transform.localScale = new Vector2(-1, 1);
+              animator.SetFloat("Speed", Mathf.Abs(40));
+              direction = 1;
+          }
+          // Move Player Forward
+          else if (Input.GetKey(KeyCode.RightArrow))//&& grounded
+          {
+              rb.velocity = new Vector2(runSpeed, rb.velocity.y);
+              transform.localScale = new Vector2(1, 1);
+              animator.SetFloat("Speed", Mathf.Abs(40));
+              direction = 2;
+          }
+          else
+          {
+              animator.SetFloat("Speed", Mathf.Abs(0));
+          }
+          // Jump Player if on ground ,  double jump
+          if ((jumpCount < 2 || IsGrounded()) && (Input.GetKeyDown(KeyCode.Space)))
+          {
+              jumpCount++;
+              grounded = false;
+              //rb.velocity = new Vector2(rb.velocity.x, 11f);
+              rb.velocity = new Vector2(rb.velocity.x, 10f);
+              animator.SetBool("IsJumping", true);
+              //Debug.Log(" jump count is " + jumpCount);
+              SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
+              animator.SetFloat("Speed", Mathf.Abs(40));
+              if (direction == 1)
+              {
+                  rb.velocity = new Vector2(-5, rb.velocity.y);
+              }
+              else if (direction == 2)
+              {
+                  rb.velocity = new Vector2(5, rb.velocity.y);
+              }
+              animator.SetFloat("Speed", Mathf.Abs(40));
+              if (jumpCount > 2)
+              {
+                  jumpCount = 0;
+              }
+          }
+          else
+          {
+              if (Input.GetKeyUp(KeyCode.Space))   //when  Space key is up. 
+              {
+                  rb.velocity = new Vector2(rb.velocity.x, 0f);
+                  animator.SetBool("IsJumping", false);
+                  jump = true;
+
+              }
+          }
+          // Dash move 
+          if (Input.GetKey(KeyCode.P) && grounded)
+          {
+              animator.SetFloat("Speed", Mathf.Abs(40));
+              if (direction == 1)
+              {
+                  rb.velocity = new Vector2(-10, rb.velocity.y);
+              }
+              else if (direction == 2)
+              {
+                  rb.velocity = new Vector2(10, rb.velocity.y);
+              }
+          }*/
+    }
+
+    void MelleAttack()
+    {
         if (Time.time >= nextAttackTime)
         {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                //Debug.Log("attack Called");
-                
-                //eagle_animator.SetTrigger("Death");
-                StartCoroutine(Attack());
-                //Attack();
-                nextAttackTime =  Time.time + 1f / attackRate;
 
-            }
+            StartCoroutine(Attack());
+            //Attack();
+            nextAttackTime = Time.time + 1f / attackRate;
+            /*
+              ----------Melle Attack throgh keyboard
+             */
+            /*  if (Input.GetKeyDown(KeyCode.K))
+              {
+                  //Debug.Log("attack Called");
+
+                  //eagle_animator.SetTrigger("Death");
+                  StartCoroutine(Attack());
+                  //Attack();
+                  nextAttackTime = Time.time + 1f / attackRate;
+
+              }*/
         }
-
-        //Debug.Log("player i moving in direction " + direction);
     }
-   /*  void FixedUpdate()
-    {
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
-    }*/
     public void OnLanding()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0f);
@@ -194,7 +282,7 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit2d.collider != null;
     }
     /* <summary>
-       Attack on skeleton enemy
+       ------------Attack on skeleton enemy--------------------------------------
     </summary> */
     IEnumerator Attack() //Melle Attack by player
     {
@@ -253,7 +341,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-    //Show Attack point oject in scene for better Visibility
+    /*-------------Show Attack point oject in scene for better Visibility--------------------*/
     void OnDrawGizmoSelected()
     {
         if(attackPoint == null)
@@ -312,13 +400,7 @@ public class PlayerMovement : MonoBehaviour
         shield.shieldGO.SetActive(true);
         numberOfDamgeTake = 0;
     }
-    /*IEnumerator SkeletonSheildtAnimation()
-    {
-        // play hurt animation
-        skeleton_animator.SetBool("Sheild", true);
-        yield return new WaitForSeconds(0.4f);
-        skeleton_animator.SetBool("Sheild", false);
-    }*/
+   
     public IEnumerator Die()
     {
         // Die Animation
@@ -374,5 +456,14 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("Lifes", 3);
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);
     }
-    
+
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
+    }
+
 }
