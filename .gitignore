@@ -97,3 +97,6 @@ Library/ArtifactDB
 *.asset
 Library/SourceAssetDB
 Library/ArtifactDB
+*.dwlt
+*.asset
+Library/SourceAssetDB
