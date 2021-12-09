@@ -54,7 +54,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
-        target = GameObject.Find("Player_Goblin").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         stopDistance = 5;
         retreatDistance = 3;
     }

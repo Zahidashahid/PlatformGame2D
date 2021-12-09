@@ -18,7 +18,7 @@ public class ProjectileShooting : MonoBehaviour
     Vector2 velocity;
     void Awake()
     {
-        playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
        // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
     }
     void Start()

@@ -9,7 +9,7 @@ public class TakeLoot : MonoBehaviour
     public HealthBar healthBar;
     private void Start()
     {
-        playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<HealthBar>();
         arrowStore = GameObject.FindGameObjectWithTag("ArrowStore").GetComponent<ArrowStore>();
     }

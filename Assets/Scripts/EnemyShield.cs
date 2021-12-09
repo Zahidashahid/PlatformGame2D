@@ -11,7 +11,7 @@ public class EnemyShield : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        player = GameObject.Find("Player_Goblin").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         activeShield = false;
         animator.SetBool("Sheild", false);
         distance = 7;

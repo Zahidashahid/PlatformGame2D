@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
+
+    PlayerController controls;
     public GameObject shieldGO;
     private  bool activeShield;
+    private void Awake()
+    {
+        controls = new PlayerController(); 
+        controls.Gameplay.Shield.performed += ctx => SetShield();
+    }
     void Start()
     {
         activeShield = false;
@@ -34,6 +41,21 @@ public class Shield : MonoBehaviour
             activeShield = false;
         }*/
     }
+    void SetShield()
+    {
+         
+        if (!activeShield)
+        {
+            shieldGO.SetActive(true);
+            activeShield = true;
+        }
+        else
+        {
+            shieldGO.SetActive(false);
+            activeShield = false;
+        }
+       
+    }
     public bool ActiveShield
     {
         get{
@@ -43,5 +65,14 @@ public class Shield : MonoBehaviour
         {
             activeShield = value;
         }
+    }
+
+    private void OnEnable()
+    {
+        controls.Gameplay.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Gameplay.Disable();
     }
 }

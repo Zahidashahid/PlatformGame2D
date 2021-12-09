@@ -45,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
     private Shield shield; //Player Shield
     private GameMaster gm;
     public TMP_Text lifesText;
+
+    
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.MelleAttackGP.performed +=ctx   => MelleAttack();
         
         controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
+        
         //bgSound.Play();
     }
     private void Start()
@@ -63,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
         numberOfDamgeTake = 0;
         shield = GetComponent<Shield>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
-        //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>;
+        //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>();
+        animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         currentHealth = maxHealth;
         lifes = PlayerPrefs.GetInt("Lifes");
         currentHealth = PlayerPrefs.GetInt("CurrentHealth");
@@ -362,6 +366,7 @@ public class PlayerMovement : MonoBehaviour
                 currentHealth -= damage;
                 PlayerPrefs.SetInt("CurrentHealth", currentHealth);
                 healthBar.SetHealth(currentHealth);
+                StartCoroutine(Hurt());
                 // play hurt animation
                 // StartCoroutine(HurtAnimation());
                 if (currentHealth <= 0)
@@ -400,6 +405,12 @@ public class PlayerMovement : MonoBehaviour
         shield.shieldGO.SetActive(true);
         numberOfDamgeTake = 0;
     }
+    IEnumerator Hurt()
+    {
+        animator.SetBool("IsHurt", true);
+        yield return new WaitForSeconds(0.3f);
+        animator.SetBool("IsHurt", false);
+    }
    
     public IEnumerator Die()
     {
@@ -423,11 +434,16 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Player died!");
        // PlayerPrefs.SetInt("ArrowPlayerHas", 10);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
+        Debug.Log("Sound played!");
         // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
+        Debug.Log("Wait End!");
         // Set the player on check point position
         animator.SetBool("IsDied", false);
+        Debug.Log("Player Reactive!");
         transform.position = gm.lastCheckPointPos;
+        Debug.Log("lastCheckPointPos pistion ! " + gm.lastCheckPointPos);
+        Debug.Log("Player pistion ! " + transform.position);
     }
     public int PlayerMovingDirection()
     {

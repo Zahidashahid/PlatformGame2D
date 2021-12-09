@@ -15,6 +15,8 @@ public class GameUIScript : MonoBehaviour
     public GameObject EnemyEagleSpwan;
     public GameObject RangeAttackSpwan;
     public GameObject RangeAttackPointSpwan;
+    public GameObject avatar1;
+    public GameObject avatar2;
     public AudioSource restartBtnSound;
     public AudioSource bgSound;
     MainMenu mainMenu;
@@ -36,6 +38,19 @@ public class GameUIScript : MonoBehaviour
         /*gameOverPanel.SetActive(false);
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+        avatar1 = GameObject.Find("Player_Goblin");
+        avatar2 = GameObject.Find("MushrromPlayer");
+        Debug.Log("Avatar " + PlayerPrefs.GetInt("AvatarSelected"));
+        if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
+        {
+            avatar2.SetActive(true);
+            avatar1.SetActive(false);
+        }
+        else
+        {
+            avatar1.SetActive(true);
+            avatar2.SetActive(false);
+        }
 
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -133,7 +148,7 @@ public class GameUIScript : MonoBehaviour
         bgSound.Play();
         Time.timeScale = 1f;
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+        gm.lastCheckPointPos = new Vector2(0, 0);
         string currentLevel = PlayerPrefs.GetString("CurrentLevel");
         SceneManager.LoadScene(currentLevel);
     }

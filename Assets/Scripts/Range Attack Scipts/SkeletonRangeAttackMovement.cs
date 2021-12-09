@@ -40,7 +40,7 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         numberOfDamgeTake = 0;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        playerObject = GameObject.Find("Player_Goblin");
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         target = playerObject.transform;
         animator = GetComponent<Animator>();
         lootSystem = GetComponent<LootSystem>();

@@ -89,6 +89,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": "" Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""0681b884-a49f-4429-8d07-af4484170a7f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -278,6 +286,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2f0329c-4c6e-4780-b429-925f7cbfd8c4"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": "" Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""adcf3a7b-8821-47ae-b37f-d41fb5dd7253"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": "" Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -295,6 +325,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_DashMove = m_Gameplay.FindAction("DashMove", throwIfNotFound: true);
         m_Gameplay_ArowHit = m_Gameplay.FindAction("ArowHit", throwIfNotFound: true);
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
+        m_Gameplay_Shield = m_Gameplay.FindAction(" Shield", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -353,6 +384,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_DashMove;
     private readonly InputAction m_Gameplay_ArowHit;
     private readonly InputAction m_Gameplay_PauseGame;
+    private readonly InputAction m_Gameplay_Shield;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -366,6 +398,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @DashMove => m_Wrapper.m_Gameplay_DashMove;
         public InputAction @ArowHit => m_Wrapper.m_Gameplay_ArowHit;
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
+        public InputAction @Shield => m_Wrapper.m_Gameplay_Shield;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -402,6 +435,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @PauseGame.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
                 @PauseGame.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
                 @PauseGame.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPauseGame;
+                @Shield.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
+                @Shield.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
+                @Shield.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -433,6 +469,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @PauseGame.started += instance.OnPauseGame;
                 @PauseGame.performed += instance.OnPauseGame;
                 @PauseGame.canceled += instance.OnPauseGame;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
             }
         }
     }
@@ -448,5 +487,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnDashMove(InputAction.CallbackContext context);
         void OnArowHit(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
+        void OnShield(InputAction.CallbackContext context);
     }
 }

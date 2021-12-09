@@ -24,8 +24,8 @@ public class SkeletonProjectile : MonoBehaviour
     public float offset;
     void Awake()
     {
-        playerMovement = GameObject.Find("Player_Goblin").GetComponent<PlayerMovement>();
-        playerObject = GameObject.Find("Player_Goblin");
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         //skeletonObject = GameObject.FindGameObjectWithTag("RangedAttackSkeleton");
        // velocity = new Vector3(speed * Time.deltaTime, 0, 0);
 
