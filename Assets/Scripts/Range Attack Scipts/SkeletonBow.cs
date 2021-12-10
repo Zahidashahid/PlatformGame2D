@@ -29,8 +29,15 @@ public class SkeletonBow : MonoBehaviour
     #endregion
     private void Start()
     {
-        nextAttackTime = -1; 
-        playerObject = GameObject.FindGameObjectWithTag("Player");
+        nextAttackTime = -1;
+        if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
+        {
+            playerObject = GameObject.Find("MushrromPlayer");
+        }
+        else if ((PlayerPrefs.GetInt("AvatarSelected") == 1))
+        {
+            playerObject = GameObject.Find("Player_Goblin");
+        }
         playerPosition = playerObject.transform.position;
         BowPosition = bowObj.transform.position;
        

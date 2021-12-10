@@ -54,7 +54,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         stopDistance = 5;
         retreatDistance = 3;
     }

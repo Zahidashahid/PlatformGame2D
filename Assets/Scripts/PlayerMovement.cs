@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerController controls;
+    Vector2 move;
     public HealthBar healthBar;
     public CharacterController2D controller;
     [SerializeField] private LayerMask m_WhatIsGround;
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider2d;
    
     public Animator animator;
+    public Transform transformObj;
     //public Animator eagle_animator;
     //public Animator skeleton_animator;
     /*public AudioSource jumpSound;
@@ -45,16 +47,19 @@ public class PlayerMovement : MonoBehaviour
     private Shield shield; //Player Shield
     private GameMaster gm;
     public TMP_Text lifesText;
-
+    GameUIScript gameUIScript;
     
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
         lifes = 3;
         controls = new PlayerController();
-        controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
+        controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
+
+    /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
         controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
-        controls.Gameplay.Jump.performed +=ctx   => JumpPlayer();
+        controls.Gameplay.Jump.performed +=ctx   => JumpPlayer();*/
         controls.Gameplay.MelleAttackGP.performed +=ctx   => MelleAttack();
         
         controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
@@ -64,10 +69,16 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         numberOfDamgeTake = 0;
+        CheckForAwatarSelected();
         shield = GetComponent<Shield>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>();
-        animator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+        animator = GetComponent<Animator>(); ;
+
+        
+
+
+        Debug.Log("Animator is assign " + animator.name);
         currentHealth = maxHealth;
         lifes = PlayerPrefs.GetInt("Lifes");
         currentHealth = PlayerPrefs.GetInt("CurrentHealth");
@@ -80,12 +91,12 @@ public class PlayerMovement : MonoBehaviour
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
-        if(MainMenu.isNewGamae)
+        if(MainMenu.isNewGame || GameUIScript.isNewGame)
         {
             Debug.Log("New Game Started");
-            gm.lastCheckPointPos = transform.position; // Set last check point zero when game restarted
-            PlayerPrefs.SetFloat("LastcheckPointX", transform.position.x);
-            PlayerPrefs.SetFloat("LastcheckPointy", transform.position.y);
+            gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
+            PlayerPrefs.SetFloat("LastcheckPointX", transformObj.position.x);
+            PlayerPrefs.SetFloat("LastcheckPointy", transformObj.position.y);
 
         }
         else
@@ -94,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
             float x = PlayerPrefs.GetFloat("LastcheckPointX");
             float y = PlayerPrefs.GetFloat("LastcheckPointy");
             gm.lastCheckPointPos = new Vector2( x, y);
-            transform.position = gm.lastCheckPointPos;
+            transformObj.position = gm.lastCheckPointPos;
         }
             
     }
@@ -103,6 +114,9 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
         CheckGamePaused();
+        Vector2 m = new Vector2(runSpeed, move.y) * Time.deltaTime;
+        animator.SetFloat("Speed", Mathf.Abs(40));
+        transformObj.Translate(m, Space.World);
         // MovePlayer();
         // MelleAttack();
 
@@ -114,16 +128,16 @@ public class PlayerMovement : MonoBehaviour
          jump = false;*/
     }
    void MovePlayerRight()
-    {
+   {
         rb.velocity = new Vector2(runSpeed, rb.velocity.y);
-        transform.localScale = new Vector2(1, 1);
+        transformObj.localScale = new Vector2(1, 1);
         animator.SetFloat("Speed", Mathf.Abs(40));
         direction = 2;
-    }
+   }
     void MoveplayerLeft()
     {
         rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
-        transform.localScale = new Vector2(-1, 1);
+        transformObj.localScale = new Vector2(-1, 1);
         animator.SetFloat("Speed", Mathf.Abs(40));
         direction = 1;
     }
@@ -374,7 +388,7 @@ public class PlayerMovement : MonoBehaviour
                     PlayerPrefs.SetInt("CurrentHealth", 100);
                     lifes -= 1;
                     lifesText.text = "X " + lifes;
-                    PlayerPrefs.SetInt("Lifes", lifes);
+                    PlayerPrefs.SetInt("Lifes", lifes);     
                 }
                 if (currentHealth <= 0 && lifes <= 0)
                 {
@@ -429,9 +443,13 @@ public class PlayerMovement : MonoBehaviour
     {
         currentHealth = 100;
         healthBar.SetHealth(currentHealth);
+        animator = GetComponent<Animator>(); ;
         // Die Animation
+
+        CheckForAwatarSelected();
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
+        Debug.Log(" died!" + animator.GetBool("IsDied"));
        // PlayerPrefs.SetInt("ArrowPlayerHas", 10);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         Debug.Log("Sound played!");
@@ -441,9 +459,10 @@ public class PlayerMovement : MonoBehaviour
         // Set the player on check point position
         animator.SetBool("IsDied", false);
         Debug.Log("Player Reactive!");
-        transform.position = gm.lastCheckPointPos;
+        transformObj.position = gm.lastCheckPointPos;
+
         Debug.Log("lastCheckPointPos pistion ! " + gm.lastCheckPointPos);
-        Debug.Log("Player pistion ! " + transform.position);
+        Debug.Log("Player pistion transformObj ! " + transformObj.name);
     }
     public int PlayerMovingDirection()
     {
@@ -465,6 +484,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Reset()
     {
+        CheckForAwatarSelected();
         lifes = 0;
         currentHealth = 100;
         Time.timeScale = 1f;
@@ -473,6 +493,21 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);
     }
 
+    void CheckForAwatarSelected()
+    {
+        if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
+        {
+            animator = GameObject.Find("MushrromPlayer").GetComponent<Animator>();
+            transformObj = GameObject.Find("MushrromPlayer").GetComponent<Transform>();
+            Debug.Log("Avatar selected" + (PlayerPrefs.GetInt("AvatarSelected")));
+        }
+        else if ((PlayerPrefs.GetInt("AvatarSelected") == 1))
+        {
+            animator = GameObject.Find("Player_Goblin").GetComponent<Animator>();
+            transformObj = GameObject.Find("Player_Goblin").GetComponent<Transform>();
+            Debug.Log("Avatar selected" + (PlayerPrefs.GetInt("AvatarSelected")));
+        }
+    }
     private void OnEnable()
     {
         controls.Gameplay.Enable();

@@ -24,12 +24,15 @@ public class GameUIScript : MonoBehaviour
     PlayerMovement playerMovement;
     public ScoreManager scoreManager;
     string difficultyLevel;
-    
+
+    public static bool isNewGame;
+
     void Awake()
     {
         /* gameOverPanel.SetActive(false);
          restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+        
         
     }
 
@@ -38,6 +41,7 @@ public class GameUIScript : MonoBehaviour
         /*gameOverPanel.SetActive(false);
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+        isNewGame = false;
         avatar1 = GameObject.Find("Player_Goblin");
         avatar2 = GameObject.Find("MushrromPlayer");
         Debug.Log("Avatar " + PlayerPrefs.GetInt("AvatarSelected"));
@@ -90,6 +94,7 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         restartBtnSound.Play();
+        isNewGame = false;
         PauseGame.isGamePaused = false;
         /*
         PlayerPrefs.SetInt("RecentGemCollected", 0);
@@ -138,6 +143,7 @@ public class GameUIScript : MonoBehaviour
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
         restartBtnSound.Play();
+        isNewGame = true;
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);
 
         PlayerPrefs.SetInt("RecentGemCollected", 0);
@@ -156,7 +162,8 @@ public class GameUIScript : MonoBehaviour
     public void RestartLevel()
     {
         playerMovement.Reset();
-        MainMenu.isNewGamae = true;
+        isNewGame = true;
+
         //Reset Gift collected
         PlayerPrefs.SetInt("RecentGemCollected", 0);
         PlayerPrefs.SetInt("RecentCherryCollected", 0);
@@ -178,6 +185,7 @@ public class GameUIScript : MonoBehaviour
         //Wait for 1 seconds
         yield return new WaitForSeconds(0.2f);
         Debug.Log("Game is Over.");
+
         gameOverCanvas.SetActive(true);
         gameOverPanel.SetActive(true);
         restartButton.SetActive(true);
