@@ -8,10 +8,11 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerController controls;
-    Vector2 move;
+    Vector3 move;
+    Vector3 m;
     public HealthBar healthBar;
     public CharacterController2D controller;
-    [SerializeField] private LayerMask m_WhatIsGround;
+    [SerializeField] public LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
     private BoxCollider2D boxCollider2d;
    
@@ -56,10 +57,10 @@ public class PlayerMovement : MonoBehaviour
         controls = new PlayerController();
         controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
-
-    /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
-        controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
-        controls.Gameplay.Jump.performed +=ctx   => JumpPlayer();*/
+        controls.Gameplay.Jump.performed += ctx => JumpPlayer();
+        /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
+            controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
+           */
         controls.Gameplay.MelleAttackGP.performed +=ctx   => MelleAttack();
         
         controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
@@ -114,13 +115,33 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
         CheckGamePaused();
-        Vector2 m = new Vector2(runSpeed, move.y) * Time.deltaTime;
-        animator.SetFloat("Speed", Mathf.Abs(40));
-        transformObj.Translate(m, Space.World);
+         m = new Vector3(move.x, move.y)  * 10f *  Time.deltaTime;
+     /*   Debug.Log(" move.x " + move.x);
+        Debug.Log(" move.y " + move.y);
+        Debug.Log(" move.z " + move.z);*/
+
+        if (move.x == 0 && move.y == 0)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(0));
+        }
+
+        else if (move.x > 0)
+        {
+            MovePlayerRight();
+        }
+        else if (move.x < 0)
+        {
+            MoveplayerLeft();
+        } 
+        /* if ( (move.y > 0 && move.x < 0 ) || (move.y > 0 && move.x > 0))
+        {
+            JumpPlayer();
+        }*/
+        /*animator.SetFloat("Speed", Mathf.Abs(40));
+        transformObj.Translate(m, Space.World);*/
         // MovePlayer();
         // MelleAttack();
 
-        //Debug.Log("player i moving in direction " + direction);
     }
     void FixedUpdate()
     {
@@ -129,6 +150,9 @@ public class PlayerMovement : MonoBehaviour
     }
    void MovePlayerRight()
    {
+        /*animator.SetFloat("Speed", Mathf.Abs(40));
+        transformObj.Translate(m, Space.World);
+        transformObj.localScale = new Vector2(1, 1);*/
         rb.velocity = new Vector2(runSpeed, rb.velocity.y);
         transformObj.localScale = new Vector2(1, 1);
         animator.SetFloat("Speed", Mathf.Abs(40));
@@ -145,23 +169,25 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpCount < 2 || IsGrounded())
         {
+
             jumpCount++;
             grounded = false;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
             Debug.Log(" jump count is " + jumpCount);
+            Debug.Log(" IsGrounded() is " + IsGrounded());
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
-            animator.SetFloat("Speed", Mathf.Abs(40));
+            // animator.SetFloat("Speed", Mathf.Abs(40));
+            grounded = false;
             if (direction == 1)
             {
-                rb.velocity = new Vector2(-5, rb.velocity.y);
+                rb.velocity = new Vector2(-10, rb.velocity.y);
             }
             else if (direction == 2)
             {
-                rb.velocity = new Vector2(5, rb.velocity.y);
+                rb.velocity = new Vector2(10, rb.velocity.y);
             }
-            animator.SetFloat("Speed", Mathf.Abs(40));
             if (jumpCount > 2)
             {
                 jumpCount = 0;
@@ -169,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            grounded = true;
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
            // jump = true;
@@ -179,14 +206,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (grounded)
         {
+            Debug.Log("DashMovePlayer() Grounded " + grounded);
             animator.SetFloat("Speed", Mathf.Abs(40));
+            //animator.SetBool("IsJumping", true);
             if (direction == 1)
             {
                 rb.velocity = new Vector2(-10, rb.velocity.y);
+                transformObj.localScale = new Vector2(-1, 1);
+                animator.SetFloat("Speed", Mathf.Abs(40));
             }
             else if (direction == 2)
             {
                 rb.velocity = new Vector2(10, rb.velocity.y);
+                transformObj.localScale = new Vector2(1, 1);
+                animator.SetFloat("Speed", Mathf.Abs(40));
             }
         }
     }
