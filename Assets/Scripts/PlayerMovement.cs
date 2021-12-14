@@ -182,11 +182,11 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
             if (direction == 1)
             {
-                rb.velocity = new Vector2(-10, rb.velocity.y);
+                rb.velocity = new Vector2(-5, rb.velocity.y);
             }
             else if (direction == 2)
             {
-                rb.velocity = new Vector2(10, rb.velocity.y);
+                rb.velocity = new Vector2(5, rb.velocity.y);
             }
             if (jumpCount > 2)
             {
