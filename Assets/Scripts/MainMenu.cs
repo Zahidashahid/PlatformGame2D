@@ -127,6 +127,12 @@ public class MainMenu : MonoBehaviour
     {
         onClickBtnSound.Play();
     }
+    public void MultiplayerGame()
+    {
+        bgSound.clip = level2Music.clip;
+        bgSound.Play();
+        SceneManager.LoadScene("Multiplayer");
+    }
     public void CheckLevel()
     {
         isNewGame = true;

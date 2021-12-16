@@ -84,6 +84,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Multiplayer1Movement",
+                    "type": "Value",
+                    "id": "51c5a356-112d-42b9-b736-dc13b1106f31",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -348,6 +356,17 @@
                     "processors": "",
                     "groups": "",
                     "action": " Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a06a470-f0c6-4ac8-bf9b-e57fab319c5c",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Multiplayer1Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

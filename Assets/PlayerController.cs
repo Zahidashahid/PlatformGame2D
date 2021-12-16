@@ -97,6 +97,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Multiplayer1Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""51c5a356-112d-42b9-b736-dc13b1106f31"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -363,6 +371,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": "" Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a06a470-f0c6-4ac8-bf9b-e57fab319c5c"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer1Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -381,6 +400,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_ArowHit = m_Gameplay.FindAction("ArowHit", throwIfNotFound: true);
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
         m_Gameplay_Shield = m_Gameplay.FindAction(" Shield", throwIfNotFound: true);
+        m_Gameplay_Multiplayer1Movement = m_Gameplay.FindAction("Multiplayer1Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -440,6 +460,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_ArowHit;
     private readonly InputAction m_Gameplay_PauseGame;
     private readonly InputAction m_Gameplay_Shield;
+    private readonly InputAction m_Gameplay_Multiplayer1Movement;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -454,6 +475,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @ArowHit => m_Wrapper.m_Gameplay_ArowHit;
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputAction @Shield => m_Wrapper.m_Gameplay_Shield;
+        public InputAction @Multiplayer1Movement => m_Wrapper.m_Gameplay_Multiplayer1Movement;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -493,6 +515,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Shield.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
                 @Shield.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
                 @Shield.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShield;
+                @Multiplayer1Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
+                @Multiplayer1Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
+                @Multiplayer1Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -527,6 +552,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Shield.started += instance.OnShield;
                 @Shield.performed += instance.OnShield;
                 @Shield.canceled += instance.OnShield;
+                @Multiplayer1Movement.started += instance.OnMultiplayer1Movement;
+                @Multiplayer1Movement.performed += instance.OnMultiplayer1Movement;
+                @Multiplayer1Movement.canceled += instance.OnMultiplayer1Movement;
             }
         }
     }
@@ -543,5 +571,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnArowHit(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
+        void OnMultiplayer1Movement(InputAction.CallbackContext context);
     }
 }

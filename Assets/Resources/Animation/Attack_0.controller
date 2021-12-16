@@ -443,10 +443,10 @@ AnimatorStateMachine:
     m_Position: {x: -10, y: -50, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5999826557396226291}
-    m_Position: {x: 850, y: 220, z: 0}
+    m_Position: {x: 980, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6008311873722275581}
-    m_Position: {x: 500, y: 240, z: 0}
+    m_Position: {x: 470, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 266477913147258355}
     m_Position: {x: -320, y: 140, z: 0}
@@ -455,7 +455,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -154430701221550657}
-    m_Position: {x: 300, y: 20, z: 0}
+    m_Position: {x: 380, y: 100, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -8634830700783748207}
