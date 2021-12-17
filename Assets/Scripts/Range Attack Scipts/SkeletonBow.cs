@@ -30,6 +30,7 @@ public class SkeletonBow : MonoBehaviour
     private void Start()
     {
         nextAttackTime = -1;
+
         if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
         {
             playerObject = GameObject.Find("MushrromPlayer");

@@ -90,18 +90,21 @@ public class MainMenu : MonoBehaviour
 
     public void Level1()
     {
+        PlayerPrefs.SetString("MultiplayerGame", "False");
         OnBtnClickSound();
         PlayerPrefs.SetString("CurrentLevel", "Level 1");
        // SceneManager.LoadScene("Level 1");
     }
     public void Level2()
     {
+        PlayerPrefs.SetString("MultiplayerGame", "False");
         OnBtnClickSound(); 
         PlayerPrefs.SetString("CurrentLevel", "Level 2");
        // SceneManager.LoadScene("Level 2");
     }
     public void Level3()
     {
+        PlayerPrefs.SetString("MultiplayerGame", "False");
         OnBtnClickSound();
         PlayerPrefs.SetString("CurrentLevel", "Level 3");
        // SceneManager.LoadScene("Level 3");
@@ -129,6 +132,7 @@ public class MainMenu : MonoBehaviour
     }
     public void MultiplayerGame()
     {
+        PlayerPrefs.SetString("MultiplayerGame", "True");
         bgSound.clip = level2Music.clip;
         bgSound.Play();
         SceneManager.LoadScene("Multiplayer");

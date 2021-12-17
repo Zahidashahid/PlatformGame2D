@@ -55,8 +55,8 @@ public class PlayerMovement : MonoBehaviour
         boxCollider2d = GetComponent<BoxCollider2D>();
         lifes = 3;
         controls = new PlayerController();
-        controls.Gameplay.Multiplayer1Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
-        controls.Gameplay.Multiplayer1Movement.canceled += ctx => move = Vector2.zero;
+        controls.Gameplay.Move.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Gameplay.Move.canceled += ctx => move = Vector2.zero;
         controls.Gameplay.Jump.performed += ctx => JumpPlayer();
         /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();

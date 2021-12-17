@@ -105,6 +105,30 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Multiplayer2Movement"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e862d4e-7c4a-48e8-ba36-0467a60e3547"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Multiplayer2Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""ecf9adca-81e2-4c3e-93ca-97feb432831f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MelleAttackByKeyboard"",
+                    ""type"": ""Button"",
+                    ""id"": ""bcb0eebc-b2bf-43b6-98eb-dc11bd5a483f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -187,30 +211,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e3e38b09-865b-496e-8883-2e8f57260d15"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""89475d0a-7a81-4060-8a92-72c1add8dbf5"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MelleAttackGP"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8e4bac4c-be63-4bf5-b6bb-93794a66ee70"",
-                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -382,6 +384,83 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Multiplayer1Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""e74776ad-f0d1-43a8-a363-554826d62673"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""9d1dc019-90f6-477c-a12b-633590b0c5ac"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""898a0b9b-ceb2-4556-b85e-879e8cd297ff"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d872d0ad-19d6-4d1f-8d86-628078c9c4a9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6e2b172c-5f5b-4769-9599-d767929a8e85"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37084a1b-01eb-4d26-ba21-f5a1487afa1a"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer2Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""087f3248-0879-4b94-960f-c7faba72a692"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MelleAttackByKeyboard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -401,6 +480,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
         m_Gameplay_Shield = m_Gameplay.FindAction(" Shield", throwIfNotFound: true);
         m_Gameplay_Multiplayer1Movement = m_Gameplay.FindAction("Multiplayer1Movement", throwIfNotFound: true);
+        m_Gameplay_Multiplayer2Movement = m_Gameplay.FindAction("Multiplayer2Movement", throwIfNotFound: true);
+        m_Gameplay_Multiplayer2Jump = m_Gameplay.FindAction("Multiplayer2Jump", throwIfNotFound: true);
+        m_Gameplay_MelleAttackByKeyboard = m_Gameplay.FindAction("MelleAttackByKeyboard", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -461,6 +543,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_PauseGame;
     private readonly InputAction m_Gameplay_Shield;
     private readonly InputAction m_Gameplay_Multiplayer1Movement;
+    private readonly InputAction m_Gameplay_Multiplayer2Movement;
+    private readonly InputAction m_Gameplay_Multiplayer2Jump;
+    private readonly InputAction m_Gameplay_MelleAttackByKeyboard;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -476,6 +561,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputAction @Shield => m_Wrapper.m_Gameplay_Shield;
         public InputAction @Multiplayer1Movement => m_Wrapper.m_Gameplay_Multiplayer1Movement;
+        public InputAction @Multiplayer2Movement => m_Wrapper.m_Gameplay_Multiplayer2Movement;
+        public InputAction @Multiplayer2Jump => m_Wrapper.m_Gameplay_Multiplayer2Jump;
+        public InputAction @MelleAttackByKeyboard => m_Wrapper.m_Gameplay_MelleAttackByKeyboard;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -518,6 +606,15 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Multiplayer1Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
                 @Multiplayer1Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
                 @Multiplayer1Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Movement;
+                @Multiplayer2Movement.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Movement;
+                @Multiplayer2Movement.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Movement;
+                @Multiplayer2Movement.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Movement;
+                @Multiplayer2Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Jump;
+                @Multiplayer2Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Jump;
+                @Multiplayer2Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer2Jump;
+                @MelleAttackByKeyboard.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
+                @MelleAttackByKeyboard.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
+                @MelleAttackByKeyboard.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -555,6 +652,15 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Multiplayer1Movement.started += instance.OnMultiplayer1Movement;
                 @Multiplayer1Movement.performed += instance.OnMultiplayer1Movement;
                 @Multiplayer1Movement.canceled += instance.OnMultiplayer1Movement;
+                @Multiplayer2Movement.started += instance.OnMultiplayer2Movement;
+                @Multiplayer2Movement.performed += instance.OnMultiplayer2Movement;
+                @Multiplayer2Movement.canceled += instance.OnMultiplayer2Movement;
+                @Multiplayer2Jump.started += instance.OnMultiplayer2Jump;
+                @Multiplayer2Jump.performed += instance.OnMultiplayer2Jump;
+                @Multiplayer2Jump.canceled += instance.OnMultiplayer2Jump;
+                @MelleAttackByKeyboard.started += instance.OnMelleAttackByKeyboard;
+                @MelleAttackByKeyboard.performed += instance.OnMelleAttackByKeyboard;
+                @MelleAttackByKeyboard.canceled += instance.OnMelleAttackByKeyboard;
             }
         }
     }
@@ -572,5 +678,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnPauseGame(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
         void OnMultiplayer1Movement(InputAction.CallbackContext context);
+        void OnMultiplayer2Movement(InputAction.CallbackContext context);
+        void OnMultiplayer2Jump(InputAction.CallbackContext context);
+        void OnMelleAttackByKeyboard(InputAction.CallbackContext context);
     }
 }

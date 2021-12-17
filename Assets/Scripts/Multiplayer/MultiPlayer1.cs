@@ -109,9 +109,9 @@ public class MultiPlayer1 : MonoBehaviour
         // Move Player back
         CheckGamePaused();
         m = new Vector3(move.x, move.y) * 10f * Time.deltaTime;
-           Debug.Log(" move.x " + move.x);
+          /* Debug.Log(" move.x " + move.x);
            Debug.Log(" move.y " + move.y);
-           Debug.Log(" move.z " + move.z);
+           Debug.Log(" move.z " + move.z);*/
 
         if (move.x == 0 && move.y == 0)
         {
@@ -239,7 +239,7 @@ public class MultiPlayer1 : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 0.1f, m_WhatIsGround);
-        // Debug.Log(raycastHit2d.collider);
+         Debug.Log("IsGrounded " + raycastHit2d.collider);
         return raycastHit2d.collider != null;
     }
     /* <summary>
@@ -258,7 +258,7 @@ public class MultiPlayer1 : MonoBehaviour
         //damage Them
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Debug.Log("We hit " + enemy.name);
+             Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
 
@@ -274,7 +274,7 @@ public class MultiPlayer1 : MonoBehaviour
             }
             else if (enemy.name == "Player2")
             {
-                //enemy.GetComponent<Multiplayer2>().TakeDamage(30);
+                enemy.GetComponent<MultiPlayer2>().TakeDamage(30);
             }
             else
                 break;
