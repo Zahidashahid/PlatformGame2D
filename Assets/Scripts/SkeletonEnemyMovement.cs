@@ -257,19 +257,20 @@ public class SkeletonEnemyMovement : MonoBehaviour
         Debug.Log("inRange for Flip " + inRange);
         Debug.Log("direction " + direction);
         Debug.Log("transform.position.x " + transform.position.x);
-        Debug.Log("target.position.x " + target.position.x);*/
+        Debug.Log("target.position.x " + target.position.x);
+        Debug.Log("target is " + target.name);*/
         if (inRange && transform.position.x > target.position.x && direction == 1) 
         {
             rotation.y = 180f;
             direction = 2;
-            //Debug.Log("Skeleton Flip " );
+            Debug.Log("Skeleton Flip to left" );
 
         }
         else if (inRange &&  transform.position.x < target.position.x && direction == 2)
         {
             rotation.y = 180f;
             direction = 1;
-            //Debug.Log("Skeleton Flip ");
+            Debug.Log("Skeleton Flip to right");
         }
         else
         {
