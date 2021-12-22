@@ -27,8 +27,9 @@ public class Bow : MonoBehaviour
     }
     void Update()
     {
-        Vector2 r = new Vector3(-rotateBow.x, -rotateBow.y) * 100f * Time.deltaTime;
-         transform.Rotate(r, Space.World);
+        Vector3 r = new Vector3(rotateBow.x, rotateBow.y) * 100f * Time.deltaTime;
+        transform.Rotate(0f,0f,r.z, Space.World);
+        //transform.rotation = Quaternion.Euler(0f, 0f, r.z );
         /*Vector2 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
         float rotZ = Mathf.Atan2(m.y, m.x) * Mathf.Rad2Deg;
         *//*

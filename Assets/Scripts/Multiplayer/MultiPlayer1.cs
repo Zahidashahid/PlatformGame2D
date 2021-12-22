@@ -262,7 +262,7 @@ public class MultiPlayer1 : MonoBehaviour
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
 
-                enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
+                enemy.GetComponent<MPMelleSkeletonMovement>().TakeDamage(30);
                
                 /*  enemy.GetComponent<SkeletonEnemyMovement>().StartCoroutine(SkeletonHurtAnimation());*/
 
@@ -323,7 +323,7 @@ public class MultiPlayer1 : MonoBehaviour
                 }
                 else if (currentHealth <= 0)
                 {
-                    StartCoroutine(OnOneDeath());
+                    StartCoroutine(Die());
                 }
             }
             else

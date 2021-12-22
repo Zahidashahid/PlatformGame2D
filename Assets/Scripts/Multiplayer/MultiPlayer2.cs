@@ -290,7 +290,8 @@ public class MultiPlayer2 : MonoBehaviour
                 }
                 else if (currentHealth <= 0)
                 {
-                    StartCoroutine(OnOneDeath());
+                    StartCoroutine(Die());
+                    //StartCoroutine(OnOneDeath());
                 }
             }
             else

@@ -52,9 +52,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""RangeAttackGP"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""84a06783-dec8-4073-b3c3-5d9be024446c"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -223,7 +223,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a9fda6ec-50f4-44ab-8c64-35605874c633"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
