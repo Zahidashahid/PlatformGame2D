@@ -9,7 +9,7 @@ public class MPCameraController : MonoBehaviour
     float smoothTime = .5f;
     Vector3 velocity;
       
-    float minZoom = 110f;
+    float minZoom = 150f;
     float maxZoom = 90f;
     float ZoomLimiter = 50f;
     Camera cam;
