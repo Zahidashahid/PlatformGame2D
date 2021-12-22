@@ -33,9 +33,9 @@ public class SkeletonEnemyMovement : MonoBehaviour
     #region Private Variables
     private EnemyShield shield;
     private int maxHealth = 100;
-    private RaycastHit2D hit;
+
     private Transform target;
-    private Animator anim;
+
     
     private float distance; // stores distance btw player and enemy
     private bool inRange; // check player in range
@@ -43,7 +43,6 @@ public class SkeletonEnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
         SelectTarget();
     }
     private void Start()
@@ -108,6 +107,22 @@ public class SkeletonEnemyMovement : MonoBehaviour
             }
             Flip();
             //transform.localScale = new Vector2(5, 5);
+        }
+
+        else
+        {
+            if (direction == 1)
+            {
+                rb.velocity = new Vector2(3, rb.velocity.y);
+                transform.localScale = new Vector2(5, 5);
+            }
+            else
+            {
+                rb.velocity = new Vector2(-3, rb.velocity.y);
+                transform.localScale = new Vector2(-5, 5);
+            }
+            //Debug.Log("transform pos" + transform.position);
+            Flip();
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -192,14 +207,14 @@ public class SkeletonEnemyMovement : MonoBehaviour
         //playerAnimator.SetBool("Ishurt", false);
 
     }
-    IEnumerator SeletonAttackAnimation()
+  /*  IEnumerator SeletonAttackAnimation()
     {
         Debug.Log("In IEnumerator SeletonAttackAnimation()");
-        anim.SetBool("Attack", true);
+        animator.SetBool("Attack", true);
         yield return new WaitForSeconds(0.2f);
-        anim.SetBool("Attack", false);
+        animator.SetBool("Attack", false);
 
-    }
+    }*/
     IEnumerator Die()
     {
         animator.SetBool("Hurt", false);
@@ -232,10 +247,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
         }
     }
 
-    private void Move()
-    {
-        anim.SetBool("CanWalk", true);
-    }
+ 
     public void Flip()
     {
         

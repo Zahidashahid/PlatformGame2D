@@ -20,8 +20,10 @@ public class EnemyShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player.position = player.transform.position;
         if (Vector2.Distance(transform.position, player.position) < distance && animator.GetBool("Attack") == false) 
         {
+            Debug.Log("sheild Active !! "  );
             animator.SetBool("Sheild", true);
             activeShield = true;
          
@@ -36,7 +38,7 @@ public class EnemyShield : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            //Debug.Log("Collision "+collision);
+            Debug.Log("Collision "+collision);
             if (!activeShield)
             {
                 animator.SetBool("Sheild", true);

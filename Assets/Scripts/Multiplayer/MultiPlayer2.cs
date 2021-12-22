@@ -28,7 +28,7 @@ public class MultiPlayer2 : MonoBehaviour
     public int lifes;
     public int numberOfDamgeTake;
 
-    public float attackRange = 0.5f;
+    public float attackRange =3f;
     public float attackRate = 1f; //one attack per second
     public float nextAttackTime = 0f;
     float runSpeed = 5f;
@@ -191,19 +191,7 @@ public class MultiPlayer2 : MonoBehaviour
             StartCoroutine(Attack());
             //Attack();
             nextAttackTime = Time.time + 1f / attackRate;
-            /*
-              ----------Melle Attack throgh keyboard
-             */
-            /*  if (Input.GetKeyDown(KeyCode.K))
-              {
-                  //Debug.Log("attack Called");
-
-                  //eagle_animator.SetTrigger("Death");
-                  StartCoroutine(Attack());
-                  //Attack();
-                  nextAttackTime = Time.time + 1f / attackRate;
-
-              }*/
+         
         }
     }
     public void OnLanding()
@@ -226,9 +214,9 @@ public class MultiPlayer2 : MonoBehaviour
     IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
-
+        Debug.Log("Attack " );
         yield return new WaitForSeconds(0.5f);
-        SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
+       // SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
         //string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         //Deteck enemies in range
@@ -241,7 +229,7 @@ public class MultiPlayer2 : MonoBehaviour
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
 
-                enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
+                enemy.GetComponent<MPMelleSkeletonMovement>().TakeDamage(30);
                
                 /*  enemy.GetComponent<SkeletonEnemyMovement>().StartCoroutine(SkeletonHurtAnimation());*/
 

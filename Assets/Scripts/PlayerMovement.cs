@@ -338,8 +338,9 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
-        
+        Debug.Log("Attacking ");
         yield return new WaitForSeconds(0.5f);
+       
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
         string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
@@ -348,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
         //damage Them
         foreach (Collider2D enemy in hitEnemies)
         {
-           // Debug.Log("We hit " + enemy.name);
+            Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
                 

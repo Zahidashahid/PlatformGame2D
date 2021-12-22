@@ -32,7 +32,7 @@ public class MPCameraController : MonoBehaviour
     }
     void Zoom()
     {
-        Debug.Log(GetGreatestDistance());
+        //Debug.Log(GetGreatestDistance());
         float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / ZoomLimiter);
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
     }
