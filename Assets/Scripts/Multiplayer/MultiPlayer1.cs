@@ -63,7 +63,7 @@ public class MultiPlayer1 : MonoBehaviour
            */
         controls.Gameplay.MelleAttackGP.performed += ctx => MelleAttack();
 
-        controls.Gameplay.DashMove.performed += ctx => DashMovePlayer();
+        controls.Gameplay.MPPlayer1Dashmove.performed += ctx => DashMovePlayer();
 
         //bgSound.Play();
     }
@@ -359,11 +359,11 @@ public class MultiPlayer1 : MonoBehaviour
         // Die Animation
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
-        bgSound.Stop();
+       // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
         // animator.SetBool("IsDied", false);
         // Disable the player
-        FindObjectOfType<GameUIScript>().GameOver();
+       // FindObjectOfType<GameUIScript>().GameOver();
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
     }
 

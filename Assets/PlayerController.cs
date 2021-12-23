@@ -52,9 +52,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""RangeAttackGP"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""84a06783-dec8-4073-b3c3-5d9be024446c"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -126,6 +126,22 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""name"": ""MelleAttackByKeyboard"",
                     ""type"": ""Button"",
                     ""id"": ""bcb0eebc-b2bf-43b6-98eb-dc11bd5a483f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MPPlayer1Dashmove"",
+                    ""type"": ""Button"",
+                    ""id"": ""e3c58dfb-f3ef-4b0a-81ba-44494e53e5f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MPPlayeer2Dashmove"",
+                    ""type"": ""Button"",
+                    ""id"": ""fc63e9bf-e454-4f99-847f-239e14c14907"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -461,6 +477,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""MelleAttackByKeyboard"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20c6d516-3ee8-405d-baa4-8bf7775799bd"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MPPlayer1Dashmove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6e22820-4039-436a-9189-8136338d1fdc"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MPPlayeer2Dashmove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -483,6 +521,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_Multiplayer2Movement = m_Gameplay.FindAction("Multiplayer2Movement", throwIfNotFound: true);
         m_Gameplay_Multiplayer2Jump = m_Gameplay.FindAction("Multiplayer2Jump", throwIfNotFound: true);
         m_Gameplay_MelleAttackByKeyboard = m_Gameplay.FindAction("MelleAttackByKeyboard", throwIfNotFound: true);
+        m_Gameplay_MPPlayer1Dashmove = m_Gameplay.FindAction("MPPlayer1Dashmove", throwIfNotFound: true);
+        m_Gameplay_MPPlayeer2Dashmove = m_Gameplay.FindAction("MPPlayeer2Dashmove", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -546,6 +586,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Multiplayer2Movement;
     private readonly InputAction m_Gameplay_Multiplayer2Jump;
     private readonly InputAction m_Gameplay_MelleAttackByKeyboard;
+    private readonly InputAction m_Gameplay_MPPlayer1Dashmove;
+    private readonly InputAction m_Gameplay_MPPlayeer2Dashmove;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -564,6 +606,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Multiplayer2Movement => m_Wrapper.m_Gameplay_Multiplayer2Movement;
         public InputAction @Multiplayer2Jump => m_Wrapper.m_Gameplay_Multiplayer2Jump;
         public InputAction @MelleAttackByKeyboard => m_Wrapper.m_Gameplay_MelleAttackByKeyboard;
+        public InputAction @MPPlayer1Dashmove => m_Wrapper.m_Gameplay_MPPlayer1Dashmove;
+        public InputAction @MPPlayeer2Dashmove => m_Wrapper.m_Gameplay_MPPlayeer2Dashmove;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -615,6 +659,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MelleAttackByKeyboard.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
                 @MelleAttackByKeyboard.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
                 @MelleAttackByKeyboard.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackByKeyboard;
+                @MPPlayer1Dashmove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayer1Dashmove;
+                @MPPlayer1Dashmove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayer1Dashmove;
+                @MPPlayer1Dashmove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayer1Dashmove;
+                @MPPlayeer2Dashmove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
+                @MPPlayeer2Dashmove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
+                @MPPlayeer2Dashmove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -661,6 +711,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MelleAttackByKeyboard.started += instance.OnMelleAttackByKeyboard;
                 @MelleAttackByKeyboard.performed += instance.OnMelleAttackByKeyboard;
                 @MelleAttackByKeyboard.canceled += instance.OnMelleAttackByKeyboard;
+                @MPPlayer1Dashmove.started += instance.OnMPPlayer1Dashmove;
+                @MPPlayer1Dashmove.performed += instance.OnMPPlayer1Dashmove;
+                @MPPlayer1Dashmove.canceled += instance.OnMPPlayer1Dashmove;
+                @MPPlayeer2Dashmove.started += instance.OnMPPlayeer2Dashmove;
+                @MPPlayeer2Dashmove.performed += instance.OnMPPlayeer2Dashmove;
+                @MPPlayeer2Dashmove.canceled += instance.OnMPPlayeer2Dashmove;
             }
         }
     }
@@ -681,5 +737,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMultiplayer2Movement(InputAction.CallbackContext context);
         void OnMultiplayer2Jump(InputAction.CallbackContext context);
         void OnMelleAttackByKeyboard(InputAction.CallbackContext context);
+        void OnMPPlayer1Dashmove(InputAction.CallbackContext context);
+        void OnMPPlayeer2Dashmove(InputAction.CallbackContext context);
     }
 }

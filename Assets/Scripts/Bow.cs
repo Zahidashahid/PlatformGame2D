@@ -7,7 +7,7 @@ public class Bow : MonoBehaviour
 {
     //Bow of the Player
     PlayerController controls;
-    Vector2 rotateBow;
+    Vector3 rotateBow;
     public Transform shotPoint;
     public GameObject projectile;
 
@@ -21,14 +21,16 @@ public class Bow : MonoBehaviour
     {
         controls = new PlayerController();
         controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
-        controls.Gameplay.RangeAttackGP.performed += ctx => rotateBow = ctx.ReadValue<Vector2>();
+        controls.Gameplay.RangeAttackGP.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Gameplay.RangeAttackGP.canceled += ctx => rotateBow = Vector2.zero;
   
     }
     void Update()
     {
-        Vector3 r = new Vector3(rotateBow.x, rotateBow.y) * 100f * Time.deltaTime;
-        transform.Rotate(0f,0f,r.z, Space.World);
+       /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
+        Debug.Log("rotateBow.z"+ rotateBow.z);
+        Debug.Log("rotateBow.y"+ rotateBow.y);
+        transform.Rotate(r ,Space.World);*/
         //transform.rotation = Quaternion.Euler(0f, 0f, r.z );
         /*Vector2 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
         float rotZ = Mathf.Atan2(m.y, m.x) * Mathf.Rad2Deg;
@@ -51,6 +53,10 @@ public class Bow : MonoBehaviour
              }
          }*/
 
+    }
+    private void Move(Vector2 vector)
+    {
+        transform.Rotate(vector.x * Vector3.forward + vector.y * Vector3.forward);
     }
     void BowRotate()
     {
