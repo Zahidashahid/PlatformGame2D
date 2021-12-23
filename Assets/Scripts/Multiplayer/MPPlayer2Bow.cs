@@ -20,7 +20,7 @@ public class MPPlayer2Bow : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerController();
-        controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
+        controls.Gameplay.ArrowShootP2.performed += ctx => ArrowShoot();
         controls.Gameplay.RangeAttackPlayer2.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Gameplay.RangeAttackPlayer2.canceled += ctx => rotateBow = Vector2.zero;
 
@@ -34,7 +34,7 @@ public class MPPlayer2Bow : MonoBehaviour
     void ArrowShoot()
     {
 
-
+        arrowLeft = arrowStore.arrowPlayer2Has;
         if (arrowLeft > 0)
         {
             arrowStore.ArrowUsed();

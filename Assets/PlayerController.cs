@@ -161,6 +161,22 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ArrowShootP1"",
+                    ""type"": ""Button"",
+                    ""id"": ""30958a41-4ed8-40c4-8c8d-1d2f27084be5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ArrowShootP2"",
+                    ""type"": ""Button"",
+                    ""id"": ""01e2951f-3445-4983-ac18-465017ff13e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -592,6 +608,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""RangeAttackPlayer2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d43769c3-d10f-4bca-91c6-03d078be13ae"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArrowShootP1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e05eaf8e-7d73-43f6-ae34-f686f2130dd2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArrowShootP2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -618,6 +656,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_MelleAttackByKeyboard = m_Gameplay.FindAction("MelleAttackByKeyboard", throwIfNotFound: true);
         m_Gameplay_MPPlayer1Dashmove = m_Gameplay.FindAction("MPPlayer1Dashmove", throwIfNotFound: true);
         m_Gameplay_MPPlayeer2Dashmove = m_Gameplay.FindAction("MPPlayeer2Dashmove", throwIfNotFound: true);
+        m_Gameplay_ArrowShootP1 = m_Gameplay.FindAction("ArrowShootP1", throwIfNotFound: true);
+        m_Gameplay_ArrowShootP2 = m_Gameplay.FindAction("ArrowShootP2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -685,6 +725,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_MelleAttackByKeyboard;
     private readonly InputAction m_Gameplay_MPPlayer1Dashmove;
     private readonly InputAction m_Gameplay_MPPlayeer2Dashmove;
+    private readonly InputAction m_Gameplay_ArrowShootP1;
+    private readonly InputAction m_Gameplay_ArrowShootP2;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -707,6 +749,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @MelleAttackByKeyboard => m_Wrapper.m_Gameplay_MelleAttackByKeyboard;
         public InputAction @MPPlayer1Dashmove => m_Wrapper.m_Gameplay_MPPlayer1Dashmove;
         public InputAction @MPPlayeer2Dashmove => m_Wrapper.m_Gameplay_MPPlayeer2Dashmove;
+        public InputAction @ArrowShootP1 => m_Wrapper.m_Gameplay_ArrowShootP1;
+        public InputAction @ArrowShootP2 => m_Wrapper.m_Gameplay_ArrowShootP2;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -770,6 +814,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MPPlayeer2Dashmove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
                 @MPPlayeer2Dashmove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
                 @MPPlayeer2Dashmove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMPPlayeer2Dashmove;
+                @ArrowShootP1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP1;
+                @ArrowShootP1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP1;
+                @ArrowShootP1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP1;
+                @ArrowShootP2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
+                @ArrowShootP2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
+                @ArrowShootP2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -828,6 +878,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MPPlayeer2Dashmove.started += instance.OnMPPlayeer2Dashmove;
                 @MPPlayeer2Dashmove.performed += instance.OnMPPlayeer2Dashmove;
                 @MPPlayeer2Dashmove.canceled += instance.OnMPPlayeer2Dashmove;
+                @ArrowShootP1.started += instance.OnArrowShootP1;
+                @ArrowShootP1.performed += instance.OnArrowShootP1;
+                @ArrowShootP1.canceled += instance.OnArrowShootP1;
+                @ArrowShootP2.started += instance.OnArrowShootP2;
+                @ArrowShootP2.performed += instance.OnArrowShootP2;
+                @ArrowShootP2.canceled += instance.OnArrowShootP2;
             }
         }
     }
@@ -852,5 +908,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMelleAttackByKeyboard(InputAction.CallbackContext context);
         void OnMPPlayer1Dashmove(InputAction.CallbackContext context);
         void OnMPPlayeer2Dashmove(InputAction.CallbackContext context);
+        void OnArrowShootP1(InputAction.CallbackContext context);
+        void OnArrowShootP2(InputAction.CallbackContext context);
     }
 }

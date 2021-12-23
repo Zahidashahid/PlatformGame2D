@@ -2890,7 +2890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPoint: {fileID: 1252234732}
-  projectile: {fileID: 3834169631787135528, guid: 476d68b852c24ae43b7faf05067e41ed, type: 3}
+  projectile: {fileID: 3834169631787135528, guid: 99bf5bbde321baa40969b6d13d16e898, type: 3}
   offset: 0
   timeBtwShots: 3
   startTimeBtwShots: 0
@@ -23276,7 +23276,7 @@ GameObject:
   - component: {fileID: 1097549135}
   m_Layer: 13
   m_Name: ArrowStoreP1
-  m_TagString: Player1
+  m_TagString: ArrowStoreP1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25498,7 +25498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotPoint: {fileID: 1288029646}
-  projectile: {fileID: 0}
+  projectile: {fileID: 3834169631787135528, guid: 99bf5bbde321baa40969b6d13d16e898, type: 3}
   offset: 0
   timeBtwShots: 3
   startTimeBtwShots: 0

@@ -148,6 +148,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ArrowShootP1",
+                    "type": "Button",
+                    "id": "30958a41-4ed8-40c4-8c8d-1d2f27084be5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ArrowShootP2",
+                    "type": "Button",
+                    "id": "01e2951f-3445-4983-ac18-465017ff13e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -579,6 +595,28 @@
                     "action": "RangeAttackPlayer2",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d43769c3-d10f-4bca-91c6-03d078be13ae",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArrowShootP1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e05eaf8e-7d73-43f6-ae34-f686f2130dd2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArrowShootP2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -19,13 +19,17 @@ public class MPPlayer1Bow : MonoBehaviour
 
     private void Awake()
     {
+        
         controls = new PlayerController();
-        controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
+        controls.Gameplay.ArrowShootP1.performed += ctx => ArrowShoot();
         controls.Gameplay.RangeAttackPlayer1.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Gameplay.RangeAttackPlayer1.canceled += ctx => rotateBow = Vector2.zero;
 
     }
- 
+    /*void Start()
+    {
+        arrowStore = GameObject.FindGameObjectWithTag("ArrowStoreP1").GetComponent<MPArrowStore>();
+    }*/
     private void Move(Vector2 vector)
     {
         transform.Rotate(vector.x * Vector3.forward + vector.y * Vector3.forward);
@@ -33,7 +37,7 @@ public class MPPlayer1Bow : MonoBehaviour
   
     void ArrowShoot()
     {
-       
+        arrowLeft = arrowStore.arrowPlayer1Has;
 
         if (arrowLeft > 0)
         {
