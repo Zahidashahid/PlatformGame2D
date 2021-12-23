@@ -104,4 +104,4 @@ Library/SourceAssetDB
 *.json
 *.asset
 Library/ArtifactDB
-Library/ArtifactDB
+*/Library/*
