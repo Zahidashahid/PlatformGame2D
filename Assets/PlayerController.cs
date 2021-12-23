@@ -52,9 +52,25 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""RangeAttackGP"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""84a06783-dec8-4073-b3c3-5d9be024446c"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RangeAttackPlayer1"",
+                    ""type"": ""Value"",
+                    ""id"": ""34a19aee-ae4a-4270-ac28-acdb8faedde7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RangeAttackPlayer2"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd580252-0b05-48f4-95a5-69912b5d1767"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -246,6 +262,39 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""RangeAttackGP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Bow"",
+                    ""id"": ""30b15449-a164-4cd2-afe3-0f188b6c1496"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackGP"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""c632a606-f12c-48cb-9416-74cfda36ed28"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackGP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""6c206f7f-176c-4502-a768-ab15e822280e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackGP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -499,6 +548,50 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""MPPlayeer2Dashmove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a37e105-bc42-4c0e-9afb-f5f84bedb147"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackPlayer1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Bow"",
+                    ""id"": ""51a4c0e2-887a-42ac-b34c-106c4344a69a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackPlayer2"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Up"",
+                    ""id"": ""5ff81b52-e3e7-4aaa-acf4-0a30a95d8a74"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackPlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Down"",
+                    ""id"": ""13cec73f-327a-4a60-ae36-63e37cef42b0"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RangeAttackPlayer2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -512,6 +605,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_MelleAttackGP = m_Gameplay.FindAction("MelleAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackGP = m_Gameplay.FindAction("RangeAttackGP", throwIfNotFound: true);
+        m_Gameplay_RangeAttackPlayer1 = m_Gameplay.FindAction("RangeAttackPlayer1", throwIfNotFound: true);
+        m_Gameplay_RangeAttackPlayer2 = m_Gameplay.FindAction("RangeAttackPlayer2", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_DashMove = m_Gameplay.FindAction("DashMove", throwIfNotFound: true);
         m_Gameplay_ArowHit = m_Gameplay.FindAction("ArowHit", throwIfNotFound: true);
@@ -577,6 +672,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_MelleAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackGP;
+    private readonly InputAction m_Gameplay_RangeAttackPlayer1;
+    private readonly InputAction m_Gameplay_RangeAttackPlayer2;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_DashMove;
     private readonly InputAction m_Gameplay_ArowHit;
@@ -597,6 +694,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @MelleAttackGP => m_Wrapper.m_Gameplay_MelleAttackGP;
         public InputAction @RangeAttackGP => m_Wrapper.m_Gameplay_RangeAttackGP;
+        public InputAction @RangeAttackPlayer1 => m_Wrapper.m_Gameplay_RangeAttackPlayer1;
+        public InputAction @RangeAttackPlayer2 => m_Wrapper.m_Gameplay_RangeAttackPlayer2;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @DashMove => m_Wrapper.m_Gameplay_DashMove;
         public InputAction @ArowHit => m_Wrapper.m_Gameplay_ArowHit;
@@ -632,6 +731,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @RangeAttackGP.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
                 @RangeAttackGP.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
                 @RangeAttackGP.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
+                @RangeAttackPlayer1.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer1;
+                @RangeAttackPlayer1.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer1;
+                @RangeAttackPlayer1.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer1;
+                @RangeAttackPlayer2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer2;
+                @RangeAttackPlayer2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer2;
+                @RangeAttackPlayer2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackPlayer2;
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
@@ -684,6 +789,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @RangeAttackGP.started += instance.OnRangeAttackGP;
                 @RangeAttackGP.performed += instance.OnRangeAttackGP;
                 @RangeAttackGP.canceled += instance.OnRangeAttackGP;
+                @RangeAttackPlayer1.started += instance.OnRangeAttackPlayer1;
+                @RangeAttackPlayer1.performed += instance.OnRangeAttackPlayer1;
+                @RangeAttackPlayer1.canceled += instance.OnRangeAttackPlayer1;
+                @RangeAttackPlayer2.started += instance.OnRangeAttackPlayer2;
+                @RangeAttackPlayer2.performed += instance.OnRangeAttackPlayer2;
+                @RangeAttackPlayer2.canceled += instance.OnRangeAttackPlayer2;
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
@@ -728,6 +839,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMelleAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackGP(InputAction.CallbackContext context);
+        void OnRangeAttackPlayer1(InputAction.CallbackContext context);
+        void OnRangeAttackPlayer2(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnDashMove(InputAction.CallbackContext context);
         void OnArowHit(InputAction.CallbackContext context);

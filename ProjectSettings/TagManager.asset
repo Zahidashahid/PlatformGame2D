@@ -29,6 +29,8 @@ TagManager:
   - PauseMenuPanel
   - Player1
   - Player2
+  - ArrowStoreP1
+  - ArrowStoreP2
   layers:
   - Default
   - TransparentFX
