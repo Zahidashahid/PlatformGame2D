@@ -23,7 +23,7 @@ public class EnemyShield : MonoBehaviour
         player.position = player.transform.position;
         if (Vector2.Distance(transform.position, player.position) < distance && animator.GetBool("Attack") == false) 
         {
-            Debug.Log("sheild Active !! "  );
+            //Debug.Log("sheild Active !! "  );
             animator.SetBool("Sheild", true);
             activeShield = true;
          

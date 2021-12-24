@@ -45,9 +45,9 @@ public class MPSkeletonMelleAttack : MonoBehaviour
     void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
-        attackDistance = 6;/*
+        attackDistance = 10;
         Debug.Log("Value of distance is " + distance);
-        Debug.Log("Value of attack distance is " + attackDistance);*/
+        Debug.Log("Value of attack distance is " + attackDistance);
 
         if (attackDistance >= distance)
         {
@@ -105,7 +105,7 @@ public class MPSkeletonMelleAttack : MonoBehaviour
         if (collision.tag == "Player")
         {
             target = collision.gameObject;
-            /// Debug.Log("player entred in Skeleton zone");
+             Debug.Log("player entred in Skeleton zone "+ collision.name);
 
             inRange = true;
         }

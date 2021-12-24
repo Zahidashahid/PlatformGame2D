@@ -35,7 +35,7 @@ public class TakeLoot : MonoBehaviour
                     Debug.Log(this.tag);
                     int arrowCount = PlayerPrefs.GetInt("ArrowPlayerHas") + 5;
                 
-                    PlayerPrefs.SetInt("ArrowPlayerHas", arrowCount);
+                    PlayerPrefs.SetInt("ArrowPlayerHas", arrowCount);     
                     arrowStore.arrowPlayerHas = arrowCount;
                     arrowStore.UpdateArrowText();
                     Destroy(gameObject);
