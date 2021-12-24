@@ -15,17 +15,9 @@ public class MultiPlayer1 : MonoBehaviour
     [SerializeField] public LayerMask m_WhatIsGround;
     public Rigidbody2D rb;
     private BoxCollider2D boxCollider2d;
-
-     Animator animator;
-     Transform transformObj;
-    //public Animator eagle_animator;
-    //public Animator skeleton_animator;
-    /*public AudioSource jumpSound;
-    public AudioSource DeathSound;
-    public AudioSource meleeAttackSound;*/
+    Animator animator;
+    Transform transformObj;
     public AudioSource bgSound;
-    // bool jump ;
-    //bool crouch = false;
     bool grounded;
     int jumpCount = 0;
     public int direction = 2;
@@ -34,12 +26,10 @@ public class MultiPlayer1 : MonoBehaviour
     public int lifes;
     public int numberOfDamgeTake;
 
-    //private float dashTime = 40f;
     public float attackRange = 0.5f;
     public float attackRate = 1f; //one attack per second
     public float nextAttackTime = 0f;
     float runSpeed = 5f;
-    //float horizontalMove = 0f;
 
     public Transform attackPoint;
     public Transform weaponAttackPoint;
@@ -62,10 +52,8 @@ public class MultiPlayer1 : MonoBehaviour
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
            */
         controls.Gameplay.MelleAttackGP.performed += ctx => MelleAttack();
-
         controls.Gameplay.MPPlayer1Dashmove.performed += ctx => DashMovePlayer();
 
-        //bgSound.Play();
     }
     private void Start()
     {
@@ -75,12 +63,6 @@ public class MultiPlayer1 : MonoBehaviour
         animator = GetComponent<Animator>(); ;
         transformObj = GetComponent<Transform>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
-        //Eagle_animator = GameObject.FindGameObjectWithTag("Enemy").transform<Animator>();
-        
-
-
-
-        Debug.Log("Animator is assign " + animator.name);
         currentHealth = maxHealth;
       /*  lifes = PlayerPrefs.GetInt("Lifes");
         currentHealth = PlayerPrefs.GetInt("CurrentHealth");*/
@@ -97,22 +79,13 @@ public class MultiPlayer1 : MonoBehaviour
         {
             Debug.Log("New Game Started");
             //gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
-           
-
         }
-        
-
     }
     private void Update()
     {
-        // Debug.Log("Is Grounded! "+ grounded);
-        // Move Player back
+        /* ----------------- Move Player back --------------------- */
         CheckGamePaused();
         m = new Vector3(move.x, move.y) * 10f * Time.deltaTime;
-          /* Debug.Log(" move.x " + move.x);
-           Debug.Log(" move.y " + move.y);
-           Debug.Log(" move.z " + move.z);*/
-
         if (move.x == 0 && move.y == 0)
         {
             animator.SetFloat("Speed", Mathf.Abs(0));
@@ -126,8 +99,6 @@ public class MultiPlayer1 : MonoBehaviour
         {
             MoveplayerLeft();
         }
-      
-
     }
    
     void MovePlayerRight()
@@ -148,7 +119,6 @@ public class MultiPlayer1 : MonoBehaviour
     {
         if (jumpCount < 2 || IsGrounded())
         {
-
             jumpCount++;
             grounded = false;
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
@@ -180,7 +150,6 @@ public class MultiPlayer1 : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
             // jump = true;
-
         }
     }
     void DashMovePlayer()
@@ -209,23 +178,8 @@ public class MultiPlayer1 : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-
             StartCoroutine(Attack());
-            //Attack();
-            nextAttackTime = Time.time + 1f / attackRate;
-            /*
-              ----------Melle Attack throgh keyboard
-             */
-            /*  if (Input.GetKeyDown(KeyCode.K))
-              {
-                  //Debug.Log("attack Called");
-
-                  //eagle_animator.SetTrigger("Death");
-                  StartCoroutine(Attack());
-                  //Attack();
-                  nextAttackTime = Time.time + 1f / attackRate;
-
-              }*/
+            nextAttackTime = Time.time + 1f / attackRate;    
         }
     }
     public void OnLanding()
@@ -248,29 +202,23 @@ public class MultiPlayer1 : MonoBehaviour
     IEnumerator Attack() //Melle Attack by player
     {
         animator.SetBool("Attack1", true);
-
         yield return new WaitForSeconds(0.5f);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
        /* string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");*/
-        //Deteck enemies in range
+        /* ---------------------Deteck enemies in range-------------- */
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
-        //damage Them
+        /* -----------------Damage them------------------ */
         foreach (Collider2D enemy in hitEnemies)
         {
              Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
-
                 enemy.GetComponent<MPMelleSkeletonMovement>().TakeDamage(30);
-               
-                /*  enemy.GetComponent<SkeletonEnemyMovement>().StartCoroutine(SkeletonHurtAnimation());*/
-
             }
             else if (enemy.name == "Range Attack Skeleton" || enemy.tag == "RangedAttackSkeleton")
             {
-                enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
-             
+                enemy.GetComponent<MPRangeAttackMovement>().TakeDamage(30);
             }
             else if (enemy.name == "Player2")
             {
@@ -279,7 +227,6 @@ public class MultiPlayer1 : MonoBehaviour
             else
                 break;
         }
-
     }
     /*-------------Show Attack point oject in scene for better Visibility--------------------*/
     void OnDrawGizmoSelected()
@@ -294,7 +241,6 @@ public class MultiPlayer1 : MonoBehaviour
     {
         if (currentHealth > 0 && lifes > 0)
         {
-
             if (numberOfDamgeTake > 3)
                 StartCoroutine(SheildTimer());
             if (!shield.ActiveShield)
@@ -303,8 +249,7 @@ public class MultiPlayer1 : MonoBehaviour
               //  PlayerPrefs.SetInt("CurrentHealth", currentHealth);
                 healthBar.SetHealth(currentHealth);
                 StartCoroutine(Hurt());
-                // play hurt animation
-                // StartCoroutine(HurtAnimation());
+              /* ---------------- play hurt animation------------------*/
                 if (currentHealth <= 0)
                 {
                    // PlayerPrefs.SetInt("CurrentHealth", 100);
@@ -314,7 +259,6 @@ public class MultiPlayer1 : MonoBehaviour
                 }
                 if (currentHealth <= 0 && lifes <= 0)
                 {
-                    // bgSound.Stop();
                    /* PlayerPrefs.SetInt("CurrentHealth", 100);
                     PlayerPrefs.SetInt("Lifes", 3);*/
                     SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
@@ -328,9 +272,7 @@ public class MultiPlayer1 : MonoBehaviour
             }
             else
                 numberOfDamgeTake += 1;
-
         }
-
     }
     IEnumerator SheildTimer()
     {
@@ -353,7 +295,6 @@ public class MultiPlayer1 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsJumping", false);
     }
-
     public IEnumerator Die()
     {
         // Die Animation
@@ -361,12 +302,11 @@ public class MultiPlayer1 : MonoBehaviour
         Debug.Log("Player died!");
        // bgSound.Stop();
         yield return new WaitForSeconds(0.3f);
-        // animator.SetBool("IsDied", false);
-        // Disable the player
+        /*  -------------------Disable the player--------------  */
        // FindObjectOfType<GameUIScript>().GameOver();
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
+        Destroy(gameObject);
     }
-
     public IEnumerator OnOneDeath()
     {
         currentHealth = 100;
@@ -387,9 +327,6 @@ public class MultiPlayer1 : MonoBehaviour
         animator.SetBool("IsDied", false);
         Debug.Log("Player Reactive!");
         transformObj.position = gm.lastCheckPointPos;
-
-        Debug.Log("lastCheckPointPos pistion ! " + gm.lastCheckPointPos);
-        Debug.Log("Player position transformObj ! " + transformObj.name);
     }
     public int PlayerMovingDirection()
     {
@@ -398,7 +335,6 @@ public class MultiPlayer1 : MonoBehaviour
         else
             return 2;
     }
-
     void CheckGamePaused()
     {
         if (PauseGame.isGamePaused)
@@ -418,8 +354,6 @@ public class MultiPlayer1 : MonoBehaviour
         PlayerPrefs.SetInt("Lifes", 3);
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);*/
     }
-
-  
     private void OnEnable()
     {
         controls.Gameplay.Enable();

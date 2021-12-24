@@ -1,5 +1,4 @@
-
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -57,7 +56,6 @@ public class MultiPlayer2 : MonoBehaviour
         controls.Gameplay.MelleAttackByKeyboard.performed += ctx => MelleAttack();
 
         controls.Gameplay.MPPlayeer2Dashmove.performed += ctx => DashMovePlayer();
-
         //bgSound.Play();
     }
     private void Start()
@@ -68,8 +66,6 @@ public class MultiPlayer2 : MonoBehaviour
         animator = GetComponent<Animator>(); ;
         transformObj = GetComponent<Transform>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
-       
-
         Debug.Log("Animator is assign " + animator.name);
         currentHealth = maxHealth;
       /*  lifes = PlayerPrefs.GetInt("Lifes");
@@ -81,13 +77,11 @@ public class MultiPlayer2 : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-     
-
     }
     private void Update()
     {
         // Debug.Log("Is Grounded! "+ grounded);
-        // Move Player back
+        /* ----------------Move Player back-------------------- */
         CheckGamePaused();
         m = new Vector3(move.x, move.y) * 10f * Time.deltaTime;
          
@@ -105,10 +99,7 @@ public class MultiPlayer2 : MonoBehaviour
         {
             MoveplayerLeft();
         }
-      
-
     }
-   
     void MovePlayerRight()
     {
         rb.velocity = new Vector2(runSpeed, rb.velocity.y);
@@ -187,11 +178,8 @@ public class MultiPlayer2 : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-
             StartCoroutine(Attack());
-            //Attack();
             nextAttackTime = Time.time + 1f / attackRate;
-         
         }
     }
     public void OnLanding()
@@ -199,7 +187,6 @@ public class MultiPlayer2 : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         // Debug.Log("In OnLanding method");
         animator.SetBool("IsJumping", false);
-  
         jumpCount = 0;
     }
     private bool IsGrounded()
@@ -219,25 +206,19 @@ public class MultiPlayer2 : MonoBehaviour
        // SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.meleeAttackSound);
         animator.SetBool("Attack1", false);
         //string difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
-        //Deteck enemies in range
+        /*   ----------Deteck enemies in range-------------*/
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(weaponAttackPoint.position, attackRange, enemyLayers);
-        //damage Them
+       /* -----------------damage Them-------------------*/
         foreach (Collider2D enemy in hitEnemies)
         {
             Debug.Log("enemy.name " + enemy.name);
-            // Debug.Log("We hit " + enemy.name);
             if (enemy.name == "Skeleton" || enemy.tag == "Skeleton")
             {
-
                 enemy.GetComponent<MPMelleSkeletonMovement>().TakeDamage(30);
-               
-                /*  enemy.GetComponent<SkeletonEnemyMovement>().StartCoroutine(SkeletonHurtAnimation());*/
-
             }
             else if (enemy.name == "Range Attack Skeleton" || enemy.tag == "RangedAttackSkeleton")
             {
-                enemy.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(30);
-             
+                enemy.GetComponent<MPRangeAttackMovement>().TakeDamage(30);
             }
             else if (enemy.name == "Player1")
             {
@@ -271,7 +252,6 @@ public class MultiPlayer2 : MonoBehaviour
                 healthBar.SetHealth(currentHealth);
                 StartCoroutine(Hurt());
                 // play hurt animation
-                // StartCoroutine(HurtAnimation());
                 if (currentHealth <= 0)
                 {
              /*       PlayerPrefs.SetInt("CurrentHealth", 100);*/
@@ -296,9 +276,7 @@ public class MultiPlayer2 : MonoBehaviour
             }
             else
                 numberOfDamgeTake += 1;
-
         }
-
     }
     IEnumerator SheildTimer()
     {
@@ -321,7 +299,6 @@ public class MultiPlayer2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animator.SetBool("IsJumping", false);
     }
-
     public IEnumerator Die()
     {
         // Die Animation
@@ -331,7 +308,8 @@ public class MultiPlayer2 : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         // animator.SetBool("IsDied", false);
         // Disable the player
-       // FindObjectOfType<GameUIScript>().GameOver();
+        // FindObjectOfType<GameUIScript>().GameOver();
+        Destroy(gameObject);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
     }
 
@@ -341,7 +319,6 @@ public class MultiPlayer2 : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         animator = GetComponent<Animator>(); ;
         // Die Animation
-
         animator.SetBool("IsDied", true);
         Debug.Log("Player died!");
         Debug.Log(" died!" + animator.GetBool("IsDied"));
@@ -351,11 +328,10 @@ public class MultiPlayer2 : MonoBehaviour
         // bgSound.Stop();
         yield return new WaitForSeconds(0.5f);
         Debug.Log("Wait End!");
-        // Set the player on check point position
+         /*----------Set the player on check point position--------------*/
         animator.SetBool("IsDied", false);
         Debug.Log("Player Reactive!");
         transformObj.position = gm.lastCheckPointPos;
-
     }
     public int PlayerMovingDirection()
     {
@@ -364,7 +340,6 @@ public class MultiPlayer2 : MonoBehaviour
         else
             return 2;
     }
-
     void CheckGamePaused()
     {
         if (PauseGame.isGamePaused)
@@ -385,7 +360,6 @@ public class MultiPlayer2 : MonoBehaviour
         PlayerPrefs.SetInt("ArrowPlayerHas", 10);*/
     }
 
-  
     private void OnEnable()
     {
         controls.Gameplay.Enable();
