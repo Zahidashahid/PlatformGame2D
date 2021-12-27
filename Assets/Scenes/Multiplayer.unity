@@ -1304,7 +1304,7 @@ GameObject:
   m_Layer: 6
   m_Name: RightLimit
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2017,7 +2017,7 @@ GameObject:
   m_Layer: 6
   m_Name: LeftLimit
   m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23517,9 +23517,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1131746823}
   - component: {fileID: 1131746824}
-  - component: {fileID: 1131746825}
   - component: {fileID: 1131746826}
   - component: {fileID: 1131746827}
+  - component: {fileID: 1131746825}
   m_Layer: 12
   m_Name: IS - Bow 472-1
   m_TagString: Untagged
@@ -23599,9 +23599,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131746822}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e7acda507d8e584880ab1f8363fba8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d2620506426dd5499dde7b2bc669e53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0
@@ -23610,10 +23610,12 @@ MonoBehaviour:
   damage: 0
   attackDistance: 10
   nextAttackTime: -1
+  mPRangeAttackMovement: {fileID: 1825558566}
+  mPCameraController: {fileID: 0}
   shotPoint: {fileID: 1073138846}
-  projectile: {fileID: 5905011712116011313, guid: b5fcc56ac1a97914a876c3696af9bd39, type: 3}
+  projectile: {fileID: 5905011712116011313, guid: 8fe5bfbcb5fcdda4097bc24594ee54f6, type: 3}
   bowObj: {fileID: 2070577091}
-  arrow: {fileID: 5905011712116011313, guid: b5fcc56ac1a97914a876c3696af9bd39, type: 3}
+  arrow: {fileID: 5905011712116011313, guid: 8fe5bfbcb5fcdda4097bc24594ee54f6, type: 3}
   inRange: 0
 --- !u!61 &1131746826
 BoxCollider2D:
@@ -25388,7 +25390,7 @@ GameObject:
   - component: {fileID: 1303827753}
   - component: {fileID: 1303827752}
   m_Layer: 13
-  m_Name: HealthBarCanvas
+  m_Name: MeleeSkeltonHealthBarCanvas
   m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30967,9 +30969,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets:
-  - {fileID: 315141186}
-  - {fileID: 1899409973}
+  - {fileID: 315141183}
+  - {fileID: 1899409970}
+  - {fileID: 1940599834}
   offset: {x: 5, y: 0, z: -10}
+  player: {fileID: 0}
 --- !u!1 &1784292226
 GameObject:
   m_ObjectHideFlags: 0
@@ -31433,8 +31437,8 @@ GameObject:
   - component: {fileID: 1825558568}
   - component: {fileID: 1825558567}
   - component: {fileID: 1825558569}
-  - component: {fileID: 1825558570}
   - component: {fileID: 1825558566}
+  - component: {fileID: 1825558570}
   m_Layer: 10
   m_Name: Range Attack Skeleton
   m_TagString: RangedAttackSkeleton
@@ -31606,9 +31610,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df3fba608d996a44b05c804bec3ebfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target:
-  - {fileID: 315141186}
-  - {fileID: 1899409973}
+  player:
+  - {fileID: 315141183}
+  - {fileID: 1899409970}
+  targetPlayer: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
   numberOfDamgeTake: 0
@@ -31619,6 +31624,7 @@ MonoBehaviour:
   retreatDistance: 3
   rb: {fileID: 1825558560}
   direction: 2
+  mPCameraController: {fileID: 0}
 --- !u!82 &1825558567
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31844,9 +31850,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825558559}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffcc4b445778056499aa589fb8aa1276, type: 3}
+  m_Script: {fileID: 11500000, guid: 81634e58752ec9d43925ca02e51aea2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
@@ -32566,7 +32572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899409970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.890013, y: -780, z: 0}
+  m_LocalPosition: {x: 24.83, y: -780, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 557754057}
@@ -33514,7 +33520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1940599835
 Transform:
   m_ObjectHideFlags: 0
@@ -33523,7 +33529,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940599834}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.9915, y: -779.3992, z: 0}
+  m_LocalPosition: {x: -31.9, y: -779.3992, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 259090819}
@@ -59113,7 +59119,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2068422208203902634, guid: 3b8fe69ed1a528b4c94629078b37c3e7, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2068422208203902634, guid: 3b8fe69ed1a528b4c94629078b37c3e7, type: 3}
       propertyPath: m_LocalScale.x

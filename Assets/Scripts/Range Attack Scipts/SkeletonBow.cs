@@ -71,7 +71,7 @@ public class SkeletonBow : MonoBehaviour
         {
             target = collision.gameObject;
            // Debug.Log("player entred in arrow danger zone");
-            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+            //collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
             Debug.Log("Inrage =" + inRange);
             //nextAttackTime = -1;

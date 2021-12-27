@@ -7,7 +7,9 @@ public class MPRangeAttackMovement : MonoBehaviour
     private BoxCollider2D boxCollider2d;
 
     #region Public Variables;
-    public List<Transform> target;
+    //public List<Transform> target;
+    public List<GameObject> player;
+    public GameObject targetPlayer;
     public int maxHealth = 100;
     public int currentHealth;
     public int numberOfDamgeTake;
@@ -18,6 +20,7 @@ public class MPRangeAttackMovement : MonoBehaviour
     public float retreatDistance = 3;
     public Rigidbody2D rb;
     public int direction = 2;
+    public MPCameraController mPCameraController;
     EnemyShield shield;
 
     #endregion
@@ -37,14 +40,53 @@ public class MPRangeAttackMovement : MonoBehaviour
         lootSystem = GetComponent<LootSystem>();
         shield = GetComponent<EnemyShield>();
 
+        mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
+
     }
     void Update()
     {
         Flip();
-        if (target.Count == 0)
+        if (mPCameraController.targets.Count == 0)
             return;
-        /*else
-            MovingTowardsPlayers();*/
+        else if (mPCameraController.targets.Count >= 2)
+        {
+
+            for (int i = 0; i < mPCameraController.targets.Count; i++)
+            {
+                if (mPCameraController.targets.Count > 1)
+                {
+                    var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[i].transform.position, transform.position);
+                    var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[i + 1].transform.position, transform.position);
+                   
+                    if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+                    {
+                        targetPlayer = mPCameraController.targets[1];
+                    }
+                    else
+                    {
+                        targetPlayer = mPCameraController.targets[0];
+                    }
+                    break;
+                }
+
+
+            }
+           /* Debug.Log("distanceBtwP1AndEnemy " + distanceBtwP1AndEnemy);
+            Debug.Log("distanceBtwP2AndEnemy " + distanceBtwP2AndEnemy);
+            Debug.Log("" + target[0].name);*/
+           
+        }
+        /* Debug.Log("Target " + targetPlayer.name);
+         Debug.Log("targetPlayer.transform.position.x " + targetPlayer.transform.position.x);
+         Debug.Log("transform.position.x " + transform.position.x);*/
+        if (targetPlayer.transform.position.x > transform.position.x)
+        {
+            direction = 1;
+        }
+        else
+        {
+            direction = 2;
+        }
     }
 
     void MovingTowardsPlayers()
@@ -53,8 +95,10 @@ public class MPRangeAttackMovement : MonoBehaviour
         /*
             -----------if enemy near enough but not much near stop  moving----------
          */
-         if ((Vector2.Distance(transform.position, target[0].position) < stopDistance && Vector2.Distance(transform.position, target[0].position) > retreatDistance) ||
-                (Vector2.Distance(transform.position, target[1].position) < stopDistance && Vector2.Distance(transform.position, target[1].position) > retreatDistance))
+         if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) <
+            stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
+                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && 
+                Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
         {
             //Debug.Log(" if enemy near enough but not much near stop  moving-");
             animator.SetFloat("Speed", Mathf.Abs(0));
@@ -65,8 +109,8 @@ public class MPRangeAttackMovement : MonoBehaviour
         /*
             -----------enemy moving away from player if it is very near to player----------
          */
-        else if ((Vector2.Distance(transform.position, target[0].position) < retreatDistance) ||
-                (Vector2.Distance(transform.position, target[1].position) < retreatDistance))
+        else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
+                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
         {
             //Debug.Log(" enemy moving away from player if it is very near to player-");
             if (direction == 1)
@@ -106,18 +150,18 @@ public class MPRangeAttackMovement : MonoBehaviour
 
     void Flip()
     {
-        distance = Vector2.Distance(transform.position, target[0].position);
+        distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position);
         //Debug.Log(transform.position + "!! " + target.position);
         //Debug.Log("Flip called" + distance);
         Vector3 rotation = transform.eulerAngles;
         rotation.x *= -1;
-        if (transform.position.x > target[0].position.x)//&& direction == 1
+        if (transform.position.x > mPCameraController.targets[0].transform.position.x)//&& direction == 1
         {
             // Debug.Log("180 rotaion");
             rotation.y = 180f;
             direction = 2;
         }
-        else if (transform.position.x < target[0].position.x)//&& direction == 2
+        else if (transform.position.x < mPCameraController.targets[0].transform.position.x)//&& direction == 2
         {
             //Debug.Log("flip");
             rotation.y = 0;

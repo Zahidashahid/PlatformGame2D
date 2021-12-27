@@ -211,8 +211,6 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         animator.SetBool("Sheild", true);
         numberOfDamgeTake = 0;
     }
-
- 
     public void Flip()
     {
 
@@ -226,16 +224,6 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         }
         else
             inRange = true;
-       /*
-            direction 2 means skeleton moving towards left vise versa
-            transform.position.x i.e skeleton position > target.position.x  i.e player position means player is on right side of enemy
-        */
-        /*Debug.Log("distance " + distance);
-        Debug.Log("inRange for Flip " + inRange);
-        Debug.Log("direction " + direction);
-        Debug.Log("transform.position.x " + transform.position.x);
-        Debug.Log("target.position.x " + target.position.x);
-        Debug.Log("target is " + target.name);*/
         if (inRange && transform.position.x > targets[0].position.x && direction == 1)
         {
             rotation.y = 180f;
@@ -263,7 +251,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
         float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
         Vector3 rotation = transform.eulerAngles;
-       Debug.Log(distanceToLeft + " :: " + distanceToRight);
+       //Debug.Log(distanceToLeft + " :: " + distanceToRight);
         if (distanceToLeft > distanceToRight)
         {
             rotation.y = 180f;
