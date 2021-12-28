@@ -4305,7 +4305,6 @@ MonoBehaviour:
     m_Bits: 64
   m_GroundCheck: {fileID: 1261729155}
   m_CeilingCheck: {fileID: 1685759496}
-  m_CrouchDisableCollider: {fileID: 750146758}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -9121,6 +9120,7 @@ GameObject:
   - component: {fileID: 1387107015}
   - component: {fileID: 1387107014}
   - component: {fileID: 1387107016}
+  - component: {fileID: 1387107017}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9265,6 +9265,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1387107017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387107013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3b349af1829744db928ef2ef826fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1038023684}
+  gameOverCanvas: {fileID: 1039997257}
+  gameOverText: {fileID: 968749819}
+  restartButton: {fileID: 1202859173}
+  pauseMenuPanel: {fileID: 490124926}
+  restartBtnSound: {fileID: 1387107016}
+  bgSound: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!1 &1390034532
 GameObject:
   m_ObjectHideFlags: 0
@@ -10161,7 +10181,6 @@ MonoBehaviour:
     m_Bits: 64
   m_GroundCheck: {fileID: 1955253516}
   m_CeilingCheck: {fileID: 840763522}
-  m_CrouchDisableCollider: {fileID: 1434199719}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -14930,7 +14949,6 @@ MonoBehaviour:
     m_Bits: 64
   m_GroundCheck: {fileID: 1625333191}
   m_CeilingCheck: {fileID: 259090819}
-  m_CrouchDisableCollider: {fileID: 1940599838}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:

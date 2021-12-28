@@ -105,7 +105,7 @@ public class MPEnemyBow : MonoBehaviour
      }*/
     void ArrowLogic() // Arrow attack and instantiate
     {
-        Debug.Log("null =" + target  != null);
+        //Debug.Log("null =" + target  != null);
         if (target  != null)
         {
             distance = Vector2.Distance(transform.position, target.transform.position);
@@ -127,16 +127,24 @@ public class MPEnemyBow : MonoBehaviour
         else
         {
             //Select new enemy(player) as a target
-            var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
-            var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
-            if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+            if(mPCameraController.targets.Count > 1)
             {
-                target = mPCameraController.targets[1];
+                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+                if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+                {
+                    target = mPCameraController.targets[1];
+                }
+                else
+                {
+                    target = mPCameraController.targets[0];
+                }
             }
             else
             {
                 target = mPCameraController.targets[0];
             }
+            
             
         }
     }
@@ -147,57 +155,76 @@ public class MPEnemyBow : MonoBehaviour
 
         nextAttackTime = 2;
         //Debug.Log("nextAttackTime :-" + nextAttackTime);
-
-        var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
-        var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
-        Debug.Log(transform.position.x + "  :-" + mPCameraController.targets[1].transform.position.x);
-        if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+        if (mPCameraController.targets.Count == 0)
+            return;
+        else if (mPCameraController.targets.Count > 1)
         {
-            /*--------------- If Player 2 is near enemy -------------------- */
-            /* Debug.Log( " P2 selected :-"  );
-             Debug.Log(transform.position.x + " Distance :-" + player[1].transform.position.x);
-              Debug.Log("nextAttackTime :-" + nextAttackTime);*/
-                mPRangeAttackMovement.direction = 2;
-                /*
-                 *  when player is at left side of ranged attack emeny
-                 *  target direction will be change to enemy(self/skeleton) subtract target(Player) if player is at right side of enemy vise versa.
-                 */
-                target = mPCameraController.targets[1];
-                targetDirection = transform.position - mPCameraController.targets[1].transform.position;
-                float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-                //Debug.Log(rotZ + "Rotation");
-                transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
-                /*
-                 * "-" is used to rotation towards player so that collider also change with arrow left moving
-                 * 180f to change arrow towards left 
-                 */
-                /**/
-                //Debug.Log(transform.rotation + " new");
-            Instantiate(projectile, shotPoint.position, transform.rotation);
+            for (int i = 0; i < mPCameraController.targets.Count; i++)
+            {
+
+
+                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+                Debug.Log(transform.position.x + "  :-" + mPCameraController.targets[1].transform.position.x);
+                if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+                {
+                    /*--------------- If Player 2 is near enemy -------------------- */
+                   
+                    mPRangeAttackMovement.direction = 2;
+                    /*
+                     *  when player is at left side of ranged attack emeny
+                     *  target direction will be change to enemy(self/skeleton) subtract target(Player) if player is at right side of enemy vise versa.
+                     */
+                    target = mPCameraController.targets[1];
+                    targetDirection = transform.position - mPCameraController.targets[1].transform.position;
+                    float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+                    //Debug.Log(rotZ + "Rotation");
+                    transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
+                    /*
+                     * "-" is used to rotation towards player so that collider also change with arrow left moving
+                     * 180f to change arrow towards left 
+                     */
+                    Instantiate(projectile, shotPoint.position, transform.rotation);
+                }
+                else
+                {
+
+                    /*
+                     *  when player is at left side of ranged attack emeny
+                     *  target direction will be change to enemy(self/skeleton) subtract target(Player) if player is at right side of enemy vise versa.
+                     */
+                    mPRangeAttackMovement.direction = 2;
+                    targetDirection = transform.position - mPCameraController.targets[0].transform.position;
+                    float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+                    Debug.Log(rotZ + "Rotation");
+                    transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
+                    target = mPCameraController.targets[0];
+                    /*
+                     * "-" is used to rotation towards player so that collider also change with arrow left moving
+                     * 180f to change arrow towards left 
+                     */
+                    /**/
+                    Instantiate(projectile, shotPoint.position, transform.rotation);
+                }
+
+            }
         }
         else
         {
-            /*Debug.Log("In else  :-");
-            Debug.Log(" P1 selected :-");*/
-            //Debug.Log(transform.position.x +"In   :-" + player[0].transform.position.x);
-
+            target = mPCameraController.targets[0];
+           // mPRangeAttackMovement.direction = 2;
+            targetDirection = transform.position - mPCameraController.targets[0].transform.position;
+            float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+            Debug.Log(rotZ + "Rotation");
+            transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
             
-                /*
-                 *  when player is at left side of ranged attack emeny
-                 *  target direction will be change to enemy(self/skeleton) subtract target(Player) if player is at right side of enemy vise versa.
-                 */
-                mPRangeAttackMovement.direction = 2;
-                targetDirection = transform.position - mPCameraController.targets[0].transform.position;
-                float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-                Debug.Log(rotZ + "Rotation");
-                transform.rotation = Quaternion.Euler(0f, 180f, -rotZ + offset);
-                target = mPCameraController.targets[0];
-                /*
-                 * "-" is used to rotation towards player so that collider also change with arrow left moving
-                 * 180f to change arrow towards left 
-                 */
-                /**/
-            Instantiate(projectile, shotPoint.position, transform.rotation); 
+            Instantiate(projectile, shotPoint.position, transform.rotation);
         }
+
+
+
+
+
+
     }
 }

@@ -4,37 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-public class GameUIScript : MonoBehaviour
+public class MPGameOver : MonoBehaviour
 {
     public GameObject gameOverPanel;
     public GameObject gameOverCanvas;
     public TMP_Text gameOverText;
     public GameObject restartButton;
-    public GameObject SkeletonSpwan;
+    //public GameObject SkeletonSpwan;
     public GameObject pauseMenuPanel;
-    public GameObject EnemyEagleSpwan;
-    public GameObject RangeAttackSpwan;
-    public GameObject RangeAttackPointSpwan;
-    public GameObject avatar1;
-    public GameObject avatar2;
+    public GameObject BGPanel;
+    public GameObject EnemyCanvas;
+   /* public GameObject RangeAttackSpwan;
+    public GameObject RangeAttackPointSpwan;*/
     public AudioSource restartBtnSound;
     public AudioSource bgSound;
     MainMenu mainMenu;
     GameMaster gm;
-    PlayerMovement playerMovement;
     public ScoreManager scoreManager;
     string difficultyLevel;
 
     public static bool isNewGame;
-
-    void Awake()
-    {
-        /* gameOverPanel.SetActive(false);
-         restartButton.SetActive(false);
-        gameOverText.enabled = false;*/
-        
-        
-    }
 
     public void Start()
     {
@@ -42,52 +31,23 @@ public class GameUIScript : MonoBehaviour
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
         isNewGame = false;
-        avatar1 = GameObject.Find("Player_Goblin");
-        avatar2 = GameObject.Find("MushrromPlayer");
-        Debug.Log("Avatar " + PlayerPrefs.GetInt("AvatarSelected"));
-        if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
-        {
-            avatar2.SetActive(true);
-            avatar1.SetActive(false);
-        }
-        else
-        {
-            avatar1.SetActive(true);
-            avatar2.SetActive(false);
-        }
 
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         mainMenu = GameObject.FindGameObjectWithTag("GM").GetComponent<MainMenu>();
-        
+
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        if(PlayerPrefs.GetString("CurrentLevel") == "Level 3")
-        {
-            difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
-            //Debug.Log("Difficulity" + MainMenu.difficultyLevel);
-            if (difficultyLevel == "Medium")
-            {
-                SkeletonSpwan.SetActive(true);
-                // EnemyEagleSpwan.SetActive(true);
-            }
-            if (difficultyLevel == "Hard")
-            {
-                SkeletonSpwan.SetActive(true);
-                //EnemyEagleSpwan.SetActive(true);
-                RangeAttackPointSpwan.SetActive(true);
-                RangeAttackSpwan.SetActive(true);
-            }
-        }
-        
+
+
     }
     public void GameOver()
     {
+        Debug.Log("GameOver");
         StartCoroutine(waiter());
         //SceneManager.LoadScene("Level 1");
         //SceneManager.LoadScene("GameOver");
     }
-    public void RestartGameFromLastCheckPoint() 
+    public void RestartGameFromLastCheckPoint()
     {
         /*        gameOverPanel.SetActive(false);
                 restartButton.SetActive(false);
@@ -106,7 +66,7 @@ public class GameUIScript : MonoBehaviour
         float x = PlayerPrefs.GetFloat("LastcheckPointX");
         float y = PlayerPrefs.GetFloat("LastcheckPointy");
         gm.lastCheckPointPos = new Vector2(x, y);
-        playerMovement.transform.position = gm.lastCheckPointPos;
+        //playerMovement.transform.position = gm.lastCheckPointPos;
         Debug.Log(difficultyLevel);
         if (difficultyLevel == "Easy")
         {
@@ -132,7 +92,7 @@ public class GameUIScript : MonoBehaviour
 
 
 
-        playerMovement.transform.position = new Vector2(x, y);
+       // playerMovement.transform.position = new Vector2(x, y);
         pauseMenuPanel.SetActive(false);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -161,7 +121,7 @@ public class GameUIScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        playerMovement.Reset();
+      //  playerMovement.Reset();
         isNewGame = true;
 
         //Reset Gift collected
@@ -176,23 +136,26 @@ public class GameUIScript : MonoBehaviour
         SceneManager.LoadScene(currentLevel);
         Debug.Log(" RestartLevel() Called");
     }
-    public void  Back()
+    public void Back()
     {
         SceneManager.LoadScene("Main Menu");
     }
     IEnumerator waiter()
     {
         //Wait for 1 seconds
-        Time.timeScale = 0f;
-        yield return new WaitForSeconds(0.001f);
+        
+        yield return new WaitForSeconds(0.2f);
         Debug.Log("Game is Over.");
 
         gameOverCanvas.SetActive(true);
         gameOverPanel.SetActive(true);
         restartButton.SetActive(true);
+        BGPanel.SetActive(false);
+        EnemyCanvas.SetActive(false);
         gameOverText.enabled = true;
-     
+        Time.timeScale = 0f;
+
     }
- 
+
 }
 

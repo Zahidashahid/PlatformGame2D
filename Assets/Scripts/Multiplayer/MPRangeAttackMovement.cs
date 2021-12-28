@@ -43,21 +43,22 @@ public class MPRangeAttackMovement : MonoBehaviour
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
 
     }
-    void FixedUpdate()
+    void LateUpdate()
     {
-        Flip();
-        if (mPCameraController.targets.Count == 0)
-            return;
-        else if (mPCameraController.targets.Count >= 2)
-        {
 
-            for (int i = 0; i < mPCameraController.targets.Count; i++)
+        if (mPCameraController.targets.Count == 0)
+        {
+            FindObjectOfType<MPGameOver>().GameOver();
+        }
+        else
+        {
+            if (mPCameraController.targets.Count > 1)
             {
-                if (mPCameraController.targets.Count > 1)
+                for (int i = 0; i < mPCameraController.targets.Count; i++)
                 {
-                    var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[i].transform.position, transform.position);
-                    var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[i + 1].transform.position, transform.position);
-                   
+                    var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+                    var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+
                     if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
                     {
                         targetPlayer = mPCameraController.targets[1];
@@ -68,25 +69,20 @@ public class MPRangeAttackMovement : MonoBehaviour
                     }
                     break;
                 }
-
-
             }
-           /* Debug.Log("distanceBtwP1AndEnemy " + distanceBtwP1AndEnemy);
-            Debug.Log("distanceBtwP2AndEnemy " + distanceBtwP2AndEnemy);
-            Debug.Log("" + target[0].name);*/
-           
+            else
+                targetPlayer = mPCameraController.targets[0];
+            if (targetPlayer.transform.position.x > transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = 2;
+            }
+            Flip();
         }
-        /* Debug.Log("Target " + targetPlayer.name);
-         Debug.Log("targetPlayer.transform.position.x " + targetPlayer.transform.position.x);
-         Debug.Log("transform.position.x " + transform.position.x);*/
-        if (targetPlayer.transform.position.x > transform.position.x)
-        {
-            direction = 1;
-        }
-        else
-        {
-            direction = 2;
-        }
+       
     }
 
     void MovingTowardsPlayers()
@@ -150,29 +146,33 @@ public class MPRangeAttackMovement : MonoBehaviour
 
     void Flip()
     {
-        distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position);
-        //Debug.Log(transform.position + "!! " + target.position);
-        //Debug.Log("Flip called" + distance);
-        Vector3 rotation = transform.eulerAngles;
-        rotation.x *= -1;
-        if (transform.position.x > mPCameraController.targets[0].transform.position.x)//&& direction == 1
+        if(mPCameraController.targets.Count >= 1)
         {
-            // Debug.Log("180 rotaion");
-            rotation.y = 180f;
-            direction = 2;
+            distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position);
+            //Debug.Log(transform.position + "!! " + target.position);
+            //Debug.Log("Flip called" + distance);
+            Vector3 rotation = transform.eulerAngles;
+            rotation.x *= -1;
+            if (transform.position.x > mPCameraController.targets[0].transform.position.x)//&& direction == 1
+            {
+                // Debug.Log("180 rotaion");
+                rotation.y = 180f;
+                direction = 2;
+            }
+            else if (transform.position.x < mPCameraController.targets[0].transform.position.x)//&& direction == 2
+            {
+                //Debug.Log("flip");
+                rotation.y = 0;
+                direction = 1;
+            }
+            else
+            {
+                Debug.Log("None rotaion");
+                rotation.y = 0f;
+            }
+            transform.eulerAngles = rotation;
         }
-        else if (transform.position.x < mPCameraController.targets[0].transform.position.x)//&& direction == 2
-        {
-            //Debug.Log("flip");
-            rotation.y = 0;
-            direction = 1;
-        }
-        else
-        {
-            Debug.Log("None rotaion");
-            rotation.y = 0f;
-        }
-        transform.eulerAngles = rotation;
+        
     }
     public void TakeDamage(int damage)
     {

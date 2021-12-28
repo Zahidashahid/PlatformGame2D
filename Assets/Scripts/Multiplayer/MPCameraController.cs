@@ -15,43 +15,44 @@ public class MPCameraController : MonoBehaviour
     float maxZoom = 90f;
     float ZoomLimiter = 50f;
     Camera cam;
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+    }
     private void Update()
     {
-        if (targets.Count == 0)
-            return;
-        else if(targets.Count == 1)
+        if (targets.Count <= 0)
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-            Vector3 desiredPosiiton = new Vector3(player.position.x + 8, player.position.y + 5, transform.position.z);
-            Vector3 smoothedPosiiton = Vector3.Lerp(transform.position, desiredPosiiton, smoothSpeed);
-            transform.position = smoothedPosiiton;
+            FindObjectOfType<MPGameOver>().GameOver();
         }
+          
         else
         {
-            for(int i = 0; i < targets.Count; i++)
+            for (int i = 0; i < targets.Count; i++)
             {
-                if(targets[i] == null)
+                if (targets[i] == null)
                 {
-                    Debug.Log("targets[i] " + i +" is null");
-                    if (targets[i + 1] != null)
+                    Debug.Log("targets[i] " + i + " is null");
+                    if (i == targets.Count - 1)
+                    {
+                        targets.RemoveAt(targets.Count - 1);
+                    }
+                    else if (targets[i + 1] != null)
                     {
                         for (int j = i; j <= targets.Count; j++)
                         {
                             if (j == (targets.Count - 1))
                             {
                                 //Delete last element from list
-                                targets.RemoveAt(targets.Count - 1);
+
                                 break;
                             }
                             targets[j] = targets[j + 1];
                             Debug.Log(j);
-                            
+
                         }
                     }
-                    else
-                    {
-                        Debug.Log( " End List  " );
-                    }
+
                     Debug.Log("I is " + i);
                     /* if(targets[i] == targets[i+1])
                      {
@@ -59,15 +60,27 @@ public class MPCameraController : MonoBehaviour
                      }*/
                 }
             }
-            Move();
-            Zoom();
+            if(targets.Count > 1)
+            {
+                Move();
+                Zoom();
+            }
+           
+        }
+        if (targets.Count == 1)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            Vector3 desiredPosiiton = new Vector3(player.position.x, player.position.y, transform.position.z);
+            Vector3 smoothedPosiiton = Vector3.Lerp(transform.position, desiredPosiiton, smoothSpeed);
+            transform.position = smoothedPosiiton;
+            if (targets[0] == null)
+            {
+                targets.RemoveAt(0);
+            }
         }
         
     }
-    private void Start()
-    {
-        cam = GetComponent<Camera>();
-    }
+   
     void Move()
     {
         Vector3 centerPoint = GetCenterPoint();
