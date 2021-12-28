@@ -23,42 +23,47 @@ public class MPEnemyShield : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Vector2.Distance(transform.position, player.position) < distance && animator.GetBool("Attack") == false)
-        {
-            //Debug.Log("sheild Active !! "  );
-            animator.SetBool("Sheild", true);
-            activeShield = true;
-
-        }
-        else
-        {
-            animator.SetBool("Sheild", false);
-            activeShield = false;
-        }
+       
     }
     private void LateUpdate()
     {
-        if (mPCameraController.targets.Count > 1)
-        {
-            var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
-            var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
-            if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
-            {
-
-                player = mPCameraController.targets[1].transform;
-            }
-            else
-            {
-                player = mPCameraController.targets[0].transform;
-            }
-
-        }
-        else if(mPCameraController.targets.Count == 1)
-            player = mPCameraController.targets[0].transform;
-        else
+        if (mPCameraController.targets.Count < 1 )
         {
             FindObjectOfType<MPGameOver>().GameOver();
         }
+        else
+        {
+             if (mPCameraController.targets.Count > 1)
+            {
+                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+                if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+                {
+
+                    player = mPCameraController.targets[1].transform;
+                }
+                else
+                {
+                    player = mPCameraController.targets[0].transform;
+                }
+
+            }
+            else if (mPCameraController.targets.Count == 1)
+                player = mPCameraController.targets[0].transform;
+            if (Vector2.Distance(transform.position, player.position) < distance && animator.GetBool("Attack") == false)
+            {
+                //Debug.Log("sheild Active !! "  );
+                animator.SetBool("Sheild", true);
+                activeShield = true;
+
+            }
+            else
+            {
+                animator.SetBool("Sheild", false);
+                activeShield = false;
+            }
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -136,7 +136,7 @@ public class MPGameOver : MonoBehaviour
         SceneManager.LoadScene(currentLevel);
         Debug.Log(" RestartLevel() Called");
     }
-    public void Back()
+    public void MainMenu()
     {
         SceneManager.LoadScene("Main Menu");
     }

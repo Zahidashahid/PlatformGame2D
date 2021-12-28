@@ -45,7 +45,7 @@ public class MPRangeAttackMovement : MonoBehaviour
     }
     void LateUpdate()
     {
-
+        Time.timeScale = 1f;
         if (mPCameraController.targets.Count == 0)
         {
             FindObjectOfType<MPGameOver>().GameOver();

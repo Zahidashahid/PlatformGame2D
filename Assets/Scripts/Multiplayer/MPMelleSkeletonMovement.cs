@@ -43,6 +43,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     }
     private void Start()
     {
+        Time.timeScale = 1f;
         numberOfDamgeTake = 0;
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
         shield = GetComponent<EnemyShield>();
