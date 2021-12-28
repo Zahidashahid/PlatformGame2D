@@ -24,13 +24,14 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     public int direction = 1;
     public int numberOfDamgeTake;
     public LootSystem lootSystem;
+    public MPCameraController mPCameraController;
     #endregion
 
     #region Private Variables
     private EnemyShield shield;
     private int maxHealth = 100;
-    public List<Transform> targets;
-    public List<Animator> playersAnimator;
+    //public List<Transform> targets;
+    //public List<Animator> playersAnimator;
 
     private float distance; // stores distance btw player and enemy
     private bool inRange; // check player in range
@@ -43,6 +44,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     private void Start()
     {
         numberOfDamgeTake = 0;
+        mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
         shield = GetComponent<EnemyShield>();
         lootSystem = GetComponent<LootSystem>();
         currentHealth = maxHealth;
@@ -51,27 +53,30 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         stopDistance = 5;
         retreatDistance = 3;
     }
-
-    void Update()
+    void FixedUpdate()
     {
         if (!InsideOfLimit())
         {
             SelectTarget();
         }
-        if (targets.Count == 0)
+       
+      
+    }
+    private void LateUpdate()
+    {
+        if (mPCameraController.targets.Count == 0)
             return;
         else
             MovingTowardsPlayers();
-      
     }
-      void MovingTowardsPlayers()
+    void MovingTowardsPlayers()
     {
         /*
          ----------- enemy moving towards player----------
      */
       
-        if (Vector2.Distance(transform.position, targets[0].position) > stopDistance ||
-            (Vector2.Distance(transform.position, targets[1].position) > stopDistance) && currentHealth > 0)
+        if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance ||
+            (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > stopDistance) && currentHealth > 0)
         {
             animator.SetFloat("Speed", Mathf.Abs(40));
             //Debug.Log(" enemy moving towards player");
@@ -91,8 +96,8 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         /*
             -----------if enemy near enough but not much near stop  moving----------
          */
-        else if ( (Vector2.Distance(transform.position, targets[0].position) < stopDistance && Vector2.Distance(transform.position, targets[0].position) > retreatDistance) ||
-                (Vector2.Distance(transform.position, targets[1].position) < stopDistance && Vector2.Distance(transform.position, targets[1].position) > retreatDistance))
+        else if ( (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
+                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
         {
             //Debug.Log(" if enemy near enough but not much near stop  moving-");
             animator.SetFloat("Speed", Mathf.Abs(0));
@@ -103,8 +108,8 @@ public class MPMelleSkeletonMovement : MonoBehaviour
        /*
            -----------enemy moving away from player if it is very near to player----------
         */
-        else if ((Vector2.Distance(transform.position, targets[0].position) < retreatDistance) ||
-                (Vector2.Distance(transform.position, targets[1].position) < retreatDistance))
+        else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
+                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
         {
             //Debug.Log(" enemy moving away from player if it is very near to player-");
             if (direction == 1)
@@ -162,7 +167,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             Debug.Log("Damaging the enemy :- shield.ActiveShield " + shield.ActiveShield);
             if (numberOfDamgeTake > 3)
                 StartCoroutine(SheildTimer());
-            if (!shield.ActiveShield || (transform.position.x > targets[0].position.x && direction == 1) || (transform.position.x < targets[0].position.x && direction == 2))
+            if (!shield.ActiveShield || (transform.position.x > mPCameraController.targets[0].transform.position.x && direction == 1) || (transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2))
             {
                 currentHealth -= damage;
                 healthBar.SetHealth(currentHealth);
@@ -214,7 +219,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     public void Flip()
     {
 
-        distance = Vector2.Distance(transform.position, targets[0].transform.position); // Checking distance btw player and enemy
+        distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position); // Checking distance btw player and enemy
 
         Vector3 rotation = transform.eulerAngles;
         rotation.x *= -1;
@@ -224,14 +229,14 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         }
         else
             inRange = true;
-        if (inRange && transform.position.x > targets[0].position.x && direction == 1)
+        if (inRange && transform.position.x > mPCameraController.targets[0].transform.position.x && direction == 1)
         {
             rotation.y = 180f;
             direction = 2;
             Debug.Log("Skeleton Flip to left");
 
         }
-        else if (inRange && transform.position.x < targets[0].position.x && direction == 2)
+        else if (inRange && transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2)
         {
             rotation.y = 180f;
             direction = 1;

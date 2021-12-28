@@ -43,7 +43,7 @@ public class MPRangeAttackMovement : MonoBehaviour
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
 
     }
-    void Update()
+    void FixedUpdate()
     {
         Flip();
         if (mPCameraController.targets.Count == 0)

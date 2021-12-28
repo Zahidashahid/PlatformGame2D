@@ -51,14 +51,19 @@ public class MPEnemyBow : MonoBehaviour
                 nextAttackTime -= Time.deltaTime;
             }
         }
-        for(int i = 0; i < mPCameraController.targets.Count; i ++)
+       
+    }
+    private void LateUpdate()
+    {
+        for (int a = 0; a < mPCameraController.targets.Count; a++)
         {
-            if(mPCameraController.targets.Count > 1)
+            if (mPCameraController.targets.Count > 1)
             {
-                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[i].transform.position, transform.position);
-                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[i + 1].transform.position, transform.position);
+                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[a + 1].transform.position, transform.position);
+                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[a].transform.position, transform.position);
                 if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
                 {
+
                     targetDirection = mPCameraController.targets[1].transform.position - transform.position;
                 }
                 else
@@ -67,8 +72,6 @@ public class MPEnemyBow : MonoBehaviour
                 }
                 break;
             }
-            
-
         }
 
         float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
@@ -102,8 +105,8 @@ public class MPEnemyBow : MonoBehaviour
      }*/
     void ArrowLogic() // Arrow attack and instantiate
     {
-        
-        if(target  != null)
+        Debug.Log("null =" + target  != null);
+        if (target  != null)
         {
             distance = Vector2.Distance(transform.position, target.transform.position);
             Debug.Log("target is " + target.name);
@@ -124,6 +127,17 @@ public class MPEnemyBow : MonoBehaviour
         else
         {
             //Select new enemy(player) as a target
+            var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+            var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+            if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+            {
+                target = mPCameraController.targets[1];
+            }
+            else
+            {
+                target = mPCameraController.targets[0];
+            }
+            
         }
     }
     void ShootArrow()
