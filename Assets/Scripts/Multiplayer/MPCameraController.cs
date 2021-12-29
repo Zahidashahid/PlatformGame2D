@@ -44,7 +44,7 @@ public class MPCameraController : MonoBehaviour
                             if (j == (targets.Count - 1))
                             {
                                 //Delete last element from list
-
+                                targets.RemoveAt(j);
                                 break;
                             }
                             targets[j] = targets[j + 1];

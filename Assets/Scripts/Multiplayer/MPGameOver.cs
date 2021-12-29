@@ -42,7 +42,6 @@ public class MPGameOver : MonoBehaviour
     }
     public void GameOver()
     {
-        Debug.Log("GameOver");
         StartCoroutine(waiter());
         //SceneManager.LoadScene("Level 1");
         //SceneManager.LoadScene("GameOver");

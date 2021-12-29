@@ -12,8 +12,6 @@ public class MPEnemyAI : MonoBehaviour
     public MPGameOver mPGameOver;
     MultiPlayer1 multiPlayer1;
     MultiPlayer2 multiPlayer2;
-    Enemies enemies;
-    bool isColliding;
     bool hitByEnemy;
     void Awake()
     {
@@ -24,23 +22,15 @@ public class MPEnemyAI : MonoBehaviour
         rigidbody2DP1 = GameObject.Find("Player1").GetComponent<Rigidbody2D>();
         rigidbody2DP2 = GameObject.Find("Player2").GetComponent<Rigidbody2D>();
         mPGameOver = GameObject.Find("GameManager").GetComponent<MPGameOver>();
-        enemies = GetComponentInChildren<Enemies>();
     }
     void Start()
     {
-        // animator = GetComponent<Animator>();
-        //Debug.Log(playerMovement.lifes + "lifes left");
         hitByEnemy = false;
     }
-    private void FixedUpdate()
-    {
-        // isColliding = false;
-    }
-
-
+  
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(this.tag + " hit " + collision.tag);
+        Debug.Log(this.tag + " hit " + collision.name);
         if (!hitByEnemy)
         {
             GameObject collisionGameObject = collision.gameObject;
@@ -49,40 +39,19 @@ public class MPEnemyAI : MonoBehaviour
             {
                 hitByEnemy = true;
                 StartCoroutine(multiPlayer1.Die());
-               /* Debug.Log(this.tag + " hit " + collision.tag);
-                playerMovement.lifes -= 1;
-                Debug.Log("lifes left " + playerMovement.lifes);
-                playerMovement.lifesText.text = "X " + playerMovement.lifes;
-                PlayerPrefs.SetInt("Lifes", playerMovement.lifes);
-
-                if (playerMovement.lifes <= 0)
-                {
-                    // bgSound.Stop();
-                    PlayerPrefs.SetInt("CurrentHealth", 100);
-                    PlayerPrefs.SetInt("Lifes", 3);
-                    SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
-                    StartCoroutine(multiPlayer1.Die());
-                    this.enabled = false;
-                }
-                else
-                {
-                    StartCoroutine(playerMovement.OnOneDeath());
-                }
-                StartCoroutine(Reset());*/
-
+                StartCoroutine(Reset());
             } 
             if (collision.name == "Player2")
             {
                 hitByEnemy = true;
                 StartCoroutine(multiPlayer2.Die());
-              
-
+                StartCoroutine(Reset());
             }
         }
     }
     IEnumerator Reset()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
 
         hitByEnemy = false;
     }

@@ -6340,7 +6340,6 @@ GameObject:
   - component: {fileID: 713916326}
   - component: {fileID: 713916328}
   - component: {fileID: 713916327}
-  - component: {fileID: 713916330}
   - component: {fileID: 713916331}
   - component: {fileID: 713916329}
   m_Layer: 4
@@ -19543,21 +19542,6 @@ MonoBehaviour:
   rigidbody2DP1: {fileID: 315141188}
   rigidbody2DP2: {fileID: 1899409975}
   mPGameOver: {fileID: 1387107017}
---- !u!114 &713916330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713916325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb991262518f4640b5c2eb42f1fc5cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1434199721}
-  rigidbody2D: {fileID: 1434199720}
-  gameUIScript: {fileID: 0}
 --- !u!70 &713916331
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

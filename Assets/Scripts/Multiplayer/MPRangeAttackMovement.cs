@@ -21,7 +21,7 @@ public class MPRangeAttackMovement : MonoBehaviour
     public Rigidbody2D rb;
     public int direction = 2;
     public MPCameraController mPCameraController;
-    EnemyShield shield;
+    MPEnemyShield shield;
 
     #endregion
 
@@ -38,7 +38,7 @@ public class MPRangeAttackMovement : MonoBehaviour
         //target = playerObject.transform;
         animator = GetComponent<Animator>();
         lootSystem = GetComponent<LootSystem>();
-        shield = GetComponent<EnemyShield>();
+        shield = GetComponent<MPEnemyShield>();
 
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
 
