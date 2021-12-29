@@ -72,40 +72,26 @@ public class MPEnemyBow : MonoBehaviour
                 }
                 break;
             }
+            else
+            {
+                targetDirection = mPCameraController.targets[0].transform.position - transform.position;
+            }
         }
-
         float rotZ = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        /*Debug.Log("Direction" + targetDirection);
-        Debug.Log("rot" + rotZ);*/
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //  StartCoroutine(Attack());
         if (collision.tag == "Player")
         {
             target = collision.gameObject;
-            // Debug.Log("player entred in arrow danger zone");
-            //collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             inRange = true;
             Debug.Log("Inrage =" + inRange);
-            //nextAttackTime = -1;
-            //ArrowLogic();
         }
     }
-    /* private void OnTriggerExit2D(Collider2D collision)
-     {
-        if (collision.tag == "Player")
-        {
-            Debug.Log("player exiting in arrow danger zone");
-            inRange = false;
-            Debug.Log("Inrage =" + inRange);
-            nextAttackTime = -1;
-        }
-     }*/
+ 
     void ArrowLogic() // Arrow attack and instantiate
     {
-        //Debug.Log("null =" + target  != null);
         if (target  != null)
         {
             distance = Vector2.Distance(transform.position, target.transform.position);
@@ -115,18 +101,16 @@ public class MPEnemyBow : MonoBehaviour
             if (attackDistance >= distance)
             {
                 inRange = true;
-                // Debug.Log("Inrage =" + inRange);
                 ShootArrow();
             }
             else
             {
                 inRange = false;
-                //Debug.Log("Inrage =" + inRange);
             }
         }
         else
         {
-            //Select new enemy(player) as a target
+            /*---------------- Select new enemy(player) as a target ----------------------*/
             if(mPCameraController.targets.Count > 1)
             {
                 var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
@@ -154,15 +138,12 @@ public class MPEnemyBow : MonoBehaviour
         Debug.Log("nextAttackTime :-" +  nextAttackTime);
 
         nextAttackTime = 2;
-        //Debug.Log("nextAttackTime :-" + nextAttackTime);
         if (mPCameraController.targets.Count == 0)
             return;
         else if (mPCameraController.targets.Count > 1)
         {
             for (int i = 0; i < mPCameraController.targets.Count; i++)
             {
-
-
                 var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
                 var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
                 Debug.Log(transform.position.x + "  :-" + mPCameraController.targets[1].transform.position.x);
@@ -220,11 +201,5 @@ public class MPEnemyBow : MonoBehaviour
             
             Instantiate(projectile, shotPoint.position, transform.rotation);
         }
-
-
-
-
-
-
     }
 }
