@@ -28,11 +28,8 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private EnemyShield shield;
+    private MPEnemyShield shield;
     private int maxHealth = 100;
-    //public List<Transform> targets;
-    //public List<Animator> playersAnimator;
-
     private float distance; // stores distance btw player and enemy
     private bool inRange; // check player in range
     #endregion
@@ -46,7 +43,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         Time.timeScale = 1f;
         numberOfDamgeTake = 0;
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
-        shield = GetComponent<EnemyShield>();
+        shield = GetComponent<MPEnemyShield>();
         lootSystem = GetComponent<LootSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -60,8 +57,6 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         {
             SelectTarget();
         }
-       
-      
     }
     private void LateUpdate()
     {
@@ -72,73 +67,142 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     }
     void MovingTowardsPlayers()
     {
-        /*
+        if (mPCameraController.targets.Count > 1)
+        {
+            /*
          ----------- enemy moving towards player----------
      */
-      
-        if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance ||
-            (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > stopDistance) && currentHealth > 0)
-        {
-            animator.SetFloat("Speed", Mathf.Abs(40));
-            //Debug.Log(" enemy moving towards player");
-            if (direction == 1)
-            {
-                rb.velocity = new Vector2(3, rb.velocity.y);
-                transform.localScale = new Vector2(12, 12);
-            }
-            else
-            {
-                rb.velocity = new Vector2(-3, rb.velocity.y);
-                transform.localScale = new Vector2(-12, 12);
-            }
-            //Debug.Log("transform pos" + transform.position);
-            Flip();
-        }
-        /*
-            -----------if enemy near enough but not much near stop  moving----------
-         */
-        else if ( (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
-                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
-        {
-            //Debug.Log(" if enemy near enough but not much near stop  moving-");
-            animator.SetFloat("Speed", Mathf.Abs(0));
-            rb.velocity = new Vector2(0, 0);
-            transform.position = this.transform.position;
-            Flip();
-        }
-       /*
-           -----------enemy moving away from player if it is very near to player----------
-        */
-        else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
-                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
-        {
-            //Debug.Log(" enemy moving away from player if it is very near to player-");
-            if (direction == 1)
-            {
 
-                rb.velocity = new Vector2(-3, rb.velocity.y);
+            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance ||
+                (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > stopDistance) && currentHealth > 0)
+            {
+                animator.SetFloat("Speed", Mathf.Abs(40));
+                //Debug.Log(" enemy moving towards player");
+                if (direction == 1)
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                    transform.localScale = new Vector2(12, 12);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                    transform.localScale = new Vector2(-12, 12);
+                }
+                //Debug.Log("transform pos" + transform.position);
+                Flip();
+            }
+            /*
+                -----------if enemy near enough but not much near stop  moving----------
+             */
+            else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
+                    (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
+            {
+                //Debug.Log(" if enemy near enough but not much near stop  moving-");
+                animator.SetFloat("Speed", Mathf.Abs(0));
+                rb.velocity = new Vector2(0, 0);
+                transform.position = this.transform.position;
+                Flip();
+            }
+            /*
+                -----------enemy moving away from player if it is very near to player----------
+             */
+            else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
+                    (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
+            {
+                //Debug.Log(" enemy moving away from player if it is very near to player-");
+                if (direction == 1)
+                {
+
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                }
+                Flip();
             }
             else
             {
-                rb.velocity = new Vector2(3, rb.velocity.y);
+                Debug.Log(" Else-");
+                if (direction == 1)
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                    transform.localScale = new Vector2(5, 5);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                    transform.localScale = new Vector2(-5, 5);
+                }
+                //Debug.Log("transform pos" + transform.position);
+                Flip();
             }
-            Flip();
         }
         else
         {
-            Debug.Log(" Else-");
-            if (direction == 1)
+            /*----------- enemy moving towards player---------- */
+
+            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance  )
             {
-                rb.velocity = new Vector2(3, rb.velocity.y);
-                transform.localScale = new Vector2(5, 5);
+                animator.SetFloat("Speed", Mathf.Abs(40));
+                //Debug.Log(" enemy moving towards player");
+                if (direction == 1)
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                    transform.localScale = new Vector2(12, 12);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                    transform.localScale = new Vector2(-12, 12);
+                }
+                //Debug.Log("transform pos" + transform.position);
+                Flip();
+            }
+            /*
+                -----------if enemy near enough but not much near stop  moving----------
+             */
+            else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) )
+            {
+                //Debug.Log(" if enemy near enough but not much near stop  moving-");
+                animator.SetFloat("Speed", Mathf.Abs(0));
+                rb.velocity = new Vector2(0, 0);
+                transform.position = this.transform.position;
+                Flip();
+            }
+            /*
+                -----------enemy moving away from player if it is very near to player----------
+             */
+            else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) )
+            {
+                //Debug.Log(" enemy moving away from player if it is very near to player-");
+                if (direction == 1)
+                {
+
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                }
+                Flip();
             }
             else
             {
-                rb.velocity = new Vector2(-3, rb.velocity.y);
-                transform.localScale = new Vector2(-5, 5);
+                Debug.Log(" Else-");
+                if (direction == 1)
+                {
+                    rb.velocity = new Vector2(3, rb.velocity.y);
+                    transform.localScale = new Vector2(5, 5);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                    transform.localScale = new Vector2(-5, 5);
+                }
+                //Debug.Log("transform pos" + transform.position);
+                Flip();
             }
-            //Debug.Log("transform pos" + transform.position);
-            Flip();
         }
     }
   
@@ -219,37 +283,68 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     }
     public void Flip()
     {
-
-        distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position); // Checking distance btw player and enemy
-
-        Vector3 rotation = transform.eulerAngles;
-        rotation.x *= -1;
-        if (distance >= 5)
+        if (mPCameraController.targets.Count > 1)
         {
-            inRange = false;
+            distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position); // Checking distance btw player 1 and enemy
+            float dis2 = Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position); // Checking distance btw player 2 and enemy
+            Vector3 rotation = transform.eulerAngles;
+            rotation.x *= -1;
+            if (distance >= 5 || dis2 >= 5)
+            {
+                inRange = false;
+            }
+            else
+                inRange = true;
+            if ((inRange && transform.position.x > mPCameraController.targets[0].transform.position.x && direction == 1) || (inRange && transform.position.x > mPCameraController.targets[1].transform.position.x && direction == 1))
+            {
+                rotation.y = 180f;
+                direction = 2;
+                Debug.Log("Skeleton Flip to left");
+
+            }
+            else if ((inRange && transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2) ||
+                (inRange && transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2))
+            {
+                rotation.y = 180f;
+                direction = 1;
+                Debug.Log("Skeleton Flip to right");
+            }
+            else
+            {
+                rotation.y = 0f;
+            }
+            transform.eulerAngles = rotation;
         }
         else
-            inRange = true;
-        if (inRange && transform.position.x > mPCameraController.targets[0].transform.position.x && direction == 1)
         {
-            rotation.y = 180f;
-            direction = 2;
-            Debug.Log("Skeleton Flip to left");
+            distance = Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position); // Checking distance btw player 1 and enemy
+            Vector3 rotation = transform.eulerAngles;
+            rotation.x *= -1;
+            if (distance >= 5 )
+            {
+                inRange = false;
+            }
+            else
+                inRange = true;
+            if (inRange && transform.position.x > mPCameraController.targets[0].transform.position.x && direction == 1)
+            { 
+                rotation.y = 180f;
+                direction = 2;
+                Debug.Log("Skeleton Flip to left");
 
+            }
+            else if (inRange && transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2)
+            {
+                rotation.y = 180f;
+                direction = 1;
+                Debug.Log("Skeleton Flip to right");
+            }
+            else
+            {
+                rotation.y = 0f;
+            }
+            transform.eulerAngles = rotation;
         }
-        else if (inRange && transform.position.x < mPCameraController.targets[0].transform.position.x && direction == 2)
-        {
-            rotation.y = 180f;
-            direction = 1;
-            Debug.Log("Skeleton Flip to right");
-        }
-        else
-        {
-            rotation.y = 0f;
-        }
-        transform.eulerAngles = rotation;
-        //Debug.Log("transform.eulerAngles " + transform.eulerAngles);
-
     }
 
     void SelectTarget()

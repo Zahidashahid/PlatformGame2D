@@ -31,6 +31,8 @@ TagManager:
   - Player2
   - ArrowStoreP1
   - ArrowStoreP2
+  - P1HealthBar
+  - P2HealthBar
   layers:
   - Default
   - TransparentFX

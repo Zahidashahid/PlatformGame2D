@@ -41,7 +41,7 @@ public class MultiPlayer2 : MonoBehaviour
     private GameMaster gm;
     public TMP_Text lifesText;
     GameUIScript gameUIScript;
-
+    public LootSystem lootSystem;
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -62,6 +62,7 @@ public class MultiPlayer2 : MonoBehaviour
     {
         numberOfDamgeTake = 0;
         direction = 2;
+        lootSystem = GetComponent<LootSystem>();
         shield = GetComponent<Shield>();
         animator = GetComponent<Animator>(); ;
         transformObj = GetComponent<Transform>();
@@ -309,6 +310,8 @@ public class MultiPlayer2 : MonoBehaviour
         // animator.SetBool("IsDied", false);
         // Disable the player
         // FindObjectOfType<GameUIScript>().GameOver();
+
+        lootSystem.Spawnner(transform);
         Destroy(gameObject);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
     }

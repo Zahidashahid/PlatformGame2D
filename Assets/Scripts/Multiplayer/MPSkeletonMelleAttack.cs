@@ -16,8 +16,12 @@ public class MPSkeletonMelleAttack : MonoBehaviour
     private bool cooling;
     private GameObject target;
 
+    public MPCameraController mPCameraController;
+
     void Start()
     {
+
+        mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
         nextAttackTime = -1;
   
     }
@@ -44,8 +48,9 @@ public class MPSkeletonMelleAttack : MonoBehaviour
     }
     void MelleAttackLogic() // melle attack 
     {
+        CheckPlayer();
         distance = Vector2.Distance(transform.position, target.transform.position);
-        attackDistance = 10;
+        attackDistance = 15;
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
 
@@ -110,5 +115,32 @@ public class MPSkeletonMelleAttack : MonoBehaviour
             inRange = true;
         }
     }
-   
+    void CheckPlayer()
+    {
+        if (mPCameraController.targets.Count < 1)
+        {
+            FindObjectOfType<MPGameOver>().GameOver();
+        }
+        else
+        {
+            if (mPCameraController.targets.Count > 1)
+            {
+                var distanceBtwP2AndEnemy = Vector3.Distance(mPCameraController.targets[1].transform.position, transform.position);
+                var distanceBtwP1AndEnemy = Vector3.Distance(mPCameraController.targets[0].transform.position, transform.position);
+                if (distanceBtwP1AndEnemy > distanceBtwP2AndEnemy)
+                {
+
+                    target = mPCameraController.targets[1];
+                }
+                else
+                {
+                    target = mPCameraController.targets[0];
+                }
+
+            }
+            else if (mPCameraController.targets.Count == 1)
+                target = mPCameraController.targets[0];
+        
+        }
+    }
 }
