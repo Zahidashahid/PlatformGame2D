@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         }
             
     }
-    private void Update()
+    private void FixedUpdate()
     {
         // Debug.Log("Is Grounded! "+ grounded);
         // Move Player back
@@ -143,11 +143,7 @@ public class PlayerMovement : MonoBehaviour
         // MelleAttack();
 
     }
-    void FixedUpdate()
-    {
-        /* controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-         jump = false;*/
-    }
+   
    void MovePlayerRight()
    {
         /*animator.SetFloat("Speed", Mathf.Abs(40));
@@ -196,7 +192,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             grounded = true;
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
            // jump = true;
 

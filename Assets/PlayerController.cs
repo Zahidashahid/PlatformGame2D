@@ -43,6 +43,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Multiplayer1Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""cdf15ea4-6124-4861-aac5-c220956d5d64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""MelleAttackGP"",
                     ""type"": ""Button"",
                     ""id"": ""a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af"",
@@ -249,6 +257,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""de655bb6-755a-4c5c-b85c-68079390d416"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1cc411d3-fe1a-4819-8a87-c13ccad93a61"",
                     ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -630,6 +649,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""ArrowShootP2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cefaeff-1341-4298-abef-223df06d7ccc"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Multiplayer1Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -641,6 +671,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_RightMove = m_Gameplay.FindAction("RightMove", throwIfNotFound: true);
         m_Gameplay_LeftMove = m_Gameplay.FindAction("LeftMove", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Multiplayer1Jump = m_Gameplay.FindAction("Multiplayer1Jump", throwIfNotFound: true);
         m_Gameplay_MelleAttackGP = m_Gameplay.FindAction("MelleAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackGP = m_Gameplay.FindAction("RangeAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackPlayer1 = m_Gameplay.FindAction("RangeAttackPlayer1", throwIfNotFound: true);
@@ -710,6 +741,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_RightMove;
     private readonly InputAction m_Gameplay_LeftMove;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Multiplayer1Jump;
     private readonly InputAction m_Gameplay_MelleAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackPlayer1;
@@ -734,6 +766,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @RightMove => m_Wrapper.m_Gameplay_RightMove;
         public InputAction @LeftMove => m_Wrapper.m_Gameplay_LeftMove;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Multiplayer1Jump => m_Wrapper.m_Gameplay_Multiplayer1Jump;
         public InputAction @MelleAttackGP => m_Wrapper.m_Gameplay_MelleAttackGP;
         public InputAction @RangeAttackGP => m_Wrapper.m_Gameplay_RangeAttackGP;
         public InputAction @RangeAttackPlayer1 => m_Wrapper.m_Gameplay_RangeAttackPlayer1;
@@ -769,6 +802,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Multiplayer1Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
+                @Multiplayer1Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
+                @Multiplayer1Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
                 @MelleAttackGP.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
                 @MelleAttackGP.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
                 @MelleAttackGP.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
@@ -833,6 +869,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Multiplayer1Jump.started += instance.OnMultiplayer1Jump;
+                @Multiplayer1Jump.performed += instance.OnMultiplayer1Jump;
+                @Multiplayer1Jump.canceled += instance.OnMultiplayer1Jump;
                 @MelleAttackGP.started += instance.OnMelleAttackGP;
                 @MelleAttackGP.performed += instance.OnMelleAttackGP;
                 @MelleAttackGP.canceled += instance.OnMelleAttackGP;
@@ -893,6 +932,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnRightMove(InputAction.CallbackContext context);
         void OnLeftMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnMultiplayer1Jump(InputAction.CallbackContext context);
         void OnMelleAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackPlayer1(InputAction.CallbackContext context);

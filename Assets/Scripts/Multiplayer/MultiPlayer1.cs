@@ -47,7 +47,7 @@ public class MultiPlayer1 : MonoBehaviour
         controls = new PlayerController();
         controls.Gameplay.Multiplayer1Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
         controls.Gameplay.Multiplayer1Movement.canceled += ctx => move = Vector2.zero;
-        controls.Gameplay.Jump.performed += ctx => JumpPlayer();
+        controls.Gameplay.Multiplayer1Jump.performed += ctx => JumpPlayer();
         /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
            */
@@ -82,7 +82,7 @@ public class MultiPlayer1 : MonoBehaviour
             //gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         /* ----------------- Move Player back --------------------- */
         CheckGamePaused();
@@ -147,8 +147,8 @@ public class MultiPlayer1 : MonoBehaviour
         }
         else
         {
-            grounded = true;
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            //grounded = true;
+           // rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
             // jump = true;
         }

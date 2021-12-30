@@ -20,10 +20,8 @@ public class MPSkeletonMelleAttack : MonoBehaviour
 
     void Start()
     {
-
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
         nextAttackTime = -1;
-  
     }
 
     void Update()
@@ -136,7 +134,6 @@ public class MPSkeletonMelleAttack : MonoBehaviour
                 {
                     target = mPCameraController.targets[0];
                 }
-
             }
             else if (mPCameraController.targets.Count == 1)
                 target = mPCameraController.targets[0];

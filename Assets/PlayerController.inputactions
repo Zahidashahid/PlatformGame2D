@@ -30,6 +30,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Multiplayer1Jump",
+                    "type": "Button",
+                    "id": "cdf15ea4-6124-4861-aac5-c220956d5d64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "MelleAttackGP",
                     "type": "Button",
                     "id": "a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af",
@@ -236,6 +244,17 @@
                 {
                     "name": "",
                     "id": "de655bb6-755a-4c5c-b85c-68079390d416",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1cc411d3-fe1a-4819-8a87-c13ccad93a61",
                     "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
@@ -615,6 +634,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ArrowShootP2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cefaeff-1341-4298-abef-223df06d7ccc",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Multiplayer1Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

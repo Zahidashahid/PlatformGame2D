@@ -79,7 +79,7 @@ public class MultiPlayer2 : MonoBehaviour
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         // Debug.Log("Is Grounded! "+ grounded);
         /* ----------------Move Player back-------------------- */
@@ -147,7 +147,7 @@ public class MultiPlayer2 : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            //rb.velocity = new Vector2(rb.velocity.x, 0f);
             animator.SetBool("IsJumping", false);
             // jump = true;
 

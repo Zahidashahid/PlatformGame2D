@@ -12,12 +12,7 @@ public class MPTakeLoot : MonoBehaviour
     public HealthBar healthBarP2;
     private void Awake()
     {
-        multiPlayer1 = GameObject.Find("Player1").GetComponent<MultiPlayer1>();
-        multiPlayer2 = GameObject.Find("Player2").GetComponent<MultiPlayer2>();
-        healthBarP1 = GameObject.FindGameObjectWithTag("P1HealthBar").GetComponent<HealthBar>();
-        healthBarP2 = GameObject.FindGameObjectWithTag("P2HealthBar").GetComponent<HealthBar>();
-        mPArrowStoreP1 = GameObject.FindGameObjectWithTag("ArrowStoreP1").GetComponent<MPArrowStore>();
-        mPArrowStoreP2 = GameObject.FindGameObjectWithTag("ArrowStoreP2").GetComponent<MPArrowStore>();
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -26,6 +21,10 @@ public class MPTakeLoot : MonoBehaviour
 
         if (collision.name == "Player1")
         {
+
+            multiPlayer1 = GameObject.Find("Player1").GetComponent<MultiPlayer1>();
+            healthBarP1 = GameObject.FindGameObjectWithTag("P1HealthBar").GetComponent<HealthBar>();
+            mPArrowStoreP1 = GameObject.FindGameObjectWithTag("ArrowStoreP1").GetComponent<MPArrowStore>();
             if (this.tag == "HealthLoot")
             {
                 Debug.Log(this.tag);
@@ -51,11 +50,14 @@ public class MPTakeLoot : MonoBehaviour
         
         if (collision.name == "Player2")
         {
+            multiPlayer2 = GameObject.Find("Player2").GetComponent<MultiPlayer2>();
+            healthBarP2 = GameObject.FindGameObjectWithTag("P2HealthBar").GetComponent<HealthBar>();
+            mPArrowStoreP2 = GameObject.FindGameObjectWithTag("ArrowStoreP2").GetComponent<MPArrowStore>();
             if (this.tag == "HealthLoot")
             {
                 Debug.Log(this.tag);
                 multiPlayer2.currentHealth = 100;
-                healthBarP1.SetHealth(100);
+                healthBarP2.SetHealth(100);
                 Destroy(gameObject);
             }
             else if (this.tag == "ArrowLoot")
