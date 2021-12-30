@@ -69,7 +69,7 @@ public class MelleAttack : MonoBehaviour
     {
         animator.SetBool("Sheild", false);
        // EnemyShield.activeShield = false;
-        Debug.Log("Attack called ");
+        Debug.Log("Attack called in melle attack script");
         animator.SetBool("Attack", true);
       //  animator.SetBool("CanWalk", false);
         yield return new WaitForSeconds(0.2f);

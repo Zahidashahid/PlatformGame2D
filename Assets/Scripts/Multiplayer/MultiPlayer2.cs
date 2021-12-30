@@ -42,9 +42,12 @@ public class MultiPlayer2 : MonoBehaviour
     public TMP_Text lifesText;
     GameUIScript gameUIScript;
     public LootSystem lootSystem;
+    MPCameraController mPCameraController;
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
+
+        mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
         lifes = 3;
         controls = new PlayerController();
         controls.Gameplay.Multiplayer2Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
@@ -100,6 +103,42 @@ public class MultiPlayer2 : MonoBehaviour
         {
             MoveplayerLeft();
         }
+        if (mPCameraController.targets.Count > 1)
+        {
+            float retreatDistance = 3.5f;
+            float stopDistance = 5;
+            Debug.Log("MP2 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
+            /*
+           -----------if enemy near enough but not much near stop  moving----------
+        */
+            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance)
+            {
+                Debug.Log("Stop moving from p1");
+                rb.velocity = new Vector2(0, 0);
+                transform.position = this.transform.position;
+
+            }
+            /*
+               -----------enemy moving away from player if it is very near to player----------
+            */
+            else if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance)
+            {
+                Debug.Log(" moving away from player 1 ");
+                if (direction == 1)
+                {
+
+                    rb.velocity = new Vector2(5, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(-5, rb.velocity.y);
+                }
+
+                //transform.localScale = new Vector2(5, 5);
+            }
+        }
+
+
     }
     void MovePlayerRight()
     {
