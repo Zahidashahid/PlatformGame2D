@@ -36,7 +36,7 @@ public class MPEnemyBow : MonoBehaviour
         mPCameraController = GameObject.Find("Camera").GetComponent<MPCameraController>();
 
     }
-    void Update()
+    void FixedUpdate()
     {
         if (inRange)
         {
