@@ -104,8 +104,8 @@ public class MultiPlayer1 : MonoBehaviour
         }
        if( mPCameraController.targets.Count > 1)
         {
-           int  retreatDistance = 3;
-            int stopDistance = 5;
+           float  retreatDistance = 3.5f;
+            float stopDistance = 5;
             Debug.Log("MP 1 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position));
             /*
            -----------if enemy near enough but not much near stop  moving----------
@@ -123,15 +123,34 @@ public class MultiPlayer1 : MonoBehaviour
             else if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance)
             {
                 Debug.Log(" moving away from player 2 ");
-                if (direction == 1)
+                Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].name);
+                if (transform.position.x <= mPCameraController.targets[1].transform.position.x)
                 {
+                    Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].transform.position.x);
+                    if (direction == 1)
+                    {
 
-                    rb.velocity = new Vector2(5, rb.velocity.y);
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
                 }
                 else
                 {
-                    rb.velocity = new Vector2(-5, rb.velocity.y);
+                    Debug.Log(transform.position.x + "  player 1 " + mPCameraController.targets[1].transform.position.x);
+                    if (direction == 1)
+                    {
+
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
                 }
+               
             
                 //transform.localScale = new Vector2(5, 5);
             }

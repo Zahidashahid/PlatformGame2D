@@ -107,11 +107,12 @@ public class MultiPlayer2 : MonoBehaviour
         {
             float retreatDistance = 3.5f;
             float stopDistance = 5;
-            Debug.Log("MP2 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
+           // Debug.Log("MP2 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
             /*
            -----------if enemy near enough but not much near stop  moving----------
         */
-            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance)
+            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && 
+                Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance)
             {
                 Debug.Log("Stop moving from p1");
                 rb.velocity = new Vector2(0, 0);
@@ -124,15 +125,34 @@ public class MultiPlayer2 : MonoBehaviour
             else if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance)
             {
                 Debug.Log(" moving away from player 1 ");
-                if (direction == 1)
+                Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[0].name);
+                if (transform.position.x >= mPCameraController.targets[0].transform.position.x)
                 {
+                    Debug.Log(transform.position.x  +" pos  player 1 " + mPCameraController.targets[0].transform.position.x);
+                    if (direction == 1)
+                    {
 
-                    rb.velocity = new Vector2(5, rb.velocity.y);
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
                 }
                 else
                 {
-                    rb.velocity = new Vector2(-5, rb.velocity.y);
+                    Debug.Log(transform.position.x + "   player 1 " + mPCameraController.targets[0].transform.position.x);
+                    if (direction == 1)
+                    {
+
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
                 }
+
 
                 //transform.localScale = new Vector2(5, 5);
             }
