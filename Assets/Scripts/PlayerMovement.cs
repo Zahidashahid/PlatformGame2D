@@ -92,13 +92,13 @@ public class PlayerMovement : MonoBehaviour
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
-        if(MainMenu.isNewGame || GameUIScript.isNewGame)
+        Debug.Log("Level " + PlayerPrefs.GetInt("LevelCompleted"));
+        if (MainMenu.isNewGame || GameUIScript.isNewGame || (PlayerPrefs.GetInt("LevelCompleted") == 1)) 
         {
             Debug.Log("New Game Started");
             gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
             PlayerPrefs.SetFloat("LastcheckPointX", transformObj.position.x);
             PlayerPrefs.SetFloat("LastcheckPointy", transformObj.position.y);
-
         }
         else
         {

@@ -27,8 +27,8 @@ public class LevelLoder : MonoBehaviour
     }
     public void LoadLevel()
     {
-       
-        if(useIntegerToLoadLevel)
+        PlayerPrefs.SetInt("LevelCompleted", 1);
+        if (useIntegerToLoadLevel)
         {
             SceneManager.LoadScene(iLevelToLoad);
         }

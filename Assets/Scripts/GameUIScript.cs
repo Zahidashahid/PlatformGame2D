@@ -41,6 +41,7 @@ public class GameUIScript : MonoBehaviour
         /*gameOverPanel.SetActive(false);
         restartButton.SetActive(false);
         gameOverText.enabled = false;*/
+        PlayerPrefs.SetInt("LevelCompleted", 0);
         isNewGame = false;
         avatar1 = GameObject.Find("Player_Goblin");
         avatar2 = GameObject.Find("MushrromPlayer");
