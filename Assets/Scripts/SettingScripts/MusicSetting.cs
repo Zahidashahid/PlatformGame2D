@@ -14,6 +14,7 @@ public class MusicSetting : MonoBehaviour
     public Toggle musicToggleBtn;
     public Toggle soundToggleBtn;*/
     public Toggle musicToggle;
+
     /*public AudioMixer soundMute;
     public AudioMixer musicMute;*/
 
@@ -22,12 +23,13 @@ public class MusicSetting : MonoBehaviour
     // by dragging slider knob
     //private float musicVolume = 1f;
 
-  
+
     // Use this for initialization
     void Start()
     {
         // Assign Audio Source component to control it
-        audioSrc =  GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>(); 
+        audioSrc =  GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
+        
         //musicToggle = GameObject.FindGameObjectWithTag("MusicToggle").GetComponent<Toggle>();
         //audioSrc.PlayOneShot(bgMusic);
         CheckMuteOrUnMute();
@@ -91,10 +93,13 @@ public class MusicSetting : MonoBehaviour
     }
     public void VolumeofMusic(float volume)
     {
+       float VolumeSliderGet = GameObject.FindGameObjectWithTag("Master volume slider").GetComponent<Slider>().value;
+        Slider musicVolumeSlider = GameObject.FindGameObjectWithTag("MusicSlider").GetComponent<Slider>();
+        musicVolumeSlider.maxValue = VolumeSliderGet;
         audioSrc.volume = volume;
     /*    Debug.Log("audioS.name " + audioSrc.name);
         Debug.Log("audioS.volume " + audioSrc.volume);
         Debug.Log("volume " + volume);*/
     }
- 
+        
 }

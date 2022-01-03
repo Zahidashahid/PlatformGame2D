@@ -48,7 +48,7 @@ public class MPSkeletonMelleAttack : MonoBehaviour
     {
         CheckPlayer();
         distance = Vector2.Distance(transform.position, target.transform.position);
-        attackDistance = 15;
+        attackDistance = 18;
         Debug.Log("Value of distance is " + distance);
         Debug.Log("Value of attack distance is " + attackDistance);
 
