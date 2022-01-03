@@ -11,6 +11,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: Speed
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: Attack1
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6158075985801495029}
   m_Solo: 0
@@ -409,6 +412,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: Speed
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsDied
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6991262926634273902}
   m_Solo: 0
@@ -462,10 +468,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6158075985801495029}
-    m_Position: {x: 330, y: 30, z: 0}
+    m_Position: {x: 320, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3214907914812707567}
-    m_Position: {x: 620, y: 40, z: 0}
+    m_Position: {x: 660, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1472992891873660551}
     m_Position: {x: 1040, y: 110, z: 0}
@@ -474,7 +480,7 @@ AnimatorStateMachine:
     m_Position: {x: 660, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6991262926634273902}
-    m_Position: {x: 110, y: 110, z: 0}
+    m_Position: {x: 100, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6528532904547209321}
     m_Position: {x: 260, y: 200, z: 0}
@@ -487,7 +493,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 650, y: 120, z: 0}
+  m_AnyStatePosition: {x: 670, y: 140, z: 0}
   m_EntryPosition: {x: 10, y: 30, z: 0}
   m_ExitPosition: {x: 860, y: 50, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -552,7 +558,10 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: Attack1
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3214907914812707567}
   m_Solo: 0
