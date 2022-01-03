@@ -102,61 +102,7 @@ public class MultiPlayer1 : MonoBehaviour
         {
             MoveplayerLeft();
         }
-       if( mPCameraController.targets.Count > 1)
-        {
-           float  retreatDistance = 3.5f;
-            float stopDistance = 5;
-            Debug.Log("MP 1 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position));
-            /*
-           -----------if enemy near enough but not much near stop  moving----------
-        */
-            if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance)
-            {
-                Debug.Log("Stop moving from p 2");
-                rb.velocity = new Vector2(0, 0);
-                transform.position = this.transform.position;
-               
-            }
-            /*
-               -----------enemy moving away from player if it is very near to player----------
-            */
-            else if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance)
-            {
-                Debug.Log(" moving away from player 2 ");
-                Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].name);
-                if (transform.position.x <= mPCameraController.targets[1].transform.position.x)
-                {
-                    Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].transform.position.x);
-                    if (direction == 1)
-                    {
-
-                        rb.velocity = new Vector2(5, rb.velocity.y);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(-5, rb.velocity.y);
-                    }
-                }
-                else
-                {
-                    Debug.Log(transform.position.x + "  player 1 " + mPCameraController.targets[1].transform.position.x);
-                    if (direction == 1)
-                    {
-
-                        rb.velocity = new Vector2(-5, rb.velocity.y);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(5, rb.velocity.y);
-                    }
-                }
-               
-            
-                //transform.localScale = new Vector2(5, 5);
-            }
-        }
-       
-       
+     
 
     }
 
@@ -166,6 +112,7 @@ public class MultiPlayer1 : MonoBehaviour
         transformObj.localScale = new Vector2(1, 1);
         animator.SetFloat("Speed", Mathf.Abs(40));
         direction = 2;
+        MovementLogicRespectToOtherPlayer();
     }
     void MoveplayerLeft()
     {
@@ -173,6 +120,7 @@ public class MultiPlayer1 : MonoBehaviour
         transformObj.localScale = new Vector2(-1, 1);
         animator.SetFloat("Speed", Mathf.Abs(40));
         direction = 1;
+        MovementLogicRespectToOtherPlayer();
     }
     void JumpPlayer()
     {
@@ -367,6 +315,64 @@ public class MultiPlayer1 : MonoBehaviour
         lootSystem.Spawnner(transform);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);
         Destroy(gameObject);
+    }
+    void MovementLogicRespectToOtherPlayer()
+    {
+        if (mPCameraController.targets.Count > 1)
+        {
+            float retreatDistance = 3.5f;
+            float stopDistance = 5;
+            Debug.Log("MP 1 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position));
+            /*
+           -----------if enemy near enough but not much near stop  moving----------
+        */
+            if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance)
+            {
+                Debug.Log("Stop moving from p 2");
+                rb.velocity = new Vector2(0, 0);
+                transform.position = this.transform.position;
+
+            }
+            /*
+               -----------enemy moving away from player if it is very near to player----------
+            */
+            else if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance)
+            {
+                Debug.Log(" moving away from player 2 ");
+                Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].name);
+                if (transform.position.x <= mPCameraController.targets[1].transform.position.x)
+                {
+                    Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[1].transform.position.x);
+                    if (direction == 1)
+                    {
+
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
+                }
+                else
+                {
+                    Debug.Log(transform.position.x + "  player 1 " + mPCameraController.targets[1].transform.position.x);
+                    if (direction == 1)
+                    {
+
+                        rb.velocity = new Vector2(-5, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(5, rb.velocity.y);
+                    }
+                }
+
+
+                //transform.localScale = new Vector2(5, 5);
+            }
+        }
+
+
     }
     public IEnumerator OnOneDeath()
     {
