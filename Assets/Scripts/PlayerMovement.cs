@@ -96,6 +96,13 @@ public class PlayerMovement : MonoBehaviour
         if (MainMenu.isNewGame || GameUIScript.isNewGame || (PlayerPrefs.GetInt("LevelCompleted") == 1)) 
         {
             Debug.Log("New Game Started");
+            //Reset Gift collected
+            PlayerPrefs.SetInt("RecentGemCollected", 0);
+            PlayerPrefs.SetInt("RecentCherryCollected", 0);
+            PlayerPrefs.SetInt("GemCollectedTillLastCheckPoint", 0);
+            PlayerPrefs.SetInt("CherryCollectedTillLastCheckPoint", 0);
+            //Reset arrow Store
+            PlayerPrefs.SetInt("ArrowPlayerHas", 10);
             gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
             PlayerPrefs.SetFloat("LastcheckPointX", transformObj.position.x);
             PlayerPrefs.SetFloat("LastcheckPointy", transformObj.position.y);
