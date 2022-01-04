@@ -23,6 +23,7 @@ public class GameUIScript : MonoBehaviour
     GameMaster gm;
     PlayerMovement playerMovement;
     public ScoreManager scoreManager;
+    PauseGame pauseGameScript;
     string difficultyLevel;
 
     public static bool isNewGame;
@@ -45,6 +46,7 @@ public class GameUIScript : MonoBehaviour
         isNewGame = false;
         avatar1 = GameObject.Find("Player_Goblin");
         avatar2 = GameObject.Find("MushrromPlayer");
+        pauseGameScript = GameObject.Find("PauseGameCanvas").GetComponent<PauseGame>();
         Debug.Log("Avatar " + PlayerPrefs.GetInt("AvatarSelected"));
         if ((PlayerPrefs.GetInt("AvatarSelected") == 2))
         {
@@ -94,6 +96,7 @@ public class GameUIScript : MonoBehaviour
                 restartButton.SetActive(false);
                 gameOverText.enabled = false;*/
         //SceneManager.LoadScene("Level 1");
+        pauseGameScript.Resume();
         restartBtnSound.Play();
         isNewGame = false;
         PauseGame.isGamePaused = false;
@@ -162,6 +165,7 @@ public class GameUIScript : MonoBehaviour
 
     public void RestartLevel()
     {
+        pauseGameScript.Resume();
         playerMovement.Reset();
         isNewGame = true;
 

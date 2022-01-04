@@ -50,13 +50,13 @@ public class PauseGame : MonoBehaviour
     {
         isGamePaused = false;
         pauseMenuUI.SetActive(false);
-       // gameModeUI.SetActive(true);
+        gameModeUI.SetActive(true);
         Time.timeScale = 1f;
     }   
     void Pause()
     {
         isGamePaused = true;
-       // gameModeUI.SetActive(false);
+        gameModeUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
