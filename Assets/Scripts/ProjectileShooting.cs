@@ -36,7 +36,7 @@ public class ProjectileShooting : MonoBehaviour
             velocity = (Vector3.right * speed );
         }
     }
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(velocity);
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, distance, enemy);

@@ -14,6 +14,8 @@ public class Bow : MonoBehaviour
     public float offset;
     public float timeBtwShots;
     public float startTimeBtwShots;
+    public float nextAttackTime;
+    bool canAttack;
     int arrowLeft;
     public ArrowStore arrowStore;
 
@@ -25,12 +27,27 @@ public class Bow : MonoBehaviour
         controls.Gameplay.RangeAttackGP.canceled += ctx => rotateBow = Vector2.zero;
   
     }
-    void Update()
+    private void Start()
     {
-       /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
-        Debug.Log("rotateBow.z"+ rotateBow.z);
-        Debug.Log("rotateBow.y"+ rotateBow.y);
-        transform.Rotate(r ,Space.World);*/
+        nextAttackTime = -1;
+        canAttack = true;
+
+    }
+    void FixedUpdate()
+    {
+        if (nextAttackTime <= -1)
+        {
+            canAttack = true;
+        }
+        else
+        {
+            nextAttackTime -= Time.deltaTime;
+            canAttack = false;
+        }
+        /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
+         Debug.Log("rotateBow.z"+ rotateBow.z);
+         Debug.Log("rotateBow.y"+ rotateBow.y);
+         transform.Rotate(r ,Space.World);*/
         //transform.rotation = Quaternion.Euler(0f, 0f, r.z );
         /*Vector2 difference = Camera.main.ScreenToWorldPoint(m) - transform.position;
         float rotZ = Mathf.Atan2(m.y, m.x) * Mathf.Rad2Deg;
@@ -70,10 +87,11 @@ public class Bow : MonoBehaviour
     {
         arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
 
-        if (arrowLeft > 0)
+        if (arrowLeft > 0 && canAttack)
         {
             arrowStore.ArrowUsed();
             Instantiate(projectile, shotPoint.position, transform.rotation);
+            nextAttackTime = 1;
         }
     }
     private void OnEnable()
