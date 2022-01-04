@@ -1488,6 +1488,7 @@ MonoBehaviour:
   offset: 0
   timeBtwShots: 3
   startTimeBtwShots: 0
+  nextAttackTime: 0
   arrowStore: {fileID: 1097549135}
 --- !u!61 &290729927
 BoxCollider2D:
@@ -3035,7 +3036,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556667581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.58, y: -6.630001, z: 0}
+  m_LocalPosition: {x: -3.58, y: -6.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 877214601}
@@ -3395,7 +3396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655053523}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.03, y: -7.760001, z: 0}
+  m_LocalPosition: {x: 32.829994, y: -5.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 877214601}
@@ -11782,7 +11783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1700697047}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -68.59, y: -5.380001, z: 0}
+  m_LocalPosition: {x: -68.59, y: -4.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 877214601}
@@ -12549,6 +12550,7 @@ MonoBehaviour:
   offset: 0
   timeBtwShots: 3
   startTimeBtwShots: 0
+  nextAttackTime: 0
   arrowStore: {fileID: 1097549135}
 --- !u!1 &1806290798
 GameObject:
@@ -15654,7 +15656,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997081856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.829994, y: -5.440001, z: 0}
+  m_LocalPosition: {x: 32.829994, y: -5.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 877214601}

@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
            */
-        controls.Gameplay.MelleAttackGP.performed +=ctx   => MelleAttack();
+        controls.Gameplay.MelleAttackByKeyboard.performed += ctx   => MelleAttack();
         
         controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
         
@@ -299,6 +299,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MelleAttack()
     {
+
+        Debug.Log(Time.deltaTime + " ||| " + nextAttackTime); 
         if (Time.time >= nextAttackTime)
         {
 
