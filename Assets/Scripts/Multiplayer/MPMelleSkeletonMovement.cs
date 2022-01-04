@@ -48,8 +48,8 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
-        stopDistance = 5;
-        retreatDistance = 3;
+        stopDistance = 6f;
+        retreatDistance = 5f;
     }
     void FixedUpdate()
     {
@@ -67,17 +67,20 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     }
     void MovingTowardsPlayers()
     {
+
+        Debug.Log(" P1 and enemy " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
+        Debug.Log(" P2 and enemy " + Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position));
         if (mPCameraController.targets.Count > 1)
         {
             /*
          ----------- enemy moving towards player----------
      */
 
-            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance ||
+            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance &&
                 (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > stopDistance) && currentHealth > 0)
             {
                 animator.SetFloat("Speed", Mathf.Abs(40));
-                //Debug.Log(" enemy moving towards player");
+                Debug.Log(" enemy moving towards player");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
@@ -97,7 +100,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
                     (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
             {
-                //Debug.Log(" if enemy near enough but not much near stop  moving-");
+                Debug.Log(" if enemy near enough but not much near stop  moving-");
                 animator.SetFloat("Speed", Mathf.Abs(0));
                 rb.velocity = new Vector2(0, 0);
                 transform.position = this.transform.position;
@@ -109,7 +112,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
                     (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
             {
-                //Debug.Log(" enemy moving away from player if it is very near to player-");
+                Debug.Log(" enemy moving away from player if it is very near to player-");
                 if (direction == 1)
                 {
 
@@ -145,7 +148,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance  )
             {
                 animator.SetFloat("Speed", Mathf.Abs(40));
-                //Debug.Log(" enemy moving towards player");
+                Debug.Log(" enemy moving towards player");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
@@ -164,7 +167,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
              */
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) )
             {
-                //Debug.Log(" if enemy near enough but not much near stop  moving-");
+                Debug.Log(" if enemy near enough but not much near stop  moving-");
                 animator.SetFloat("Speed", Mathf.Abs(0));
                 rb.velocity = new Vector2(0, 0);
                 transform.position = this.transform.position;
@@ -175,7 +178,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
              */
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) )
             {
-                //Debug.Log(" enemy moving away from player if it is very near to player-");
+                Debug.Log(" enemy moving away from player if it is very near to player-");
                 if (direction == 1)
                 {
 
