@@ -25,7 +25,12 @@ public class Bow : MonoBehaviour
         controls.Gameplay.ArowHit.performed += ctx => ArrowShoot();
         controls.Gameplay.RangeAttackGP.performed += ctx => Move(ctx.ReadValue<Vector2>());
         controls.Gameplay.RangeAttackGP.canceled += ctx => rotateBow = Vector2.zero;
-  
+
+
+
+        controls.Gameplay.MouseDirection.performed += ctx => BowRotate(ctx.ReadValue<Vector2>());
+        controls.Gameplay.MouseDirection.canceled += ctx => rotateBow = Vector2.zero;
+
     }
     private void Start()
     {
@@ -44,6 +49,7 @@ public class Bow : MonoBehaviour
             nextAttackTime -= Time.deltaTime;
             canAttack = false;
         }
+        
         /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
          Debug.Log("rotateBow.z"+ rotateBow.z);
          Debug.Log("rotateBow.y"+ rotateBow.y);
@@ -75,13 +81,13 @@ public class Bow : MonoBehaviour
     {
         transform.Rotate(vector.x * Vector3.forward + vector.y * Vector3.forward);
     }
-    void BowRotate()
+    void BowRotate(Vector2 vector)
     {
-        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+//Vector3 difference = Camera.main.ScreenToWorldPoint(Input.MouseDirection) - transform.position;
+        float rotZ = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
         // Debug.Log("" + rotZ + offset);
-        arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");*/
+        arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
     }
     void ArrowShoot()
     {

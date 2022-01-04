@@ -185,6 +185,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""4d692f18-3d81-4f78-8f63-bbfffcdebaf3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -660,6 +668,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Multiplayer1Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72ec88e6-ad7f-47ba-aa15-8fe41a227a95"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -689,6 +708,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_MPPlayeer2Dashmove = m_Gameplay.FindAction("MPPlayeer2Dashmove", throwIfNotFound: true);
         m_Gameplay_ArrowShootP1 = m_Gameplay.FindAction("ArrowShootP1", throwIfNotFound: true);
         m_Gameplay_ArrowShootP2 = m_Gameplay.FindAction("ArrowShootP2", throwIfNotFound: true);
+        m_Gameplay_MouseDirection = m_Gameplay.FindAction("MouseDirection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -759,6 +779,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_MPPlayeer2Dashmove;
     private readonly InputAction m_Gameplay_ArrowShootP1;
     private readonly InputAction m_Gameplay_ArrowShootP2;
+    private readonly InputAction m_Gameplay_MouseDirection;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -784,6 +805,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @MPPlayeer2Dashmove => m_Wrapper.m_Gameplay_MPPlayeer2Dashmove;
         public InputAction @ArrowShootP1 => m_Wrapper.m_Gameplay_ArrowShootP1;
         public InputAction @ArrowShootP2 => m_Wrapper.m_Gameplay_ArrowShootP2;
+        public InputAction @MouseDirection => m_Wrapper.m_Gameplay_MouseDirection;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -856,6 +878,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArrowShootP2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
                 @ArrowShootP2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
                 @ArrowShootP2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
+                @MouseDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @MouseDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @MouseDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -923,6 +948,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArrowShootP2.started += instance.OnArrowShootP2;
                 @ArrowShootP2.performed += instance.OnArrowShootP2;
                 @ArrowShootP2.canceled += instance.OnArrowShootP2;
+                @MouseDirection.started += instance.OnMouseDirection;
+                @MouseDirection.performed += instance.OnMouseDirection;
+                @MouseDirection.canceled += instance.OnMouseDirection;
             }
         }
     }
@@ -950,5 +978,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMPPlayeer2Dashmove(InputAction.CallbackContext context);
         void OnArrowShootP1(InputAction.CallbackContext context);
         void OnArrowShootP2(InputAction.CallbackContext context);
+        void OnMouseDirection(InputAction.CallbackContext context);
     }
 }
