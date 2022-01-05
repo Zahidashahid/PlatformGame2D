@@ -32,7 +32,7 @@ public class MPSkeletonMelleAttack : MonoBehaviour
             {
                 MelleAttackLogic();
                 nextAttackTime = 2;
-                //Debug.Log("nextAttackTime" + nextAttackTime);
+                Debug.Log("nextAttackTime" + nextAttackTime);
             }
             else
             {
