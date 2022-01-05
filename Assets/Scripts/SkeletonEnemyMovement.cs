@@ -72,12 +72,12 @@ public class SkeletonEnemyMovement : MonoBehaviour
             if (direction == 1)
             {
                 rb.velocity = new Vector2(3, rb.velocity.y);
-                transform.localScale = new Vector2(5, 5);
+                transform.localScale = new Vector2(1, 1);
             }
             else
             {
                 rb.velocity = new Vector2(-3, rb.velocity.y);
-                transform.localScale = new Vector2(-5, 5);
+                transform.localScale = new Vector2(-1, 1);
             }
             //Debug.Log("transform pos" + transform.position);
             Flip();
@@ -106,7 +106,7 @@ public class SkeletonEnemyMovement : MonoBehaviour
                 rb.velocity = new Vector2(3, rb.velocity.y);
             }
             Flip();
-            //transform.localScale = new Vector2(5, 5);
+            //transform.localScale = new Vector2(1, 1);
         }
 
         else
@@ -114,12 +114,12 @@ public class SkeletonEnemyMovement : MonoBehaviour
             if (direction == 1)
             {
                 rb.velocity = new Vector2(3, rb.velocity.y);
-                transform.localScale = new Vector2(5, 5);
+                transform.localScale = new Vector2(1, 1);
             }
             else
             {
                 rb.velocity = new Vector2(-3, rb.velocity.y);
-                transform.localScale = new Vector2(-5, 5);
+                transform.localScale = new Vector2(-1, 1);
             }
             //Debug.Log("transform pos" + transform.position);
             Flip();
