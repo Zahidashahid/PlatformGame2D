@@ -17,7 +17,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     public HealthBar healthBar;
     public float attackRange = 2f;
     public float rayCastLength;
-    public float attackDistance; // min distance for attack
+   // public float attackDistance; // min distance for attack
     public float stopDistance; //Enemy stop moving when distance < stop distance
     public float retreatDistance; //Enemy start moving back from player
     public int currentHealth;
@@ -48,10 +48,10 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         healthBar.SetHealth(currentHealth);
-        stopDistance = 6f;
-        retreatDistance = 5f;
+        stopDistance = 6.5f;
+        retreatDistance = 5.5f;
     }
-    void FixedUpdate()
+    void Update()
     {
         if (!InsideOfLimit())
         {
@@ -67,9 +67,6 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     }
     void MovingTowardsPlayers()
     {
-
-        Debug.Log(" P1 and enemy " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
-        Debug.Log(" P2 and enemy " + Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position));
         if (mPCameraController.targets.Count > 1)
         {
             /*
@@ -80,16 +77,16 @@ public class MPMelleSkeletonMovement : MonoBehaviour
                 (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > stopDistance) && currentHealth > 0)
             {
                 animator.SetFloat("Speed", Mathf.Abs(40));
-                Debug.Log(" enemy moving towards player");
+               // Debug.Log(" enemy moving towards player");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
-                    transform.localScale = new Vector2(12, 12);
+                    transform.localScale = new Vector2(1, 1);
                 }
                 else
                 {
                     rb.velocity = new Vector2(-3, rb.velocity.y);
-                    transform.localScale = new Vector2(-12, 12);
+                    transform.localScale = new Vector2(-1, 1);
                 }
                 //Debug.Log("transform pos" + transform.position);
                 Flip();
@@ -100,7 +97,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) ||
                     (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance))
             {
-                Debug.Log(" if enemy near enough but not much near stop  moving-");
+                //Debug.Log(" if enemy near enough but not much near stop  moving-");
                 animator.SetFloat("Speed", Mathf.Abs(0));
                 rb.velocity = new Vector2(0, 0);
                 transform.position = this.transform.position;
@@ -112,30 +109,49 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) ||
                     (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < retreatDistance))
             {
-                Debug.Log(" enemy moving away from player if it is very near to player-");
-                if (direction == 1)
+                //Debug.Log(" enemy moving away from player if it is very near to player-");
+                if(transform.position.x <  mPCameraController.targets[0].transform.position.x)
                 {
+                    Debug.Log("  player is on left side -");
+                    if (direction == 1)
+                    {
 
-                    rb.velocity = new Vector2(-3, rb.velocity.y);
+                        rb.velocity = new Vector2(-3, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(3, rb.velocity.y);
+                    }
+                    Flip();
                 }
                 else
                 {
-                    rb.velocity = new Vector2(3, rb.velocity.y);
+                    Debug.Log("  player is on right side -");
+                    if (direction == 1)
+                    {
+
+                        rb.velocity = new Vector2(3, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(-3, rb.velocity.y);
+                    }
+                    Flip();
                 }
-                Flip();
+               
             }
             else
             {
-                Debug.Log(" Else-");
+             //   Debug.Log(" Else-");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
-                    transform.localScale = new Vector2(5, 5);
+                    transform.localScale = new Vector2(1, 1);
                 }
                 else
                 {
                     rb.velocity = new Vector2(-3, rb.velocity.y);
-                    transform.localScale = new Vector2(-5, 5);
+                    transform.localScale = new Vector2(-1, 1);
                 }
                 //Debug.Log("transform pos" + transform.position);
                 Flip();
@@ -148,16 +164,16 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > stopDistance  )
             {
                 animator.SetFloat("Speed", Mathf.Abs(40));
-                Debug.Log(" enemy moving towards player");
+               // Debug.Log(" enemy moving towards player");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
-                    transform.localScale = new Vector2(12, 12);
+                    transform.localScale = new Vector2(1, 1);
                 }
                 else
                 {
                     rb.velocity = new Vector2(-3, rb.velocity.y);
-                    transform.localScale = new Vector2(-12, 12);
+                    transform.localScale = new Vector2(-1, 1);
                 }
                 //Debug.Log("transform pos" + transform.position);
                 Flip();
@@ -167,7 +183,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
              */
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance) )
             {
-                Debug.Log(" if enemy near enough but not much near stop  moving-");
+               // Debug.Log(" if enemy near enough but not much near stop  moving-");
                 animator.SetFloat("Speed", Mathf.Abs(0));
                 rb.velocity = new Vector2(0, 0);
                 transform.position = this.transform.position;
@@ -178,7 +194,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
              */
             else if ((Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance) )
             {
-                Debug.Log(" enemy moving away from player if it is very near to player-");
+               // Debug.Log(" enemy moving away from player if it is very near to player-");
                 if (direction == 1)
                 {
 
@@ -192,16 +208,16 @@ public class MPMelleSkeletonMovement : MonoBehaviour
             }
             else
             {
-                Debug.Log(" Else-");
+               // Debug.Log(" Else-");
                 if (direction == 1)
                 {
                     rb.velocity = new Vector2(3, rb.velocity.y);
-                    transform.localScale = new Vector2(5, 5);
+                    transform.localScale = new Vector2(1, 1);
                 }
                 else
                 {
                     rb.velocity = new Vector2(-3, rb.velocity.y);
-                    transform.localScale = new Vector2(-5, 5);
+                    transform.localScale = new Vector2(-1, 1);
                 }
                 //Debug.Log("transform pos" + transform.position);
                 Flip();
@@ -355,7 +371,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
         float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
         float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
         Vector3 rotation = transform.eulerAngles;
-       //Debug.Log(distanceToLeft + " :: " + distanceToRight);
+       Debug.Log(distanceToLeft + " :: " + distanceToRight);
         if (distanceToLeft > distanceToRight)
         {
             rotation.y = 180f;
@@ -371,7 +387,7 @@ public class MPMelleSkeletonMovement : MonoBehaviour
     bool InsideOfLimit()
     {
    
-        //Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);
+       // Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);
         return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
     }
 }

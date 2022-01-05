@@ -30,6 +30,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MouseDirection",
+                    "type": "Value",
+                    "id": "4d692f18-3d81-4f78-8f63-bbfffcdebaf3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Multiplayer1Jump",
                     "type": "Button",
                     "id": "cdf15ea4-6124-4861-aac5-c220956d5d64",
@@ -170,14 +178,6 @@
                     "type": "Button",
                     "id": "01e2951f-3445-4983-ac18-465017ff13e0",
                     "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "MouseDirection",
-                    "type": "Value",
-                    "id": "4d692f18-3d81-4f78-8f63-bbfffcdebaf3",
-                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
                 }

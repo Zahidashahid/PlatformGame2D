@@ -366,22 +366,22 @@ public class MultiPlayer2 : MonoBehaviour
         {
             float retreatDistance = 3.5f;
             float stopDistance = 5;
-            // Debug.Log("MP2 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
+             Debug.Log("MP2 Distance " + Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position));
             /*
            -----------if enemy near enough but not much near stop  moving----------
         */
-            if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance &&
+          /*  if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < stopDistance &&
                 Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) > retreatDistance)
             {
                 Debug.Log("Stop moving from p1");
-                rb.velocity = new Vector2(0, 0);
-                transform.position = this.transform.position;
+                //rb.velocity = new Vector2(0, 0);
+               // transform.position = this.transform.position;
 
-            }
+            }*/
             /*
                -----------enemy moving away from player if it is very near to player----------
             */
-            else if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance)
+             if (Vector2.Distance(transform.position, mPCameraController.targets[0].transform.position) < retreatDistance)
             {
                 Debug.Log(" moving away from player 1 ");
                 Debug.Log(transform.position.x + " pos  player 1 " + mPCameraController.targets[0].name);

@@ -329,8 +329,8 @@ public class MultiPlayer1 : MonoBehaviour
             if (Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) < stopDistance && Vector2.Distance(transform.position, mPCameraController.targets[1].transform.position) > retreatDistance)
             {
                 Debug.Log("Stop moving from p 2");
-                rb.velocity = new Vector2(0, 0);
-                transform.position = this.transform.position;
+                /*rb.velocity = new Vector2(0, 0);
+                transform.position = this.transform.position;*/
 
             }
             /*

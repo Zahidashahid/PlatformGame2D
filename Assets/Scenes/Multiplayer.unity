@@ -718,7 +718,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
+    oldSize: {x: 1.1428572, y: 2.5142858}
     newSize: {x: 2, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -744,7 +744,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
+    oldSize: {x: 1.1428572, y: 2.5142858}
     newSize: {x: 2, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -821,7 +821,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
+    oldSize: {x: 1.1428572, y: 2.5142858}
     newSize: {x: 2, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2814,7 +2814,6 @@ GameObject:
   - component: {fileID: 315141190}
   - component: {fileID: 315141191}
   - component: {fileID: 315141192}
-  - component: {fileID: 315141193}
   - component: {fileID: 315141194}
   - component: {fileID: 315141187}
   m_Layer: 15
@@ -2931,7 +2930,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.28, y: 2.52}
+    oldSize: {x: 1.3428571, y: 1.7142857}
     newSize: {x: 6.4, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -2939,24 +2938,25 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8410549, y: -0.22464922}
-      - {x: 0.70583606, y: -0.21172288}
-      - {x: -0.12948526, y: -0.17704183}
-      - {x: -0.06, y: 0.5}
-      - {x: -0.26, y: 0.95807123}
-      - {x: -0.38697296, y: 0.97134197}
-      - {x: -0.48037046, y: 1.0841459}
-      - {x: -0.6328393, y: 0.9890328}
-      - {x: -0.9029582, y: 0.66523194}
-      - {x: -0.9090073, y: 0.5120475}
-      - {x: -0.9905401, y: -0.31278852}
-      - {x: -0.90755653, y: -1.2532352}
-      - {x: -0.7755888, y: -1.2705302}
-      - {x: -0.5338388, y: -0.3292156}
-      - {x: -0.42799369, y: -1.2693094}
-      - {x: -0.25627542, y: -1.280396}
-      - {x: -0.2931844, y: -0.41476804}
-      - {x: 1.051677, y: -0.48499426}
+    - - {x: 0.6060541, y: -0.010942149}
+      - {x: 0.014285714, y: 0.014285714}
+      - {x: -0.042857144, y: 0.35714287}
+      - {x: -0.030612916, y: 0.6977876}
+      - {x: -0.122619204, y: 0.84549123}
+      - {x: -0.32857144, y: 0.87142855}
+      - {x: -0.47142857, y: 0.87142855}
+      - {x: -0.5711757, y: 0.5222645}
+      - {x: -0.5934401, y: 0.21241193}
+      - {x: -0.6628422, y: -0.028318584}
+      - {x: -0.42436597, y: -0.41412035}
+      - {x: -0.42500046, y: -0.8494934}
+      - {x: -0.27310053, y: -0.8783436}
+      - {x: -0.23447035, y: -0.5080128}
+      - {x: -0.071428575, y: -0.9}
+      - {x: 0.046621986, y: -0.85362434}
+      - {x: -0.21428572, y: -0.24285714}
+      - {x: 0.014553096, y: -0.12313524}
+      - {x: 0.6502283, y: -0.100380175}
 --- !u!50 &315141188
 Rigidbody2D:
   serializedVersion: 4
@@ -2993,7 +2993,7 @@ MonoBehaviour:
   healthBar: {fileID: 1496959981}
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 8294
+    m_Bits: 106726
   rb: {fileID: 315141188}
   bgSound: {fileID: 0}
   direction: 2
@@ -3019,17 +3019,17 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315141183}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.45354837, y: -1.1784075}
+  m_Offset: {x: -0.25, y: -0.85}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.28, y: 2.52}
+    oldSize: {x: 1.3428571, y: 1.7142857}
     newSize: {x: 6.4, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3064,32 +3064,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 2010557502}
---- !u!61 &315141193
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315141183}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.7162543, y: -0.27650142}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.28, y: 2.52}
-    newSize: {x: 6.4, y: 4.8}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.42503273, y: 1.9220681}
-  m_EdgeRadius: 0
 --- !u!114 &315141194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3301,8 +3275,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.102, y: 0.334}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.659, y: 1.825}
+  m_SizeDelta: {x: 4, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &338473702
 MonoBehaviour:
@@ -22831,7 +22805,7 @@ Transform:
   m_GameObject: {fileID: 830805422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -41.952026, y: -1885.848, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 909216586}
   - {fileID: 868633542}
@@ -22858,7 +22832,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23255,7 +23229,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23263,37 +23237,61 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.1614168, y: -0.2602553}
-      - {x: 0.14238045, y: -0.23980217}
-      - {x: 0.13085002, y: -0.1842809}
-      - {x: 0.14324102, y: -0.09054494}
-      - {x: 0.104505606, y: -0.035156414}
-      - {x: 0.1757223, y: -0.0012493655}
-      - {x: 0.2063222, y: 0.05252708}
-      - {x: 0.23753682, y: 0.052891105}
-      - {x: 0.28980225, y: 0.16070835}
-      - {x: 0.17572458, y: 0.05991731}
-      - {x: 0.12597992, y: 0.07663077}
-      - {x: 0.112775594, y: 0.07895716}
-      - {x: 0.11169452, y: 0.130039}
-      - {x: 0.13076594, y: 0.24215025}
-      - {x: 0.096828595, y: 0.23373964}
-      - {x: 0.0714744, y: 0.22934915}
-      - {x: 0.04691115, y: 0.19334413}
-      - {x: -0.00456319, y: 0.14218272}
-      - {x: -0.020172715, y: -0.03608767}
-      - {x: -0.021879967, y: -0.059038166}
-      - {x: 0.014670879, y: -0.10852565}
-      - {x: -0.013146374, y: -0.071869776}
-      - {x: -0.0063754963, y: -0.101927385}
-      - {x: -0.06379722, y: -0.25838554}
-      - {x: -0.017083801, y: -0.26373968}
-      - {x: -0.022067547, y: -0.23934914}
-      - {x: 0.03181362, y: -0.08737649}
-      - {x: 0.09065084, y: -0.03617768}
-      - {x: 0.09732399, y: -0.25687674}
-      - {x: 0.13710889, y: -0.24444805}
-      - {x: 0.14387986, y: -0.2707084}
+    - - {x: 0.6319368, y: -1.0487075}
+      - {x: 0.58921885, y: -0.3396557}
+      - {x: 0.49273682, y: -0.2211914}
+      - {x: 0.43816203, y: -0.17427114}
+      - {x: 0.4206458, y: -0.10653615}
+      - {x: 0.41413695, y: -0.04956071}
+      - {x: 0.38519287, y: 0.01574707}
+      - {x: 0.34338588, y: 0.060640283}
+      - {x: 0.34890032, y: 0.060217515}
+      - {x: 0.3519167, y: 0.06680712}
+      - {x: 0.3779297, y: 0.10449219}
+      - {x: 0.39587402, y: 0.10449219}
+      - {x: 0.39746094, y: 0.10266113}
+      - {x: 0.43390626, y: 0.09320347}
+      - {x: 0.4650312, y: 0.08188996}
+      - {x: 0.6188388, y: 0.011323154}
+      - {x: 0.97282195, y: 0.1536642}
+      - {x: 1.030823, y: 0.3277929}
+      - {x: 0.85772705, y: 0.31188965}
+      - {x: 0.5649414, y: 0.53063965}
+      - {x: 0.5749798, y: 0.97567075}
+      - {x: 0.3203125, y: 0.9901123}
+      - {x: 0.08980955, y: 0.6984613}
+      - {x: -0.02361837, y: 0.62363625}
+      - {x: -0.14422607, y: 0.5123291}
+      - {x: -0.13967332, y: 0.49961853}
+      - {x: -0.22070312, y: 0.43737793}
+      - {x: -0.2701416, y: 0.3807373}
+      - {x: -0.26989746, y: 0.26745605}
+      - {x: -0.23692402, y: 0.11398448}
+      - {x: -0.08706725, y: -0.07136599}
+      - {x: -0.29901123, y: -0.080078125}
+      - {x: -0.121367276, y: -0.17842293}
+      - {x: -0.09458205, y: -0.16443385}
+      - {x: -0.09350586, y: -0.16259766}
+      - {x: -0.107666016, y: -0.14331055}
+      - {x: -0.05983827, y: -0.12533657}
+      - {x: -0.0390625, y: -0.12939453}
+      - {x: -0.04861182, y: -0.1372057}
+      - {x: -0.10168457, y: -0.17285156}
+      - {x: -0.36889648, y: -0.96643066}
+      - {x: -0.35029626, y: -1.0469598}
+      - {x: -0.10913086, y: -1.0395508}
+      - {x: 0.1379455, y: -0.37934026}
+      - {x: 0.109341145, y: -0.38388038}
+      - {x: 0.088378906, y: -0.22741699}
+      - {x: 0.116713524, y: -0.21115579}
+      - {x: 0.1227417, y: -0.22485352}
+      - {x: 0.105529785, y: -0.2607422}
+      - {x: 0.105238244, y: -0.2643271}
+      - {x: 0.1071167, y: -0.2644043}
+      - {x: 0.12485085, y: -0.29471853}
+      - {x: 0.27645215, y: -0.23883283}
+      - {x: 0.36358643, y: -0.29345703}
+      - {x: 0.35414597, y: -1.04085}
 --- !u!114 &830805437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23314,7 +23312,6 @@ MonoBehaviour:
   healthBar: {fileID: 338473702}
   attackRange: 2
   rayCastLength: 6
-  attackDistance: 0
   stopDistance: 0
   retreatDistance: 0
   currentHealth: 0
@@ -28594,7 +28591,7 @@ RectTransform:
   m_GameObject: {fileID: 1303827750}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 9.353074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 338473701}
   m_Father: {fileID: 830805425}
@@ -28602,8 +28599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.019, y: 0}
-  m_SizeDelta: {x: 12.634, y: 2.346}
+  m_AnchoredPosition: {x: 0, y: 0.22}
+  m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1303827752
 MonoBehaviour:
@@ -30123,26 +30120,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 15, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 49, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -30177,27 +30154,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 15, y: 2, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 8
-      m_TileSpriteIndex: 8
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -30227,13 +30184,13 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 4ae07afa9abdb45409c9e9db5bd1c281, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 94c3a92852eddc24baf4033e80241e86, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: 3efa3a489e2f44a4e923f8ecd9dfa838, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: baa07a6689c69b14d9988b25173122d2, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ca2ee4a114d989c4abad6ceae72f46f8, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: c875511dbf057d046a730219fd6545df, type: 2}
@@ -30241,33 +30198,33 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 0ced4462b69aa284595e9c39762cd20f, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 8488dd751a94627448bbef62d5d74ac2, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 6796f921798e4be41a47e3155b247590, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 416f7581c5f0ad24c9d91e8f3c4f84c3, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 91f57a6c7ee645b4fb1ea99329ac0817, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 21300000, guid: 60770bd069df0d247b89e17fa92419eb, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: da1d2d99638388b47860773744236fa3, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: 3e8a3e71d137552439bb416d1b57e327, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: 21300000, guid: 1466496ce2378754f8a9b09a1caa25c2, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 21300000, guid: 1466496ce2378754f8a9b09a1caa25c2, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 3e8a3e71d137552439bb416d1b57e327, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300000, guid: 9cb7bb55428fd534a86d54896663ab4d, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 8b9f9a3100ab2ce4c8e74900363d65c8, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4f7ede23b9d6a944c892ebb244fe12c6, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 26
+  - m_RefCount: 22
     m_Data:
       e00: 1
       e01: 0
@@ -30286,7 +30243,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 26
+  - m_RefCount: 22
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -32496,8 +32453,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583314297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.013, y: -0.075, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: -0.2431, y: -0.1817, z: 0}
+  m_LocalScale: {x: 0.46397588, y: 0.5116444, z: 0}
   m_Children: []
   m_Father: {fileID: 357167240}
   m_RootOrder: 1
@@ -33251,8 +33208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678159364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71, y: -0.075, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0.5365, y: -0.5818, z: 0}
+  m_LocalScale: {x: 0.5956, y: 0.5433515, z: 0}
   m_Children: []
   m_Father: {fileID: 1334110192}
   m_RootOrder: 1
@@ -34610,7 +34567,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -35593,7 +35550,6 @@ GameObject:
   - component: {fileID: 1899409971}
   - component: {fileID: 1899409975}
   - component: {fileID: 1899409977}
-  - component: {fileID: 1899409979}
   - component: {fileID: 1899409978}
   - component: {fileID: 1899409976}
   - component: {fileID: 1899409980}
@@ -35683,7 +35639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899409970}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.025, y: -783.981, z: 0}
+  m_LocalPosition: {x: -23.025, y: -783.915, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 557754057}
@@ -35708,11 +35664,11 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
+    oldSize: {x: 1.1428572, y: 2.5142858}
     newSize: {x: 2, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -35720,34 +35676,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.14600419, y: -1.3755045}
-      - {x: 0.1916611, y: -1.4498667}
-      - {x: 0.38816953, y: -1.4384733}
-      - {x: 0.3865397, y: -1.384505}
-      - {x: 0.29613358, y: -1.24311}
-      - {x: 0.17711996, y: -0.60005695}
-      - {x: 0.4043417, y: -0.12325646}
-      - {x: 0.39195824, y: 0.042239483}
-      - {x: 0.38217163, y: 0.28625488}
-      - {x: 0.17297359, y: 0.14726564}
-      - {x: 0.13717146, y: 0.38958135}
-      - {x: -0.020563766, y: 0.5780985}
-      - {x: -0.085726924, y: 0.95850635}
-      - {x: -0.17467245, y: 1.0742188}
-      - {x: -0.3877405, y: 0.9836559}
-      - {x: -0.43456727, y: 0.8717814}
-      - {x: -0.48856813, y: 0.49471232}
-      - {x: -0.49956203, y: 0.5923188}
-      - {x: -0.63355815, y: 0.12990926}
-      - {x: -0.6454354, y: -0.45036507}
-      - {x: -0.61344194, y: -0.49360353}
-      - {x: -0.6136943, y: -0.62421876}
-      - {x: -0.7187256, y: -1.4412681}
-      - {x: -0.5682699, y: -1.4283508}
-      - {x: -0.39247447, y: -0.9361532}
-      - {x: -0.22981365, y: -0.95435995}
-      - {x: -0.091887414, y: -0.79065156}
-      - {x: 0.10931601, y: -1.2379212}
+    - - {x: 0.3731954, y: -0.99456847}
+      - {x: 0.3838873, y: -1.0088742}
+      - {x: 0.14815761, y: -0.38569424}
+      - {x: 0.22842568, y: -0.22857143}
+      - {x: 0.3195314, y: -0.058949787}
+      - {x: 0.1479972, y: 0.032024875}
+      - {x: 0.19459389, y: 0.2624433}
+      - {x: 0.10534596, y: 0.45706266}
+      - {x: 0.050035458, y: 0.6499954}
+      - {x: -0.105345964, y: 0.66606796}
+      - {x: -0.23923792, y: 0.5821205}
+      - {x: -0.39282706, y: 0.29821315}
+      - {x: -0.43563876, y: 0.032105073}
+      - {x: -0.376689, y: -0.33385184}
+      - {x: -0.28916773, y: -0.37672904}
+      - {x: -0.43387195, y: -0.98212045}
+      - {x: -0.45177683, y: -1.010692}
+      - {x: -0.31072664, y: -1.0267645}
+      - {x: -0.27681464, y: -0.9124387}
+      - {x: -0.041044835, y: -0.4338318}
+      - {x: 0.19823317, y: -0.9999091}
 --- !u!50 &1899409975
 Rigidbody2D:
   serializedVersion: 4
@@ -35784,7 +35733,7 @@ MonoBehaviour:
   healthBar: {fileID: 64593175}
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 8294
+    m_Bits: 106726
   rb: {fileID: 1899409975}
   bgSound: {fileID: 0}
   direction: 2
@@ -35809,24 +35758,24 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899409970}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.045334876, y: -1.4312763}
+  m_Offset: {x: 0, y: -0.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
+    oldSize: {x: 1.1428572, y: 2.5142858}
     newSize: {x: 2, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.23, y: 0.03728211}
+  m_Size: {x: 0.85, y: 0.03728211}
   m_EdgeRadius: 0
 --- !u!114 &1899409978
 MonoBehaviour:
@@ -35841,32 +35790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreManager: {fileID: 2010557502}
---- !u!61 &1899409979
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899409970}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.03999999, y: 0.48054817}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 3.52}
-    newSize: {x: 2, y: 4.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.82453406, y: 1.6493225}
-  m_EdgeRadius: 0
 --- !u!114 &1899409980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36767,7 +36690,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.28, y: 2.52}
+    oldSize: {x: 1.3428571, y: 1.7142857}
     newSize: {x: 6.4, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37443,7 +37366,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.28, y: 2.52}
+    oldSize: {x: 1.3428571, y: 1.7142857}
     newSize: {x: 6.4, y: 4.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -37764,7 +37687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000020980835, y: 0.00008392334}
+  m_AnchoredPosition: {x: 0.000022888184, y: 0.00008392334}
   m_SizeDelta: {x: 0, y: -0.10180664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1980119759

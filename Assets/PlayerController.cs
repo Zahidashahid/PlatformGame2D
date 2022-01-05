@@ -43,6 +43,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""MouseDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""4d692f18-3d81-4f78-8f63-bbfffcdebaf3"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Multiplayer1Jump"",
                     ""type"": ""Button"",
                     ""id"": ""cdf15ea4-6124-4861-aac5-c220956d5d64"",
@@ -183,14 +191,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""type"": ""Button"",
                     ""id"": ""01e2951f-3445-4983-ac18-465017ff13e0"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""MouseDirection"",
-                    ""type"": ""Value"",
-                    ""id"": ""4d692f18-3d81-4f78-8f63-bbfffcdebaf3"",
-                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -690,6 +690,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_RightMove = m_Gameplay.FindAction("RightMove", throwIfNotFound: true);
         m_Gameplay_LeftMove = m_Gameplay.FindAction("LeftMove", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_MouseDirection = m_Gameplay.FindAction("MouseDirection", throwIfNotFound: true);
         m_Gameplay_Multiplayer1Jump = m_Gameplay.FindAction("Multiplayer1Jump", throwIfNotFound: true);
         m_Gameplay_MelleAttackGP = m_Gameplay.FindAction("MelleAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackGP = m_Gameplay.FindAction("RangeAttackGP", throwIfNotFound: true);
@@ -708,7 +709,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_MPPlayeer2Dashmove = m_Gameplay.FindAction("MPPlayeer2Dashmove", throwIfNotFound: true);
         m_Gameplay_ArrowShootP1 = m_Gameplay.FindAction("ArrowShootP1", throwIfNotFound: true);
         m_Gameplay_ArrowShootP2 = m_Gameplay.FindAction("ArrowShootP2", throwIfNotFound: true);
-        m_Gameplay_MouseDirection = m_Gameplay.FindAction("MouseDirection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -761,6 +761,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_RightMove;
     private readonly InputAction m_Gameplay_LeftMove;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_MouseDirection;
     private readonly InputAction m_Gameplay_Multiplayer1Jump;
     private readonly InputAction m_Gameplay_MelleAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackGP;
@@ -779,7 +780,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_MPPlayeer2Dashmove;
     private readonly InputAction m_Gameplay_ArrowShootP1;
     private readonly InputAction m_Gameplay_ArrowShootP2;
-    private readonly InputAction m_Gameplay_MouseDirection;
     public struct GameplayActions
     {
         private @PlayerController m_Wrapper;
@@ -787,6 +787,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @RightMove => m_Wrapper.m_Gameplay_RightMove;
         public InputAction @LeftMove => m_Wrapper.m_Gameplay_LeftMove;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @MouseDirection => m_Wrapper.m_Gameplay_MouseDirection;
         public InputAction @Multiplayer1Jump => m_Wrapper.m_Gameplay_Multiplayer1Jump;
         public InputAction @MelleAttackGP => m_Wrapper.m_Gameplay_MelleAttackGP;
         public InputAction @RangeAttackGP => m_Wrapper.m_Gameplay_RangeAttackGP;
@@ -805,7 +806,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @MPPlayeer2Dashmove => m_Wrapper.m_Gameplay_MPPlayeer2Dashmove;
         public InputAction @ArrowShootP1 => m_Wrapper.m_Gameplay_ArrowShootP1;
         public InputAction @ArrowShootP2 => m_Wrapper.m_Gameplay_ArrowShootP2;
-        public InputAction @MouseDirection => m_Wrapper.m_Gameplay_MouseDirection;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -824,6 +824,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @MouseDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @MouseDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @MouseDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
                 @Multiplayer1Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
                 @Multiplayer1Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
                 @Multiplayer1Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
@@ -878,9 +881,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArrowShootP2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
                 @ArrowShootP2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
                 @ArrowShootP2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArrowShootP2;
-                @MouseDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
-                @MouseDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
-                @MouseDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -894,6 +894,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @MouseDirection.started += instance.OnMouseDirection;
+                @MouseDirection.performed += instance.OnMouseDirection;
+                @MouseDirection.canceled += instance.OnMouseDirection;
                 @Multiplayer1Jump.started += instance.OnMultiplayer1Jump;
                 @Multiplayer1Jump.performed += instance.OnMultiplayer1Jump;
                 @Multiplayer1Jump.canceled += instance.OnMultiplayer1Jump;
@@ -948,9 +951,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @ArrowShootP2.started += instance.OnArrowShootP2;
                 @ArrowShootP2.performed += instance.OnArrowShootP2;
                 @ArrowShootP2.canceled += instance.OnArrowShootP2;
-                @MouseDirection.started += instance.OnMouseDirection;
-                @MouseDirection.performed += instance.OnMouseDirection;
-                @MouseDirection.canceled += instance.OnMouseDirection;
             }
         }
     }
@@ -960,6 +960,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnRightMove(InputAction.CallbackContext context);
         void OnLeftMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnMouseDirection(InputAction.CallbackContext context);
         void OnMultiplayer1Jump(InputAction.CallbackContext context);
         void OnMelleAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackGP(InputAction.CallbackContext context);
@@ -978,6 +979,5 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMPPlayeer2Dashmove(InputAction.CallbackContext context);
         void OnArrowShootP1(InputAction.CallbackContext context);
         void OnArrowShootP2(InputAction.CallbackContext context);
-        void OnMouseDirection(InputAction.CallbackContext context);
     }
 }
