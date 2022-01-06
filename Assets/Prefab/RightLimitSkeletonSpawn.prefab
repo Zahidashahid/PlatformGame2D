@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5548860311527099445}
   m_Layer: 5
-  m_Name: RightLimitSkeletonSpwan
+  m_Name: RightLimitSkeletonSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
