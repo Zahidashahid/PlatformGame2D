@@ -440,7 +440,7 @@ Transform:
   m_GameObject: {fileID: 1832316126879599126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.01, y: 3.4853, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1832316127984089275}
   - {fileID: 1832316126738578336}
@@ -537,7 +537,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -610,6 +610,7 @@ MonoBehaviour:
   retreatDistance: 0
   currentHealth: 0
   direction: 1
+  numberOfDamgeTake: 0
   lootSystem: {fileID: 0}
 --- !u!114 &1832316126879599122
 MonoBehaviour:
@@ -958,7 +959,6 @@ MonoBehaviour:
     spawnRate: 40
     minSpawnProb: 0
     maxSpawnProb: 0
-  index: 0
 --- !u!60 &-4453244556993159092
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -976,7 +976,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
+    oldSize: {x: 10, y: 10}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -984,33 +984,38 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.15849136, y: -0.26156405}
-      - {x: 0.13161941, y: -0.23466434}
-      - {x: 0.15388235, y: -0.07}
-      - {x: 0.1706422, y: 0.021481924}
-      - {x: 0.32, y: 0.14}
-      - {x: 0.32, y: 0.17}
-      - {x: 0.29999998, y: 0.19}
-      - {x: 0.26999998, y: 0.17999999}
-      - {x: 0.25913492, y: 0.13301724}
-      - {x: 0.17463666, y: 0.054664362}
-      - {x: 0.12698272, y: 0.24692726}
-      - {x: 0.115418695, y: 0.24388237}
-      - {x: 0.07872315, y: 0.23831737}
-      - {x: 0.059134893, y: 0.1639932}
-      - {x: 0.009806126, y: 0.15701039}
-      - {x: -0.05016616, y: 0.1192457}
-      - {x: -0.024048552, y: -0.061508644}
-      - {x: -0.040110745, y: -0.16296189}
-      - {x: -0.073100366, y: -0.18304497}
-      - {x: -0.094664365, y: -0.25924563}
-      - {x: -0.07620073, y: -0.26002768}
-      - {x: -0.0291903, y: -0.2600277}
-      - {x: 0.0054463856, y: -0.102373734}
-      - {x: 0.026791118, y: -0.021745507}
-      - {x: 0.110975124, y: -0.108719066}
-      - {x: 0.09301728, y: -0.22544634}
-      - {x: 0.08307266, y: -0.25234604}
+    - - {x: 1.1084682, y: -1.7293689}
+      - {x: 0.99207115, y: -1.4430256}
+      - {x: 0.906288, y: -0.51066446}
+      - {x: 0.7514938, y: 0.30220103}
+      - {x: 1.3108218, y: 0.06735277}
+      - {x: 2.060108, y: 0.9516401}
+      - {x: 2.0601077, y: 1.0875676}
+      - {x: 2.0504847, y: 1.161263}
+      - {x: 1.9359277, y: 1.1019095}
+      - {x: 1.8274596, y: 1.0443957}
+      - {x: 1.3124328, y: 0.43524253}
+      - {x: 0.73296094, y: 0.5687609}
+      - {x: 1.0143421, y: 1.4378369}
+      - {x: 1.0157121, y: 1.5437106}
+      - {x: 0.8339337, y: 1.6957545}
+      - {x: 0.48493338, y: 1.6637015}
+      - {x: 0.41845232, y: 1.3148812}
+      - {x: 0.07611185, y: 1.1096926}
+      - {x: -0.3736186, y: 0.86666673}
+      - {x: -0.44684434, y: 0.10861418}
+      - {x: -0.2508086, y: 0.12569612}
+      - {x: -0.0052604675, y: 0.2714548}
+      - {x: -0.2247194, y: -0.883603}
+      - {x: -0.50149393, y: -1.467851}
+      - {x: -0.55545825, y: -1.59863}
+      - {x: -0.6418011, y: -1.6927563}
+      - {x: -0.09153199, y: -1.683603}
+      - {x: 0.1478889, y: -0.6281028}
+      - {x: 0.4923072, y: -0.23152447}
+      - {x: 0.59877586, y: -0.98169374}
+      - {x: 0.57131636, y: -1.59863}
+      - {x: 0.57909924, y: -1.7293689}
 --- !u!114 &4362479774097147814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,6 +1029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  activeShield: 0
 --- !u!1 &1832316127082317221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1130,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832316127920599273}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.05, z: 0}
   m_Children:
@@ -1136,8 +1142,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.102, y: 0.334}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.659, y: 1.825}
+  m_SizeDelta: {x: 4, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1832316127920599254
 MonoBehaviour:

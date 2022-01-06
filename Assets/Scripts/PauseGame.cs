@@ -9,11 +9,18 @@ public class PauseGame : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject gameModeUI;
     public GameObject QuitGameMenuUI;
+    public GameObject MainMenuConformationPopUpUI;
     PlayerController controls;
+    PlayerMovement playerMovement;
     private void Awake()
     {
         controls = new PlayerController();
         controls.Gameplay.PauseGame.performed += ctx => PauseGamePress();
+
+    }
+    private void Start()
+    {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
     void Update()
     {
@@ -50,24 +57,35 @@ public class PauseGame : MonoBehaviour
     {
         isGamePaused = false;
         pauseMenuUI.SetActive(false);
+        MainMenuConformationPopUpUI.SetActive(false);
+        QuitGameMenuUI.SetActive(false);
         gameModeUI.SetActive(true);
         Time.timeScale = 1f;
     }   
     void Pause()
     {
         isGamePaused = true;
-        gameModeUI.SetActive(false);
+       // gameModeUI.SetActive(false);
         pauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void MainMenuConformationPopUp()
+    {
+        MainMenuConformationPopUpUI.SetActive(true);
         Time.timeScale = 0f;
     }
     public void LoadMenu()
     {
         Time.timeScale = 1f;
+        playerMovement.Reset();
+        GameUIScript.isNewGame = true;
         SceneManager.LoadScene("Main Menu");
     }
     public void QuitGameMenu()
     {
         QuitGameMenuUI.SetActive(true);
+        Time.timeScale = 1f;
     }
      public void QuitGame()
      {

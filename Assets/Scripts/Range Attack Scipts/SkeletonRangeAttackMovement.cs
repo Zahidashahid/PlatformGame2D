@@ -17,7 +17,10 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     public Animator animator;
     public LootSystem lootSystem;
     EnemyShield shield;
-    
+
+    public Transform leftLimit;
+    public Transform rightLimit;
+
     /*
     public AudioSource arrowHitSound;
     public AudioSource DeathSound;*/
@@ -51,6 +54,10 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
     void Update()
     {
         Flip();
+        if (!InsideOfLimit())
+        {
+            SelectTarget();
+        }
     }
 
    
@@ -143,5 +150,29 @@ public class SkeletonRangeAttackMovement : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("Hurt", false);
 
+    }
+    void SelectTarget()
+    {
+        float distanceToLeft = Vector2.Distance(transform.position, leftLimit.position);
+        float distanceToRight = Vector2.Distance(transform.position, rightLimit.position);
+        Vector3 rotation = transform.eulerAngles;
+        //Debug.Log(distanceToLeft + " " + distanceToRight);
+        if (distanceToLeft > distanceToRight)
+        {
+            rotation.y = 180f;
+            direction = 2;
+        }
+        else
+        {
+            rotation.y = 180f;
+            direction = 1;
+        }
+
+    }
+    bool InsideOfLimit()
+    {
+        /*
+        Debug.Log(transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x);*/
+        return transform.position.x > leftLimit.position.x && transform.position.x < rightLimit.position.x;
     }
 }
