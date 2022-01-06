@@ -599,8 +599,8 @@ MonoBehaviour:
   animator: {fileID: 1832316126879599133}
   playerAnimator: {fileID: 0}
   rayCast: {fileID: 1832316126257695578}
-  leftLimit: {fileID: 446932206136427334, guid: f220cb6a4fb9ec84dbc5eb5cfc049e33, type: 3}
-  rightLimit: {fileID: 4745877288039712153, guid: 1f3c45ab2eb6c38429928ca6bb7d2905, type: 3}
+  leftLimit: {fileID: 4533611394011863624, guid: ec79756ae59202141bed407d594b3db4, type: 3}
+  rightLimit: {fileID: 5548860311527099445, guid: 44c909c94f4ff6d40a5906cf20574b3a, type: 3}
   healthBar: {fileID: 1832316127920599272}
   attackRange: 2.5
   rayCastLength: 6

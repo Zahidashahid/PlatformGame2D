@@ -691,8 +691,8 @@ MonoBehaviour:
   healthBar: {fileID: 8758366977011349132}
   animator: {fileID: 1394343666177398813}
   lootSystem: {fileID: 0}
-  leftLimit: {fileID: 4179505301460544772, guid: b55851f746d26db4181c1ccbc3f64301, type: 3}
-  rightLimit: {fileID: 7677184065462483226, guid: 3221caae52e30a9429bbd32a68270400, type: 3}
+  leftLimit: {fileID: 9184472691381068245, guid: 4c93e02968e65d94b903770333c9c565, type: 3}
+  rightLimit: {fileID: 2564848699681852990, guid: f4cfa407ad63c574c9b834498f5b5270, type: 3}
 --- !u!82 &7538763695170340473
 AudioSource:
   m_ObjectHideFlags: 0
