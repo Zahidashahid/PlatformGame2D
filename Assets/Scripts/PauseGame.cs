@@ -82,22 +82,31 @@ public class PauseGame : MonoBehaviour
         GameUIScript.isNewGame = true;
         SceneManager.LoadScene("Main Menu");
     }
+    public void NotLoadMenuGame()
+    {
+        Time.timeScale = 1f;
+        MainMenuConformationPopUpUI.SetActive(false);
+        Debug.Log("Game Not  Quiting");
+    }
     public void QuitGameMenu()
     {
         QuitGameMenuUI.SetActive(true);
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
      public void QuitGame()
      {
+        Time.timeScale = 1f;
         Application.Quit();
         QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Quiting");
      }
     public void NotQuitGame()
     {
+        Time.timeScale = 1f;
         QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Not  Quiting");
     }
+    
     private void OnEnable()
     {
         controls.Gameplay.Enable();
