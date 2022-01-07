@@ -188,10 +188,10 @@ public class GameUIScript : MonoBehaviour
     IEnumerator waiter()
     {
         //Wait for 1 seconds
-        //Time.timeScale = 0f;
+       
         yield return new WaitForSeconds(0.001f);
         Debug.Log("Game is Over.");
-
+        Time.timeScale = 0f;
         gameOverCanvas.SetActive(true);
         gameOverPanel.SetActive(true);
         restartButton.SetActive(true);

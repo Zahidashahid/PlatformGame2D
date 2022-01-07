@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     private GameMaster gm;
     public TMP_Text lifesText;
     GameUIScript gameUIScript;
-    
+   
     private void Awake()
     {
         boxCollider2d = GetComponent<BoxCollider2D>();
@@ -93,6 +93,24 @@ public class PlayerMovement : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
         Debug.Log("Level " + PlayerPrefs.GetInt("LevelCompleted"));
+        if (PlayerPrefs.GetString("DifficultyLevel") == "Hard")
+        {
+            lifes = 1;
+            lifesText.text = "X " + lifes;
+
+        }
+        else if (PlayerPrefs.GetString("DifficultyLevel")== "Medium")
+        {
+            lifes = 2;
+            lifesText.text = "X " + lifes;
+
+        }
+        else if (PlayerPrefs.GetString("DifficultyLevel")=="Easy")
+        {
+            lifes = 3;
+            lifesText.text = "X " + lifes;
+
+        }
         if (MainMenu.isNewGame || GameUIScript.isNewGame || (PlayerPrefs.GetInt("LevelCompleted") == 1)) 
         {
             Debug.Log("New Game Started");
@@ -178,7 +196,11 @@ public class PlayerMovement : MonoBehaviour
             //rb.velocity = new Vector2(rb.velocity.x, 11f);
             rb.velocity = new Vector2(rb.velocity.x, 10f);
             animator.SetBool("IsJumping", true);
+            // animator.SetBool("Sheild", false);
+            shield.activeShield = false;
+            shield.shieldGO.SetActive(false);
             Debug.Log(" jump count is " + jumpCount);
+            
             Debug.Log(" IsGrounded() is " + IsGrounded());
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.jumpSound);
             // animator.SetFloat("Speed", Mathf.Abs(40));

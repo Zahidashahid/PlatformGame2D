@@ -7,7 +7,7 @@ public class Shield : MonoBehaviour
 
     PlayerController controls;
     public GameObject shieldGO;
-    private  bool activeShield;
+    public  bool activeShield;
     private void Awake()
     {
         controls = new PlayerController(); 

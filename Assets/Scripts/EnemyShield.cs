@@ -8,8 +8,10 @@ public class EnemyShield : MonoBehaviour
     private Transform player;
     private float distance;
     public  bool activeShield;
+    MelleAttack melleAttack;
     void Start()
     {
+        //melleAttack =  GetComponent<MelleAttack>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         activeShield = false;
@@ -41,6 +43,7 @@ public class EnemyShield : MonoBehaviour
             Debug.Log("Collision "+collision);
             if (!activeShield)
             {
+                //melleAttack.inRange = true;
                 animator.SetBool("Sheild", true);
                 activeShield = true;
             }

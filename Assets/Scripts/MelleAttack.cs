@@ -13,7 +13,7 @@ public class MelleAttack : MonoBehaviour
     public float attackDistance; 
     public float nextAttackTime; // after every 2 sec
     private float distance; // stores distance btw player and skeleton
-    private bool inRange; // check player in range
+    public bool inRange; // check player in range
     private bool cooling;
     private GameObject target;
     SkeletonEnemyMovement skeletonEnemyMovement;
@@ -23,6 +23,7 @@ public class MelleAttack : MonoBehaviour
     {
         nextAttackTime = -1;
         skeletonEnemyMovement = GameObject.FindGameObjectWithTag("Skeleton").GetComponent<SkeletonEnemyMovement>();
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -46,12 +47,12 @@ public class MelleAttack : MonoBehaviour
             nextAttackTime = -1;
         }
     }
-    void MelleAttackLogic() // melle attack 
+    public void MelleAttackLogic() // melle attack 
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
-        attackDistance = 6;/*
+        attackDistance = 8;
         Debug.Log("Value of distance is " + distance);
-        Debug.Log("Value of attack distance is " + attackDistance);*/
+        Debug.Log("Value of attack distance is " + attackDistance);
         
         if (attackDistance >= distance)
         {
