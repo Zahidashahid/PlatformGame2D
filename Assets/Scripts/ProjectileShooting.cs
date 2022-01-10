@@ -80,7 +80,12 @@ public class ProjectileShooting : MonoBehaviour
                     hitInfo.collider.GetComponent<SkeletonRangeAttackMovement>().TakeDamage(10);
                 }
             }
-            DestroyProjectile();
+            if (hitInfo.collider.tag == "Enemy")
+            {
+                GameObject hit = hitInfo.collider.gameObject;
+                Destroy(hit);
+            }
+                DestroyProjectile();
         }
     }
     void DestroyProjectile()
