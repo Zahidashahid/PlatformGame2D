@@ -441,7 +441,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4fcad6e7-0c81-4771-a56d-499bfe5b6966"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

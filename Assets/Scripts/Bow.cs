@@ -49,7 +49,9 @@ public class Bow : MonoBehaviour
             nextAttackTime -= Time.deltaTime;
             canAttack = false;
         }
+
         
+           
         /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
          Debug.Log("rotateBow.z"+ rotateBow.z);
          Debug.Log("rotateBow.y"+ rotateBow.y);
@@ -83,22 +85,30 @@ public class Bow : MonoBehaviour
     }
     void BowRotate(Vector2 vector)
     {
-//Vector3 difference = Camera.main.ScreenToWorldPoint(Input.MouseDirection) - transform.position;
-        float rotZ = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
-        // Debug.Log("" + rotZ + offset);
-        arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
+        //Vector3 difference = Camera.main.ScreenToWorldPoint(Input.MouseDirection) - transform.position;
+        if (PauseGame.isGamePaused == false)
+        {
+            float rotZ = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
+            // Debug.Log("" + rotZ + offset);
+            arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
+        }
+            
     }
     void ArrowShoot()
     {
-        arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
-
-        if (arrowLeft > 0 && canAttack)
+        if (PauseGame.isGamePaused == false)
         {
-            arrowStore.ArrowUsed();
-            Instantiate(projectile, shotPoint.position, transform.rotation);
-            nextAttackTime = 1;
+            arrowLeft = PlayerPrefs.GetInt("ArrowPlayerHas");
+
+            if (arrowLeft > 0 && canAttack)
+            {
+                arrowStore.ArrowUsed();
+                Instantiate(projectile, shotPoint.position, transform.rotation);
+                nextAttackTime = 1;
+            }
         }
+          
     }
     private void OnEnable()
     {

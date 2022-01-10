@@ -12,10 +12,11 @@ public class PauseGame : MonoBehaviour
     public GameObject MainMenuConformationPopUpUI;
     PlayerController controls;
     PlayerMovement playerMovement;
+    bool hitBtnPressed;
     private void Awake()
     {
         controls = new PlayerController();
-        controls.Gameplay.PauseGame.performed += ctx => PauseGamePress();
+        controls.Gameplay.PauseGame.performed += ctx => OnApplicationPause();
 
     }
     private void Start()
@@ -24,6 +25,7 @@ public class PauseGame : MonoBehaviour
     }
     void Update()
     {
+       // hitBtnPressed = Input.GetKeyDown(KeyCode.O);
       /*  if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(!isGamePaused)
@@ -39,8 +41,18 @@ public class PauseGame : MonoBehaviour
             }
         }*/
     }
-    void PauseGamePress()
+    void OnApplicationFocus(bool hasFocus)
     {
+        isGamePaused = !hasFocus;
+        if (hasFocus == false)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+    }
+
+    void OnApplicationPause()
+    {
+       
         if (!isGamePaused)
         {
 
@@ -52,6 +64,10 @@ public class PauseGame : MonoBehaviour
             Resume();
             Debug.Log("Resume called");
         }
+    }
+    void PauseGamePress()
+    {
+        
     }
     public void Resume()
     {
