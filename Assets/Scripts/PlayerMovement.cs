@@ -519,10 +519,14 @@ public class PlayerMovement : MonoBehaviour
         // Set the player on check point position
         animator.SetBool("IsDied", false);
         Debug.Log("Player Reactive!");
-        transformObj.position = gm.lastCheckPointPos;
-
-        Debug.Log("lastCheckPointPos pistion ! " + gm.lastCheckPointPos);
-        Debug.Log("Player pistion transformObj ! " + transformObj.name);
+        if ((PlayerPrefs.GetString("CurrentLevel") == "Level 1"))
+            transformObj.position = transformObj.position + new Vector3(0,10f,0);
+        else
+        {
+            transformObj.position = gm.lastCheckPointPos;
+            Debug.Log("lastCheckPointPos pistion ! " + gm.lastCheckPointPos);
+            Debug.Log("Player pistion transformObj ! " + transformObj.name);
+        }
     }
     public int PlayerMovingDirection()
     {
