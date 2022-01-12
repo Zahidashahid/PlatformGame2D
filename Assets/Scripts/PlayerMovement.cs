@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
            */
-        controls.Gameplay.MelleAttackByKeyboard.performed += ctx   => MelleAttack();
+        controls.Gameplay.MelleAttackSinglePlayer.performed += ctx   => MelleAttack();
         
         controls.Gameplay.DashMove.performed +=ctx   => DashMovePlayer();
         

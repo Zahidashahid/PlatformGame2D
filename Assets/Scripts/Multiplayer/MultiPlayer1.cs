@@ -53,7 +53,7 @@ public class MultiPlayer1 : MonoBehaviour
         /*    controls.Gameplay.RightMove.performed +=ctx   => MovePlayerRight();
             controls.Gameplay.LeftMove.performed +=ctx   => MoveplayerLeft();
            */
-        controls.Gameplay.MelleAttackGP.performed += ctx => MelleAttack();
+        controls.Gameplay.MelleAttackByKeyboard.performed += ctx => MelleAttack();
         controls.Gameplay.MPPlayer1Dashmove.performed += ctx => DashMovePlayer();
 
     }

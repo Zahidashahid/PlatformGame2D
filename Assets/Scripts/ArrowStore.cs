@@ -10,6 +10,7 @@ public class ArrowStore : MonoBehaviour
     private void Awake()
     {
         arrowPlayerHas = 10;
+        PlayerPrefs.SetInt("ArrowPlayerHas",10);
     }
     void Start()
     {

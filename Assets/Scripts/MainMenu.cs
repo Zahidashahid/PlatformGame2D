@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
 
-       //PlayerPrefs.SetString("CurrentLevel", null);
+       //PlayerPrefs.SetString("CurrentLevel", "");
         currentLevel = PlayerPrefs.GetString("CurrentLevel", ""); //If non of any levels played yet current level will be null i.e "" due to string
         difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         onClickBtnSound = GameObject.FindGameObjectWithTag("SoundEffectGameObject").GetComponent<AudioSource>();

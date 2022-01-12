@@ -51,17 +51,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Multiplayer1Jump"",
+                    ""name"": ""MelleAttackSinglePlayer"",
                     ""type"": ""Button"",
-                    ""id"": ""cdf15ea4-6124-4861-aac5-c220956d5d64"",
+                    ""id"": ""a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""MelleAttackGP"",
+                    ""name"": ""Multiplayer1Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af"",
+                    ""id"": ""cdf15ea4-6124-4861-aac5-c220956d5d64"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -281,17 +281,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""89475d0a-7a81-4060-8a92-72c1add8dbf5"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MelleAttackGP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -679,6 +668,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""MouseDirection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89475d0a-7a81-4060-8a92-72c1add8dbf5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MelleAttackSinglePlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee9c258e-7759-4f97-8dc7-62d343565740"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MelleAttackSinglePlayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -691,8 +702,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_LeftMove = m_Gameplay.FindAction("LeftMove", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_MouseDirection = m_Gameplay.FindAction("MouseDirection", throwIfNotFound: true);
+        m_Gameplay_MelleAttackSinglePlayer = m_Gameplay.FindAction("MelleAttackSinglePlayer", throwIfNotFound: true);
         m_Gameplay_Multiplayer1Jump = m_Gameplay.FindAction("Multiplayer1Jump", throwIfNotFound: true);
-        m_Gameplay_MelleAttackGP = m_Gameplay.FindAction("MelleAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackGP = m_Gameplay.FindAction("RangeAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackPlayer1 = m_Gameplay.FindAction("RangeAttackPlayer1", throwIfNotFound: true);
         m_Gameplay_RangeAttackPlayer2 = m_Gameplay.FindAction("RangeAttackPlayer2", throwIfNotFound: true);
@@ -762,8 +773,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_LeftMove;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_MouseDirection;
+    private readonly InputAction m_Gameplay_MelleAttackSinglePlayer;
     private readonly InputAction m_Gameplay_Multiplayer1Jump;
-    private readonly InputAction m_Gameplay_MelleAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackPlayer1;
     private readonly InputAction m_Gameplay_RangeAttackPlayer2;
@@ -788,8 +799,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @LeftMove => m_Wrapper.m_Gameplay_LeftMove;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @MouseDirection => m_Wrapper.m_Gameplay_MouseDirection;
+        public InputAction @MelleAttackSinglePlayer => m_Wrapper.m_Gameplay_MelleAttackSinglePlayer;
         public InputAction @Multiplayer1Jump => m_Wrapper.m_Gameplay_Multiplayer1Jump;
-        public InputAction @MelleAttackGP => m_Wrapper.m_Gameplay_MelleAttackGP;
         public InputAction @RangeAttackGP => m_Wrapper.m_Gameplay_RangeAttackGP;
         public InputAction @RangeAttackPlayer1 => m_Wrapper.m_Gameplay_RangeAttackPlayer1;
         public InputAction @RangeAttackPlayer2 => m_Wrapper.m_Gameplay_RangeAttackPlayer2;
@@ -827,12 +838,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MouseDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
                 @MouseDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
                 @MouseDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @MelleAttackSinglePlayer.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
+                @MelleAttackSinglePlayer.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
+                @MelleAttackSinglePlayer.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
                 @Multiplayer1Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
                 @Multiplayer1Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
                 @Multiplayer1Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMultiplayer1Jump;
-                @MelleAttackGP.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
-                @MelleAttackGP.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
-                @MelleAttackGP.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackGP;
                 @RangeAttackGP.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
                 @RangeAttackGP.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
                 @RangeAttackGP.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnRangeAttackGP;
@@ -897,12 +908,12 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MouseDirection.started += instance.OnMouseDirection;
                 @MouseDirection.performed += instance.OnMouseDirection;
                 @MouseDirection.canceled += instance.OnMouseDirection;
+                @MelleAttackSinglePlayer.started += instance.OnMelleAttackSinglePlayer;
+                @MelleAttackSinglePlayer.performed += instance.OnMelleAttackSinglePlayer;
+                @MelleAttackSinglePlayer.canceled += instance.OnMelleAttackSinglePlayer;
                 @Multiplayer1Jump.started += instance.OnMultiplayer1Jump;
                 @Multiplayer1Jump.performed += instance.OnMultiplayer1Jump;
                 @Multiplayer1Jump.canceled += instance.OnMultiplayer1Jump;
-                @MelleAttackGP.started += instance.OnMelleAttackGP;
-                @MelleAttackGP.performed += instance.OnMelleAttackGP;
-                @MelleAttackGP.canceled += instance.OnMelleAttackGP;
                 @RangeAttackGP.started += instance.OnRangeAttackGP;
                 @RangeAttackGP.performed += instance.OnRangeAttackGP;
                 @RangeAttackGP.canceled += instance.OnRangeAttackGP;
@@ -961,8 +972,8 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnLeftMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMouseDirection(InputAction.CallbackContext context);
+        void OnMelleAttackSinglePlayer(InputAction.CallbackContext context);
         void OnMultiplayer1Jump(InputAction.CallbackContext context);
-        void OnMelleAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackPlayer1(InputAction.CallbackContext context);
         void OnRangeAttackPlayer2(InputAction.CallbackContext context);
