@@ -25,6 +25,15 @@ public class Gifts : MonoBehaviour
         Debug.Log("gift data fatched");
 
     }
+    private void Update()
+    {
+        string currentLevel = PlayerPrefs.GetString("CurrentLevel");
+        if (currentLevel == "Level 1" || currentLevel == "Level 2")
+        {
+            PlayerPrefs.SetInt("GemCollectedTillLastCheckPoint", PlayerPrefs.GetInt("RecentGemCollected"));
+            PlayerPrefs.SetInt("CherryCollectedTillLastCheckPoint", PlayerPrefs.GetInt("RecentCherryCollected"));
+        }
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         string tag = collision.tag;

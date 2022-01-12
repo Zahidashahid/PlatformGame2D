@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         // bgSound.Play();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         Debug.Log("gm.lastCheckPointPos "+ gm.lastCheckPointPos  + gm.lastCheckPointPos);
-        Debug.Log("Level " + PlayerPrefs.GetInt("LevelCompleted"));
+        Debug.Log("Num of Level completed " + PlayerPrefs.GetInt("LevelCompleted"));
         if (PlayerPrefs.GetString("DifficultyLevel") == "Hard")
         {
             lifes = 1;
@@ -121,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             PlayerPrefs.SetInt("CherryCollectedTillLastCheckPoint", 0);
             //Reset arrow Store
             PlayerPrefs.SetInt("ArrowPlayerHas", 10);
+            PlayerPrefs.SetInt("CurrentHealth", 100);
             gm.lastCheckPointPos = transformObj.position; // Set last check point zero when game restarted
             PlayerPrefs.SetFloat("LastcheckPointX", transformObj.position.x);
             PlayerPrefs.SetFloat("LastcheckPointy", transformObj.position.y);
@@ -134,6 +135,15 @@ public class PlayerMovement : MonoBehaviour
             transformObj.position = gm.lastCheckPointPos;
         }
             
+    }
+    private void Update()
+    {
+        string currentLevel = PlayerPrefs.GetString("CurrentLevel");
+        if(currentLevel == "Level 1")
+        {
+             PlayerPrefs.SetFloat("LastcheckPointX" , transformObj.position.x);
+             PlayerPrefs.SetFloat("LastcheckPointy", transformObj.position.y);
+        }
     }
     private void FixedUpdate()
     {
@@ -508,7 +518,7 @@ public class PlayerMovement : MonoBehaviour
 
         CheckForAwatarSelected();
         animator.SetBool("IsDied", true);
-        Debug.Log("Player died!");
+        Debug.Log("Player died!"); 
         Debug.Log(" died!" + animator.GetBool("IsDied"));
        // PlayerPrefs.SetInt("ArrowPlayerHas", 10);
         SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.deathSound);

@@ -16,18 +16,29 @@ public class MainMenu : MonoBehaviour
     public static string difficultyLevel;
     public static bool isNewGame;
     public Button[] levelBtns;
+    public GameObject continueBtn;
     GameMaster gm;
     private void Awake()
     {
         isNewGame = true;
+
     }
     private void Start()
     {
-        currentLevel = PlayerPrefs.GetString("CurrentLevel", "Level 1");
+
+       //PlayerPrefs.SetString("CurrentLevel", null);
+        currentLevel = PlayerPrefs.GetString("CurrentLevel", ""); //If non of any levels played yet current level will be null i.e "" due to string
         difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         onClickBtnSound = GameObject.FindGameObjectWithTag("SoundEffectGameObject").GetComponent<AudioSource>();
         bgSound = GameObject.FindGameObjectWithTag("BGmusicGameObject").GetComponent<AudioSource>();
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        /*
+        -----------------Continue button disable if game is install for 1st time -----------------------------------
+        */
+        if (currentLevel == null || currentLevel == "")
+        {
+            continueBtn.SetActive(false);
+        }
         /*
          -----------------Level Lock Logic Start here -----------------------------------
          */
@@ -65,13 +76,17 @@ public class MainMenu : MonoBehaviour
          -----------------Level Lock Logic ends here -----------------------------------
          */
     }
+    public void OnPlayBtnclick()
+    {
+       
+    }
     public void PlayGame()
     {
         OnBtnClickSound();
 
         difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
 
-        if (currentLevel == null)
+        if (currentLevel == null || currentLevel == "")
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene(currentLevel);
@@ -82,10 +97,30 @@ public class MainMenu : MonoBehaviour
         isNewGame = false;
         difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
         
-        if (currentLevel == null)
+        if (currentLevel == null || currentLevel == "")
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         else
             SceneManager.LoadScene(currentLevel);
+    } 
+    
+    public void NewGame()
+    {
+        OnBtnClickSound();
+        isNewGame = true;
+        difficultyLevel = PlayerPrefs.GetString("DifficultyLevel");
+        
+        if (currentLevel == null || currentLevel == "")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetString("CurrentLevel", "Level 1");
+        }
+           
+        else
+        {
+            SceneManager.LoadScene(currentLevel);
+            isNewGame = true;
+        }
+            
     }
 
     public void Level1()

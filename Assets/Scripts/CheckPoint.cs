@@ -9,6 +9,8 @@ public class CheckPoint : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
     }
+
+  
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") )
