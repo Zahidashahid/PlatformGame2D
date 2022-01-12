@@ -69,7 +69,11 @@ public class EnemyAI : MonoBehaviour
     IEnumerator Reset()
     {
         yield return new WaitForSeconds(0.3f);
-        Destroy(gameObject);
+        
+       if(this.CompareTag("Enemy"))
+       {
+           Destroy(gameObject);
+       }
         hitByEnemy = false;
     }
     
