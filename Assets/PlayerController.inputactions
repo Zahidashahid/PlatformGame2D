@@ -38,6 +38,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "DashMove",
+                    "type": "Button",
+                    "id": "60bc66c6-3b18-461c-8be0-e96e83f4c729",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "MelleAttackSinglePlayer",
                     "type": "Button",
                     "id": "a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af",
@@ -82,14 +90,6 @@
                     "type": "Value",
                     "id": "a46efaac-8c61-4dec-850c-4d3ff20c2da3",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "DashMove",
-                    "type": "Button",
-                    "id": "60bc66c6-3b18-461c-8be0-e96e83f4c729",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -383,28 +383,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e539adb5-d71e-43f8-8a3a-e47f161a003e",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DashMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4431da22-5c98-4c22-a4d8-29e8f9ad1f0b",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DashMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "62133045-a964-49c3-87e2-ffcdd6a86bdf",
                     "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
@@ -675,6 +653,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MelleAttackSinglePlayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e539adb5-d71e-43f8-8a3a-e47f161a003e",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4431da22-5c98-4c22-a4d8-29e8f9ad1f0b",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

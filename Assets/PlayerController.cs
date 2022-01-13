@@ -51,6 +51,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""DashMove"",
+                    ""type"": ""Button"",
+                    ""id"": ""60bc66c6-3b18-461c-8be0-e96e83f4c729"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""MelleAttackSinglePlayer"",
                     ""type"": ""Button"",
                     ""id"": ""a7b896e3-26a1-4f64-a8fa-08fcd9c5a5af"",
@@ -95,14 +103,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""a46efaac-8c61-4dec-850c-4d3ff20c2da3"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""DashMove"",
-                    ""type"": ""Button"",
-                    ""id"": ""60bc66c6-3b18-461c-8be0-e96e83f4c729"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -396,28 +396,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e539adb5-d71e-43f8-8a3a-e47f161a003e"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DashMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4431da22-5c98-4c22-a4d8-29e8f9ad1f0b"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DashMove"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""62133045-a964-49c3-87e2-ffcdd6a86bdf"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
@@ -690,6 +668,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""MelleAttackSinglePlayer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e539adb5-d71e-43f8-8a3a-e47f161a003e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4431da22-5c98-4c22-a4d8-29e8f9ad1f0b"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DashMove"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -702,13 +702,13 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Gameplay_LeftMove = m_Gameplay.FindAction("LeftMove", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_MouseDirection = m_Gameplay.FindAction("MouseDirection", throwIfNotFound: true);
+        m_Gameplay_DashMove = m_Gameplay.FindAction("DashMove", throwIfNotFound: true);
         m_Gameplay_MelleAttackSinglePlayer = m_Gameplay.FindAction("MelleAttackSinglePlayer", throwIfNotFound: true);
         m_Gameplay_Multiplayer1Jump = m_Gameplay.FindAction("Multiplayer1Jump", throwIfNotFound: true);
         m_Gameplay_RangeAttackGP = m_Gameplay.FindAction("RangeAttackGP", throwIfNotFound: true);
         m_Gameplay_RangeAttackPlayer1 = m_Gameplay.FindAction("RangeAttackPlayer1", throwIfNotFound: true);
         m_Gameplay_RangeAttackPlayer2 = m_Gameplay.FindAction("RangeAttackPlayer2", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
-        m_Gameplay_DashMove = m_Gameplay.FindAction("DashMove", throwIfNotFound: true);
         m_Gameplay_ArowHit = m_Gameplay.FindAction("ArowHit", throwIfNotFound: true);
         m_Gameplay_PauseGame = m_Gameplay.FindAction("PauseGame", throwIfNotFound: true);
         m_Gameplay_Shield = m_Gameplay.FindAction(" Shield", throwIfNotFound: true);
@@ -773,13 +773,13 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_LeftMove;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_MouseDirection;
+    private readonly InputAction m_Gameplay_DashMove;
     private readonly InputAction m_Gameplay_MelleAttackSinglePlayer;
     private readonly InputAction m_Gameplay_Multiplayer1Jump;
     private readonly InputAction m_Gameplay_RangeAttackGP;
     private readonly InputAction m_Gameplay_RangeAttackPlayer1;
     private readonly InputAction m_Gameplay_RangeAttackPlayer2;
     private readonly InputAction m_Gameplay_Move;
-    private readonly InputAction m_Gameplay_DashMove;
     private readonly InputAction m_Gameplay_ArowHit;
     private readonly InputAction m_Gameplay_PauseGame;
     private readonly InputAction m_Gameplay_Shield;
@@ -799,13 +799,13 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @LeftMove => m_Wrapper.m_Gameplay_LeftMove;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @MouseDirection => m_Wrapper.m_Gameplay_MouseDirection;
+        public InputAction @DashMove => m_Wrapper.m_Gameplay_DashMove;
         public InputAction @MelleAttackSinglePlayer => m_Wrapper.m_Gameplay_MelleAttackSinglePlayer;
         public InputAction @Multiplayer1Jump => m_Wrapper.m_Gameplay_Multiplayer1Jump;
         public InputAction @RangeAttackGP => m_Wrapper.m_Gameplay_RangeAttackGP;
         public InputAction @RangeAttackPlayer1 => m_Wrapper.m_Gameplay_RangeAttackPlayer1;
         public InputAction @RangeAttackPlayer2 => m_Wrapper.m_Gameplay_RangeAttackPlayer2;
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
-        public InputAction @DashMove => m_Wrapper.m_Gameplay_DashMove;
         public InputAction @ArowHit => m_Wrapper.m_Gameplay_ArowHit;
         public InputAction @PauseGame => m_Wrapper.m_Gameplay_PauseGame;
         public InputAction @Shield => m_Wrapper.m_Gameplay_Shield;
@@ -838,6 +838,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MouseDirection.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
                 @MouseDirection.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
                 @MouseDirection.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMouseDirection;
+                @DashMove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
+                @DashMove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
+                @DashMove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
                 @MelleAttackSinglePlayer.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
                 @MelleAttackSinglePlayer.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
                 @MelleAttackSinglePlayer.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMelleAttackSinglePlayer;
@@ -856,9 +859,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
-                @DashMove.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
-                @DashMove.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
-                @DashMove.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDashMove;
                 @ArowHit.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
                 @ArowHit.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
                 @ArowHit.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnArowHit;
@@ -908,6 +908,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @MouseDirection.started += instance.OnMouseDirection;
                 @MouseDirection.performed += instance.OnMouseDirection;
                 @MouseDirection.canceled += instance.OnMouseDirection;
+                @DashMove.started += instance.OnDashMove;
+                @DashMove.performed += instance.OnDashMove;
+                @DashMove.canceled += instance.OnDashMove;
                 @MelleAttackSinglePlayer.started += instance.OnMelleAttackSinglePlayer;
                 @MelleAttackSinglePlayer.performed += instance.OnMelleAttackSinglePlayer;
                 @MelleAttackSinglePlayer.canceled += instance.OnMelleAttackSinglePlayer;
@@ -926,9 +929,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @DashMove.started += instance.OnDashMove;
-                @DashMove.performed += instance.OnDashMove;
-                @DashMove.canceled += instance.OnDashMove;
                 @ArowHit.started += instance.OnArowHit;
                 @ArowHit.performed += instance.OnArowHit;
                 @ArowHit.canceled += instance.OnArowHit;
@@ -972,13 +972,13 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnLeftMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMouseDirection(InputAction.CallbackContext context);
+        void OnDashMove(InputAction.CallbackContext context);
         void OnMelleAttackSinglePlayer(InputAction.CallbackContext context);
         void OnMultiplayer1Jump(InputAction.CallbackContext context);
         void OnRangeAttackGP(InputAction.CallbackContext context);
         void OnRangeAttackPlayer1(InputAction.CallbackContext context);
         void OnRangeAttackPlayer2(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
-        void OnDashMove(InputAction.CallbackContext context);
         void OnArowHit(InputAction.CallbackContext context);
         void OnPauseGame(InputAction.CallbackContext context);
         void OnShield(InputAction.CallbackContext context);
