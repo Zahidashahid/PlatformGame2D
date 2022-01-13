@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour
     public static string difficultyLevel;
     public static bool isNewGame;
     public Button[] levelBtns;
+    public Button newGameBtn;
+    public Button levelInOnPlayBtn;
     public GameObject continueBtn;
     GameMaster gm;
     private void Awake()
@@ -38,6 +40,8 @@ public class MainMenu : MonoBehaviour
         if (currentLevel == null || currentLevel == "")
         {
             continueBtn.SetActive(false);
+            newGameBtn.transform.position = new Vector3(newGameBtn.transform.position.x + 0, newGameBtn.transform.position.y + 125);
+            levelInOnPlayBtn.transform.position = new Vector3(levelInOnPlayBtn.transform.position.x + 0, levelInOnPlayBtn.transform.position.y + 25);
         }
         /*
          -----------------Level Lock Logic Start here -----------------------------------

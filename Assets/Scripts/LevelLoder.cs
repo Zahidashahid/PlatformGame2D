@@ -35,6 +35,7 @@ public class LevelLoder : MonoBehaviour
         else
         {
             SceneManager.LoadScene(sLevelToLoad);
+            PlayerPrefs.SetString("CurrentLevel", sLevelToLoad);
             audioSrc.mute = true;
             SoundEffect.sfInstance.audioS.PlayOneShot(SoundEffect.sfInstance.missionCompletetSound);
             PlayerPrefs.SetString("LevelReached", sLevelToLoad);

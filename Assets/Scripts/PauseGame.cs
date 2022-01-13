@@ -95,23 +95,27 @@ public class PauseGame : MonoBehaviour
     {
         Time.timeScale = 1f;
         playerMovement.Reset();
+        isGamePaused = false;
         GameUIScript.isNewGame = true;
         SceneManager.LoadScene("Main Menu");
     }
     public void NotLoadMenuGame()
     {
         Time.timeScale = 1f;
+        isGamePaused = false;
         MainMenuConformationPopUpUI.SetActive(false);
         Debug.Log("Game Not  Quiting");
     }
     public void QuitGameMenu()
     {
         QuitGameMenuUI.SetActive(true);
+
         Time.timeScale = 0f;
     }
      public void QuitGame()
      {
         Time.timeScale = 1f;
+        isGamePaused = false;
         Application.Quit();
         QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Quiting");
@@ -119,6 +123,7 @@ public class PauseGame : MonoBehaviour
     public void NotQuitGame()
     {
         Time.timeScale = 1f;
+        isGamePaused = false;
         QuitGameMenuUI.SetActive(false);
         Debug.Log("Game Not  Quiting");
     }

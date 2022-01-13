@@ -21,7 +21,11 @@ public class ArrowStore : MonoBehaviour
         arrowStoreText.text = "X " + arrowPlayerHas;
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        /*Debug.Log("arrowPlayerHas " + arrowPlayerHas);
+        Debug.Log("PlayerPrefs.GetInt(ArrowPlayerHas) " + PlayerPrefs.GetInt("ArrowPlayerHas"));*/
+    }
     public void ArrowUsed()
     {
         arrowPlayerHas -= 1;

@@ -50,7 +50,7 @@ public class Bow : MonoBehaviour
             canAttack = false;
         }
 
-        
+        Debug.Log("PauseGame.isGamePaused ==  " + PauseGame.isGamePaused);
            
         /* Vector3 r = new Vector3(rotateBow.x, rotateBow.y, rotateBow.z) * 100f * Time.deltaTime;
          Debug.Log("rotateBow.z"+ rotateBow.z);
