@@ -40,8 +40,8 @@ public class MainMenu : MonoBehaviour
         if (currentLevel == null || currentLevel == "")
         {
             continueBtn.SetActive(false);
-            newGameBtn.transform.position = new Vector3(newGameBtn.transform.position.x + 0, newGameBtn.transform.position.y + 125);
-            levelInOnPlayBtn.transform.position = new Vector3(levelInOnPlayBtn.transform.position.x + 0, levelInOnPlayBtn.transform.position.y + 25);
+            newGameBtn.transform.position = new Vector3(newGameBtn.transform.position.x + 0, newGameBtn.transform.position.y + 80);
+            levelInOnPlayBtn.transform.position = new Vector3(levelInOnPlayBtn.transform.position.x + 0, levelInOnPlayBtn.transform.position.y + 80);
         }
         /*
          -----------------Level Lock Logic Start here -----------------------------------
